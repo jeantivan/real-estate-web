@@ -8,7 +8,7 @@ export default function Layout({ children, title }) {
   return (
     <>
       <Head>
-        <title>{title || "Home"}</title>
+        <title>{title || "Home"} | Avilatek</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
