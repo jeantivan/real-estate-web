@@ -19,9 +19,32 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import MailIcon from "@material-ui/icons/Mail";
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import NextLink from "next/link";
+//import NextLink from "next/link";
 
 import Logo from "./Logo";
+
+const routes = [
+  {
+    href: "/",
+    text: "Inicio",
+  },
+  {
+    href: "/inmuebles",
+    text: "Inmuebles",
+  },
+  {
+    href: "/servicios",
+    text: "Servicios",
+  },
+  {
+    href: "/nosotros",
+    text: "Nosotros",
+  },
+  {
+    href: "/contacto",
+    text: "Contacto",
+  },
+];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +56,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       padding: theme.spacing(0, 4),
     },
+    [theme.breakpoints.up("xl")]: {
+      padding: theme.spacing(0, 10),
+    },
+    alignItems: "center",
   },
   menuButton: {
     [theme.breakpoints.up("md")]: {
@@ -46,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     width: "100%",
-    maxWidth: 360,
+    maxWidth: 240,
     backgroundColor: theme.palette.background.paper,
   },
   social: {
@@ -64,11 +91,14 @@ const useStyles = makeStyles((theme) => ({
     "& a:last-child": {
       marginLeft: theme.spacing(2),
     },
+    alignSelf: "stretch",
   },
   link: {
     textDecoration: "none",
     color: "#202020",
     fontWeight: "bold",
+    display: "inline-flex",
+    alignItems: "center",
     transition: theme.transitions.create(["color"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -76,20 +106,42 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     "&:hover": {
       color: theme.palette.primary.main,
+
+      "&:after": {
+        width: "80%",
+      },
+    },
+
+    "&:after": {
+      position: "absolute",
+      content: "''",
+      width: "0%",
+      backgroundColor: theme.palette.primary.main,
+      left: 0,
+      borderRadius: theme.spacing(1, 1, 0, 0),
+      transition: theme.transitions.create(["width"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
     },
   },
   activeLink: {
     color: theme.palette.primary.main,
 
     "&:after": {
-      position: "absolute",
-      content: "''",
-      height: 2,
       width: "80%",
-      backgroundColor: theme.palette.primary.main,
       bottom: 0,
-      left: 0,
-      borderRadius: theme.spacing(2),
+      height: 4,
+      transform: "translateX(10%)",
+    },
+  },
+  activeDrawerLink: {
+    color: theme.palette.primary.main,
+    "&:after": {
+      top: 8,
+      width: 4,
+      height: "calc(100% - 16px)",
+      borderRadius: theme.spacing(0, 1, 1, 0),
     },
   },
 }));
@@ -115,16 +167,26 @@ const NavLink = ({ children, href, className, activeClassName }) => {
 };
 
 export default function Navbar() {
-  const classes = useStyles();
+  const ref = React.useRef(null);
+  let classes = useStyles();
   const [show, setShow] = useState(false);
 
   const toggleDrawer = () => {
     setShow(!show);
   };
 
+  /* React.useEffect(() => {
+    const rect = ref.current.getBoundingClientRect();
+    classes = useStyles({
+      height: ref.current.getBoundingClientRect().height,
+    });
+    console.log("AppBar rect");
+    console.log(rect.height, rect.width);
+  }, []); */
+
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="inherit" elevation={0}>
+      <AppBar position="static" color="inherit" elevation={0} ref={ref}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -157,18 +219,23 @@ export default function Navbar() {
             </Toolbar>
             <Divider />
             <List className={classes.list}>
-              <ListItem button component="a">
-                <ListItemText>Inmuebles</ListItemText>
-              </ListItem>
-              <ListItem button component="a">
-                <ListItemText>Servicios</ListItemText>
-              </ListItem>
-              <ListItem button component="a">
-                <ListItemText>Nosotros</ListItemText>
-              </ListItem>
-              <ListItem button component="a">
-                <ListItemText>Contacto</ListItemText>
-              </ListItem>
+              {/* {routes.map((route) => (
+                <NavLink key={route.href} href={route.href} type="drawerLink">
+                  {route.text}
+                </NavLink>
+              ))} */}
+
+              {routes.map((route) => (
+                <ListItem
+                  key={route.href}
+                  component={NavLink}
+                  className={classes.link}
+                  activeClassName={classes.activeDrawerLink}
+                  href={route.href}
+                >
+                  <ListItemText disableTypography>{route.text}</ListItemText>
+                </ListItem>
+              ))}
             </List>
 
             <div className={classes.social}>
@@ -196,41 +263,16 @@ export default function Navbar() {
             </div>
           </Drawer>
           <nav role="navigation" className={classes.navContainer}>
-            <NavLink
-              href="/"
-              className={classes.link}
-              activeClassName={classes.activeLink}
-            >
-              Inicio
-            </NavLink>
-            <NavLink
-              href="/inmuebles"
-              className={classes.link}
-              activeClassName={classes.activeLink}
-            >
-              Inmuebles
-            </NavLink>
-            <NavLink
-              href="/servicios"
-              className={classes.link}
-              activeClassName={classes.activeLink}
-            >
-              Servicios
-            </NavLink>
-            <NavLink
-              href="/nosotros"
-              className={classes.link}
-              activeClassName={classes.activeLink}
-            >
-              Nosotros
-            </NavLink>
-            <NavLink
-              href="/contacto"
-              className={classes.link}
-              activeClassName={classes.activeLink}
-            >
-              Contacto
-            </NavLink>
+            {routes.map((route) => (
+              <NavLink
+                key={route.href}
+                href={route.href}
+                className={classes.link}
+                activeClassName={classes.activeLink}
+              >
+                {route.text}
+              </NavLink>
+            ))}
           </nav>
         </Toolbar>
       </AppBar>
