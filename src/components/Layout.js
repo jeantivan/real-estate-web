@@ -1,6 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
+import Toolbar from "@material-ui/core/Toolbar";
+import Box from "@material-ui/core/Box";
 
 import Navbar from "./Navbar";
 
@@ -14,8 +16,10 @@ export default function Layout({ children, title }) {
 
       <Navbar />
       <main>
-        {/* <Toolbar /> */}
-        <Container>{children}</Container>
+        <Toolbar />
+        <Container>
+          <Box mt={3}>{children}</Box>
+        </Container>
       </main>
     </>
   );
