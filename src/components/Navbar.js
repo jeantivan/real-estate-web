@@ -4,13 +4,13 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Button,
   Drawer,
   Divider,
   List,
   ListItem,
   ListItemText,
   Grid,
+  useScrollTrigger,
 } from "@material-ui/core/";
 
 import MenuIcon from "@material-ui/icons/Menu";
@@ -148,13 +148,17 @@ const useStyles = makeStyles((theme) => ({
 
 const NavLink = ({ children, href, className, activeClassName }) => {
   const router = useRouter();
-  const active = router.pathname === href;
-
+  const active =
+    router.pathname === href ||
+    (router.pathname.includes("inmuebles") && href === "/inmuebles");
   const handleClick = (e) => {
     e.preventDefault();
     router.push(href);
   };
 
+  /* React.useEffect(() => {
+    console.log(router.pathname, router.pathname.replace("/", "1"));
+  }); */
   return (
     <a
       href={href}
@@ -166,8 +170,18 @@ const NavLink = ({ children, href, className, activeClassName }) => {
   );
 };
 
+function ElevationScroll({ children }) {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 2 : 0,
+  });
+}
+
 export default function Navbar() {
-  const ref = React.useRef(null);
   let classes = useStyles();
   const [show, setShow] = useState(false);
 
@@ -175,107 +189,100 @@ export default function Navbar() {
     setShow(!show);
   };
 
-  /* React.useEffect(() => {
-    const rect = ref.current.getBoundingClientRect();
-    classes = useStyles({
-      height: ref.current.getBoundingClientRect().height,
-    });
-    console.log("AppBar rect");
-    console.log(rect.height, rect.width);
-  }, []); */
-
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="inherit" elevation={0} ref={ref}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleDrawer}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Logo />
-          <Drawer
-            anchor="left"
-            open={show}
-            onClose={toggleDrawer}
-            className={classes.drawer}
-            component="nav"
-          >
-            <Toolbar>
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="menu"
-                onClick={toggleDrawer}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Logo />
-            </Toolbar>
-            <Divider />
-            <List className={classes.list}>
-              {/* {routes.map((route) => (
-                <NavLink key={route.href} href={route.href} type="drawerLink">
+      <ElevationScroll>
+        <AppBar color="inherit" elevation={0}>
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Logo />
+            <Drawer
+              anchor="left"
+              open={show}
+              onClose={toggleDrawer}
+              className={classes.drawer}
+              component="nav"
+            >
+              <Toolbar>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="menu"
+                  onClick={toggleDrawer}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Logo />
+              </Toolbar>
+              <Divider />
+              <List className={classes.list}>
+                {routes.map((route) => (
+                  <ListItem
+                    key={route.href}
+                    component={NavLink}
+                    className={classes.link}
+                    activeClassName={classes.activeDrawerLink}
+                    href={route.href}
+                  >
+                    <ListItemText disableTypography>{route.text}</ListItemText>
+                  </ListItem>
+                ))}
+              </List>
+
+              <div className={classes.social}>
+                <Divider />
+                <Grid container justify="space-around">
+                  <Grid item>
+                    <IconButton
+                      color="secondary"
+                      aria-label="Cuenta de instagram"
+                    >
+                      <InstagramIcon />
+                    </IconButton>
+                  </Grid>
+                  <Grid item>
+                    <IconButton
+                      color="secondary"
+                      aria-label="Cuenta de facebook"
+                    >
+                      <FacebookIcon />
+                    </IconButton>
+                  </Grid>
+                  <Grid item>
+                    <IconButton
+                      color="secondary"
+                      aria-label="Cuenta de facebook"
+                    >
+                      <MailIcon />
+                    </IconButton>
+                  </Grid>
+                </Grid>
+              </div>
+            </Drawer>
+            <nav role="navigation" className={classes.navContainer}>
+              {routes.map((route) => (
+                <NavLink
+                  key={route.href}
+                  href={route.href}
+                  className={classes.link}
+                  activeClassName={classes.activeLink}
+                >
                   {route.text}
                 </NavLink>
-              ))} */}
-
-              {routes.map((route) => (
-                <ListItem
-                  key={route.href}
-                  component={NavLink}
-                  className={classes.link}
-                  activeClassName={classes.activeDrawerLink}
-                  href={route.href}
-                >
-                  <ListItemText disableTypography>{route.text}</ListItemText>
-                </ListItem>
               ))}
-            </List>
-
-            <div className={classes.social}>
-              <Divider />
-              <Grid container justify="space-around">
-                <Grid item>
-                  <IconButton
-                    color="secondary"
-                    aria-label="Cuenta de instagram"
-                  >
-                    <InstagramIcon />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <IconButton color="secondary" aria-label="Cuenta de facebook">
-                    <FacebookIcon />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <IconButton color="secondary" aria-label="Cuenta de facebook">
-                    <MailIcon />
-                  </IconButton>
-                </Grid>
-              </Grid>
-            </div>
-          </Drawer>
-          <nav role="navigation" className={classes.navContainer}>
-            {routes.map((route) => (
-              <NavLink
-                key={route.href}
-                href={route.href}
-                className={classes.link}
-                activeClassName={classes.activeLink}
-              >
-                {route.text}
-              </NavLink>
-            ))}
-          </nav>
-        </Toolbar>
-      </AppBar>
+            </nav>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
     </div>
   );
 }
