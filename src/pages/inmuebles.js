@@ -1,24 +1,31 @@
 import Layout from "../components/Layout";
-import Typography from "@material-ui/core/Typography";
+import { Grid, Typography } from "@material-ui/core/";
+import { getInmueblesList } from "../lib/inmuebles";
 
-export default function Inmuebles() {
+import InmuebleItem from "../components/InmuebleItem";
+
+export default function Inmuebles({ inmuebleList }) {
   return (
     <Layout title="Home">
       <Typography variant="h1" component="h1">
         Inmuebles
       </Typography>
-      <Typography>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati
-        repellendus blanditiis tenetur facilis nam architecto iure aspernatur
-        perferendis temporibus id ex, neque rem voluptate quis tempora esse
-        earum alias voluptates.
-      </Typography>
-      <Typography>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati
-        repellendus blanditiis tenetur facilis nam architecto iure aspernatur
-        perferendis temporibus id ex, neque rem voluptate quis tempora esse
-        earum alias voluptates.
-      </Typography>
+      <Grid container spacing={2}>
+        {inmuebleList.map((inmueble) => (
+          <Grid key={inmueble.slug} item xs={12} md={3}>
+            <InmuebleItem {...inmueble} />
+          </Grid>
+        ))}
+      </Grid>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const inmuebleList = getInmueblesList();
+  return {
+    props: {
+      inmuebleList,
+    },
+  };
 }
