@@ -5,5 +5,5 @@ export function getAgents() {
 }
 
 export function getAgentById(id) {
-  return agents.find((agent) => agent.id == id);
+  return agents.find((agent) => agent.id === id);
 }
