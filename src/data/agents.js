@@ -1,4 +1,4 @@
-export const users = [
+export const agents = [
   {
     id: "68900ff0-0233-4428-934a-9934e786a4c6",
     name: "Terry Jeffords",
