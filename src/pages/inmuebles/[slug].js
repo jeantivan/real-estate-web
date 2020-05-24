@@ -1,12 +1,14 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
-//import Skeleton from "@material-ui/lab/Skeleton";
+import { Grid, Typography, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 
 import Layout from "../../components/Layout";
 import InmuebleInfo from "../../components/InmubleInfo";
 import Gallery from "../../components/Gallery";
+import NextLink from "next/link";
+
+import { getInmuebleData, getAllInmueblesSlugs } from "../../lib/inmuebles";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -15,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gallery: {
     minWidth: "100%",
+    borderRadius: theme.spacing(3),
     [theme.breakpoints.up("md")]: {
       minWidth: 0,
     },
@@ -24,85 +27,96 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     color: theme.palette.primary.main,
   },
+  description: {
+    fontWeight: 400,
+    position: "relative",
+    display: "inline-block",
+
+    "&:after": {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      content: "''",
+      width: "45%",
+      height: 2,
+      backgroundColor: theme.palette.primary.light,
+    },
+  },
+  html: {
+    "& > p": {
+      ...theme.typography.body1,
+    },
+  },
 }));
 
-//TO-DO proptypes
-const imgs = [
-  "#f44336",
-  "#2196f3",
-  "#4caf50",
-  "#8e24aa",
-  "#ffeb3b",
-  "#ff6d00",
-  "#7FFFD4",
-  "#008B8B",
-  "#800000",
-];
-
-export default function Inmueble({ slug }) {
+export default function Inmueble({ inmuebleData }) {
   const classes = useStyles();
+
+  const { titulo, ubiAprox, images, contentHtml, ...info } = inmuebleData;
   return (
-    <Layout title={slug}>
-      <Grid container spacing={3}>
-        <Grid item lg={12} xs={12}>
+    <Layout title={titulo}>
+      <Grid container spacing={3} component="article">
+        <Grid
+          item
+          lg={12}
+          xs={12}
+          id="titulo-de-la-propiedad"
+          component="section"
+        >
           <Typography
             variant="h4"
             component="h1"
             className={classes.title}
             gutterBottom
           >
-            Titulo de la propiedad
+            {titulo}
           </Typography>
           <div className={classes.location}>
             <LocationOnOutlinedIcon />
-            <Typography variant="subtitle1">Ubicación aproximada</Typography>
+            <Typography variant="subtitle1">{ubiAprox}</Typography>
           </div>
         </Grid>
         <Grid item xs={12} lg={8} className={classes.gallery}>
-          <Gallery images={imgs} />
+          <Gallery images={images} />
         </Grid>
         <Grid item xs={12} lg={4}>
-          <InmuebleInfo />
+          <InmuebleInfo info={info} />
         </Grid>
-        <Grid item xs={12}>
-          <Typography>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
-            earum est! Quidem consequatur doloremque velit dolorem voluptates
-            numquam error neque nesciunt necessitatibus sed, in voluptatem
-            consectetur odio ut, laboriosam aut?
+        <Grid item xs={12} component="section" id="descripcion-de-la-propiedad">
+          <Typography
+            variant="h6"
+            component="h3"
+            className={classes.description}
+            gutterBottom
+          >
+            Descripción.
           </Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
-            earum est! Quidem consequatur doloremque velit dolorem voluptates
-            numquam error neque nesciunt necessitatibus sed, in voluptatem
-            consectetur odio ut, laboriosam aut?
-          </Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
-            earum est! Quidem consequatur doloremque velit dolorem voluptates
-            numquam error neque nesciunt necessitatibus sed, in voluptatem
-            consectetur odio ut, laboriosam aut?
-          </Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
-            earum est! Quidem consequatur doloremque velit dolorem voluptates
-            numquam error neque nesciunt necessitatibus sed, in voluptatem
-            consectetur odio ut, laboriosam aut?
-          </Typography>
+          <div
+            className={classes.html}
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
+          ></div>
         </Grid>
       </Grid>
+      <NextLink href="/inmuebles">
+        <Link variant="h4">Volver a atras.</Link>
+      </NextLink>
     </Layout>
   );
 }
 
 export async function getStaticPaths() {
+  const paths = getAllInmueblesSlugs();
   return {
-    paths: Array.from(Array(4)).map((_, i) => `/inmuebles/ejemplo-${i + 1}`),
+    paths,
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const { slug } = params;
-  return { props: { slug } };
+  const inmuebleData = await getInmuebleData(params.slug);
+  return {
+    props: {
+      inmuebleData,
+    },
+  };
 }
