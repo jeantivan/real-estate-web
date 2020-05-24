@@ -58,7 +58,7 @@ export async function getInmuebleData(slug) {
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  const agent = getUserById(matterResult.agentId);
+  const agent = getAgentById(matterResult.agentId);
   // Combine the data with the id and contentHtml
   return {
     slug,
