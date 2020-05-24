@@ -66,8 +66,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
 }));
-export default function InmuebleInfo() {
+export default function InmuebleInfo({ info }) {
   const classes = useStyles();
+  const { precio, area, habitaciones, baños, estacionamientos, agent } = info;
   return (
     <section id="info-inmueble">
       <div>
@@ -75,12 +76,12 @@ export default function InmuebleInfo() {
           variant="h6"
           component="h3"
           className={classes.title}
-          gutterButtom
+          gutterBottom
         >
           Precio referencial.
         </Typography>
         <Typography variant="h2" component="h4" className={classes.price}>
-          15.000$
+          {precio}$
         </Typography>
       </div>
       <Divider className={classes.divider} />
@@ -107,7 +108,7 @@ export default function InmuebleInfo() {
             <div>
               <span className={classes.itemCaption}>AREA</span>
               <span className={classes.itemText}>
-                56 (m<sup>2</sup>)
+                {area} (m<sup>2</sup>)
               </span>
             </div>
           </Grid>
@@ -115,21 +116,21 @@ export default function InmuebleInfo() {
             <FontAwesomeIcon icon={faCouch} className={classes.itemIcon} />
             <div>
               <span className={classes.itemCaption}>HABITACIONES</span>
-              <span className={classes.itemText}>3</span>
+              <span className={classes.itemText}>{habitaciones}</span>
             </div>
           </Grid>
           <Grid item xs={6} className={classes.item}>
             <FontAwesomeIcon icon={faBath} className={classes.itemIcon} />
             <div>
               <span className={classes.itemCaption}>BAÑOS</span>
-              <span className={classes.itemText}>2</span>
+              <span className={classes.itemText}>{baños}</span>
             </div>
           </Grid>
           <Grid item xs={6} className={classes.item}>
             <FontAwesomeIcon icon={faCar} className={classes.itemIcon} />
             <div>
               <span className={classes.itemCaption}>ESTACIONAMIENTOS</span>
-              <span className={classes.itemText}>1</span>
+              <span className={classes.itemText}>{estacionamientos}</span>
             </div>
           </Grid>
         </Grid>
