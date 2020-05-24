@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     paddingTop: "56.25%",
     background: theme.palette.grey[600],
-    borderRadius: theme.spacing(2),
+    borderRadius: "inherit",
     "&:hover button": {
       transform: "translateX(0)",
       opacity: 1,
