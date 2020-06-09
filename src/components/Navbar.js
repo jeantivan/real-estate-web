@@ -1,25 +1,31 @@
 import React, { useState } from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
+import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
   IconButton,
   Drawer,
   Divider,
+  Link,
   List,
   ListItem,
   ListItemText,
   Grid,
   useScrollTrigger,
+  useMediaQuery,
 } from "@material-ui/core/";
 
-import MenuIcon from "@material-ui/icons/Menu";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import MailIcon from "@material-ui/icons/Mail";
 import clsx from "clsx";
 import { useRouter } from "next/router";
-//import NextLink from "next/link";
+import NextLink from "next/link";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faInstagram,
+  faTwitter,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
 
 import Logo from "./Logo";
 
@@ -51,6 +57,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   toolbar: {
+    maxWidth: 1920,
+    width: "100%",
     padding: theme.spacing(0, 2),
     borderBottom: `1px solid ${fade(theme.palette.primary.light, 0.2)}`,
     [theme.breakpoints.up("md")]: {
@@ -58,10 +66,13 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("xl")]: {
       padding: theme.spacing(0, 10),
+      margin: "0 auto",
     },
     alignItems: "center",
+    justifyContent: "space-between",
   },
   menuButton: {
+    marginRight: theme.spacing(1),
     [theme.breakpoints.up("md")]: {
       display: "none",
     },
@@ -73,17 +84,22 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     width: "100%",
-    maxWidth: 240,
     backgroundColor: theme.palette.background.paper,
   },
   social: {
-    width: "100%",
     marginTop: "auto",
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.up("md")]: {
+      marginTop: 0,
+      padding: 0,
+    },
   },
   navContainer: {
-    display: "none",
+    display: "flex",
+    flexDirection: "column",
     [theme.breakpoints.up("md")]: {
-      display: "flex",
+      flexDirection: "row",
     },
     "& a:not(:last-child)": {
       margin: theme.spacing(0, 2),
@@ -92,6 +108,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(2),
     },
     alignSelf: "stretch",
+    flexShrink: 0,
   },
   link: {
     textDecoration: "none",
@@ -99,17 +116,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     display: "inline-flex",
     alignItems: "center",
-    transition: theme.transitions.create(["color"], {
+    transition: theme.transitions.create("color", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     position: "relative",
     "&:hover": {
       color: theme.palette.primary.main,
-
-      "&:after": {
-        width: "80%",
-      },
     },
 
     "&:after": {
@@ -119,29 +132,35 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
       left: 0,
       borderRadius: theme.spacing(1, 1, 0, 0),
-      transition: theme.transitions.create(["width"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
     },
   },
   activeLink: {
     color: theme.palette.primary.main,
 
     "&:after": {
-      width: "80%",
+      width: "100%",
       bottom: 0,
       height: 4,
-      transform: "translateX(10%)",
     },
   },
   activeDrawerLink: {
     color: theme.palette.primary.main,
     "&:after": {
-      top: 8,
+      top: 0,
       width: 4,
-      height: "calc(100% - 16px)",
+      height: "100%",
       borderRadius: theme.spacing(0, 1, 1, 0),
+    },
+  },
+  icon: {
+    color: "#202020",
+    transition: theme.transitions.create("color", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+
+    "&:hover": {
+      color: theme.palette.primary.main,
     },
   },
 }));
@@ -151,22 +170,35 @@ const NavLink = ({ children, href, className, activeClassName }) => {
   const active =
     router.pathname === href ||
     (router.pathname.includes("inmuebles") && href === "/inmuebles");
-  const handleClick = (e) => {
-    e.preventDefault();
-    router.push(href);
-  };
 
-  /* React.useEffect(() => {
-    console.log(router.pathname, router.pathname.replace("/", "1"));
-  }); */
   return (
-    <a
-      href={href}
-      onClick={handleClick}
-      className={clsx(className, { [activeClassName]: active })}
-    >
-      {children}
-    </a>
+    <NextLink href={href}>
+      <Link
+        underline="none"
+        href={href}
+        className={clsx(className, { [activeClassName]: active })}
+      >
+        {children}
+      </Link>
+    </NextLink>
+  );
+};
+
+const NavLinks = ({ classes }) => {
+  const { link, activeLink, navContainer } = classes;
+  return (
+    <nav role="navigation" className={navContainer}>
+      {routes.map(({ href, text }) => (
+        <NavLink
+          key={href}
+          href={href}
+          className={link}
+          activeClassName={activeLink}
+        >
+          {text}
+        </NavLink>
+      ))}
+    </nav>
   );
 };
 
@@ -184,26 +216,69 @@ function ElevationScroll({ children }) {
 export default function Navbar() {
   let classes = useStyles();
   const [show, setShow] = useState(false);
+  const theme = useTheme();
+  const upToMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const toggleDrawer = () => {
     setShow(!show);
   };
 
+  const SocialMediaLinks = (
+    <div className={classes.social}>
+      <Grid container justify="space-between">
+        <Grid item>
+          <IconButton
+            color="primary"
+            className={classes.icon}
+            disableRipple
+            aria-label="Cuenta de instagram"
+          >
+            <FontAwesomeIcon icon={faInstagram} />
+          </IconButton>
+        </Grid>
+        <Grid item>
+          <IconButton
+            color="primary"
+            className={classes.icon}
+            disableRipple
+            aria-label="Cuenta de facebook"
+          >
+            <FontAwesomeIcon icon={faFacebook} />
+          </IconButton>
+        </Grid>
+        <Grid item>
+          <IconButton
+            color="primary"
+            className={classes.icon}
+            disableRipple
+            aria-label="Cuenta de facebook"
+          >
+            <FontAwesomeIcon icon={faTwitter} />
+          </IconButton>
+        </Grid>
+      </Grid>
+    </div>
+  );
+
   return (
     <div className={classes.root}>
       <ElevationScroll>
-        <AppBar color="inherit" elevation={0}>
+        <AppBar color="inherit" elevation={0} className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawer}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Logo />
+            <div style={{ display: "inherit" }}>
+              {!upToMd && (
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="menu"
+                  onClick={toggleDrawer}
+                >
+                  <FontAwesomeIcon icon={faBars} />
+                </IconButton>
+              )}
+              <Logo />
+            </div>
             <Drawer
               anchor="left"
               open={show}
@@ -219,7 +294,7 @@ export default function Navbar() {
                   aria-label="menu"
                   onClick={toggleDrawer}
                 >
-                  <MenuIcon />
+                  <FontAwesomeIcon icon={faBars} />
                 </IconButton>
                 <Logo />
               </Toolbar>
@@ -238,48 +313,20 @@ export default function Navbar() {
                 ))}
               </List>
 
-              <div className={classes.social}>
-                <Divider />
-                <Grid container justify="space-around">
-                  <Grid item>
-                    <IconButton
-                      color="secondary"
-                      aria-label="Cuenta de instagram"
-                    >
-                      <InstagramIcon />
-                    </IconButton>
-                  </Grid>
-                  <Grid item>
-                    <IconButton
-                      color="secondary"
-                      aria-label="Cuenta de facebook"
-                    >
-                      <FacebookIcon />
-                    </IconButton>
-                  </Grid>
-                  <Grid item>
-                    <IconButton
-                      color="secondary"
-                      aria-label="Cuenta de facebook"
-                    >
-                      <MailIcon />
-                    </IconButton>
-                  </Grid>
-                </Grid>
-              </div>
+              {SocialMediaLinks}
             </Drawer>
-            <nav role="navigation" className={classes.navContainer}>
-              {routes.map((route) => (
-                <NavLink
-                  key={route.href}
-                  href={route.href}
-                  className={classes.link}
-                  activeClassName={classes.activeLink}
-                >
-                  {route.text}
-                </NavLink>
-              ))}
-            </nav>
+            {upToMd && (
+              <>
+                <NavLinks
+                  classes={{
+                    link: classes.link,
+                    activeLink: classes.activeLink,
+                    navContainer: classes.navContainer,
+                  }}
+                />
+                {SocialMediaLinks}
+              </>
+            )}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
