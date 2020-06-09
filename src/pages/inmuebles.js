@@ -1,16 +1,8 @@
-import { useState } from "react";
-import Layout from "../components/Layout";
-import {
-  Grid,
-  Typography,
-  Button,
-  Divider,
-  Collapse,
-} from "@material-ui/core/";
 import { getInmueblesList } from "../lib/inmuebles";
-
+import Layout from "../components/Layout";
 import InmuebleItem from "../components/InmuebleItem";
 
+import { Grid, Typography } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -21,12 +13,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Inmuebles({ inmuebleList }) {
   const classes = useStyles();
-
-  const [showFilters, setShowFilters] = useState(false);
-
-  const handleToggle = () => {
-    setShowFilters((toggle) => !toggle);
-  };
 
   return (
     <Layout title="Inmuebles">
@@ -41,29 +27,7 @@ export default function Inmuebles({ inmuebleList }) {
             Inmuebles
           </Typography>
         </Grid>
-        <Grid item>
-          <Button variant="outlined" color="primary" onClick={handleToggle}>
-            Filtros
-          </Button>
-        </Grid>
       </Grid>
-      <Divider />
-      <Collapse in={showFilters} className={classes.container}>
-        <Grid container justify="space-between">
-          <Grid item>
-            <Button>Filtro 1</Button>
-          </Grid>
-          <Grid item>
-            <Button>Filtro 2</Button>
-          </Grid>
-          <Grid item>
-            <Button>Filtro 3</Button>
-          </Grid>
-          <Grid item>
-            <Button>Filtro 4</Button>
-          </Grid>
-        </Grid>
-      </Collapse>
 
       <Grid container spacing={2}>
         {inmuebleList.map((inmueble) => (
