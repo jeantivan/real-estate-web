@@ -6,7 +6,7 @@ import InmuebleItem from "../components/InmuebleItem";
 
 export default function Inmuebles({ inmuebleList }) {
   return (
-    <Layout title="Home">
+    <Layout title="Imuebles">
       <Typography variant="h1" component="h1">
         Inmuebles
       </Typography>

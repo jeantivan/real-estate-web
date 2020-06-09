@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 
 export default function Servicios() {
   return (
-    <Layout title="Home">
+    <Layout title="Servicios">
       <Typography variant="h1" component="h1">
         Servicios
       </Typography>

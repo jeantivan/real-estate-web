@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 
 export default function Contacto() {
   return (
-    <Layout title="Home">
+    <Layout title="Contacto">
       <Typography variant="h1" component="h1">
         Contacto
       </Typography>
