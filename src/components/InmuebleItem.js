@@ -1,7 +1,10 @@
 import Gallery from "./Gallery";
-import { Typography, Card, CardContent, Link } from "@material-ui/core";
 import NextLink from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Card, CardContent, Link } from "@material-ui/core";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,9 +15,22 @@ const useStyles = makeStyles((theme) => ({
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
-  price: {},
+  title: {
+    cursor: "pointer",
+  },
+  icon: {
+    color: theme.palette.primary.dark,
+  },
 }));
-export default function InmuebleItem({ titulo, images, slug, precio }) {
+export default function InmuebleItem({
+  titulo,
+  images,
+  slug,
+  precio,
+  ubiAprox,
+  habitaciones,
+  area,
+}) {
   const classes = useStyles();
 
   return (
@@ -24,10 +40,19 @@ export default function InmuebleItem({ titulo, images, slug, precio }) {
       </div>
       <CardContent>
         <NextLink href="/inmuebles/[slug]" as={`/inmuebles/${slug}`}>
-          <Link variant="h5">{titulo}</Link>
+          <Link variant="h6" className={classes.title}>
+            {titulo}
+          </Link>
         </NextLink>
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           {precio}$
+        </Typography>
+        <Typography variant="body2" gutterBottom>
+          {area} m<sup>2</sup> | {habitaciones} habitaciones
+        </Typography>
+        <Typography variant="caption">
+          <FontAwesomeIcon icon={faMapMarkerAlt} className={classes.icon} />{" "}
+          {ubiAprox}
         </Typography>
       </CardContent>
     </Card>
