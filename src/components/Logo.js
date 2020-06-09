@@ -7,8 +7,8 @@ import { Link } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    //padding: theme.spacing(2, 0),
     display: "inline-flex",
+    alignSelf: "center",
   },
   link: {
     display: "inherit",
