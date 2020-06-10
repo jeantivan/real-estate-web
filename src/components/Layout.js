@@ -18,7 +18,9 @@ export default function Layout({ children, title }) {
       <main>
         <Toolbar />
         <Container>
-          <Box mt={3}>{children}</Box>
+          <Box mt={3} minHeight="55vh">
+            {children}
+          </Box>
         </Container>
       </main>
       <Footer />
