@@ -53,9 +53,6 @@ const routes = [
 ];
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   toolbar: {
     maxWidth: 1920,
     width: "100%",
@@ -261,75 +258,73 @@ export default function Navbar() {
   );
 
   return (
-    <div className={classes.root}>
-      <ElevationScroll>
-        <AppBar color="inherit" elevation={0} className={classes.appBar}>
-          <Toolbar className={classes.toolbar}>
-            <div style={{ display: "inherit" }}>
-              {!upToMd && (
-                <IconButton
-                  edge="start"
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={toggleDrawer}
-                >
-                  <FontAwesomeIcon icon={faBars} />
-                </IconButton>
-              )}
-              <Logo type="navbar" />
-            </div>
-            <Drawer
-              anchor="left"
-              open={show}
-              onClose={toggleDrawer}
-              className={classes.drawer}
-              component="nav"
-            >
-              <Toolbar>
-                <IconButton
-                  edge="start"
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={toggleDrawer}
-                >
-                  <FontAwesomeIcon icon={faBars} />
-                </IconButton>
-                <Logo type="navbar" />
-              </Toolbar>
-              <Divider />
-              <List className={classes.list}>
-                {routes.map((route) => (
-                  <ListItem
-                    key={route.href}
-                    component={NavLink}
-                    className={classes.link}
-                    activeClassName={classes.activeDrawerLink}
-                    href={route.href}
-                  >
-                    <ListItemText disableTypography>{route.text}</ListItemText>
-                  </ListItem>
-                ))}
-              </List>
-
-              {SocialMediaLinks}
-            </Drawer>
-            {upToMd && (
-              <>
-                <NavLinks
-                  classes={{
-                    link: classes.link,
-                    activeLink: classes.activeLink,
-                    navContainer: classes.navContainer,
-                  }}
-                />
-                {SocialMediaLinks}
-              </>
+    <ElevationScroll>
+      <AppBar color="inherit" elevation={0} className={classes.appBar}>
+        <Toolbar className={classes.toolbar}>
+          <div style={{ display: "inherit" }}>
+            {!upToMd && (
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer}
+              >
+                <FontAwesomeIcon icon={faBars} />
+              </IconButton>
             )}
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-    </div>
+            <Logo type="navbar" />
+          </div>
+          <Drawer
+            anchor="left"
+            open={show}
+            onClose={toggleDrawer}
+            className={classes.drawer}
+            component="nav"
+          >
+            <Toolbar>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer}
+              >
+                <FontAwesomeIcon icon={faBars} />
+              </IconButton>
+              <Logo type="navbar" />
+            </Toolbar>
+            <Divider />
+            <List className={classes.list}>
+              {routes.map((route) => (
+                <ListItem
+                  key={route.href}
+                  component={NavLink}
+                  className={classes.link}
+                  activeClassName={classes.activeDrawerLink}
+                  href={route.href}
+                >
+                  <ListItemText disableTypography>{route.text}</ListItemText>
+                </ListItem>
+              ))}
+            </List>
+
+            {SocialMediaLinks}
+          </Drawer>
+          {upToMd && (
+            <>
+              <NavLinks
+                classes={{
+                  link: classes.link,
+                  activeLink: classes.activeLink,
+                  navContainer: classes.navContainer,
+                }}
+              />
+              {SocialMediaLinks}
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+    </ElevationScroll>
   );
 }
