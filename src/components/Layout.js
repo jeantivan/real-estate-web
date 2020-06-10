@@ -3,18 +3,12 @@ import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 import Box from "@material-ui/core/Box";
 
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-
-export default function Layout({ children, title }) {
+export default function Layout({ children, titulo }) {
   return (
     <>
       <Head>
-        <title>{title || "Home"} | Avilatek</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{titulo} | Avilatek</title>
       </Head>
-
-      <Navbar />
       <main>
         <Toolbar />
         <Container>
@@ -23,7 +17,6 @@ export default function Layout({ children, title }) {
           </Box>
         </Container>
       </main>
-      <Footer />
     </>
   );
 }
