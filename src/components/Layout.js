@@ -1,4 +1,3 @@
-import React from "react";
 import Head from "next/head";
 import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";

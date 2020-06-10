@@ -1,4 +1,3 @@
-import React from "react";
 import NextLink from "next/link";
 
 import { makeStyles } from "@material-ui/core/styles";
