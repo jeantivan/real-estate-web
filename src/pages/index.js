@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 
 export default function Home() {
   return (
-    <Layout title="Inicio">
+    <Layout titulo="Inicio">
       <Typography variant="h1" component="h1">
         Avilatek Inmobiliaria
       </Typography>

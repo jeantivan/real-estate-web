@@ -54,7 +54,7 @@ export default function Inmueble({ inmuebleData }) {
 
   const { titulo, ubiAprox, images, contentHtml, ...info } = inmuebleData;
   return (
-    <Layout title={titulo}>
+    <Layout titulo={titulo}>
       <Grid container spacing={3} component="article">
         <Grid
           item

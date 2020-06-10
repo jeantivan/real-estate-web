@@ -40,7 +40,7 @@ export default function Inmuebles({ inmuebleList }) {
   };
 
   return (
-    <Layout title="Inmuebles">
+    <Layout titulo="Inmuebles">
       <Grid
         container
         justify="space-between"
