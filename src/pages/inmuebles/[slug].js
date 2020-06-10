@@ -1,7 +1,8 @@
 import React from "react";
 import { Grid, Typography, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 import Layout from "../../components/Layout";
 import InmuebleInfo from "../../components/InmubleInfo";
@@ -47,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
       ...theme.typography.body1,
     },
   },
+  icon: {
+    marginRight: theme.spacing(1),
+  },
 }));
 
 export default function Inmueble({ inmuebleData }) {
@@ -72,8 +76,12 @@ export default function Inmueble({ inmuebleData }) {
             {titulo}
           </Typography>
           <div className={classes.location}>
-            <LocationOnOutlinedIcon />
-            <Typography variant="subtitle1">{ubiAprox}</Typography>
+            <Typography variant="body1" component="p">
+              <span className={classes.icon}>
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+              </span>
+              {ubiAprox}
+            </Typography>
           </div>
         </Grid>
         <Grid item xs={12} lg={8} className={classes.gallery}>
