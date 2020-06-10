@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Box from "@material-ui/core/Box";
 
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function Layout({ children, title }) {
   return (
@@ -21,6 +22,7 @@ export default function Layout({ children, title }) {
           <Box mt={3}>{children}</Box>
         </Container>
       </main>
+      <Footer />
     </>
   );
 }
