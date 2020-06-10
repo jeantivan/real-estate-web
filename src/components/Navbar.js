@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   AppBar,
@@ -277,7 +277,7 @@ export default function Navbar() {
                   <FontAwesomeIcon icon={faBars} />
                 </IconButton>
               )}
-              <Logo />
+              <Logo type="navbar" />
             </div>
             <Drawer
               anchor="left"
@@ -296,7 +296,7 @@ export default function Navbar() {
                 >
                   <FontAwesomeIcon icon={faBars} />
                 </IconButton>
-                <Logo />
+                <Logo type="navbar" />
               </Toolbar>
               <Divider />
               <List className={classes.list}>
