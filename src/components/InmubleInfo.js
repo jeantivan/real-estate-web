@@ -107,7 +107,10 @@ export default function InmuebleInfo({ info }) {
             <div>
               <span className={classes.itemCaption}>AREA</span>
               <span className={classes.itemText}>
-                {area} (m<sup>2</sup>)
+                {area}{" "}
+                <Typography variant="caption">
+                  m<sup>2</sup>
+                </Typography>
               </span>
             </div>
           </Grid>
