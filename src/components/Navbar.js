@@ -277,7 +277,7 @@ export default function Navbar() {
           </div>
           <Drawer
             anchor="left"
-            open={show}
+            open={show && !upToMd}
             onClose={toggleDrawer}
             className={classes.drawer}
             component="nav"
