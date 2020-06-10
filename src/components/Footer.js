@@ -67,13 +67,13 @@ const Footer = () => {
   return (
     <footer className={classes.root}>
       <Grid container justify="space-between" className={classes.container}>
-        <Grid item xs={10}>
+        <Grid item md={10}>
           <Logo type="footer" />
           <Typography variant="overline" display="block">
             Todos los derechos reservados. 2020
           </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item md={2}>
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <IconButton
