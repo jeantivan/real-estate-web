@@ -1,7 +1,11 @@
 import Fab from "@material-ui/core/Fab";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import { makeStyles } from "@material-ui/core/styles";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronRight,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
   btn: {
@@ -35,8 +39,9 @@ export const Controls = ({ handlePrev, handleNext, index, max }) => {
           className={`${classes.btn} ${classes.btnLeft}`}
           onClick={handlePrev}
           disableRipple
+          aria-label="anterior"
         >
-          <NavigateBeforeIcon />
+          <FontAwesomeIcon icon={faChevronLeft} />
         </Fab>
       )}
       {index !== max && (
@@ -46,8 +51,9 @@ export const Controls = ({ handlePrev, handleNext, index, max }) => {
           className={`${classes.btn} ${classes.btnRight}`}
           onClick={handleNext}
           disableRipple
+          aria-label="siguiente"
         >
-          <NavigateNextIcon />
+          <FontAwesomeIcon icon={faChevronRight} />
         </Fab>
       )}
     </>
