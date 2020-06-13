@@ -1,6 +1,6 @@
 import { getInmueblesList } from "../lib/inmuebles";
 import Layout from "../components/Layout";
-import InmuebleItem from "../components/InmuebleItem";
+import { Item } from "../components/Inmueble";
 
 import { useState } from "react";
 
@@ -107,7 +107,7 @@ export default function Inmuebles({ inmuebleList }) {
       <Grid container spacing={2}>
         {inmuebleList.map((inmueble) => (
           <Grid key={inmueble.slug} item xs={12} sm={6} md={4} lg={3}>
-            <InmuebleItem {...inmueble} />
+            <Item {...inmueble} />
           </Grid>
         ))}
       </Grid>

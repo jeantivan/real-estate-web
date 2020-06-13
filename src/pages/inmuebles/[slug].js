@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 import Layout from "../../components/Layout";
-import InmuebleInfo from "../../components/InmubleInfo";
+import { Information } from "../../components/Inmueble";
 import Gallery from "../../components/Gallery";
 import NextLink from "next/link";
 
@@ -88,7 +88,7 @@ export default function Inmueble({ inmuebleData }) {
           <Gallery images={images} />
         </Grid>
         <Grid item xs={12} lg={4}>
-          <InmuebleInfo info={info} />
+          <Information {...info} />
         </Grid>
         <Grid item xs={12} component="section" id="descripcion-de-la-propiedad">
           <Typography
