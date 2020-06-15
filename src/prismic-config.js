@@ -1,8 +1,7 @@
 import Prismic from "prismic-javascript";
 
-const REPOSITORY = process.env.NEXT_EXAMPLE_CMS_PRISMIC_REPOSITORY_NAME;
-export const API_TOKEN = process.env.NEXT_EXAMPLE_CMS_PRISMIC_API_TOKEN;
-export const API_ENPOINT = `https://${REPOSITORY}.cdn.prismic.io/api/v2`;
+export const API_TOKEN = process.env.PRISMIC_API_TOKEN;
+export const API_ENPOINT = process.env.PRISMIC_API_ENDPOINT;
 
 // Client method to query documents from the Prismic repo
 export const PrismicClient = (req = null) =>
