@@ -5,7 +5,7 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { RichText } from "prismic-reactjs";
 
 import Layout from "../../components/Layout";
-import { Information } from "../../components/Inmueble";
+import { Information, Item } from "../../components/Inmueble";
 import Gallery from "../../components/Gallery";
 import NextLink from "next/link";
 import Head from "next/head";
@@ -53,9 +53,13 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(1),
   },
+  masInmuebles: {
+    padding: theme.spacing(2, 0),
+    width: "100%",
+  },
 }));
 
-export default function Inmueble({ inmuebleData }) {
+export default function Inmueble({ inmuebleData, masInmuebles }) {
   const classes = useStyles();
 
   const {
@@ -67,7 +71,18 @@ export default function Inmueble({ inmuebleData }) {
     info,
   } = inmuebleData;
 
-  console.log(info);
+  masInmuebles = masInmuebles.map(({ data, uid }) => {
+    return {
+      slug: uid,
+      area: data.area,
+      titulo: data.titulo[0],
+      mainImg: data.mainimg,
+      precio: data.precio,
+      estado: data.estado,
+      ubiAprox: data.ubiaprox,
+      habitaciones: data.habitaciones,
+    };
+  });
 
   return (
     <Layout titulo={titulo}>
@@ -119,9 +134,27 @@ export default function Inmueble({ inmuebleData }) {
           </div>
         </Grid>
       </Grid>
-      <NextLink href="/inmuebles">
-        <Link variant="h4">Volver a atras.</Link>
-      </NextLink>
+      <div className={classes.masInmuebles}>
+        <Grid container justify="space-between" spacing={3}>
+          <Grid item>
+            <Typography variant="h6">Más Inmuebles.</Typography>
+          </Grid>
+          <Grid item>
+            <NextLink href="/inmuebles" passHref>
+              <Link color="primary" underline="hover">
+                Ver todos
+              </Link>
+            </NextLink>
+          </Grid>
+        </Grid>
+        <Grid container spacing={3}>
+          {masInmuebles.map((inmueble) => (
+            <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
+              {<Item {...inmueble} />}
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </Layout>
   );
 }
@@ -135,9 +168,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { data } = await getInmueble(params.slug);
-
-  console.log(data);
+  const {
+    document: { data },
+    masInmuebles,
+  } = await getInmueble(params.slug);
 
   const inmuebleData = {
     titulo: data.titulo[0].text,
@@ -157,6 +191,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       inmuebleData,
+      masInmuebles: masInmuebles.results,
     },
   };
 }
