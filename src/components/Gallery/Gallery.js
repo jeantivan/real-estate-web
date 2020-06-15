@@ -68,25 +68,25 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "auto",
     overflow: "hidden",
-    display: "flex",
+    display: "block",
     color: "white",
     alignItems: "center",
     justifyContent: "center",
   },
 }));
 
-export function Gallery({ images }) {
+export function Gallery({ imagenes }) {
   const classes = useStyles();
   const [index, setIndex] = useState(0);
 
   const handleChange = useCallback((index) => setIndex(index), [index]);
 
   const handleNext = () => {
-    let nextIndex = images.length === index ? 0 : index + 1;
+    let nextIndex = imagenes.length === index ? 0 : index + 1;
     handleChange(nextIndex);
   };
   const handlePrev = () => {
-    let prevIndex = index === 0 ? images.length - 1 : index - 1;
+    let prevIndex = index === 0 ? imagenes.length - 1 : index - 1;
     handleChange(prevIndex);
   };
 
@@ -99,24 +99,23 @@ export function Gallery({ images }) {
         slideClassName={classes.slide}
         enableMouseEvents
       >
-        {images.map((img) => (
-          <div
-            key={img}
+        {imagenes.map(({ imagen }) => (
+          <img
+            key={imagen.alt}
+            src={imagen.url}
+            alt={imagen.alt}
             className={classes.img}
-            style={{ background: img, width: "100%", height: "100%" }}
-          >
-            {index}
-          </div>
+          />
         ))}
       </SwipeableViews>
       <Controls
         handleNext={handleNext}
         handlePrev={handlePrev}
         index={index}
-        max={images.length - 1}
+        max={imagenes.length - 1}
       />
       <div className={classes.dots}>
-        {images.map((_, i) => (
+        {imagenes.map((_, i) => (
           <span
             key={i}
             className={clsx(classes.dot, { [classes.active]: index === i })}

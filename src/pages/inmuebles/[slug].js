@@ -1,15 +1,16 @@
-import React from "react";
 import { Grid, Typography, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { RichText } from "prismic-reactjs";
 
 import Layout from "../../components/Layout";
 import { Information } from "../../components/Inmueble";
 import Gallery from "../../components/Gallery";
 import NextLink from "next/link";
+import Head from "next/head";
 
-import { getInmuebleData, getAllInmueblesSlugs } from "../../lib/inmuebles";
+import { getInmueble, getAllInmueblesSlug } from "../../lib/inmuebles";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   html: {
     "& > p": {
       ...theme.typography.body1,
+      maxWidth: "100%",
     },
   },
   icon: {
@@ -56,9 +58,22 @@ const useStyles = makeStyles((theme) => ({
 export default function Inmueble({ inmuebleData }) {
   const classes = useStyles();
 
-  const { titulo, ubiAprox, images, contentHtml, ...info } = inmuebleData;
+  const {
+    titulo,
+    ubiAprox,
+    imagenes,
+    descCorta,
+    descripcion,
+    info,
+  } = inmuebleData;
+
+  console.log(info);
+
   return (
     <Layout titulo={titulo}>
+      <Head>
+        <meta name="description" content={descCorta} />
+      </Head>
       <Grid container spacing={3} component="article">
         <Grid
           item
@@ -85,10 +100,10 @@ export default function Inmueble({ inmuebleData }) {
           </div>
         </Grid>
         <Grid item xs={12} lg={8} className={classes.gallery}>
-          <Gallery images={images} />
+          <Gallery imagenes={imagenes} />
         </Grid>
         <Grid item xs={12} lg={4}>
-          <Information {...info} />
+          {<Information {...info} />}
         </Grid>
         <Grid item xs={12} component="section" id="descripcion-de-la-propiedad">
           <Typography
@@ -99,10 +114,9 @@ export default function Inmueble({ inmuebleData }) {
           >
             Descripción.
           </Typography>
-          <div
-            className={classes.html}
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          ></div>
+          <div>
+            <Typography paragraph>{RichText.asText(descripcion)}</Typography>
+          </div>
         </Grid>
       </Grid>
       <NextLink href="/inmuebles">
@@ -113,7 +127,7 @@ export default function Inmueble({ inmuebleData }) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllInmueblesSlugs();
+  const paths = await getAllInmueblesSlug();
   return {
     paths,
     fallback: false,
@@ -121,7 +135,25 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const inmuebleData = await getInmuebleData(params.slug);
+  const { data } = await getInmueble(params.slug);
+
+  console.log(data);
+
+  const inmuebleData = {
+    titulo: data.titulo[0].text,
+    ubiAprox: data.ubiaprox,
+    descCorta: data.desccorta,
+    descripcion: data.descripcion,
+    imagenes: data.imagenes,
+    info: {
+      precio: data.precio,
+      area: data.area,
+      habitaciones: data.habitaciones,
+      baños: data.banos,
+      estacionamientos: data.estacionamientos,
+      agent: data.agent.data,
+    },
+  };
   return {
     props: {
       inmuebleData,

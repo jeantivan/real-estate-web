@@ -1,4 +1,4 @@
-import { getInmueblesList } from "../lib/inmuebles";
+import { getAllInmuebles } from "../lib/inmuebles";
 import Layout from "../components/Layout";
 import { Item } from "../components/Inmueble";
 
@@ -106,8 +106,8 @@ export default function Inmuebles({ inmuebleList }) {
 
       <Grid container spacing={2}>
         {inmuebleList.map((inmueble) => (
-          <Grid key={inmueble.slug} item xs={12} sm={6} md={4} lg={3}>
-            <Item {...inmueble} />
+          <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
+            {<Item {...inmueble} />}
           </Grid>
         ))}
       </Grid>
@@ -116,7 +116,21 @@ export default function Inmuebles({ inmuebleList }) {
 }
 
 export async function getStaticProps() {
-  const inmuebleList = getInmueblesList();
+  const { results } = await getAllInmuebles();
+
+  const inmuebleList = results.map(({ data, uid }) => {
+    return {
+      slug: uid,
+      area: data.area,
+      titulo: data.titulo[0],
+      mainImg: data.mainimg,
+      precio: data.precio,
+      estado: data.estado,
+      ubiAprox: data.ubiaprox,
+      habitaciones: data.habitaciones,
+    };
+  });
+
   return {
     props: {
       inmuebleList,

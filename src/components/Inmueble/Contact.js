@@ -68,9 +68,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Contact = ({ open, handleClose, ...agent }) => {
+const Contact = ({ open, handleClose, agent }) => {
   const classes = useStyles();
-  const { name, email, phoneNumber, avatar } = agent;
+  const { name, email, phonenumber, picture } = agent;
   return (
     <div>
       <Dialog
@@ -86,7 +86,7 @@ const Contact = ({ open, handleClose, ...agent }) => {
           </IconButton>
         </div>
         <div className={classes.agent}>
-          <img src={avatar} alt={name} className={classes.profile} />
+          <img src={picture.url} alt={name} className={classes.profile} />
           <div className={classes.agentInfo}>
             <Typography variant="caption" className={classes.caption}>
               Agente Inmobiliario.
@@ -100,7 +100,7 @@ const Contact = ({ open, handleClose, ...agent }) => {
                 <span role="img" aria-label="Phone" className={classes.icon}>
                   <FontAwesomeIcon icon={faPhone} />
                 </span>{" "}
-                {phoneNumber}
+                {phonenumber}
               </Typography>{" "}
               <Typography variant="caption" component="div">
                 <span role="img" aria-label="Mail" className={classes.icon}>

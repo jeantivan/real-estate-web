@@ -169,7 +169,7 @@ export default function Information({
         >
           Contactar
         </Button>
-        <Contact {...agent} open={openDialog} handleClose={handleClose} />
+        <Contact agent={agent} open={openDialog} handleClose={handleClose} />
       </div>
     </section>
   );
