@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Inmuebles({ inmuebleList }) {
+export default function Inmuebles({ results }) {
   const classes = useStyles();
 
   const [showFilters, setShowFilters] = useState(false);
@@ -38,6 +38,19 @@ export default function Inmuebles({ inmuebleList }) {
   const handleToggle = () => {
     setShowFilters((toggle) => !toggle);
   };
+
+  const inmuebleList = results.map(({ data, uid }) => {
+    return {
+      slug: uid,
+      area: data.area,
+      titulo: data.titulo[0],
+      mainImg: data.mainimg,
+      precio: data.precio,
+      estado: data.estado,
+      ubiAprox: data.ubiaprox,
+      habitaciones: data.habitaciones,
+    };
+  });
 
   return (
     <Layout titulo="Inmuebles">
@@ -118,22 +131,9 @@ export default function Inmuebles({ inmuebleList }) {
 export async function getStaticProps() {
   const { results } = await getAllInmuebles();
 
-  const inmuebleList = results.map(({ data, uid }) => {
-    return {
-      slug: uid,
-      area: data.area,
-      titulo: data.titulo[0],
-      mainImg: data.mainimg,
-      precio: data.precio,
-      estado: data.estado,
-      ubiAprox: data.ubiaprox,
-      habitaciones: data.habitaciones,
-    };
-  });
-
   return {
     props: {
-      inmuebleList,
+      results,
     },
   };
 }
