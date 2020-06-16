@@ -100,7 +100,7 @@ export default function Information({
           Precio referencial.
         </Typography>
         <Typography variant="h2" component="h4" className={classes.price}>
-          {precio}$
+          {new Intl.NumberFormat().format(precio)}$
         </Typography>
       </div>
       <Divider className={classes.divider} />

@@ -55,7 +55,7 @@ export default function InmuebleItem({
           </Link>
         </NextLink>
         <Typography variant="h5" gutterBottom>
-          {precio}$
+          {new Intl.NumberFormat().format(precio)}$
         </Typography>
         <Typography variant="body2" gutterBottom>
           {area} m<sup>2</sup> | {habitaciones} habitaciones
