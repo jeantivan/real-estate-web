@@ -6,46 +6,19 @@ import {
   IconButton,
   Drawer,
   Divider,
-  Link,
-  List,
-  ListItem,
-  ListItemText,
   useScrollTrigger,
   Hidden,
 } from "@material-ui/core/";
 
-import clsx from "clsx";
 import { useRouter } from "next/router";
-import NextLink from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import Logo from "./Logo";
 import RRSS from "./RRSS";
-
-const routes = [
-  {
-    href: "/",
-    text: "Inicio",
-  },
-  {
-    href: "/inmuebles",
-    text: "Inmuebles",
-  },
-  {
-    href: "/servicios",
-    text: "Servicios",
-  },
-  {
-    href: "/nosotros",
-    text: "Nosotros",
-  },
-  {
-    href: "/contacto",
-    text: "Contacto",
-  },
-];
+import NavLinks from "./NavLinks";
+import DrawerLinks from "./DrawerLinks";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -156,43 +129,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavLink = ({ children, href, className, activeClassName }) => {
-  const router = useRouter();
-  const active =
-    router.pathname === href ||
-    (router.pathname.includes("inmuebles") && href === "/inmuebles");
-
-  return (
-    <NextLink href={href}>
-      <Link
-        underline="none"
-        href={href}
-        className={clsx(className, { [activeClassName]: active })}
-      >
-        {children}
-      </Link>
-    </NextLink>
-  );
-};
-
-const NavLinks = ({ classes }) => {
-  const { link, activeLink, navContainer } = classes;
-  return (
-    <nav role="navigation" className={navContainer}>
-      {routes.map(({ href, text }) => (
-        <NavLink
-          key={href}
-          href={href}
-          className={link}
-          activeClassName={activeLink}
-        >
-          {text}
-        </NavLink>
-      ))}
-    </nav>
-  );
-};
-
 function ElevationScroll({ children }) {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -205,11 +141,16 @@ function ElevationScroll({ children }) {
 }
 
 export default function Navbar() {
+  const router = useRouter();
   let classes = useStyles();
   const [show, setShow] = useState(false);
 
   const toggleDrawer = () => {
     setShow(!show);
+  };
+
+  const handleClose = () => {
+    setShow(false);
   };
 
   return (
@@ -252,19 +193,15 @@ export default function Navbar() {
                 <Logo type="navbar" />
               </Toolbar>
               <Divider />
-              <List className={classes.list}>
-                {routes.map((route) => (
-                  <ListItem
-                    key={route.href}
-                    component={NavLink}
-                    className={classes.link}
-                    activeClassName={classes.activeDrawerLink}
-                    href={route.href}
-                  >
-                    <ListItemText disableTypography>{route.text}</ListItemText>
-                  </ListItem>
-                ))}
-              </List>
+              <DrawerLinks
+                router={router}
+                classes={{
+                  drawerContainer: classes.list,
+                  link: classes.link,
+                  activeLink: classes.activeDrawerLink,
+                }}
+                handleClose={handleClose}
+              />
 
               <div className={classes.social}>
                 <RRSS type="light" />
@@ -278,6 +215,7 @@ export default function Navbar() {
                 activeLink: classes.activeLink,
                 navContainer: classes.navContainer,
               }}
+              router={router}
             />
             <div className={classes.social}>
               <RRSS type="light" />
