@@ -1,8 +1,10 @@
 import { getAllInmuebles } from "../lib/inmuebles";
 import Layout from "../components/Layout";
+import Pagination from "../components/Pagination";
 import { Item } from "../components/Inmueble";
 
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import {
   Grid,
@@ -28,16 +30,26 @@ const useStyles = makeStyles((theme) => ({
   filtro: {
     minWidth: "100%",
   },
+  pagination: {
+    marginTop: theme.spacing(4),
+  },
 }));
 
-export default function Inmuebles({ results }) {
+export default function Inmuebles({ data }) {
   const classes = useStyles();
+  const router = useRouter();
 
   const [showFilters, setShowFilters] = useState(false);
 
   const handleToggle = () => {
     setShowFilters((toggle) => !toggle);
   };
+
+  const handlePageChange = (_, newPage) => {
+    router.push(`/inmuebles?page=${newPage}`);
+  };
+
+  const { results, total_pages, page } = data;
 
   const inmuebleList = results.map(({ data, uid }) => {
     return {
@@ -124,16 +136,23 @@ export default function Inmuebles({ results }) {
           </Grid>
         ))}
       </Grid>
+      <Grid container justify="center" className={classes.pagination}>
+        <Pagination
+          page={page}
+          totPages={total_pages}
+          handleChange={handlePageChange}
+        />
+      </Grid>
     </Layout>
   );
 }
 
-export async function getStaticProps() {
-  const { results } = await getAllInmuebles();
+export async function getServerSideProps({ query }) {
+  const data = await getAllInmuebles(query.page || 1);
 
   return {
     props: {
-      results,
+      data,
     },
   };
 }

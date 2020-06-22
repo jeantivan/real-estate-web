@@ -3,10 +3,14 @@ import Prismic from "prismic-javascript";
 
 const Client = PrismicClient();
 
-export async function getAllInmuebles() {
+export async function getAllInmuebles(page = 1) {
   const response = await Client.query(
     Prismic.Predicates.at("document.type", "inmueble"),
-    { orderings: "[my.inmueble.date desc]" }
+    {
+      orderings: "[my.inmueble.date desc]",
+      pageSize: 6,
+      page,
+    }
   );
 
   return response;
