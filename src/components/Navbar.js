@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
+import { fade, makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
@@ -11,7 +11,7 @@ import {
   ListItem,
   ListItemText,
   useScrollTrigger,
-  useMediaQuery,
+  Hidden,
 } from "@material-ui/core/";
 
 import clsx from "clsx";
@@ -207,8 +207,6 @@ function ElevationScroll({ children }) {
 export default function Navbar() {
   let classes = useStyles();
   const [show, setShow] = useState(false);
-  const theme = useTheme();
-  const upToMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const toggleDrawer = () => {
     setShow(!show);
@@ -219,7 +217,7 @@ export default function Navbar() {
       <AppBar color="inherit" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <div style={{ display: "inherit" }}>
-            {!upToMd && (
+            <Hidden mdUp>
               <IconButton
                 edge="start"
                 className={classes.menuButton}
@@ -229,61 +227,62 @@ export default function Navbar() {
               >
                 <FontAwesomeIcon icon={faBars} />
               </IconButton>
-            )}
+            </Hidden>
+
             <Logo type="navbar" />
           </div>
-          <Drawer
-            anchor="left"
-            open={show && !upToMd}
-            onClose={toggleDrawer}
-            className={classes.drawer}
-            component="nav"
-          >
-            <Toolbar>
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="menu"
-                onClick={toggleDrawer}
-              >
-                <FontAwesomeIcon icon={faBars} />
-              </IconButton>
-              <Logo type="navbar" />
-            </Toolbar>
-            <Divider />
-            <List className={classes.list}>
-              {routes.map((route) => (
-                <ListItem
-                  key={route.href}
-                  component={NavLink}
-                  className={classes.link}
-                  activeClassName={classes.activeDrawerLink}
-                  href={route.href}
+          <Hidden mdUp>
+            <Drawer
+              anchor="left"
+              open={show}
+              onClose={toggleDrawer}
+              className={classes.drawer}
+              component="nav"
+            >
+              <Toolbar>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="menu"
+                  onClick={toggleDrawer}
                 >
-                  <ListItemText disableTypography>{route.text}</ListItemText>
-                </ListItem>
-              ))}
-            </List>
+                  <FontAwesomeIcon icon={faBars} />
+                </IconButton>
+                <Logo type="navbar" />
+              </Toolbar>
+              <Divider />
+              <List className={classes.list}>
+                {routes.map((route) => (
+                  <ListItem
+                    key={route.href}
+                    component={NavLink}
+                    className={classes.link}
+                    activeClassName={classes.activeDrawerLink}
+                    href={route.href}
+                  >
+                    <ListItemText disableTypography>{route.text}</ListItemText>
+                  </ListItem>
+                ))}
+              </List>
 
-            <div className={classes.social}>
-              <RRSS type="light" />
-            </div>
-          </Drawer>
-          {upToMd && (
-            <>
-              <NavLinks
-                classes={{
-                  link: classes.link,
-                  activeLink: classes.activeLink,
-                  navContainer: classes.navContainer,
-                }}
-              />
               <div className={classes.social}>
                 <RRSS type="light" />
               </div>
-            </>
-          )}
+            </Drawer>
+          </Hidden>
+          <Hidden smDown>
+            <NavLinks
+              classes={{
+                link: classes.link,
+                activeLink: classes.activeLink,
+                navContainer: classes.navContainer,
+              }}
+            />
+            <div className={classes.social}>
+              <RRSS type="light" />
+            </div>
+          </Hidden>
         </Toolbar>
       </AppBar>
     </ElevationScroll>
