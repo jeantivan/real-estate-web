@@ -10,7 +10,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Grid,
   useScrollTrigger,
   useMediaQuery,
 } from "@material-ui/core/";
@@ -21,13 +20,9 @@ import NextLink from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import {
-  faInstagram,
-  faTwitter,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
 
 import Logo from "./Logo";
+import RRSS from "./RRSS";
 
 const routes = [
   {
@@ -84,11 +79,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   social: {
-    marginTop: "auto",
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    margin: "auto auto 0 auto",
+
     [theme.breakpoints.up("md")]: {
-      marginTop: 0,
+      margin: 0,
       padding: 0,
     },
   },
@@ -220,43 +214,6 @@ export default function Navbar() {
     setShow(!show);
   };
 
-  const SocialMediaLinks = (
-    <div className={classes.social}>
-      <Grid container justify="space-between">
-        <Grid item>
-          <IconButton
-            color="primary"
-            className={classes.icon}
-            disableRipple
-            aria-label="Cuenta de instagram"
-          >
-            <FontAwesomeIcon icon={faInstagram} />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton
-            color="primary"
-            className={classes.icon}
-            disableRipple
-            aria-label="Cuenta de facebook"
-          >
-            <FontAwesomeIcon icon={faFacebook} />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton
-            color="primary"
-            className={classes.icon}
-            disableRipple
-            aria-label="Cuenta de facebook"
-          >
-            <FontAwesomeIcon icon={faTwitter} />
-          </IconButton>
-        </Grid>
-      </Grid>
-    </div>
-  );
-
   return (
     <ElevationScroll>
       <AppBar color="inherit" elevation={0} className={classes.appBar}>
@@ -309,7 +266,9 @@ export default function Navbar() {
               ))}
             </List>
 
-            {SocialMediaLinks}
+            <div className={classes.social}>
+              <RRSS type="light" />
+            </div>
           </Drawer>
           {upToMd && (
             <>
@@ -320,7 +279,9 @@ export default function Navbar() {
                   navContainer: classes.navContainer,
                 }}
               />
-              {SocialMediaLinks}
+              <div className={classes.social}>
+                <RRSS type="light" />
+              </div>
             </>
           )}
         </Toolbar>

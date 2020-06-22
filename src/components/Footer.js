@@ -1,14 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { IconButton, Typography, Link, Grid } from "@material-ui/core/";
+import { Typography, Link, Grid } from "@material-ui/core/";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import {
-  faInstagram,
-  faTwitter,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
 
 import Logo from "./Logo";
+import RRSS from "./RRSS";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,17 +22,6 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("xl")]: {
       padding: theme.spacing(3, 10),
-    },
-  },
-  icon: {
-    color: "white",
-    transition: theme.transitions.create("color", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-
-    "&:hover": {
-      color: theme.palette.secondary.main,
     },
   },
   me: {
@@ -74,38 +59,7 @@ const Footer = () => {
           </Typography>
         </Grid>
         <Grid item md={2}>
-          <Grid container justify="space-between" alignItems="center">
-            <Grid item>
-              <IconButton
-                color="secondary"
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de instagram"
-              >
-                <FontAwesomeIcon icon={faInstagram} />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                color="secondary"
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de facebook"
-              >
-                <FontAwesomeIcon icon={faFacebook} />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                color="secondary"
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de facebook"
-              >
-                <FontAwesomeIcon icon={faTwitter} />
-              </IconButton>
-            </Grid>
-          </Grid>
+          <RRSS type="dark" />
         </Grid>
       </Grid>
       <Grid container justify="center" className={classes.me}>
