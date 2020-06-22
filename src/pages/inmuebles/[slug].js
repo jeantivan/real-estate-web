@@ -8,7 +8,6 @@ import Layout from "../../components/Layout";
 import { Information, Item } from "../../components/Inmueble";
 import Gallery from "../../components/Gallery";
 import NextLink from "next/link";
-import Head from "next/head";
 
 import { getInmueble, getAllInmueblesSlug } from "../../lib/inmuebles";
 
@@ -85,10 +84,7 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
   });
 
   return (
-    <Layout titulo={titulo}>
-      <Head>
-        <meta name="description" content={descCorta} />
-      </Head>
+    <Layout titulo={titulo} descripcion={descCorta}>
       <Grid container spacing={3} component="article">
         <Grid
           item
