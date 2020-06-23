@@ -31,10 +31,10 @@ const DrawerLink = ({
 };
 
 const DrawerLinks = ({ classes, handleClose, router }) => {
-  const { drawerContainer, link, activeLink } = classes;
+  const { drawerList, link, activeLink } = classes;
 
   return (
-    <List className={drawerContainer}>
+    <List className={drawerList}>
       <DrawerLink
         href="/"
         handleClose={handleClose}
