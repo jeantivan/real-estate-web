@@ -44,12 +44,13 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerContainer: {
     display: "flex",
-    width: 240,
+    width: 260,
     paddingTop: theme.spacing(1),
   },
   list: {
     width: "100%",
     backgroundColor: theme.palette.background.paper,
+    maxWidth: 260,
   },
   social: {
     margin: "auto auto 0 auto",
@@ -177,7 +178,7 @@ export default function Navbar() {
               anchor="left"
               open={show}
               onClose={toggleDrawer}
-              className={classes.drawer}
+              className={classes.drawerContainer}
               component="nav"
             >
               <Toolbar>
@@ -196,7 +197,7 @@ export default function Navbar() {
               <DrawerLinks
                 router={router}
                 classes={{
-                  drawerContainer: classes.list,
+                  drawerList: classes.list,
                   link: classes.link,
                   activeLink: classes.activeDrawerLink,
                 }}
