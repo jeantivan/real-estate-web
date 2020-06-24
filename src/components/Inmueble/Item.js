@@ -54,20 +54,20 @@ export default function InmuebleItem({
         />
       </div>
       <CardContent>
+        <Typography variant="caption" display="block">
+          <FontAwesomeIcon icon={faMapMarkerAlt} className={classes.icon} />{" "}
+          {ubiAprox}
+        </Typography>
         <NextLink href="/inmuebles/[slug]" as={`/inmuebles/${slug}`} passHref>
           <Link variant="h6" className={classes.title}>
             {titulo.text}
           </Link>
         </NextLink>
         <Typography variant="h5" gutterBottom>
-          {new Intl.NumberFormat().format(precio)}$
+          ${precio}
         </Typography>
         <Typography variant="body2" gutterBottom>
           {area} m<sup>2</sup> | {habitaciones} habitaciones
-        </Typography>
-        <Typography variant="caption">
-          <FontAwesomeIcon icon={faMapMarkerAlt} className={classes.icon} />{" "}
-          {ubiAprox}
         </Typography>
       </CardContent>
     </Card>

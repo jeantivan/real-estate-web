@@ -16,6 +16,14 @@ import {
 import Contact from "./Contact";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    "& div:last-child": {
+      marginTop: "auto",
+    },
+  },
   title: {
     fontWeight: 400,
     position: "relative",
@@ -64,9 +72,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(18),
     fontWeight: 600,
   },
-  button: {
-    width: "100%",
-  },
 }));
 
 export default function Information({
@@ -89,7 +94,7 @@ export default function Information({
   };
 
   return (
-    <section id="info-inmueble">
+    <div id="info-inmueble" className={classes.root}>
       <div>
         <Typography
           variant="h6"
@@ -100,7 +105,7 @@ export default function Information({
           Precio referencial.
         </Typography>
         <Typography variant="h2" component="h4" className={classes.price}>
-          {new Intl.NumberFormat().format(precio)}$
+          ${precio}
         </Typography>
       </div>
       <Divider className={classes.divider} />
@@ -159,18 +164,21 @@ export default function Information({
       </div>
       <Divider className={classes.divider} />
       <div>
+        <Typography gutterBottom variant="h6" component="div">
+          ¿Quieres mas información? ¡Contactanos!
+        </Typography>
         <Button
           variant="contained"
           color="primary"
           size="large"
           disableElevation
-          className={classes.button}
+          fullWidth
           onClick={handleClickOpen}
         >
           Contactar
         </Button>
         <Contact agent={agent} open={openDialog} handleClose={handleClose} />
       </div>
-    </section>
+    </div>
   );
 }

@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogContentText,
   Typography,
+  Divider,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -46,9 +47,12 @@ const useStyles = makeStyles((theme) => ({
   },
   profile: {
     display: "block",
-    width: 80,
-    height: 80,
+    width: 120,
+    height: 120,
+    backgroundColor: "white",
     margin: "0 auto",
+    border: "2px solid white",
+    borderRadius: "100%",
     [theme.breakpoints.up("sm")]: {
       margin: 0,
       marginRight: theme.spacing(3),
@@ -85,6 +89,10 @@ const Contact = ({ open, handleClose, agent }) => {
             <FontAwesomeIcon icon={faTimes} />
           </IconButton>
         </div>
+        <Divider />
+        <DialogContent>
+          <DialogContentText>Agente encargado del inmueble.</DialogContentText>
+        </DialogContent>
         <div className={classes.agent}>
           <img src={picture.url} alt={name} className={classes.profile} />
           <div className={classes.agentInfo}>
