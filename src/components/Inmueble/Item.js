@@ -1,16 +1,10 @@
-//import Gallery from "../Gallery";
 import NextLink from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  Link,
-} from "@material-ui/core";
+import { Typography, Card, CardContent, Link } from "@material-ui/core";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +15,16 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%",
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
+    position: "relative",
+    overflow: "hidden",
+    height: 0,
+  },
+  img: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
   },
   title: {
     cursor: "pointer",
@@ -42,12 +46,13 @@ export default function InmuebleItem({
 
   return (
     <Card className={classes.root} component="article">
-      <CardMedia
-        className={classes.imgContainer}
-        image={mainImg.url}
-        alt={mainImg.alt}
-      />
-
+      <div className={classes.imgContainer}>
+        <LazyLoadImage
+          src={mainImg.url}
+          alt={mainImg.alt}
+          className={classes.img}
+        />
+      </div>
       <CardContent>
         <NextLink href="/inmuebles/[slug]" as={`/inmuebles/${slug}`} passHref>
           <Link variant="h6" className={classes.title}>
