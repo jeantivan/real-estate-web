@@ -1,9 +1,8 @@
 import { useState, useCallback } from "react";
-
 import clsx from "clsx";
-
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import SwipeableViews from "react-swipeable-views";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { Controls } from "./Controls";
 
@@ -72,11 +71,13 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     alignItems: "center",
     justifyContent: "center",
+    objectFit: "cover",
   },
 }));
 
 export function Gallery({ imagenes }) {
   const classes = useStyles();
+  //const theme = useTheme();
   const [index, setIndex] = useState(0);
 
   const handleChange = useCallback((index) => setIndex(index), [index]);
@@ -100,11 +101,14 @@ export function Gallery({ imagenes }) {
         enableMouseEvents
       >
         {imagenes.map(({ imagen }) => (
-          <img
+          <LazyLoadImage
             key={imagen.alt}
-            src={imagen.url}
             alt={imagen.alt}
+            src={imagen.url}
             className={classes.img}
+            // Por alguna razon no funcionan TO-DO: Hacer que lo funcionen
+            srcSet={`${imagen.url} ${imagen.dimensions.width}w, ${imagen.tablet.url} ${imagen.tablet.dimensions.width}w, ${imagen.mobile.url} ${imagen.mobile.dimensions.width}w`}
+            sizes={`(min-width: 414px) 382px, (min-width: 768px) 720px, (min-width: 1280px) 813px`}
           />
         ))}
       </SwipeableViews>
