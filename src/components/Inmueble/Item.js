@@ -58,7 +58,7 @@ export default function InmuebleItem({
           <FontAwesomeIcon icon={faMapMarkerAlt} className={classes.icon} />{" "}
           {ubiAprox}
         </Typography>
-        <NextLink href="/inmuebles/[slug]" as={`/inmuebles/${slug}`} passHref>
+        <NextLink href="/inmueble/[slug]" as={`/inmueble/${slug}`} passHref>
           <Link variant="h6" className={classes.title}>
             {titulo.text}
           </Link>
