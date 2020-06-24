@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
 
 export function Gallery({ imagenes }) {
   const classes = useStyles();
-  //const theme = useTheme();
   const [index, setIndex] = useState(0);
 
   const handleChange = useCallback((index) => setIndex(index), [index]);
@@ -106,9 +105,6 @@ export function Gallery({ imagenes }) {
             alt={imagen.alt}
             src={imagen.url}
             className={classes.img}
-            // Por alguna razon no funcionan TO-DO: Hacer que lo funcionen
-            srcSet={`${imagen.url} ${imagen.dimensions.width}w, ${imagen.tablet.url} ${imagen.tablet.dimensions.width}w, ${imagen.mobile.url} ${imagen.mobile.dimensions.width}w`}
-            sizes={`(min-width: 414px) 382px, (min-width: 768px) 720px, (min-width: 1280px) 813px`}
           />
         ))}
       </SwipeableViews>
