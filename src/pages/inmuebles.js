@@ -46,7 +46,18 @@ export default function Inmuebles({ data }) {
   };
 
   const handlePageChange = (_, newPage) => {
-    router.push(`/inmuebles?page=${newPage}`);
+    const { page: currentPage } = router.query;
+    if (currentPage == newPage || (!currentPage && newPage === 1)) return;
+
+    router
+      .push(newPage === 1 ? "/inmuebles" : `/inmuebles?page=${newPage}`)
+      .then(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
+      });
   };
 
   const { results, total_pages, page } = data;
