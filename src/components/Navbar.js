@@ -6,7 +6,6 @@ import {
   IconButton,
   Drawer,
   Divider,
-  useScrollTrigger,
   Hidden,
 } from "@material-ui/core/";
 
@@ -130,17 +129,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ElevationScroll({ children }) {
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 2 : 0,
-  });
-}
-
 export default function Navbar() {
   const router = useRouter();
   let classes = useStyles();
@@ -155,11 +143,37 @@ export default function Navbar() {
   };
 
   return (
-    <ElevationScroll>
-      <AppBar color="inherit" elevation={0} className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <div style={{ display: "inherit" }}>
-            <Hidden mdUp>
+    <AppBar
+      color="inherit"
+      elevation={0}
+      position="static"
+      className={classes.appBar}
+    >
+      <Toolbar className={classes.toolbar}>
+        <div style={{ display: "inherit" }}>
+          <Hidden mdUp>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer}
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </IconButton>
+          </Hidden>
+
+          <Logo type="navbar" />
+        </div>
+        <Hidden mdUp>
+          <Drawer
+            anchor="left"
+            open={show}
+            onClose={toggleDrawer}
+            className={classes.drawerContainer}
+            component="nav"
+          >
+            <Toolbar>
               <IconButton
                 edge="start"
                 className={classes.menuButton}
@@ -169,61 +183,38 @@ export default function Navbar() {
               >
                 <FontAwesomeIcon icon={faBars} />
               </IconButton>
-            </Hidden>
-
-            <Logo type="navbar" />
-          </div>
-          <Hidden mdUp>
-            <Drawer
-              anchor="left"
-              open={show}
-              onClose={toggleDrawer}
-              className={classes.drawerContainer}
-              component="nav"
-            >
-              <Toolbar>
-                <IconButton
-                  edge="start"
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={toggleDrawer}
-                >
-                  <FontAwesomeIcon icon={faBars} />
-                </IconButton>
-                <Logo type="navbar" />
-              </Toolbar>
-              <Divider />
-              <DrawerLinks
-                router={router}
-                classes={{
-                  drawerList: classes.list,
-                  link: classes.link,
-                  activeLink: classes.activeDrawerLink,
-                }}
-                handleClose={handleClose}
-              />
-
-              <div className={classes.social}>
-                <RRSS type="light" />
-              </div>
-            </Drawer>
-          </Hidden>
-          <Hidden smDown>
-            <NavLinks
-              classes={{
-                link: classes.link,
-                activeLink: classes.activeLink,
-                navContainer: classes.navContainer,
-              }}
+              <Logo type="navbar" />
+            </Toolbar>
+            <Divider />
+            <DrawerLinks
               router={router}
+              classes={{
+                drawerList: classes.list,
+                link: classes.link,
+                activeLink: classes.activeDrawerLink,
+              }}
+              handleClose={handleClose}
             />
+
             <div className={classes.social}>
               <RRSS type="light" />
             </div>
-          </Hidden>
-        </Toolbar>
-      </AppBar>
-    </ElevationScroll>
+          </Drawer>
+        </Hidden>
+        <Hidden smDown>
+          <NavLinks
+            classes={{
+              link: classes.link,
+              activeLink: classes.activeLink,
+              navContainer: classes.navContainer,
+            }}
+            router={router}
+          />
+          <div className={classes.social}>
+            <RRSS type="light" />
+          </div>
+        </Hidden>
+      </Toolbar>
+    </AppBar>
   );
 }
