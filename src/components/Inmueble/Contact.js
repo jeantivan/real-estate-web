@@ -148,7 +148,7 @@ const Contact = ({ open, handleClose, agent }) => {
             type="text"
             multiline
             rows={6}
-            maxRows={6}
+            rowsMax={6}
             margin="normal"
             variant="outlined"
             fullWidth
