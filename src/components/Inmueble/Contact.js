@@ -17,8 +17,8 @@ import {
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 
-import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import * as Yup from "yup";
 import TextField from "../TextField";
 
 const initialValues = {
@@ -105,12 +105,15 @@ const Contact = ({ open, handleClose, agent }) => {
       <Dialog
         open={open}
         scroll="body"
-        onClose={() => handleClose(false)}
+        onClose={() => handleClose(null)}
         aria-labelledby="informacion-contacto-inmueble"
       >
         <div id="informacion-contacto-inmueble" className={classes.container}>
           <Typography variant="h5">Información de contacto</Typography>
-          <IconButton aria-label="Cerrar información" onClick={handleClose}>
+          <IconButton
+            aria-label="Cerrar información"
+            onClick={() => handleClose(null)}
+          >
             <FontAwesomeIcon icon={faTimes} />
           </IconButton>
         </div>
@@ -148,14 +151,12 @@ const Contact = ({ open, handleClose, agent }) => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(_, { setSubmitting, resetForm }) => {
+          onSubmit={(_, { resetForm }) => {
             resetForm();
-            setSubmitting(false);
-
-            handleClose(true);
+            handleClose("success");
           }}
         >
-          {({ submitForm, isSubmitting }) => (
+          {({ submitForm }) => (
             <Form>
               <DialogContent>
                 <DialogContentText>
@@ -194,7 +195,6 @@ const Contact = ({ open, handleClose, agent }) => {
               </DialogContent>
               <div className={classes.container}>
                 <Button
-                  disabled={isSubmitting}
                   onClick={submitForm}
                   color="primary"
                   variant="contained"

@@ -1,6 +1,6 @@
-import { Button, Typography, Paper, Snackbar } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+import { Button, Typography, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSnackbar } from "notistack";
 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ContactForm = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   return (
     <Paper className={classes.container} elevation={2}>
@@ -47,13 +47,22 @@ const ContactForm = () => {
         onSubmit={(_, { setSubmitting, resetForm }) => {
           resetForm();
           setTimeout(() => {
-            setOpen(true);
+            enqueueSnackbar(
+              "Mensaje enviado con éxito. Gracias por contactarnos.",
+              {
+                variant: "success",
+                anchorOrigin: {
+                  vertical: "top",
+                  horizontal: "center",
+                },
+              }
+            );
             setSubmitting(false);
           }, 500);
         }}
       >
         {({ submitForm, isSubmitting }) => (
-          <Form>
+          <Form onSubmit={submitForm}>
             <TextField
               autoFocus
               name="nombre"
@@ -98,19 +107,6 @@ const ContactForm = () => {
           </Form>
         )}
       </Formik>
-      <Snackbar
-        open={open}
-        autoHideDuration={5000}
-        onClose={() => setOpen(false)}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-      >
-        <Alert elevation={6} variant="filled" severity="success">
-          Mensaje enviado con éxito. Gracias por contactarnos
-        </Alert>
-      </Snackbar>
     </Paper>
   );
 };

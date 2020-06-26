@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { makeStyles, fade } from "@material-ui/core";
-import { Button, Divider, Grid, Snackbar, Typography } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+import { Button, Divider, Grid, Typography } from "@material-ui/core";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +9,8 @@ import {
   faBath,
   faCar,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { useSnackbar } from "notistack";
 
 import Contact from "./Contact";
 
@@ -82,15 +83,26 @@ export default function Information({
 }) {
   const classes = useStyles();
   const [openDialog, setOpenDialog] = useState(false);
-  const [showSnackbar, setShowSnackBar] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleClickOpen = () => {
     setOpenDialog(true);
   };
 
-  const handleClose = (showSnackbar) => {
+  const handleClose = (variant) => {
     setOpenDialog(false);
-    if (showSnackbar) setShowSnackBar(true);
+    if (variant) {
+      enqueueSnackbar(
+        "Mensaje enviado. Te contactaremos lo más pronto posible",
+        {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+        }
+      );
+    }
   };
 
   return (
@@ -179,19 +191,6 @@ export default function Information({
         </Button>
         <Contact agent={agent} open={openDialog} handleClose={handleClose} />
       </div>
-      <Snackbar
-        open={showSnackbar}
-        autoHideDuration={5000}
-        onClose={() => setShowSnackBar(false)}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-      >
-        <Alert elevation={6} variant="filled" severity="success">
-          Mensaje enviado. Te contactaremos tan pronto como sea posible.
-        </Alert>
-      </Snackbar>
     </div>
   );
 }
