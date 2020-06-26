@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { makeStyles, fade } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
-import Grid from "@material-ui/core/Grid";
+import { Button, Divider, Grid, Typography } from "@material-ui/core";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +9,8 @@ import {
   faBath,
   faCar,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { useSnackbar } from "notistack";
 
 import Contact from "./Contact";
 
@@ -84,13 +83,26 @@ export default function Information({
 }) {
   const classes = useStyles();
   const [openDialog, setOpenDialog] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleClickOpen = () => {
     setOpenDialog(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (variant) => {
     setOpenDialog(false);
+    if (variant) {
+      enqueueSnackbar(
+        "Mensaje enviado. Te contactaremos lo más pronto posible",
+        {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+        }
+      );
+    }
   };
 
   return (
