@@ -23,8 +23,11 @@ import { makeStyles } from "@material-ui/core";
 import { faSort } from "@fortawesome/free-solid-svg-icons"; */
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  title: {
     margin: theme.spacing(2, 0),
+  },
+  list: {
+    margin: theme.spacing(2, -1),
   },
   /* filtro: {
     minWidth: "100%",
@@ -83,7 +86,7 @@ export default function Inmuebles({ data }) {
         container
         justify="space-between"
         alignItems="flex-end"
-        className={classes.container}
+        className={classes.title}
       >
         <Grid item>
           <Typography variant="h2" component="h1">
@@ -103,7 +106,7 @@ export default function Inmuebles({ data }) {
       </Grid>
       <Divider />
 
-      <Grid container spacing={2} className={classes.container}>
+      <Grid container spacing={2} className={classes.list}>
         {inmuebleList.map((inmueble) => (
           <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
             {<Item {...inmueble} />}
