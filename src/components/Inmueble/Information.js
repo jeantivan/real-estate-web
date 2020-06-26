@@ -93,7 +93,7 @@ export default function Information({
     setOpenDialog(false);
     if (variant) {
       enqueueSnackbar(
-        "Mensaje enviado. Te contactaremos lo más pronto posible",
+        "Mensaje enviado. Te contactaremos lo más pronto posible.",
         {
           variant: "success",
           anchorOrigin: {
