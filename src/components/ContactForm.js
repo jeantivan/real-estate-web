@@ -108,7 +108,7 @@ const ContactForm = () => {
         }}
       >
         <Alert elevation={6} variant="filled" severity="success">
-          Gracias por tu contactarnos
+          Mensaje enviado con éxito. Gracias por contactarnos
         </Alert>
       </Snackbar>
     </Paper>
