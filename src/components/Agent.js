@@ -37,13 +37,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Agent = (props) => {
+const Agent = ({ name, phonenumber, email, picture, id }) => {
   const classes = useStyles();
-  const { name, phonenumber, email, picture, id } = props;
 
-  React.useEffect(() => {
-    console.log(props);
-  }, []);
   return (
     <Paper variant="outlined" className={classes.root} component="article">
       <LazyLoadImage src={picture.url} alt={name} className={classes.picture} />
