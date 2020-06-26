@@ -7,7 +7,7 @@ import { getAllAgents } from "../lib";
 
 const useStyles = makeStyles((theme) => ({
   equipo: {
-    margin: theme.spacing(2, 0),
+    margin: theme.spacing(2, -1),
   },
   agent: {
     width: "100%",
@@ -79,7 +79,7 @@ export default function Nosotros({ results: agents }) {
           </Typography>
         </Grid>
         {agents.map(({ data, id }) => (
-          <Grid item xs={12} md={6} lg={3} key={id}>
+          <Grid item xs={12} sm={6} lg={3} key={id}>
             <Agent {...{ ...data, id }} />
           </Grid>
         ))}
