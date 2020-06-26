@@ -1,13 +1,13 @@
 import {
   IconButton,
   Button,
-  TextField,
   Dialog,
   DialogContent,
   DialogContentText,
   Typography,
   Divider,
 } from "@material-ui/core";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +16,26 @@ import {
   faPhone,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
+
+import * as Yup from "yup";
+import { Formik, Form } from "formik";
+import TextField from "../TextField";
+
+const initialValues = {
+  nombre: "",
+  email: "",
+  mensaje: "",
+};
+
+const validationSchema = Yup.object({
+  nombre: Yup.string().required(
+    "Campo obligatorio. Por favor escribe tu nombre"
+  ),
+  email: Yup.string().email("Email invalido.").required("Campo obligatorio"),
+  mensaje: Yup.string()
+    .max(255, "Mensaje muy largo, maximo 255 caracteres")
+    .required("Campo obligatorio"),
+});
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -58,8 +78,13 @@ const useStyles = makeStyles((theme) => ({
       marginRight: theme.spacing(3),
     },
   },
+  name: {
+    fontWeight: 500,
+  },
+
   contact: {
     width: "100%",
+    marginTop: theme.spacing(1),
     "&:nth-child(1)": {
       marginRight: theme.spacing(1),
     },
@@ -80,7 +105,7 @@ const Contact = ({ open, handleClose, agent }) => {
       <Dialog
         open={open}
         scroll="body"
-        onClose={handleClose}
+        onClose={() => handleClose(false)}
         aria-labelledby="informacion-contacto-inmueble"
       >
         <div id="informacion-contacto-inmueble" className={classes.container}>
@@ -96,11 +121,11 @@ const Contact = ({ open, handleClose, agent }) => {
         <div className={classes.agent}>
           <img src={picture.url} alt={name} className={classes.profile} />
           <div className={classes.agentInfo}>
+            <Typography variant="h5" className={classes.name}>
+              {name}
+            </Typography>
             <Typography variant="caption" className={classes.caption}>
               Agente Inmobiliario.
-            </Typography>
-            <Typography variant="h6" className={classes.name}>
-              {name}
             </Typography>
 
             <div className={classes.contact}>
@@ -119,52 +144,69 @@ const Contact = ({ open, handleClose, agent }) => {
             </div>
           </div>
         </div>
-        <DialogContent>
-          <DialogContentText>
-            ¿Quieres que te contactemos nosotros? Llena el siguiente formulario
-          </DialogContentText>
-          <TextField
-            autoFocus
-            id="nombre"
-            label="Nombre"
-            type="text"
-            margin="normal"
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-          <TextField
-            id="email"
-            label="Correo electronico"
-            type="email"
-            margin="normal"
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-          <TextField
-            id="mensaje"
-            label="Mensaje"
-            type="text"
-            multiline
-            rows={6}
-            rowsMax={6}
-            margin="normal"
-            variant="outlined"
-            fullWidth
-          />
-        </DialogContent>
-        <div className={classes.container}>
-          <Button
-            onClick={handleClose}
-            color="primary"
-            variant="contained"
-            disableElevation
-            fullWidth
-          >
-            Enviar
-          </Button>
-        </div>
+
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(_, { setSubmitting, resetForm }) => {
+            resetForm();
+            setSubmitting(false);
+
+            handleClose(true);
+          }}
+        >
+          {({ submitForm, isSubmitting }) => (
+            <Form>
+              <DialogContent>
+                <DialogContentText>
+                  ¿Quieres que te contactemos nosotros? Llena el siguiente
+                  formulario
+                </DialogContentText>
+                <TextField
+                  autoFocus
+                  name="nombre"
+                  label="Nombre"
+                  type="text"
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                />
+                <TextField
+                  name="email"
+                  label="Correo electronico"
+                  type="email"
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                />
+                <TextField
+                  name="mensaje"
+                  label="Mensaje"
+                  multiline
+                  rows={6}
+                  rowsMax={6}
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth
+                />
+              </DialogContent>
+              <div className={classes.container}>
+                <Button
+                  disabled={isSubmitting}
+                  onClick={submitForm}
+                  color="primary"
+                  variant="contained"
+                  disableElevation
+                  fullWidth
+                >
+                  Enviar
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </Dialog>
     </div>
   );
