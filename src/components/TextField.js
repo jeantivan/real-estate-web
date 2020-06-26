@@ -6,7 +6,7 @@ const MyInput = (props) => {
 
   return (
     <TextField
-      error={meta.touched && meta.error}
+      error={Boolean(meta.touched && meta.error)}
       helperText={meta.touched ? meta.error : null}
       {...props}
       {...field}
