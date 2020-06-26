@@ -44,3 +44,12 @@ export async function getInmueble(slug) {
 
   return { document, masInmuebles };
 }
+
+export async function getAllAgents() {
+  const response = await Client.query(
+    Prismic.Predicates.at("document.type", "agent")
+  );
+
+  console.log(response);
+  return response;
+}
