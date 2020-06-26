@@ -1,5 +1,4 @@
-import Layout from "../components/Layout";
-import ContactForm from "../components/ContactForm";
+import { Layout, ContactForm } from "../components";
 
 import { Typography, Grid } from "@material-ui/core";
 

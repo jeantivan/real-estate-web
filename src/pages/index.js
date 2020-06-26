@@ -1,4 +1,4 @@
-import Layout from "../components/Layout";
+import { Layout } from "../components";
 import Typography from "@material-ui/core/Typography";
 
 export default function Home() {

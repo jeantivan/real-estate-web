@@ -1,9 +1,8 @@
-import { getAllInmuebles } from "../lib/inmuebles";
-import Layout from "../components/Layout";
-import Pagination from "../components/Pagination";
+import { getAllInmuebles } from "../lib";
+
+import { Layout, Pagination } from "../components";
 import { Item } from "../components/Inmueble";
 
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 import {

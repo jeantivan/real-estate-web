@@ -9,7 +9,7 @@ import { Information, Item } from "../../components/Inmueble";
 import Gallery from "../../components/Gallery";
 import NextLink from "next/link";
 
-import { getInmueble, getAllInmueblesSlug } from "../../lib/inmuebles";
+import { getInmueble, getAllInmueblesSlug } from "../../lib";
 
 const useStyles = makeStyles((theme) => ({
   title: {

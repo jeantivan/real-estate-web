@@ -1,9 +1,9 @@
-import Layout from "../components/Layout";
-import Agent from "../components/Agent";
-import { Typography, Grid, Paper } from "@material-ui/core";
+import { Layout, Agent } from "../components";
+
+import { Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { getAllAgents } from "../lib/agents";
+import { getAllAgents } from "../lib";
 
 const useStyles = makeStyles((theme) => ({
   equipo: {
