@@ -50,6 +50,5 @@ export async function getAllAgents() {
     Prismic.Predicates.at("document.type", "agent")
   );
 
-  console.log(response);
   return response;
 }
