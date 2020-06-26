@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { makeStyles, fade } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
-import Grid from "@material-ui/core/Grid";
+import { Button, Divider, Grid, Snackbar, Typography } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -84,13 +82,15 @@ export default function Information({
 }) {
   const classes = useStyles();
   const [openDialog, setOpenDialog] = useState(false);
+  const [showSnackbar, setShowSnackBar] = useState(false);
 
   const handleClickOpen = () => {
     setOpenDialog(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (showSnackbar) => {
     setOpenDialog(false);
+    if (showSnackbar) setShowSnackBar(true);
   };
 
   return (
@@ -179,6 +179,19 @@ export default function Information({
         </Button>
         <Contact agent={agent} open={openDialog} handleClose={handleClose} />
       </div>
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={5000}
+        onClose={() => setShowSnackBar(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+      >
+        <Alert elevation={6} variant="filled" severity="success">
+          Mensaje enviado. Te contactaremos tan pronto como sea posible.
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
