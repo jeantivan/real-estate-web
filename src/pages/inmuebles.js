@@ -1,4 +1,4 @@
-import { getAllInmuebles } from "../lib";
+import { getAllInmuebles } from "../lib/api";
 
 import { Layout, Pagination } from "../components";
 import { Item } from "../components/Inmueble";
