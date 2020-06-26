@@ -18,9 +18,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Nosotros({ results: agents }) {
   const classes = useStyles();
 
-  React.useEffect(() => {
-    console.log(agents);
-  }, []);
   return (
     <Layout
       titulo="Nosotros"
