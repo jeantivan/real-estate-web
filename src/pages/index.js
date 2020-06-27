@@ -1,4 +1,4 @@
-import { Layout } from "../components";
+import { Layout, Newsletter } from "../components";
 import Typography from "@material-ui/core/Typography";
 
 export default function Home() {
@@ -22,6 +22,7 @@ export default function Home() {
         perferendis temporibus id ex, neque rem voluptate quis tempora esse
         earum alias voluptates.
       </Typography>
+      <Newsletter />
     </Layout>
   );
 }
