@@ -4,7 +4,7 @@ import Router from "next/router";
 
 // Material-UI config
 import { ThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import { CssBaseline, IconButton } from "@material-ui/core/";
 import theme from "../theme";
 
 // FontAwesome config
@@ -21,6 +21,8 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 // Notistack
 import { SnackbarProvider } from "notistack";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 // Layout
 import { Navbar, Footer } from "../components";
@@ -35,6 +37,10 @@ export default function MyApp(props) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
+  const notistackRef = React.createRef();
+  const onClickDismiss = (key) => () => {
+    notistackRef.current.closeSnackbar(key);
+  };
 
   return (
     <React.Fragment>
@@ -49,7 +55,20 @@ export default function MyApp(props) {
 
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <SnackbarProvider>
+        <SnackbarProvider
+          ref={notistackRef}
+          action={(key) => (
+            <IconButton
+              disableRipple
+              size="small"
+              style={{ color: "white" }}
+              aria-label="Cerrar"
+              onClick={onClickDismiss(key)}
+            >
+              <FontAwesomeIcon icon={faTimes} />
+            </IconButton>
+          )}
+        >
           <CssBaseline />
           <Navbar />
           <Component {...pageProps} />
