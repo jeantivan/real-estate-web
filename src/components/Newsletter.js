@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const validationSchema = object({
-  email: string().email("Email invalido.").required("Campo obligatorio."),
+  email: string().email("Email inválido.").required("Campo obligatorio."),
 });
 
 const Newsletter = () => {
