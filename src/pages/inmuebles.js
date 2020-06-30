@@ -125,7 +125,7 @@ export default function Inmuebles({ data }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const data = await getAllInmuebles(query.page || 1);
+  const data = await getAllInmuebles(query);
 
   return {
     props: {
