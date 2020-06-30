@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import { object, string } from "yup";
 
 import TextField from "./TextField";
 
@@ -13,12 +13,10 @@ const initialValues = {
   mensaje: "",
 };
 
-const validationSchema = Yup.object({
-  nombre: Yup.string().required(
-    "Campo obligatorio. Por favor escribe tu nombre"
-  ),
-  email: Yup.string().email("Email invalido.").required("Campo obligatorio"),
-  mensaje: Yup.string()
+const validationSchema = object({
+  nombre: string().required("Campo obligatorio. Por favor escribe tu nombre"),
+  email: string().email("Email invalido.").required("Campo obligatorio"),
+  mensaje: string()
     .max(255, "Mensaje muy largo, maximo 255 caracteres")
     .required("Campo obligatorio"),
 });
