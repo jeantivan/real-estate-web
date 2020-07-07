@@ -4,13 +4,14 @@ import { Layout, Pagination, Filters } from "../components";
 import { Item } from "../components/Inmueble";
 
 import { useRouter } from "next/router";
-
+import NextLink from "next/link";
 import {
   Grid,
   Typography,
   Divider,
   Button,
   Collapse,
+  Link,
 } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core";
 
@@ -100,36 +101,66 @@ export default function Inmuebles({ data }) {
             Inmuebles
           </Typography>
         </Grid>
-        <Grid item>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={handleToggle}
-            endIcon={<FontAwesomeIcon icon={faSort} />}
-          >
-            Filtros
-          </Button>
-        </Grid>
+        {results.length >= 1 && (
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleToggle}
+              endIcon={<FontAwesomeIcon icon={faSort} />}
+            >
+              Filtros
+            </Button>
+          </Grid>
+        )}
       </Grid>
       <Divider />
-      <Collapse in={showFilters}>
-        <Filters />
-      </Collapse>
+      {results.length >= 1 && (
+        <Collapse in={showFilters}>
+          <Filters />
+        </Collapse>
+      )}
 
       <Grid container spacing={2} className={classes.list}>
-        {inmuebleList.map((inmueble) => (
-          <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
-            {<Item {...inmueble} />}
+        {results.length < 1 ? (
+          <Grid item xs={12}>
+            <Typography
+              variant="h5"
+              component="div"
+              align="center"
+              gutterBottom
+            >
+              No hay propiedades para mostrar.
+            </Typography>
+            <NextLink href="/inmuebles" passHref>
+              <Link
+                display="block"
+                variant="h6"
+                align="center"
+                color="primary"
+                underline="hover"
+              >
+                Ver todos los inmuebles.
+              </Link>
+            </NextLink>
           </Grid>
-        ))}
+        ) : (
+          inmuebleList.map((inmueble) => (
+            <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
+              {<Item {...inmueble} />}
+            </Grid>
+          ))
+        )}
       </Grid>
-      <Grid container justify="center" className={classes.pagination}>
-        <Pagination
-          page={page}
-          totPages={total_pages}
-          handleChange={handlePageChange}
-        />
-      </Grid>
+      {results.length >= 1 && (
+        <Grid container justify="center" className={classes.pagination}>
+          <Pagination
+            page={page}
+            totPages={total_pages}
+            handleChange={handlePageChange}
+          />
+        </Grid>
+      )}
     </Layout>
   );
 }
