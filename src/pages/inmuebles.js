@@ -1,26 +1,22 @@
 import { getAllInmuebles } from "../lib/api";
 
-import { Layout, Pagination } from "../components";
+import { Layout, Pagination, Filters } from "../components";
 import { Item } from "../components/Inmueble";
 
 import { useRouter } from "next/router";
-
+import NextLink from "next/link";
 import {
   Grid,
   Typography,
   Divider,
-  /*Button,
+  Button,
   Collapse,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText, */
+  Link,
 } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core";
 
-/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort } from "@fortawesome/free-solid-svg-icons"; */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSort } from "@fortawesome/free-solid-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -29,9 +25,6 @@ const useStyles = makeStyles((theme) => ({
   list: {
     margin: theme.spacing(2, -1),
   },
-  /* filtro: {
-    minWidth: "100%",
-  }, */
   pagination: {
     marginTop: theme.spacing(4),
   },
@@ -41,18 +34,33 @@ export default function Inmuebles({ data }) {
   const classes = useStyles();
   const router = useRouter();
 
-  //const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = React.useState(false);
 
-  /* const handleToggle = () => {
-    setShowFilters((toggle) => !toggle);
-  }; */
+  const handleToggle = () => {
+    setShowFilters(!showFilters);
+  };
 
   const handlePageChange = (_, newPage) => {
     const { page: currentPage } = router.query;
     if (currentPage == newPage || (!currentPage && newPage === 1)) return;
 
     router
-      .push(newPage === 1 ? "/inmuebles" : `/inmuebles?page=${newPage}`)
+      .push(
+        newPage === 1
+          ? {
+              pathname: "/inmuebles",
+              query: {
+                ...router.query,
+              },
+            }
+          : {
+              pathname: "/inmuebles",
+              query: {
+                ...router.query,
+                page: newPage,
+              },
+            }
+      )
       .then(() => {
         window.scrollTo({
           top: 0,
@@ -93,33 +101,66 @@ export default function Inmuebles({ data }) {
             Inmuebles
           </Typography>
         </Grid>
-        {/* <Grid item>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={handleToggle}
-            endIcon={<FontAwesomeIcon icon={faSort} />}
-          >
-            Filtros
-          </Button>
-        </Grid> */}
+        {results.length >= 1 && (
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleToggle}
+              endIcon={<FontAwesomeIcon icon={faSort} />}
+            >
+              Filtros
+            </Button>
+          </Grid>
+        )}
       </Grid>
       <Divider />
+      {results.length >= 1 && (
+        <Collapse in={showFilters}>
+          <Filters />
+        </Collapse>
+      )}
 
       <Grid container spacing={2} className={classes.list}>
-        {inmuebleList.map((inmueble) => (
-          <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
-            {<Item {...inmueble} />}
+        {results.length < 1 ? (
+          <Grid item xs={12}>
+            <Typography
+              variant="h5"
+              component="div"
+              align="center"
+              gutterBottom
+            >
+              No hay propiedades para mostrar.
+            </Typography>
+            <NextLink href="/inmuebles" passHref>
+              <Link
+                display="block"
+                variant="h6"
+                align="center"
+                color="primary"
+                underline="hover"
+              >
+                Ver todos los inmuebles.
+              </Link>
+            </NextLink>
           </Grid>
-        ))}
+        ) : (
+          inmuebleList.map((inmueble) => (
+            <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
+              {<Item {...inmueble} />}
+            </Grid>
+          ))
+        )}
       </Grid>
-      <Grid container justify="center" className={classes.pagination}>
-        <Pagination
-          page={page}
-          totPages={total_pages}
-          handleChange={handlePageChange}
-        />
-      </Grid>
+      {results.length >= 1 && (
+        <Grid container justify="center" className={classes.pagination}>
+          <Pagination
+            page={page}
+            totPages={total_pages}
+            handleChange={handlePageChange}
+          />
+        </Grid>
+      )}
     </Layout>
   );
 }

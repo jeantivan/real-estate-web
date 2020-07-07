@@ -3,15 +3,32 @@ import Prismic from "prismic-javascript";
 
 const Client = PrismicClient();
 
-export async function getAllInmuebles({ page = 1, agent }) {
+export async function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
+  let orderings;
   let filters = [Prismic.Predicates.at("document.type", "inmueble")];
 
   if (agent) {
     filters.push(Prismic.Predicates.at("my.inmueble.agent", agent));
   }
 
+  if (estado) filters.push(Prismic.Predicates.at("my.inmueble.estado", estado));
+
+  if (orderBy) {
+    switch (orderBy) {
+      case "pmax":
+        orderings = "[my.inmueble.precio desc]";
+        break;
+      case "pmin":
+        orderings = "[my.inmueble.precio]";
+        break;
+      default:
+        orderings = "[document.date desc]";
+        break;
+    }
+  }
+
   const response = await Client.query(filters, {
-    orderings: "[my.inmueble.date desc]",
+    orderings: orderings,
     pageSize: 6,
     page,
   });
