@@ -1,6 +1,6 @@
 import { getAllInmuebles } from "../lib/api";
 
-import { Layout, Pagination } from "../components";
+import { Layout, Pagination, Filters } from "../components";
 import { Item } from "../components/Inmueble";
 
 import { useRouter } from "next/router";
@@ -9,18 +9,13 @@ import {
   Grid,
   Typography,
   Divider,
-  /*Button,
+  Button,
   Collapse,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText, */
 } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core";
 
-/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort } from "@fortawesome/free-solid-svg-icons"; */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSort } from "@fortawesome/free-solid-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -29,9 +24,6 @@ const useStyles = makeStyles((theme) => ({
   list: {
     margin: theme.spacing(2, -1),
   },
-  /* filtro: {
-    minWidth: "100%",
-  }, */
   pagination: {
     marginTop: theme.spacing(4),
   },
@@ -41,18 +33,33 @@ export default function Inmuebles({ data }) {
   const classes = useStyles();
   const router = useRouter();
 
-  //const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = React.useState(false);
 
-  /* const handleToggle = () => {
-    setShowFilters((toggle) => !toggle);
-  }; */
+  const handleToggle = () => {
+    setShowFilters(!showFilters);
+  };
 
   const handlePageChange = (_, newPage) => {
     const { page: currentPage } = router.query;
     if (currentPage == newPage || (!currentPage && newPage === 1)) return;
 
     router
-      .push(newPage === 1 ? "/inmuebles" : `/inmuebles?page=${newPage}`)
+      .push(
+        newPage === 1
+          ? {
+              pathname: "/inmuebles",
+              query: {
+                ...router.query,
+              },
+            }
+          : {
+              pathname: "/inmuebles",
+              query: {
+                ...router.query,
+                page: newPage,
+              },
+            }
+      )
       .then(() => {
         window.scrollTo({
           top: 0,
@@ -93,7 +100,7 @@ export default function Inmuebles({ data }) {
             Inmuebles
           </Typography>
         </Grid>
-        {/* <Grid item>
+        <Grid item>
           <Button
             variant="outlined"
             color="primary"
@@ -102,9 +109,12 @@ export default function Inmuebles({ data }) {
           >
             Filtros
           </Button>
-        </Grid> */}
+        </Grid>
       </Grid>
       <Divider />
+      <Collapse in={showFilters}>
+        <Filters />
+      </Collapse>
 
       <Grid container spacing={2} className={classes.list}>
         {inmuebleList.map((inmueble) => (
