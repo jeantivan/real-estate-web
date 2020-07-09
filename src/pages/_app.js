@@ -76,9 +76,35 @@ export default function MyApp(props) {
         </SnackbarProvider>
       </ThemeProvider>
 
-      {/* Nprogress Styles */}
+      {/* Nprogress Styles and Grid Layout */}
       <style jsx global>
         {`
+          html,
+          body {
+            height: 100%;
+          }
+          body > #__next {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+              "header"
+              "main"
+              "footer";
+          }
+
+          header {
+            grid-area: header;
+          }
+          main {
+            grid-area: main;
+          }
+
+          footer {
+            grid-area: footer;
+          }
+
           /* Make clicks pass-through */
           #nprogress {
             pointer-events: none;
