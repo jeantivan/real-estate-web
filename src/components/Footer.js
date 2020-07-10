@@ -1,7 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Link, Grid } from "@material-ui/core/";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faMapMarkerAlt,
+  faPhone,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Logo from "./Logo";
 import RRSS from "./RRSS";
@@ -9,25 +14,35 @@ import RRSS from "./RRSS";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    marginTop: theme.spacing(6),
-    backgroundColor: "#0a0130",
+    backgroundColor: "#20232A",
     color: "white",
   },
   container: {
     maxWidth: 1920,
     width: "100%",
     margin: "0 auto",
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(4, 2),
     [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(3, 4),
+      padding: theme.spacing(4),
     },
     [theme.breakpoints.up("xl")]: {
-      padding: theme.spacing(3, 10),
+      padding: theme.spacing(4, 10),
     },
   },
   me: {
     ...theme.typography.body2,
-    paddingBottom: theme.spacing(2),
+    padding: theme.spacing(2, 0),
+    //borderTop: `1px solid #130554`,
+    maxWidth: 1920,
+    width: "100%",
+    margin: "0 auto",
+    backgroundColor: "#181a1e",
+  },
+  text: {
+    margin: theme.spacing(2, 0),
+  },
+  icon: {
+    marginRight: theme.spacing(2),
   },
   heart: {
     color: "#f44336",
@@ -53,13 +68,25 @@ const Footer = () => {
   return (
     <footer className={classes.root}>
       <Grid container justify="space-between" className={classes.container}>
-        <Grid item md={10}>
+        <Grid item md={9} lg={10}>
           <Logo type="footer" />
           <Typography variant="overline" display="block">
-            Todos los derechos reservados. 2020
+            2020 © Copyright - Todos los derechos reservados.
+          </Typography>
+          <Typography variant="caption" display="block" gutterBottom>
+            <FontAwesomeIcon icon={faMapMarkerAlt} className={classes.icon} />
+            1060, Caracas, Venezuela
+          </Typography>
+          <Typography variant="caption" display="block" gutterBottom>
+            <FontAwesomeIcon icon={faPhone} className={classes.icon} />
+            360-563-1120
+          </Typography>
+          <Typography variant="caption" display="block" gutterBottom>
+            <FontAwesomeIcon icon={faEnvelope} className={classes.icon} />
+            contacto@avilatek.com
           </Typography>
         </Grid>
-        <Grid item md={2}>
+        <Grid item md={3} lg={2}>
           <RRSS type="dark" />
         </Grid>
       </Grid>
