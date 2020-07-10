@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const RRSS = (props) => {
   const classes = useStyles(props);
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} justify="flex-end">
       <Grid item>
         <IconButton
           color="primary"
