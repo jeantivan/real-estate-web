@@ -1,4 +1,4 @@
-import { Grid, Typography, Link } from "@material-ui/core";
+import { Grid, Typography, Link, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
@@ -85,72 +85,79 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
 
   return (
     <Layout titulo={titulo} descripcion={descCorta}>
-      <Grid container spacing={3} component="article">
-        <Grid
-          item
-          lg={12}
-          xs={12}
-          id="titulo-de-la-propiedad"
-          component="section"
-        >
-          <Typography
-            variant="h4"
-            component="h1"
-            className={classes.title}
-            gutterBottom
+      <Container>
+        <Grid container spacing={3} component="article">
+          <Grid
+            item
+            lg={12}
+            xs={12}
+            id="titulo-de-la-propiedad"
+            component="section"
           >
-            {titulo}
-          </Typography>
-          <div className={classes.location}>
-            <Typography variant="body1" component="p">
-              <span className={classes.icon}>
-                <FontAwesomeIcon icon={faMapMarkerAlt} />
-              </span>
-              {ubiAprox}
+            <Typography
+              variant="h4"
+              component="h1"
+              className={classes.title}
+              gutterBottom
+            >
+              {titulo}
             </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12} lg={8} className={classes.gallery}>
-          <Gallery imagenes={imagenes} />
-        </Grid>
-        <Grid item xs={12} lg={4}>
-          {<Information {...info} />}
-        </Grid>
-        <Grid item xs={12} component="section" id="descripcion-de-la-propiedad">
-          <Typography
-            variant="h6"
-            component="h3"
-            className={classes.description}
-            gutterBottom
+            <div className={classes.location}>
+              <Typography variant="body1" component="p">
+                <span className={classes.icon}>
+                  <FontAwesomeIcon icon={faMapMarkerAlt} />
+                </span>
+                {ubiAprox}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={12} lg={8} className={classes.gallery}>
+            <Gallery imagenes={imagenes} />
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            {<Information {...info} />}
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            component="section"
+            id="descripcion-de-la-propiedad"
           >
-            Descripción.
-          </Typography>
-          <div>
-            <Typography paragraph>{RichText.asText(descripcion)}</Typography>
-          </div>
-        </Grid>
-      </Grid>
-      <div className={classes.masInmuebles}>
-        <Grid container justify="space-between" spacing={3}>
-          <Grid item>
-            <Typography variant="h6">Más Inmuebles.</Typography>
-          </Grid>
-          <Grid item>
-            <NextLink href="/inmuebles" passHref>
-              <Link color="primary" underline="hover">
-                Ver todos
-              </Link>
-            </NextLink>
+            <Typography
+              variant="h6"
+              component="h3"
+              className={classes.description}
+              gutterBottom
+            >
+              Descripción.
+            </Typography>
+            <div>
+              <Typography paragraph>{RichText.asText(descripcion)}</Typography>
+            </div>
           </Grid>
         </Grid>
-        <Grid container spacing={3}>
-          {masInmuebles.map((inmueble) => (
-            <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
-              {<Item {...inmueble} />}
+        <div className={classes.masInmuebles}>
+          <Grid container justify="space-between" spacing={3}>
+            <Grid item>
+              <Typography variant="h6">Más Inmuebles.</Typography>
             </Grid>
-          ))}
-        </Grid>
-      </div>
+            <Grid item>
+              <NextLink href="/inmuebles" passHref>
+                <Link color="primary" underline="hover">
+                  Ver todos
+                </Link>
+              </NextLink>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            {masInmuebles.map((inmueble) => (
+              <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
+                {<Item {...inmueble} />}
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      </Container>
     </Layout>
   );
 }
