@@ -37,7 +37,7 @@ const ContactForm = () => {
   return (
     <Paper className={classes.container} elevation={2}>
       <Typography variant="h6" component="h2">
-        Llena el siguiente formulario.
+        Envianos un correo electrónico.
       </Typography>
       <Formik
         initialValues={initialValues}
@@ -62,7 +62,6 @@ const ContactForm = () => {
         {({ submitForm, isSubmitting }) => (
           <Form onSubmit={submitForm}>
             <TextField
-              autoFocus
               name="nombre"
               label="Nombre"
               type="text"
