@@ -1,3 +1,5 @@
+import { Item, Information } from "./Inmueble";
+
 export { default as Layout } from "./Layout";
 export { default as Navbar } from "./Navbar";
 export { default as Footer } from "./Footer";
@@ -8,5 +10,7 @@ export { default as Agent } from "./Agent";
 export { default as Newsletter } from "./Newsletter";
 export { default as Filters } from "./Filters";
 export { default as Hero } from "./Hero";
+export { default as Service } from "./Service";
 
 // Componentes del inmueble
+export { Item as InmuebleItem, Information as InmuebleInformation };
