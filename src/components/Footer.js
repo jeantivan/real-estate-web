@@ -6,6 +6,7 @@ import {
   faMapMarkerAlt,
   faPhone,
   faEnvelope,
+  faCopyright,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Logo from "./Logo";
@@ -70,16 +71,19 @@ const Footer = () => {
       <Grid container justify="space-between" className={classes.container}>
         <Grid item md={9} lg={10}>
           <Logo type="footer" />
-          <Typography variant="overline" display="block">
-            2020 © Copyright - Todos los derechos reservados.
+          <Typography variant="overline" display="block" gutterBottom>
+            <span role="img" aria-label="copyright">
+              <FontAwesomeIcon icon={faCopyright} className={classes.icon} />
+            </span>
+            {new Date().getFullYear()} | Todos los derechos reservados.
           </Typography>
           <Typography variant="caption" display="block" gutterBottom>
             <FontAwesomeIcon icon={faMapMarkerAlt} className={classes.icon} />
-            1060, Caracas, Venezuela
+            Centro Sambil Caracas Av. Libertador, Caracas 1064.
           </Typography>
           <Typography variant="caption" display="block" gutterBottom>
             <FontAwesomeIcon icon={faPhone} className={classes.icon} />
-            360-563-1120
+            +58 424 123 45-67
           </Typography>
           <Typography variant="caption" display="block" gutterBottom>
             <FontAwesomeIcon icon={faEnvelope} className={classes.icon} />
