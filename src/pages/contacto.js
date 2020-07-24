@@ -1,12 +1,6 @@
 import { Layout, ContactForm } from "../components";
 
-import {
-  Box,
-  Container,
-  Grid,
-  IconButton,
-  Typography,
-} from "@material-ui/core";
+import { Container, Grid, IconButton, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,6 +12,12 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: theme.spacing(6, 2),
+    [theme.breakpoints.up("sm")]: {
+      padding: theme.spacing(8, 2),
+    },
+  },
   bgLight: {
     backgroundColor: "#fafafa",
   },
@@ -25,24 +25,38 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#000",
     color: "white",
   },
-  title: {
+  mainHeading: {
     ...theme.typography.h6,
     fontWeight: 500,
     textTransform: "uppercase",
     letterSpacing: 2,
+    marginBottom: theme.spacing(3),
+  },
+  rsHeading: {
+    ...theme.typography.h5,
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: 0,
+    marginBottom: theme.spacing(3),
+  },
+  contactHeading: {
+    ...theme.typography.h2,
+    textAlign: "center",
+    margin: 0,
+    marginBottom: theme.spacing(3),
   },
   phoneNumber: {
     ...theme.typography.h3,
     fontWeight: "bold",
     margin: theme.spacing(1, 0),
   },
-  map: {
+  mapWrapper: {
     width: "100%",
     height: 0,
     paddingTop: "calc(9 / 21 * 100%)",
     position: "relative",
   },
-  mapWrapper: {
+  map: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -51,21 +65,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     backgroundColor: theme.palette.grey[500],
-  },
-  mapContent: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white",
-  },
-  rsTitle: {
-    ...theme.typography.h5,
-    fontWeight: "bold",
-    textAlign: "center",
-    margin: theme.spacing(2, 0),
-    marginTop: 0,
+    "& > iframe": {
+      width: "100%",
+      height: "100%",
+    },
   },
   icon: {
     color: theme.palette.text.secondary,
@@ -83,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     color: "#000",
     height: "100%",
-    padding: theme.spacing(3),
+    padding: theme.spacing(3, 2),
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -99,143 +102,145 @@ export default function Contacto() {
       titulo="Contacto"
       descripcion="Praesent euismod massa quis iaculis feugiat. Aliquam in pellentesque purus. Cras sit amet risus ut dui accumsan blandit non pellentesque augue. Mauris nisi quam, venenatis nec rutrum sit amet, accumsan sed dolor. Fusce lobortis, erat quis mollis vulputate, lacus tellus venenatis sem, non tempor nisi quam et nisl. Vivamus sollicitudin, nisi a mollis consequat, sapien sem placerat nibh, at convallis nunc tortor in nisl. Praesent lorem sem, malesuada nec sagittis quis, accumsan vel ante. Curabitur elementum augue id tempor posuere."
     >
-      <Box py={4}>
-        <Container component="section">
-          <Typography component="h1" align="center" className={classes.title}>
-            Contacto
-          </Typography>
-          <Typography
-            component="div"
-            align="center"
-            className={classes.phoneNumber}
-          >
-            +58 123 45-67
-          </Typography>
-          <Typography component="div" align="center">
-            Avenida Luis Roche, Caracas 1060, Miranda
-          </Typography>
-        </Container>
-      </Box>
-      <section id="map" className={classes.map}>
-        <div className={classes.mapWrapper}>
-          <div className={classes.mapContent}>
-            <Typography component="div" variant="h2">
-              Mapa
-            </Typography>
-          </div>
+      <Container component="section" className={classes.container}>
+        <Typography
+          component="h1"
+          align="center"
+          className={classes.mainHeading}
+        >
+          Contacto
+        </Typography>
+        <Typography
+          component="div"
+          align="center"
+          className={classes.phoneNumber}
+        >
+          +58 424 123 45-67
+        </Typography>
+        <Typography component="div" align="center">
+          Centro Sambil Caracas Av. Libertador, Caracas 1064.
+        </Typography>
+      </Container>
+
+      <section id="map" className={classes.mapWrapper}>
+        <div className={classes.map}>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.140889860604!2d-66.85656248588566!3d10.489557867293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a5855bdf90331%3A0x12e82a3cb3dbb29d!2sCentro%20Sambil%20Caracas!5e0!3m2!1ses!2sve!4v1595628584738!5m2!1ses!2sve"
+            frameborder="0"
+            allowFullScreen
+            aria-hidden="false"
+            tabIndex="0"
+          ></iframe>
         </div>
       </section>
-      <Box py={10} minHeight="10vmax" className={classes.bgLight}>
-        <Container component="section" id="rrss">
-          <h2 className={classes.rsTitle}>Nuestras redes.</h2>
-          <Grid
-            container
-            spacing={2}
-            justify="center"
-            className={classes.rsContent}
-          >
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de whatsapp"
-              >
-                <FontAwesomeIcon size="lg" icon={faWhatsapp} />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de instagram"
-              >
-                <FontAwesomeIcon size="lg" icon={faInstagram} />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de facebook"
-              >
-                <FontAwesomeIcon size="lg" icon={faFacebook} />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de twitter"
-              >
-                <FontAwesomeIcon size="lg" icon={faTwitter} />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Canal de youtube"
-              >
-                <FontAwesomeIcon size="lg" icon={faYoutube} />
-              </IconButton>
-            </Grid>
+      <Container
+        component="section"
+        id="rrss"
+        className={`${classes.bgLight} ${classes.container}`}
+      >
+        <h2 className={classes.rsHeading}>Nuestras redes.</h2>
+        <Grid
+          container
+          spacing={2}
+          justify="center"
+          className={classes.rsContent}
+        >
+          <Grid item>
+            <IconButton
+              className={classes.icon}
+              disableRipple
+              aria-label="Cuenta de whatsapp"
+            >
+              <FontAwesomeIcon size="lg" icon={faWhatsapp} />
+            </IconButton>
           </Grid>
-        </Container>
-      </Box>
-
-      <Box py={8} className={classes.bgDark}>
-        <Container>
-          <Box mb={4}>
-            <Typography variant="h2" align="center">
-              Contáctanos
-            </Typography>
-          </Box>
-
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={7}>
-              <ContactForm />
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <div className={classes.info}>
-                <Typography
-                  variant="h4"
-                  component="span"
-                  align="center"
-                  gutterBottom
-                >
-                  <strong>+58 123 45-67</strong>
-                </Typography>
-                <Typography
-                  variant="body1"
-                  color="textSecondary"
-                  component="span"
-                  align="center"
-                  gutterBottom
-                >
-                  Horario: 10:00 – 19:00
-                </Typography>
-                <Typography
-                  variant="body1"
-                  component="span"
-                  align="center"
-                  gutterBottom
-                >
-                  <strong>Dirección</strong> Avenida Luis Roche, Caracas 1060,
-                  Miranda
-                </Typography>
-                <Typography
-                  variant="body1"
-                  component="span"
-                  align="center"
-                  gutterBottom
-                >
-                  <strong>Email</strong> contacto@avilatek.com
-                </Typography>
-              </div>
-            </Grid>
+          <Grid item>
+            <IconButton
+              className={classes.icon}
+              disableRipple
+              aria-label="Cuenta de instagram"
+            >
+              <FontAwesomeIcon size="lg" icon={faInstagram} />
+            </IconButton>
           </Grid>
-        </Container>
-      </Box>
+          <Grid item>
+            <IconButton
+              className={classes.icon}
+              disableRipple
+              aria-label="Cuenta de facebook"
+            >
+              <FontAwesomeIcon size="lg" icon={faFacebook} />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton
+              className={classes.icon}
+              disableRipple
+              aria-label="Cuenta de twitter"
+            >
+              <FontAwesomeIcon size="lg" icon={faTwitter} />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton
+              className={classes.icon}
+              disableRipple
+              aria-label="Canal de youtube"
+            >
+              <FontAwesomeIcon size="lg" icon={faYoutube} />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </Container>
+      <Container
+        component="section"
+        className={`${classes.bgDark} ${classes.container}`}
+      >
+        <h2 className={classes.contactHeading}>Contáctanos</h2>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={7}>
+            <ContactForm />
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <div className={classes.info}>
+              <Typography
+                variant="h4"
+                component="span"
+                align="center"
+                gutterBottom
+              >
+                <strong>+58 424 123 45-67</strong>
+              </Typography>
+              <Typography
+                variant="body1"
+                color="textSecondary"
+                component="span"
+                align="center"
+                gutterBottom
+              >
+                Horario: 10:00 AM – 07:00 PM
+              </Typography>
+              <Typography
+                variant="body2"
+                component="span"
+                align="center"
+                gutterBottom
+              >
+                <strong>Dirección</strong> Centro Sambil Caracas Av. Libertador,
+                Caracas 1064.
+              </Typography>
+              <Typography
+                variant="body2"
+                component="span"
+                align="center"
+                gutterBottom
+              >
+                <strong>Email</strong> contacto@avilatek.com
+              </Typography>
+            </div>
+          </Grid>
+        </Grid>
+      </Container>
     </Layout>
   );
 }
