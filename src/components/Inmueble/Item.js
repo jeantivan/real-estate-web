@@ -83,8 +83,6 @@ export default function InmuebleItem({
   agent,
 }) {
   const classes = useStyles({ estado });
-
-  console.log(agent);
   return (
     <NextLink href="/inmueble/[slug]" as={`/inmueble/${slug}`} passHref>
       <a className={classes.link}>
