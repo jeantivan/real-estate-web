@@ -7,15 +7,14 @@ import {
   faFacebook,
   faInstagram,
   faTwitter,
-  faWhatsapp,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: theme.spacing(6, 2),
+    padding: theme.spacing(4, 2),
     [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(8, 2),
+      padding: theme.spacing(6, 2),
     },
   },
   bgLight: {
@@ -30,25 +29,24 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     textTransform: "uppercase",
     letterSpacing: 2,
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   rsHeading: {
     ...theme.typography.h5,
     fontWeight: "bold",
     textAlign: "center",
     margin: 0,
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   contactHeading: {
     ...theme.typography.h2,
     textAlign: "center",
     margin: 0,
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   phoneNumber: {
     ...theme.typography.h3,
     fontWeight: "bold",
-    margin: theme.spacing(1, 0),
   },
   mapWrapper: {
     width: "100%",
@@ -114,11 +112,12 @@ export default function Contacto() {
           component="div"
           align="center"
           className={classes.phoneNumber}
+          gutterBottom
         >
           +58 424 123 45-67
         </Typography>
         <Typography component="div" align="center">
-          Centro Sambil Caracas Av. Libertador, Caracas 1064.
+          Centro Sambil Caracas, Av. Libertador, Caracas 1064.
         </Typography>
       </Container>
 
@@ -133,114 +132,102 @@ export default function Contacto() {
           ></iframe>
         </div>
       </section>
-      <Container
-        component="section"
-        id="rrss"
-        className={`${classes.bgLight} ${classes.container}`}
-      >
-        <h2 className={classes.rsHeading}>Nuestras redes.</h2>
-        <Grid
-          container
-          spacing={2}
-          justify="center"
-          className={classes.rsContent}
-        >
-          <Grid item>
-            <IconButton
-              className={classes.icon}
-              disableRipple
-              aria-label="Cuenta de whatsapp"
-            >
-              <FontAwesomeIcon size="lg" icon={faWhatsapp} />
-            </IconButton>
-          </Grid>
-          <Grid item>
-            <IconButton
-              className={classes.icon}
-              disableRipple
-              aria-label="Cuenta de instagram"
-            >
-              <FontAwesomeIcon size="lg" icon={faInstagram} />
-            </IconButton>
-          </Grid>
-          <Grid item>
-            <IconButton
-              className={classes.icon}
-              disableRipple
-              aria-label="Cuenta de facebook"
-            >
-              <FontAwesomeIcon size="lg" icon={faFacebook} />
-            </IconButton>
-          </Grid>
-          <Grid item>
-            <IconButton
-              className={classes.icon}
-              disableRipple
-              aria-label="Cuenta de twitter"
-            >
-              <FontAwesomeIcon size="lg" icon={faTwitter} />
-            </IconButton>
-          </Grid>
-          <Grid item>
-            <IconButton
-              className={classes.icon}
-              disableRipple
-              aria-label="Canal de youtube"
-            >
-              <FontAwesomeIcon size="lg" icon={faYoutube} />
-            </IconButton>
-          </Grid>
-        </Grid>
-      </Container>
-      <Container
-        component="section"
-        className={`${classes.bgDark} ${classes.container}`}
-      >
-        <h2 className={classes.contactHeading}>Contáctanos</h2>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={7}>
-            <ContactForm />
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <div className={classes.info}>
-              <Typography
-                variant="h4"
-                component="span"
-                align="center"
-                gutterBottom
+      <section id="rrss" className={classes.bgLight}>
+        <Container className={classes.container}>
+          <h2 className={classes.rsHeading}>Nuestras redes.</h2>
+          <Grid
+            container
+            spacing={2}
+            justify="center"
+            className={classes.rsContent}
+          >
+            <Grid item>
+              <IconButton
+                className={classes.icon}
+                disableRipple
+                aria-label="Cuenta de instagram"
               >
-                <strong>+58 424 123 45-67</strong>
-              </Typography>
-              <Typography
-                variant="body1"
-                color="textSecondary"
-                component="span"
-                align="center"
-                gutterBottom
+                <FontAwesomeIcon size="lg" icon={faInstagram} />
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <IconButton
+                className={classes.icon}
+                disableRipple
+                aria-label="Cuenta de facebook"
               >
-                Horario: 10:00 AM – 07:00 PM
-              </Typography>
-              <Typography
-                variant="body2"
-                component="span"
-                align="center"
-                gutterBottom
+                <FontAwesomeIcon size="lg" icon={faFacebook} />
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <IconButton
+                className={classes.icon}
+                disableRipple
+                aria-label="Cuenta de twitter"
               >
-                <strong>Dirección</strong> Centro Sambil Caracas Av. Libertador,
-                Caracas 1064.
-              </Typography>
-              <Typography
-                variant="body2"
-                component="span"
-                align="center"
-                gutterBottom
+                <FontAwesomeIcon size="lg" icon={faTwitter} />
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <IconButton
+                className={classes.icon}
+                disableRipple
+                aria-label="Canal de youtube"
               >
-                <strong>Email</strong> contacto@avilatek.com
-              </Typography>
-            </div>
+                <FontAwesomeIcon size="lg" icon={faYoutube} />
+              </IconButton>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </section>
+      <section className={classes.bgDark}>
+        <Container className={classes.container}>
+          <h2 className={classes.contactHeading}>Contáctanos</h2>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={7}>
+              <ContactForm />
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <div className={classes.info}>
+                <Typography
+                  variant="h4"
+                  component="span"
+                  align="center"
+                  gutterBottom
+                >
+                  <strong>+58 424 123 45-67</strong>
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="textSecondary"
+                  component="span"
+                  align="center"
+                  gutterBottom
+                >
+                  Horario: 10:00 AM – 07:00 PM
+                </Typography>
+                <Typography
+                  variant="body2"
+                  component="span"
+                  align="center"
+                  gutterBottom
+                >
+                  <strong>Dirección</strong> Centro Sambil Caracas Av.
+                  Libertador, Caracas 1064.
+                </Typography>
+                <Typography
+                  variant="body2"
+                  component="span"
+                  align="center"
+                  gutterBottom
+                >
+                  <strong>Email</strong> contacto@avilatek.com
+                </Typography>
+              </div>
+            </Grid>
+          </Grid>
+        </Container>
+      </section>
     </Layout>
   );
 }
