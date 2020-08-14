@@ -23,7 +23,9 @@ import DrawerLinks from "./DrawerLinks";
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     borderBottom: `1px solid ${fade(theme.palette.primary.light, 0.2)}`,
+    display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   menuButton: {
     marginRight: theme.spacing(1),
