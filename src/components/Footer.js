@@ -39,9 +39,13 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
+  /* grid: {
+    width: "100%",
+    marginLeft: theme.spacing(-2),
+  },
   gridItem: {
     padding: theme.spacing(2),
-  },
+  }, */
   subFooter: {
     padding: theme.spacing(3),
     color: "#8a99b3",
@@ -130,16 +134,8 @@ export default function Footer() {
   return (
     <footer className={classes.root}>
       <Container className={classes.container}>
-        <Grid container justify="space-between">
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            container
-            direction="column"
-            className={classes.gridItem}
-          >
+        <Grid container justify="space-between" spacing={2}>
+          <Grid item xs={12} sm={6} md={3} container direction="column">
             <Typography variant="h6" className={classes.heading}>
               Nosotros
             </Typography>
@@ -150,15 +146,7 @@ export default function Footer() {
               minima quisquam odit?
             </Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={2}
-            container
-            direction="column"
-            className={classes.gridItem}
-          >
+          <Grid item xs={12} sm={6} md={2} container direction="column">
             <Typography variant="h6" className={classes.heading}>
               Navega
             </Typography>
@@ -175,15 +163,7 @@ export default function Footer() {
               <Link className={classes.link}>Contacto</Link>
             </NextLink>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            container
-            direction="column"
-            className={classes.gridItem}
-          >
+          <Grid item xs={12} sm={6} md={3} container direction="column">
             <Typography variant="h6" className={classes.heading}>
               Contáctanos
             </Typography>
@@ -213,15 +193,7 @@ export default function Footer() {
               contacto@avilatek.com
             </div>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={3}
-            container
-            direction="column"
-            className={classes.gridItem}
-          >
+          <Grid item xs={12} sm={6} md={3} container direction="column">
             <Typography variant="h6" className={classes.heading}>
               Siguenos
             </Typography>
