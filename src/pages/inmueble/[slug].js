@@ -74,7 +74,7 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
   } = inmuebleData;
 
   masInmuebles = masInmuebles.map(({ data, uid }) => {
-    return {
+    let props = {
       slug: uid,
       area: data.area,
       titulo: data.titulo[0],
@@ -83,7 +83,14 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
       estado: data.estado,
       ubiAprox: data.ubiaprox,
       habitaciones: data.habitaciones,
+      estado: data.estado,
+      agent: data.agent.data,
     };
+    return (
+      <Grid key={uid} item xs={12} sm={6} md={4}>
+        {<InmuebleItem {...props} />}
+      </Grid>
+    );
   });
 
   return (
@@ -159,11 +166,7 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
             </Grid>
           </Grid>
           <Grid container spacing={3}>
-            {masInmuebles.map((inmueble) => (
-              <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
-                {<InmuebleItem {...inmueble} />}
-              </Grid>
-            ))}
+            {masInmuebles}
           </Grid>
         </div>
       </Container>

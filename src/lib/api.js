@@ -59,8 +59,8 @@ export async function getInmueble(slug) {
   });
 
   const masInmuebles = await Client.query(
-    Prismic.Predicates.similar(document.id, 3),
-    { pageSize: 3 }
+    Prismic.Predicates.similar(document.id, 10),
+    { pageSize: 3, fetchLinks: ["agent.name", "agent.picture"] }
   );
 
   return { document, masInmuebles };
