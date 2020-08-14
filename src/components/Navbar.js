@@ -3,6 +3,7 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
+  Container,
   IconButton,
   Drawer,
   Divider,
@@ -21,18 +22,7 @@ import DrawerLinks from "./DrawerLinks";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    maxWidth: 1920,
-    width: "100%",
-    padding: theme.spacing(0, 2),
     borderBottom: `1px solid ${fade(theme.palette.primary.light, 0.2)}`,
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(0, 4),
-    },
-    [theme.breakpoints.up("xl")]: {
-      padding: theme.spacing(0, 10),
-      margin: "0 auto",
-    },
-    alignItems: "center",
     justifyContent: "space-between",
   },
   menuButton: {
@@ -149,7 +139,7 @@ export default function Navbar() {
       position="static"
       className={classes.appBar}
     >
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar} component={Container}>
         <div style={{ display: "inherit" }}>
           <Hidden mdUp>
             <IconButton
