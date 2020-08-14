@@ -5,7 +5,7 @@ import NextLink from "next/link";
 
 import { getAllAgents } from "../lib/api";
 
-import { FindHouse, Goals, Market, RealEstate, Rent } from "../icons";
+import { FindHouse, Goals, Market, RealEstate, Rent } from "../Icons";
 
 const useStyles = makeStyles((theme) => ({
   container: {
