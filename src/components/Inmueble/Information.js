@@ -8,6 +8,7 @@ import {
   faCouch,
   faBath,
   faCar,
+  faRulerCombined,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useSnackbar } from "notistack";
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    fontWeight: 400,
+    fontWeight: 600,
     position: "relative",
     display: "inline-block",
 
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   price: {
-    //fontWeight: "bold",
+    fontWeight: 700,
     color: theme.palette.primary.dark,
   },
   divider: {
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
   itemIcon: {
     flexShrink: 0,
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.A700,
     fontSize: theme.spacing(3),
     marginRight: theme.spacing(2),
   },
@@ -106,7 +107,7 @@ export default function Information({
   };
 
   return (
-    <div id="info-inmueble" className={classes.root}>
+    <div className={classes.root}>
       <div>
         <Typography
           variant="h6"
@@ -137,10 +138,12 @@ export default function Information({
           alignItems="flex-end"
         >
           <Grid item xs={6} className={classes.item}>
-            <FontAwesomeIcon
-              icon={faExpandArrowsAlt}
-              className={classes.itemIcon}
-            />
+            <span>
+              <FontAwesomeIcon
+                icon={faRulerCombined}
+                className={classes.itemIcon}
+              />
+            </span>
             <div>
               <span className={classes.itemCaption}>AREA</span>
               <span className={classes.itemText}>
@@ -152,21 +155,29 @@ export default function Information({
             </div>
           </Grid>
           <Grid item xs={6} className={classes.item}>
-            <FontAwesomeIcon icon={faCouch} className={classes.itemIcon} />
+            <span>
+              <FontAwesomeIcon icon={faCouch} className={classes.itemIcon} />
+            </span>
+
             <div>
               <span className={classes.itemCaption}>HABITACIONES</span>
               <span className={classes.itemText}>{habitaciones}</span>
             </div>
           </Grid>
           <Grid item xs={6} className={classes.item}>
-            <FontAwesomeIcon icon={faBath} className={classes.itemIcon} />
+            <span>
+              <FontAwesomeIcon icon={faBath} className={classes.itemIcon} />
+            </span>
             <div>
               <span className={classes.itemCaption}>BAÑOS</span>
               <span className={classes.itemText}>{baños}</span>
             </div>
           </Grid>
           <Grid item xs={6} className={classes.item}>
-            <FontAwesomeIcon icon={faCar} className={classes.itemIcon} />
+            <span>
+              <FontAwesomeIcon icon={faCar} className={classes.itemIcon} />
+            </span>
+
             <div>
               <span className={classes.itemCaption}>ESTACIONAMIENTOS</span>
               <span className={classes.itemText}>{estacionamientos}</span>
@@ -176,7 +187,7 @@ export default function Information({
       </div>
       <Divider className={classes.divider} />
       <div>
-        <Typography gutterBottom variant="h6" component="div">
+        <Typography gutterBottom variant="h6" component="div" align="center">
           ¿Quieres mas información? ¡Contactanos!
         </Typography>
         <Button
