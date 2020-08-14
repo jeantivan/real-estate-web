@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 
-import { Paper, Link, Typography } from "@material-ui/core";
+import { Paper, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
@@ -16,12 +16,11 @@ const useStyles = makeStyles((theme) => ({
   },
   picture: {
     margin: "0 auto",
-    marginBottom: theme.spacing(2),
+    //marginBottom: theme.spacing(2),
     backgroundColor: theme.palette.primary.dark,
-    border: `4px solid ${theme.palette.primary.dark}`,
     borderRadius: "50%",
-    width: 120,
-    height: 120,
+    width: 160,
+    height: 160,
   },
   contact: {
     textAlign: "center",
@@ -66,7 +65,9 @@ const Agent = ({ name, phonenumber, email, picture, id }) => {
           href={{ pathname: "/inmuebles", query: { agent: id } }}
           passHref
         >
-          <Link underline="hover">Inmuebles publicados</Link>
+          <Button variant="contained" disableElevation color="secondary">
+            Inmuebles publicados
+          </Button>
         </NextLink>
       </div>
     </Paper>

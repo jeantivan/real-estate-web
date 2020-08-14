@@ -30,5 +30,7 @@
     "react-swipeable-views": "^0.13.9",
     "yup": "^0.29.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@svgr/webpack": "^5.4.0"
+  }
 }

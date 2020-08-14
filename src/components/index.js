@@ -7,5 +7,9 @@ export { default as Pagination } from "./Pagination";
 export { default as Agent } from "./Agent";
 export { default as Newsletter } from "./Newsletter";
 export { default as Filters } from "./Filters";
-
-// Componentes del inmueble
+export { default as Service } from "./Service";
+export { default as Testimonials } from "./Testimonials";
+export {
+  Item as InmuebleItem,
+  Information as InmuebleInformation,
+} from "./Inmueble";

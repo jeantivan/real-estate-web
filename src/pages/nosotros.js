@@ -1,86 +1,222 @@
-import { Layout, Agent } from "../components";
-
-import { Typography, Grid } from "@material-ui/core";
+import { Layout, Hero, Agent, Service, Testimonials } from "../components";
+import { Container, Typography, Grid, Button, Fab } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
+import NextLink from "next/link";
 
 import { getAllAgents } from "../lib/api";
 
+import { FindHouse, Goals, Market, RealEstate, Rent } from "../icons";
+
 const useStyles = makeStyles((theme) => ({
-  equipo: {
-    margin: theme.spacing(2, -1),
+  container: {
+    minHeight: "10vmax",
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+    [theme.breakpoints.up("sm")]: {
+      paddingTop: theme.spacing(5),
+      paddingBottom: theme.spacing(5),
+    },
   },
-  agent: {
+  bgLight: {
+    backgroundColor: "#fafafa",
+  },
+  grid: {
+    marginLeft: theme.spacing(-2),
+    marginRight: theme.spacing(-2),
+  },
+  mainHeading: {
+    ...theme.typography.h6,
+    fontWeight: 500,
+    textTransform: "uppercase",
+    letterSpacing: 2,
+    marginBottom: theme.spacing(3),
+  },
+  servicesHeading: {
+    ...theme.typography.h4,
+    fontWeight: "bold",
+    margin: 0,
+    marginBottom: theme.spacing(3),
+  },
+  teamHeading: {
+    ...theme.typography.h3,
+    color: "white",
+    fontWeight: "bold",
+    margin: 0,
+    marginBottom: theme.spacing(3),
+  },
+  testimonialsHeading: {
+    ...theme.typography.h3,
+    margin: 0,
+    marginBottom: theme.spacing(3),
+  },
+  strong: {
+    ...theme.typography.h2,
+    lineHeight: 1,
+    fontWeight: "bold",
+    color: theme.palette.primary.main,
+  },
+  fakeIframe: {
     width: "100%",
-    minHeight: 300,
+    height: 0,
+    paddingTop: "calc(9 / 16 * 100%)",
+    backgroundColor: "#000",
+  },
+  gradient: {
+    background: "#1a237e linear-gradient(to bottom, #1a237e, #0d47a1)",
+  },
+  wave: {
+    "& > svg": {
+      display: "block",
+    },
+  },
+  testimonialsSection: {
+    position: "relative",
+    top: -20,
+    [theme.breakpoints.up("sm")]: {
+      top: -80,
+    },
+    [theme.breakpoints.up("md")]: {
+      top: -120,
+    },
   },
 }));
 
-export default function Nosotros({ results: agents }) {
+export default function Servicios({ results: agents }) {
   const classes = useStyles();
+  const [index, setIndex] = React.useState(0);
 
+  const handleChange = (index) => setIndex(index);
   return (
     <Layout
-      titulo="Nosotros"
-      descripcion="Fusce sed erat sapien. Nam in tortor nec tortor suscipit ultrices et ac massa. Aenean justo arcu, volutpat et nisi nec, accumsan varius erat. Morbi fringilla dapibus ligula, non pharetra lacus condimentum ultricies. Proin egestas nisl et odio egestas, ac fringilla tellus porttitor. Suspendisse vel dui bibendum, posuere nibh at, tempus lectus. Donec varius in nibh."
+      titulo="Servicios"
+      descripcion="Fusce dui nulla, rhoncus nec ullamcorper ac, porttitor vel nunc. Cras risus felis, imperdiet in tristique vel, placerat nec mauris. Curabitur justo elit, pharetra a enim nec, tempus sagittis risus. Vivamus ac magna facilisis, fermentum neque id, posuere mi. Etiam vitae blandit orci. Quisque vitae ante ac ligula posuere imperdiet. Morbi velit sapien, pellentesque eu auctor sed, imperdiet at nibh. Maecenas auctor a libero et euismod. Maecenas pharetra odio ipsum, vitae porttitor urna suscipit nec."
     >
-      <Typography variant="h1" component="h1">
-        Nosotros
-      </Typography>
-      <Typography>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis risus
-        odio, ultricies sit amet velit a, hendrerit mattis turpis. Sed sed magna
-        eget felis auctor luctus. Donec eget turpis ligula. Cras pharetra
-        consequat mauris, in vehicula turpis gravida eget. Fusce ut ex rhoncus,
-        fermentum mauris in, condimentum tortor. Suspendisse at turpis felis.
-        Nulla non neque efficitur, sodales lectus in, pharetra magna. Curabitur
-        ut dapibus libero. In mattis, ligula in condimentum efficitur, purus
-        ipsum efficitur leo, a semper justo lectus id tellus. Quisque sodales
-        vehicula nisi, vitae porta ipsum fringilla sodales.
-      </Typography>
-      <Typography>
-        Phasellus feugiat ut orci sed imperdiet. Curabitur consectetur efficitur
-        lacus id posuere. In sapien massa, luctus et rhoncus non, pretium sit
-        amet eros. Donec molestie dictum odio, at lacinia mauris auctor et.
-        Curabitur iaculis, elit at ultrices finibus, turpis felis pellentesque
-        eros, in volutpat nibh nibh vitae augue. Nam ac dolor fermentum quam
-        pellentesque commodo ut sit amet augue. Quisque nisi lectus, vehicula
-        sed ex in, molestie mollis elit. Integer ut auctor ipsum, at fringilla
-        erat. In sapien libero, pharetra in accumsan ut, sollicitudin in libero.
-        Donec non commodo sapien. Donec nec sollicitudin velit, a convallis
-        tortor. Integer diam lectus, dapibus vitae molestie eu, venenatis vel
-        ipsum. Nulla cursus purus quis mi varius semper. Mauris ante enim,
-        ultrices vehicula elit sit amet, pulvinar convallis tellus.
-      </Typography>
-      <Typography>
-        Donec a consectetur purus. Nullam vel neque quis tortor malesuada rutrum
-        ac in tortor. Phasellus cursus magna eu diam elementum venenatis.
-        Curabitur vehicula placerat sapien, a consectetur neque viverra in.
-        Donec sollicitudin ligula ac neque elementum, vitae dapibus lectus
-        molestie. Donec risus massa, hendrerit in ligula eget, feugiat
-        condimentum mauris. Donec at diam non felis pulvinar semper.
-        Pellentesque suscipit elementum dolor, quis euismod ex lacinia id.
-        Praesent lorem tortor, tempus ac lorem non, convallis finibus tellus.
-        Fusce quis odio convallis tortor scelerisque volutpat vitae vel nisl. In
-        quis turpis leo.
-      </Typography>
-      <Grid
-        container
-        spacing={2}
-        component="section"
-        id="equipo"
-        className={classes.equipo}
-      >
-        <Grid item xs={12}>
-          <Typography variant="h4" component="h2">
-            Nuestros Agentes
+      <section>
+        <Container className={classes.container} fixed>
+          <Typography
+            component="h1"
+            align="center"
+            className={classes.mainHeading}
+          >
+            Nosotros
           </Typography>
-        </Grid>
-        {agents.map(({ data, id }) => (
-          <Grid item xs={12} sm={6} lg={3} key={id}>
-            <Agent {...{ ...data, id }} />
+          <Grid container spacing={3} alignItems="center">
+            <Grid item xs={12} md={7}>
+              <Typography variant="h3" component="h2" gutterBottom>
+                Nuestra misión en{" "}
+                <strong className={classes.strong}>Avilatek</strong>
+              </Typography>
+              <Typography align="justify" paragraph color="textSecondary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Corporis, at non nulla voluptas aliquid tempora placeat possimus
+                eum saepe sed sunt rerum perferendis dignissimos modi itaque
+                distinctio cupiditate inventore laudantium.
+              </Typography>
+              <NextLink href="/contacto" passHref>
+                <Button
+                  variant="contained"
+                  size="large"
+                  color="primary"
+                  disableElevation
+                >
+                  Contáctanos.
+                </Button>
+              </NextLink>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <div className={classes.fakeIframe}></div>
+            </Grid>
           </Grid>
-        ))}
-      </Grid>
+        </Container>
+      </section>
+      <section className={classes.bgLight}>
+        <Container className={classes.container}>
+          <Typography
+            component="h2"
+            align="center"
+            className={classes.servicesHeading}
+          >
+            Servicios que prestamos
+          </Typography>
+          <Grid container spacing={3} justify="center">
+            <Grid item xs={12} md={6} lg={4}>
+              <Service
+                icon={<RealEstate />}
+                title="Comercialización de inmuebles"
+                text="Nulla vitae vehicula purus. Integer mattis sodales ultrices. Sed rutrum, arcu ultrices sodales fringilla, risus tortor sollicitudin est, vel dignissim."
+              />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <Service
+                icon={<FindHouse />}
+                title="Encuentra el inmueble ideal"
+                text="Nulla vitae vehicula purus. Integer mattis sodales ultrices. Sed rutrum, arcu ultrices sodales fringilla, risus tortor sollicitudin est, vel dignissim."
+              />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <Service
+                icon={<Rent />}
+                title="Asesoría legal"
+                text="Nulla vitae vehicula purus. Integer mattis sodales ultrices. Sed rutrum, arcu ultrices sodales fringilla, risus tortor sollicitudin est, vel dignissim."
+              />
+            </Grid>
+
+            <Grid item xs={12} md={6} lg={4}>
+              <Service
+                icon={<Market />}
+                title="Analisis del mercado"
+                text="Nulla vitae vehicula purus. Integer mattis sodales ultrices. Sed rutrum, arcu ultrices sodales fringilla, risus tortor sollicitudin est, vel dignissim."
+              />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <Service
+                icon={<Goals />}
+                title="Alcanzamos las metas"
+                text="Nulla vitae vehicula purus. Integer mattis sodales ultrices. Sed rutrum, arcu ultrices sodales fringilla, risus tortor sollicitudin est, vel dignissim."
+              />
+            </Grid>
+          </Grid>
+        </Container>
+      </section>
+      <section className={classes.gradient}>
+        <Container className={classes.container}>
+          <Typography
+            component="h2"
+            align="center"
+            className={classes.teamHeading}
+          >
+            Conoce nuestro a nuestro equipo
+          </Typography>
+          <Grid container spacing={3}>
+            {agents.map(({ data, id }) => (
+              <Grid item xs={12} sm={6} lg={3} key={id}>
+                <Agent {...{ ...data, id }} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </section>
+      <div className={classes.wave} aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#0d47a1"
+            fill-opacity="1"
+            d="M0,128L80,128C160,128,320,128,480,112C640,96,800,64,960,69.3C1120,75,1280,117,1360,138.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+          ></path>
+        </svg>
+      </div>
+      <section id="testimonials" className={classes.testimonialsSection}>
+        <Container className={classes.container}>
+          <Typography
+            component="h2"
+            align="center"
+            className={classes.testimonialsHeading}
+          >
+            Clientes felices
+          </Typography>
+        </Container>
+        <Testimonials />
+      </section>
     </Layout>
   );
 }
