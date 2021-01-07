@@ -201,7 +201,7 @@ export default function Servicios({ results: agents }) {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#0d47a1"
-            fill-opacity="1"
+            fillOpacity="1"
             d="M0,128L80,128C160,128,320,128,480,112C640,96,800,64,960,69.3C1120,75,1280,117,1360,138.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
           ></path>
         </svg>
