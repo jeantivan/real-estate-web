@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Layout, Hero, Agent, Service, Testimonials } from "../components";
 import { Container, Typography, Grid, Button, Fab } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
@@ -232,6 +234,10 @@ export async function getStaticProps() {
   };
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { Layout, Hero, Agent, Service, Testimonials } from "../components";
 import { Container, Typography, Grid, Button, Fab } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
@@ -464,4 +470,10 @@ export async function getStaticProps() {
     },
   };
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

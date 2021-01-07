@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { useState } from "react";
 import { makeStyles, fade } from "@material-ui/core";
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
@@ -207,6 +209,10 @@ export default function Information({
   );
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { useState } from "react";
 import { makeStyles, fade } from "@material-ui/core";
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
@@ -414,4 +420,10 @@ export default function Information({
     </div>
   );
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

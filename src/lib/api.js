@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { PrismicClient } from "../prismic-config";
 import Prismic from "prismic-javascript";
 
@@ -75,6 +77,10 @@ export async function getAllAgents() {
   return response;
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { PrismicClient } from "../prismic-config";
 import Prismic from "prismic-javascript";
 
@@ -150,4 +156,10 @@ export async function getAllAgents() {
 
   return response;
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

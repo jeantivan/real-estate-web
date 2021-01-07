@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { getAllInmuebles } from "../lib/api";
 
 import { Layout, Pagination, Filters, InmuebleItem } from "../components";
@@ -183,6 +185,10 @@ export async function getServerSideProps({ query }) {
   };
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { getAllInmuebles } from "../lib/api";
 
 import { Layout, Pagination, Filters, InmuebleItem } from "../components";
@@ -366,4 +372,10 @@ export async function getServerSideProps({ query }) {
     },
   };
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

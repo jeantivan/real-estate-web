@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Layout, ContactForm } from "../components";
 
 import { Container, Grid, IconButton, Typography } from "@material-ui/core";
@@ -233,6 +235,10 @@ export default function Contacto() {
   );
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { Layout, ContactForm } from "../components";
 
 import { Container, Grid, IconButton, Typography } from "@material-ui/core";
@@ -466,4 +472,10 @@ export default function Contacto() {
     </Layout>
   );
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

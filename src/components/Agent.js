@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import NextLink from "next/link";
 
 import { Paper, Button, Typography } from "@material-ui/core";
@@ -77,6 +79,10 @@ const Agent = ({ name, phonenumber, email, picture, id }) => {
 
 export default Agent;
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import NextLink from "next/link";
 
 import { Paper, Button, Typography } from "@material-ui/core";
@@ -154,4 +160,10 @@ const Agent = ({ name, phonenumber, email, picture, id }) => {
 };
 
 export default Agent;
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

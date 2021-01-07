@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import NextLink from "next/link";
 import Link from "@material-ui/core/Link";
 import clsx from "clsx";
@@ -51,6 +53,10 @@ const NavLinks = ({ classes, router }) => {
 
 export default NavLinks;
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import NextLink from "next/link";
 import Link from "@material-ui/core/Link";
 import clsx from "clsx";
@@ -142,4 +148,10 @@ const NavLinks = ({ classes, router }) => {
 };
 
 export default NavLinks;
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

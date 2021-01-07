@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { useState } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import {
@@ -212,6 +214,10 @@ export default function Navbar() {
   );
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { useState } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import {
@@ -428,4 +434,10 @@ export default function Navbar() {
     </AppBar>
   );
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

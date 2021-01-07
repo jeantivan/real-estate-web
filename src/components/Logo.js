@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import NextLink from "next/link";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -41,6 +43,10 @@ export default function Logo(props) {
   );
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import NextLink from "next/link";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -82,4 +88,10 @@ export default function Logo(props) {
     </div>
   );
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Layout } from "../components";
 import { Container, Typography } from "@material-ui/core/";
 
@@ -29,6 +31,10 @@ export default function Home() {
   );
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { Layout } from "../components";
 import { Container, Typography } from "@material-ui/core/";
 
@@ -58,4 +64,10 @@ export default function Home() {
     </Layout>
   );
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

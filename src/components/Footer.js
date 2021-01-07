@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Link,
@@ -276,6 +278,10 @@ export default function Footer() {
   );
 }
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Link,
@@ -580,4 +586,10 @@ export default function Footer() {
     </footer>
   );
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

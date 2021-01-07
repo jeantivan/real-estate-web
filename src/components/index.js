@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export { default as Layout } from "./Layout";
 export { default as Navbar } from "./Navbar";
 export { default as Footer } from "./Footer";
@@ -15,6 +17,10 @@ export {
   Information as InmuebleInformation,
 } from "./Inmueble";
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { Item, Information } from "./Inmueble";
 
 export { default as Layout } from "./Layout";
@@ -32,4 +38,10 @@ export { default as Testimonials } from "./Testimonials";
 
 // Componentes del inmueble
 export { Item as InmuebleItem, Information as InmuebleInformation };
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

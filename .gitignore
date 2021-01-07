@@ -1,4 +1,6 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -33,6 +35,10 @@ yarn-error.log*
 
 # Vercel
 =======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -65,5 +71,11 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .vercel
