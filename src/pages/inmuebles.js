@@ -1,7 +1,6 @@
 import { getAllInmuebles } from "../lib/api";
 
-import { Layout, Pagination, Filters } from "../components";
-import { Item } from "../components/Inmueble";
+import { Layout, Pagination, Filters, InmuebleItem } from "../components";
 
 import { useRouter } from "next/router";
 import NextLink from "next/link";
@@ -23,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     margin: theme.spacing(2, 0),
   },
-  list: {
-    margin: theme.spacing(2, -1),
+  grid: {
+    margin: theme.spacing(2, -2),
   },
   pagination: {
     margin: theme.spacing(4, 0),
@@ -74,7 +73,7 @@ export default function Inmuebles({ data }) {
   const { results, total_pages, page } = data;
 
   const inmuebleList = results.map(({ data, uid }) => {
-    return {
+    let props = {
       slug: uid,
       area: data.area,
       titulo: data.titulo[0],
@@ -83,7 +82,16 @@ export default function Inmuebles({ data }) {
       estado: data.estado,
       ubiAprox: data.ubiaprox,
       habitaciones: data.habitaciones,
+      estado: data.estado,
+      fecha: data.fecha,
+      agent: data.agent.data,
     };
+
+    return (
+      <Grid key={uid} item xs={12} sm={6} md={4}>
+        {<InmuebleItem {...props} />}
+      </Grid>
+    );
   });
 
   return (
@@ -123,7 +131,7 @@ export default function Inmuebles({ data }) {
           </Collapse>
         )}
 
-        <Grid container spacing={2} className={classes.list}>
+        <Grid container spacing={4} className={classes.grid}>
           {results.length < 1 ? (
             <Grid item xs={12}>
               <Typography
@@ -147,11 +155,7 @@ export default function Inmuebles({ data }) {
               </NextLink>
             </Grid>
           ) : (
-            inmuebleList.map((inmueble) => (
-              <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
-                {<Item {...inmueble} />}
-              </Grid>
-            ))
+            inmuebleList
           )}
         </Grid>
         {results.length >= 1 && (

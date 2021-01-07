@@ -5,29 +5,19 @@ import { Link } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    display: "inline-flex",
-    alignSelf: "center",
+    alignSelf: (props) => (props.type === "navbar" ? "center" : "flex-start"),
   },
   link: {
-    display: "inherit",
+    display: "block",
     cursor: "pointer",
+    width: 163,
+    height: 32,
   },
   logo: {
-    minWidth: 163,
-    width: "100%",
-    height: "32px",
     color: (props) => (props.type === "navbar" ? "#141313" : "#E9E9E9"),
-    position: "relative",
-
     "& > svg": {
-      position: "absolute",
       display: "block",
       fill: "currentColor",
-      left: 0,
-      top: 0,
-      width: "100%",
-      height: "100%",
     },
   },
 }));
@@ -36,7 +26,7 @@ export default function Logo(props) {
   const classes = useStyles(props);
 
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} ${props.className || ""}`}>
       <NextLink href="/">
         <Link className={classes.link} href="/">
           <span className={classes.logo} role="img" aria-label="Avilatek Logo">

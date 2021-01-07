@@ -4,9 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { RichText } from "prismic-reactjs";
 
-import Layout from "../../components/Layout";
-import { Information, Item } from "../../components/Inmueble";
-import Gallery from "../../components/Gallery";
+import {
+  Layout,
+  Gallery,
+  InmuebleItem,
+  InmuebleInformation,
+} from "../../components";
 import NextLink from "next/link";
 
 import { getInmueble, getAllInmueblesSlug } from "../../lib/api";
@@ -18,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gallery: {
     minWidth: "100%",
-    borderRadius: theme.spacing(3),
+    borderRadius: theme.spacing(2),
     [theme.breakpoints.up("md")]: {
       minWidth: 0,
     },
@@ -29,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
   description: {
-    fontWeight: 400,
+    fontWeight: 700,
     position: "relative",
     display: "inline-block",
 
@@ -71,7 +74,7 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
   } = inmuebleData;
 
   masInmuebles = masInmuebles.map(({ data, uid }) => {
-    return {
+    let props = {
       slug: uid,
       area: data.area,
       titulo: data.titulo[0],
@@ -80,7 +83,14 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
       estado: data.estado,
       ubiAprox: data.ubiaprox,
       habitaciones: data.habitaciones,
+      estado: data.estado,
+      agent: data.agent.data,
     };
+    return (
+      <Grid key={uid} item xs={12} sm={6} md={4}>
+        {<InmuebleItem {...props} />}
+      </Grid>
+    );
   });
 
   return (
@@ -111,11 +121,17 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
               </Typography>
             </div>
           </Grid>
-          <Grid item xs={12} lg={8} className={classes.gallery}>
+          <Grid
+            component="section"
+            item
+            xs={12}
+            lg={8}
+            className={classes.gallery}
+          >
             <Gallery imagenes={imagenes} />
           </Grid>
-          <Grid item xs={12} lg={4}>
-            {<Information {...info} />}
+          <Grid item xs={12} lg={4} component="section">
+            {<InmuebleInformation {...info} />}
           </Grid>
           <Grid
             item
@@ -150,11 +166,7 @@ export default function Inmueble({ inmuebleData, masInmuebles }) {
             </Grid>
           </Grid>
           <Grid container spacing={3}>
-            {masInmuebles.map((inmueble) => (
-              <Grid key={inmueble.slug} item xs={12} sm={6} md={4}>
-                {<Item {...inmueble} />}
-              </Grid>
-            ))}
+            {masInmuebles}
           </Grid>
         </div>
       </Container>
