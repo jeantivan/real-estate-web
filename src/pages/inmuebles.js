@@ -1,23 +1,19 @@
-
-import { getAllInmuebles } from "../lib/api";
-
-import { Layout, Pagination, Filters, InmuebleItem } from "../components";
-
-import { useRouter } from "next/router";
-import NextLink from "next/link";
+import { Filters, InmuebleItem, Layout, Pagination } from "@/components";
+import { getAllInmuebles } from "@/lib/api";
+import { faSort } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { makeStyles } from "@material-ui/core";
 import {
-  Grid,
-  Typography,
-  Divider,
   Button,
   Collapse,
-  Link,
   Container,
+  Divider,
+  Grid,
+  Link,
+  Typography,
 } from "@material-ui/core/";
-import { makeStyles } from "@material-ui/core";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort } from "@fortawesome/free-solid-svg-icons";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   title: {

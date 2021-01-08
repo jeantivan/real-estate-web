@@ -1,10 +1,9 @@
-
-import { PrismicClient } from "../prismic-config";
+import { PrismicClient } from "@/prismic-config";
 import Prismic from "prismic-javascript";
 
 const Client = PrismicClient();
 
-const {at, similar} = Prismic.Predicates
+const { at, similar } = Prismic.Predicates;
 
 // Obtiene la data de todos los inmuebles guardados en el repositorio Prismic
 export async function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
@@ -55,9 +54,7 @@ export async function getAllInmueblesSlug() {
 
 // Obtiene la data del inmueble dado un slug
 export async function getInmueble(slug) {
-
-
-  const {id, uid, data} = await Client.getByUID("inmueble", slug, {
+  const { id, uid, data } = await Client.getByUID("inmueble", slug, {
     fetchLinks: [
       "agent.name",
       "agent.email",
@@ -69,17 +66,14 @@ export async function getInmueble(slug) {
   return {
     id: id,
     slug: uid,
-    ...data
+    ...data,
   };
 }
 
 // Obtiene los inmuebles con contenido similar a otro inmueble
 export async function getInmueblesSimilares(id) {
-  const {results} = await Client.query(
-    similar(id, 10),
-    { pageSize: 3 }
-  )
-return results
+  const { results } = await Client.query(similar(id, 10), { pageSize: 3 });
+  return results;
 }
 
 // Obtiene la informacion de todos los agentes

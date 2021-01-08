@@ -1,15 +1,13 @@
-
-import { Layout, ContactForm } from "../components";
-
-import { Container, Grid, IconButton, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ContactForm, Layout } from "@/components";
 import {
   faFacebook,
   faInstagram,
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Container, Grid, IconButton, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -232,4 +230,3 @@ export default function Contacto() {
     </Layout>
   );
 }
-

@@ -1,7 +1,7 @@
-import { Typography, Grid, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Box, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { RichText } from "prismic-reactjs";
 
 const useStyles = makeStyles((theme) => ({

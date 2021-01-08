@@ -1,30 +1,13 @@
+import { Gallery, Layout } from "@/components";
+import { InmuebleHeader } from "@/layouts/inmueble-header";
 import {
-  Grid,
-  Typography,
-  Link,
-  Container,
-  Paper,
-  Box,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { RichText } from "prismic-reactjs";
-
-import {
-  Layout,
-  Gallery,
-  InmuebleItem,
-  InmuebleInformation,
-} from "../../components";
-import NextLink from "next/link";
-
-import {
-  getInmueble,
   getAllInmueblesSlug,
+  getInmueble,
   getInmueblesSimilares,
-} from "../../lib/api";
-import { InmuebleHeader } from "../../layouts/inmueble-header";
+} from "@/lib/api";
+import { Box, Container, Grid, Paper, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { RichText } from "prismic-reactjs";
 
 const useStyles = makeStyles((theme) => ({
   gallery: {
