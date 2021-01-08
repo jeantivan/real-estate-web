@@ -1,4 +1,5 @@
-import { Gallery, Layout } from "@/components";
+import { Layout } from "@/components";
+import { InmuebleGallery } from "@/layouts/inmueble-gallery";
 import { InmuebleHeader } from "@/layouts/inmueble-header";
 import {
   getAllInmueblesSlug,
@@ -83,13 +84,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
                   ubiaprox={inmueble.ubiaprox}
                   precio={inmueble.precio}
                 />
-                <Box
-                  component="section"
-                  className={classes.gallery}
-                  id="galeria-del-inmueble"
-                >
-                  <Gallery imagenes={inmueble.imagenes} />
-                </Box>
+                <InmuebleGallery imagenes={inmueble.imagenes} />
                 {/* <Grid item xs={12} lg={4} component="section">
             <InmuebleInformation {...inmuebleInfo} agent={inmueble.agent} />
           </Grid> */}
