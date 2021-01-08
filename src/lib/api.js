@@ -4,15 +4,18 @@ import Prismic from "prismic-javascript";
 
 const Client = PrismicClient();
 
+const {at, similar} = Prismic.Predicates
+
+// Obtiene la data de todos los inmuebles guardados en el repositorio Prismic
 export async function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
   let orderings;
-  let filters = [Prismic.Predicates.at("document.type", "inmueble")];
+  let filters = [at("document.type", "inmueble")];
 
   if (agent) {
-    filters.push(Prismic.Predicates.at("my.inmueble.agent", agent));
+    filters.push(at("my.inmueble.agent", agent));
   }
 
-  if (estado) filters.push(Prismic.Predicates.at("my.inmueble.estado", estado));
+  if (estado) filters.push(at("my.inmueble.estado", estado));
 
   if (orderBy) {
     switch (orderBy) {
@@ -38,6 +41,7 @@ export async function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
   return response;
 }
 
+// Obtiene los slugs de todos los inmuebles guardados en el repositorio Prismic
 export async function getAllInmueblesSlug() {
   const response = await Client.query(
     Prismic.Predicates.at("document.type", "inmueble"),
@@ -49,8 +53,11 @@ export async function getAllInmueblesSlug() {
   return paths;
 }
 
+// Obtiene la data del inmueble dado un slug
 export async function getInmueble(slug) {
-  const document = await Client.getByUID("inmueble", slug, {
+
+
+  const {id, uid, data} = await Client.getByUID("inmueble", slug, {
     fetchLinks: [
       "agent.name",
       "agent.email",
@@ -59,18 +66,25 @@ export async function getInmueble(slug) {
     ],
   });
 
-  const masInmuebles = await Client.query(
-    Prismic.Predicates.similar(document.id, 3),
-    { pageSize: 3 }
-  );
-
-  return { document, masInmuebles };
+  return {
+    id: id,
+    slug: uid,
+    ...data
+  };
 }
 
+// Obtiene los inmuebles con contenido similar a otro inmueble
+export async function getInmueblesSimilares(id) {
+  const {results} = await Client.query(
+    similar(id, 10),
+    { pageSize: 3 }
+  )
+return results
+}
+
+// Obtiene la informacion de todos los agentes
 export async function getAllAgents() {
-  const response = await Client.query(
-    Prismic.Predicates.at("document.type", "agent")
-  );
+  const response = await Client.query(at("document.type", "agent"));
 
   return response;
 }
