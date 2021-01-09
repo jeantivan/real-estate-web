@@ -1,9 +1,7 @@
 import { IconButton, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
-
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronRight } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   news: {
@@ -86,7 +84,7 @@ export function Newsletter() {
         className={classes.button}
         aria-label="subscribirse"
       >
-        <FontAwesomeIcon icon={faChevronRight} />
+        <ChevronRight fontSize="large" />
       </IconButton>
     </form>
   );

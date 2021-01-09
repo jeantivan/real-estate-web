@@ -1,11 +1,6 @@
 import Fab from "@material-ui/core/Fab";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronRight,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { ChevronRight, ChevronLeft } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   btn: {
@@ -42,9 +37,9 @@ export const Controls = ({ handlePrev, handleNext, index, max }) => {
           className={`${classes.btn} ${classes.btnLeft}`}
           onClick={handlePrev}
           disableRipple
-          aria-label="anterior"
+          aria-label="Imagén anterior"
         >
-          <FontAwesomeIcon icon={faChevronLeft} />
+          <ChevronLeft />
         </Fab>
       )}
       {index !== max && (
@@ -54,9 +49,9 @@ export const Controls = ({ handlePrev, handleNext, index, max }) => {
           className={`${classes.btn} ${classes.btnRight}`}
           onClick={handleNext}
           disableRipple
-          aria-label="siguiente"
+          aria-label="Siguiente imagén"
         >
-          <FontAwesomeIcon icon={faChevronRight} />
+          <ChevronRight />
         </Fab>
       )}
     </>

@@ -7,6 +7,7 @@ import {
   CardActions,
   Avatar,
 } from "@material-ui/core";
+import { LocationOn } from "@material-ui/icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +22,12 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       boxShadow: theme.shadows[6],
     },
+  },
+  title: {
+    fontWeight: "bold",
+  },
+  location: {
+    fontWeight: "bold",
   },
   link: {
     textDecoration: "none",
@@ -57,9 +64,6 @@ const useStyles = makeStyles((theme) => ({
         ? theme.palette.primary.A700
         : theme.palette.secondary.main,
   },
-  icon: {
-    color: theme.palette.primary.dark,
-  },
   footer: {
     padding: theme.spacing(0, 2, 2, 2),
     display: "flex",
@@ -67,7 +71,9 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     display: "inline-block",
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
+    width: theme.spacing(4),
+    height: theme.spacing(4),
   },
 }));
 
@@ -100,11 +106,15 @@ export function InmuebleItem({
             <div className={classes.estado}>{estado}</div>
           </div>
           <CardContent>
-            <Typography variant="h6" color="primary" className={classes.title}>
+            <Typography variant="h6" className={classes.title}>
               {titulo.text}
             </Typography>
-            <Typography variant="caption" display="block" gutterBottom>
-              <FontAwesomeIcon icon={faMapMarkerAlt} className={classes.icon} />{" "}
+            <Typography
+              variant="body2"
+              className={classes.location}
+              color="textSecondary"
+              gutterBottom
+            >
               {ubiAprox}
             </Typography>
             <Typography variant="h5" gutterBottom>

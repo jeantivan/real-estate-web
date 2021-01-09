@@ -1,7 +1,5 @@
 import { Filters, InmuebleItem, Layout, Pagination } from "@/components";
 import { getAllInmuebles } from "@/lib/api";
-import { faSort } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { makeStyles } from "@material-ui/core";
 import {
   Button,
@@ -11,7 +9,8 @@ import {
   Grid,
   Link,
   Typography,
-} from "@material-ui/core/";
+} from "@material-ui/core";
+import { Sort } from "@material-ui/icons";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 
@@ -114,7 +113,7 @@ export default function Inmuebles({ data }) {
                 variant="outlined"
                 color="primary"
                 onClick={handleToggle}
-                endIcon={<FontAwesomeIcon icon={faSort} />}
+                endIcon={<Sort />}
               >
                 Filtros
               </Button>
