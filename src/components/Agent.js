@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { Paper, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import Image from "next/image";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -40,7 +40,7 @@ export function Agent({ name, phonenumber, email, picture, id }) {
 
   return (
     <Paper variant="outlined" className={classes.root} component="article">
-      <LazyLoadImage src={picture.url} alt={name} className={classes.picture} />
+      <Image src={picture.url} alt={name} className={classes.picture} />
       <div className={classes.contact}>
         <Typography variant="h6">{name}</Typography>
         <Typography variant="overline" gutterBottom>
