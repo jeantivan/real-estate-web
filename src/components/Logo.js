@@ -1,4 +1,3 @@
-
 import NextLink from "next/link";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Logo(props) {
+export function Logo(props) {
   const classes = useStyles(props);
 
   return (
@@ -40,4 +39,3 @@ export default function Logo(props) {
     </div>
   );
 }
-

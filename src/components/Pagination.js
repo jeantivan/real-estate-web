@@ -1,6 +1,6 @@
 import Pagination from "@material-ui/lab/Pagination";
 
-const MyPagination = ({ page, handleChange, totPages }) => {
+export function MyPagination({ page, handleChange, totPages }) {
   return (
     <Pagination
       count={totPages}
@@ -9,6 +9,4 @@ const MyPagination = ({ page, handleChange, totPages }) => {
       color="primary"
     ></Pagination>
   );
-};
-
-export default MyPagination;
+}

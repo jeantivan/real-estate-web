@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
 
-import TextField from "./TextField";
+import { Input } from "./Input";
 
 const initialValues = {
   nombre: "",
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ContactForm = () => {
+export function ContactForm() {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -84,7 +84,7 @@ const ContactForm = () => {
             <Form onSubmit={submitForm}>
               <Grid container spacing={1}>
                 <Grid item xs={12} md={6}>
-                  <TextField
+                  <Input
                     name="nombre"
                     label="Nombre"
                     type="text"
@@ -94,7 +94,7 @@ const ContactForm = () => {
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <TextField
+                  <Input
                     name="email"
                     label="Correo electronico"
                     type="email"
@@ -104,7 +104,7 @@ const ContactForm = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <Input
                     name="mensaje"
                     label="Mensaje"
                     multiline
@@ -134,6 +134,4 @@ const ContactForm = () => {
       </Grid>
     </Grid>
   );
-};
-
-export default ContactForm;
+}

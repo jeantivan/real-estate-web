@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // Redes Sociales
-const RRSS = (props) => {
+export function RRSS(props) {
   const classes = useStyles(props);
   return (
     <Grid container spacing={2} justify="flex-end">
@@ -62,6 +62,4 @@ const RRSS = (props) => {
       </Grid>
     </Grid>
   );
-};
-
-export default RRSS;
+}

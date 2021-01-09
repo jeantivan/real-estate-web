@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { makeStyles, fade } from "@material-ui/core";
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
@@ -14,7 +13,7 @@ import {
 
 import { useSnackbar } from "notistack";
 
-import Contact from "./Contact";
+import { Contact } from "./Contact";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Information({
+export function InmuebleInformation({
   precio,
   area,
   habitaciones,

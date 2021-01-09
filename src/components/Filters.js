@@ -68,7 +68,7 @@ const FilterSelect = (props) => (
   <TextField component={Paper} select variant="outlined" fullWidth {...props} />
 );
 
-const Filters = () => {
+export function Filters() {
   const classes = useStyles();
   const router = useRouter();
   const [filters, setFilters] = React.useState({
@@ -212,6 +212,4 @@ const Filters = () => {
       </Grid>
     </Grid>
   );
-};
-
-export default Filters;
+}

@@ -70,7 +70,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
 }));
-export default function InmuebleItem({
+
+export function InmuebleItem({
   slug,
   titulo,
   precio,

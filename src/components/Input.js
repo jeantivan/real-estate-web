@@ -1,7 +1,7 @@
 import TextField from "@material-ui/core/TextField";
 import { useField } from "formik";
 
-const MyInput = (props) => {
+export function Input(props) {
   const [field, meta] = useField(props);
 
   return (
@@ -12,6 +12,4 @@ const MyInput = (props) => {
       {...field}
     />
   );
-};
-
-export default MyInput;
+}

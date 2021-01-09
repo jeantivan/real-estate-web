@@ -19,7 +19,7 @@ import {
 
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
-import TextField from "../TextField";
+import { Input } from "../Input";
 
 const initialValues = {
   nombre: "",
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Contact = ({ open, handleClose, agent }) => {
+export function Contact({ open, handleClose, agent }) {
   const classes = useStyles();
   const { name, email, phonenumber, picture } = agent;
   return (
@@ -161,7 +161,7 @@ const Contact = ({ open, handleClose, agent }) => {
                   ¿Quieres que te contactemos nosotros? Llena el siguiente
                   formulario
                 </DialogContentText>
-                <TextField
+                <Input
                   autoFocus
                   name="nombre"
                   label="Nombre"
@@ -171,7 +171,7 @@ const Contact = ({ open, handleClose, agent }) => {
                   size="small"
                   fullWidth
                 />
-                <TextField
+                <Input
                   name="email"
                   label="Correo electronico"
                   type="email"
@@ -180,7 +180,7 @@ const Contact = ({ open, handleClose, agent }) => {
                   size="small"
                   fullWidth
                 />
-                <TextField
+                <Input
                   name="mensaje"
                   label="Mensaje"
                   multiline
@@ -208,6 +208,4 @@ const Contact = ({ open, handleClose, agent }) => {
       </Dialog>
     </div>
   );
-};
-
-export default Contact;
+}

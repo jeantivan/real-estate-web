@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Agent = ({ name, phonenumber, email, picture, id }) => {
+export function Agent({ name, phonenumber, email, picture, id }) {
   const classes = useStyles();
 
   return (
@@ -71,7 +71,4 @@ const Agent = ({ name, phonenumber, email, picture, id }) => {
       </div>
     </Paper>
   );
-};
-
-export default Agent;
-
+}

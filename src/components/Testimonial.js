@@ -1,4 +1,3 @@
-
 import { Paper, Typography, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -40,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Testimonial({ client, type, picture, text }) {
+export function Testimonial({ client, type, picture, text }) {
   const classes = useStyles();
 
   return (
@@ -66,4 +65,3 @@ export default function Testimonial({ client, type, picture, text }) {
     </Paper>
   );
 }
-

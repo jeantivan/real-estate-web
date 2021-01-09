@@ -1,4 +1,3 @@
-
 import { IconButton, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
@@ -46,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Newsletter = () => {
+export function Newsletter() {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = React.useState("");
@@ -91,6 +90,4 @@ const Newsletter = () => {
       </IconButton>
     </form>
   );
-};
-
-export default Newsletter;
+}

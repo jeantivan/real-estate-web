@@ -1,5 +1,4 @@
-
-import Testimonial from "./Testimonial";
+import { Testimonial } from "./Testimonial";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { makeStyles } from "@material-ui/core/styles";
@@ -75,7 +74,7 @@ const testimonials = [
 
 const AutoSwipeableViews = autoPlay(SwipeableViews);
 
-export default function Testimonials() {
+export function Testimonials() {
   const classes = useStyles();
   const [index, setIndex] = React.useState(0);
 
