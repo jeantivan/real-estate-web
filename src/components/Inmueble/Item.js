@@ -1,4 +1,3 @@
-
 import NextLink from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -11,7 +10,7 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import Image from "next/image";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,7 +70,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
 }));
-export default function InmuebleItem({
+
+export function InmuebleItem({
   slug,
   titulo,
   precio,
@@ -91,10 +91,11 @@ export default function InmuebleItem({
       <a className={classes.link}>
         <Card className={classes.root} component="article">
           <div className={classes.imgContainer}>
-            <LazyLoadImage
+            <Image
               src={mainImg.url}
               alt={mainImg.alt}
               className={classes.img}
+              layout="fill"
             />
             <div className={classes.estado}>{estado}</div>
           </div>
@@ -128,4 +129,3 @@ export default function InmuebleItem({
     </NextLink>
   );
 }
-

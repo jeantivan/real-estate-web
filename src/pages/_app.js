@@ -5,7 +5,7 @@ import Router from "next/router";
 // Material-UI config
 import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline, IconButton } from "@material-ui/core/";
-import theme from "../theme";
+import theme from "@/theme";
 
 // FontAwesome config
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -25,7 +25,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 // Layout
-import { Navbar, Footer } from "../components";
+import { Navbar, Footer } from "@/components";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;

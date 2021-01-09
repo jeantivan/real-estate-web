@@ -1,4 +1,3 @@
-
 import clsx from "clsx";
 import { List, ListItem, ListItemText, Link } from "@material-ui/core";
 
@@ -31,7 +30,7 @@ const DrawerLink = ({
   );
 };
 
-const DrawerLinks = ({ classes, handleClose, router }) => {
+export function DrawerLinks({ classes, handleClose, router }) {
   const { drawerList, link, activeLink } = classes;
 
   return (
@@ -74,7 +73,4 @@ const DrawerLinks = ({ classes, handleClose, router }) => {
       </DrawerLink>
     </List>
   );
-};
-
-export default DrawerLinks;
-
+}

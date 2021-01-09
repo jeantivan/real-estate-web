@@ -1,12 +1,9 @@
-
-import { Layout, Hero, Agent, Service, Testimonials } from "../components";
-import { Container, Typography, Grid, Button, Fab } from "@material-ui/core/";
+import { Agent, Layout, Service, Testimonials } from "@/components";
+import { FindHouse, Goals, Market, RealEstate, Rent } from "@/icons";
+import { getAllAgents } from "@/lib/api";
+import { Button, Container, Grid, Typography } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import NextLink from "next/link";
-
-import { getAllAgents } from "../lib/api";
-
-import { FindHouse, Goals, Market, RealEstate, Rent } from "../icons";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -231,4 +228,3 @@ export async function getStaticProps() {
     },
   };
 }
-

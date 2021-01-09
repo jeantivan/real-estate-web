@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function Layout({ children, titulo, descripcion }) {
+export function Layout({ children, titulo, descripcion }) {
   return (
     <>
       <Head>

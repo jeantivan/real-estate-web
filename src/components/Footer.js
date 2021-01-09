@@ -1,4 +1,3 @@
-
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Link,
@@ -24,8 +23,8 @@ import {
 
 import NextLink from "next/link";
 
-import Logo from "./Logo";
-import Newsletter from "./Newsletter";
+import { Logo } from "./Logo";
+import { Newsletter } from "./Newsletter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -125,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Footer() {
+export function Footer() {
   const classes = useStyles();
 
   return (
@@ -303,4 +302,3 @@ export default function Footer() {
     </footer>
   );
 }
-

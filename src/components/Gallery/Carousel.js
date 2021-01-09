@@ -1,0 +1,93 @@
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import SwipeableViews from "react-swipeable-views";
+
+import Image from "next/image";
+
+import { Controls } from "./Controls";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    position: "relative",
+    width: "100%",
+    height: 0,
+    overflow: "hidden",
+    paddingTop: "56.25%",
+    background: theme.palette.grey[600],
+    borderRadius: "inherit",
+    "&:hover button": {
+      transform: "translateX(0)",
+      opacity: 1,
+    },
+  },
+  container: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    "& .react-swipeable-view-container": {
+      width: "100%",
+      maxHeight: "100%",
+    },
+  },
+  dots: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    position: "absolute",
+    left: 0,
+    bottom: 10,
+  },
+  slide: {
+    position: "relative",
+    overflow: "hidden",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  img: {
+    width: "100%",
+    height: "auto",
+    overflow: "hidden",
+    display: "block",
+    color: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    objectFit: "cover",
+  },
+}));
+
+export function Carousel({
+  imagenes,
+  index,
+  handleNext,
+  handlePrev,
+  handleChange,
+}) {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <SwipeableViews
+        index={index}
+        onChangeIndex={handleChange}
+        className={classes.container}
+        slideClassName={classes.slide}
+        enableMouseEvents
+      >
+        {imagenes.map(({ imagen }) => (
+          <Image alt={imagen.alt} src={imagen.url} layout="fill" />
+        ))}
+      </SwipeableViews>
+      <Controls
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+        index={index}
+        max={imagenes.length - 1}
+      />
+    </div>
+  );
+}

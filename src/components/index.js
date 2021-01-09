@@ -1,18 +1,12 @@
-
-import { Item, Information } from "./Inmueble";
-
-export { default as Layout } from "./Layout";
-export { default as Navbar } from "./Navbar";
-export { default as Footer } from "./Footer";
-export { default as Gallery } from "./Gallery";
-export { default as ContactForm } from "./ContactForm";
-export { default as Pagination } from "./Pagination";
-export { default as Agent } from "./Agent";
-export { default as Newsletter } from "./Newsletter";
-export { default as Filters } from "./Filters";
-export { default as Hero } from "./Hero";
-export { default as Service } from "./Service";
-export { default as Testimonials } from "./Testimonials";
-
-// Componentes del inmueble
-export { Item as InmuebleItem, Information as InmuebleInformation };
+export { Layout } from "./Layout";
+export { Navbar } from "./Navbar";
+export { Footer } from "./Footer";
+export { Gallery } from "./Gallery";
+export { ContactForm } from "./ContactForm";
+export { MyPagination as Pagination } from "./Pagination";
+export { Agent } from "./Agent";
+export { Newsletter } from "./Newsletter";
+export { Filters } from "./Filters";
+export { Service } from "./Service";
+export { Testimonials } from "./Testimonials";
+export { InmuebleItem, InmuebleInformation } from "./Inmueble";

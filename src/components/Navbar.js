@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import {
@@ -15,10 +14,10 @@ import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-import Logo from "./Logo";
-import RRSS from "./RRSS";
-import NavLinks from "./NavLinks";
-import DrawerLinks from "./DrawerLinks";
+import { Logo } from "./Logo";
+import { RRSS } from "./RRSS";
+import { NavLinks } from "./NavLinks";
+import { DrawerLinks } from "./DrawerLinks";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -126,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+export function Navbar() {
   const router = useRouter();
   let classes = useStyles();
   const [show, setShow] = useState(false);
@@ -215,4 +214,3 @@ export default function Navbar() {
     </AppBar>
   );
 }
-

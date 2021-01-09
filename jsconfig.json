@@ -1,0 +1,12 @@
+{
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/icons/*": ["src/icons/*"],
+      "@layouts/*": ["src/layouts/*"],
+    }
+  }
+}

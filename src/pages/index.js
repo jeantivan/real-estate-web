@@ -1,5 +1,4 @@
-
-import { Layout } from "../components";
+import { Layout } from "@/components";
 import { Container, Typography } from "@material-ui/core/";
 
 export default function Home() {
@@ -28,4 +27,3 @@ export default function Home() {
     </Layout>
   );
 }
-
