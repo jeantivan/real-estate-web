@@ -1,12 +1,6 @@
 import { IconButton, Grid } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faInstagram,
-  faTwitter,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
+import { Instagram, WhatsApp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -29,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 export function RRSS(props) {
   const classes = useStyles(props);
   return (
-    <Grid container spacing={2} justify="flex-end">
+    <Grid container justify="flex-end">
       <Grid item>
         <IconButton
           color="primary"
@@ -37,7 +31,7 @@ export function RRSS(props) {
           disableRipple
           aria-label="Cuenta de instagram"
         >
-          <FontAwesomeIcon icon={faInstagram} />
+          <Instagram />
         </IconButton>
       </Grid>
       <Grid item>
@@ -45,19 +39,9 @@ export function RRSS(props) {
           color="primary"
           className={classes.icon}
           disableRipple
-          aria-label="Cuenta de facebook"
+          aria-label="Contacto por Whatsapp"
         >
-          <FontAwesomeIcon icon={faFacebook} />
-        </IconButton>
-      </Grid>
-      <Grid item>
-        <IconButton
-          color="primary"
-          className={classes.icon}
-          disableRipple
-          aria-label="Cuenta de facebook"
-        >
-          <FontAwesomeIcon icon={faTwitter} />
+          <WhatsApp />
         </IconButton>
       </Grid>
     </Grid>
