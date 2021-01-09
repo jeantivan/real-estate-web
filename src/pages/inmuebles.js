@@ -1,4 +1,4 @@
-import { Filters, InmuebleItem, Layout, Pagination } from "@/components";
+import { InmuebleItem, Layout, Pagination } from "@/components";
 import { getAllInmuebles } from "@/lib/api";
 import { makeStyles } from "@material-ui/core";
 import {
@@ -122,9 +122,7 @@ export default function Inmuebles({ data }) {
         </Grid>
         <Divider />
         {results.length >= 1 && (
-          <Collapse in={showFilters}>
-            <Filters />
-          </Collapse>
+          <Collapse in={showFilters}>{/* <Filters /> */}</Collapse>
         )}
 
         <Grid container spacing={4} className={classes.grid}>
