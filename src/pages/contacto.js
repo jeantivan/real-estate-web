@@ -1,13 +1,7 @@
 import { ContactForm, Layout } from "@/components";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Grid, IconButton, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Facebook, Instagram, Twitter, YouTube } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -146,7 +140,7 @@ export default function Contacto() {
                 disableRipple
                 aria-label="Cuenta de instagram"
               >
-                <FontAwesomeIcon size="lg" icon={faInstagram} />
+                <Instagram fontSize="large" />
               </IconButton>
             </Grid>
             <Grid item>
@@ -155,7 +149,7 @@ export default function Contacto() {
                 disableRipple
                 aria-label="Cuenta de facebook"
               >
-                <FontAwesomeIcon size="lg" icon={faFacebook} />
+                <Facebook fontSize="large" />
               </IconButton>
             </Grid>
             <Grid item>
@@ -164,7 +158,7 @@ export default function Contacto() {
                 disableRipple
                 aria-label="Cuenta de twitter"
               >
-                <FontAwesomeIcon size="lg" icon={faTwitter} />
+                <Twitter fontSize="large" />
               </IconButton>
             </Grid>
             <Grid item>
@@ -173,7 +167,7 @@ export default function Contacto() {
                 disableRipple
                 aria-label="Canal de youtube"
               >
-                <FontAwesomeIcon size="lg" icon={faYoutube} />
+                <YouTube fontSize="large" />
               </IconButton>
             </Grid>
           </Grid>

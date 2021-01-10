@@ -1,6 +1,5 @@
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Grid, Typography } from "@material-ui/core";
+import { LocationOn } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { RichText } from "prismic-reactjs";
 
@@ -12,10 +11,10 @@ const useStyles = makeStyles((theme) => ({
   location: {
     display: "inline-flex",
     alignItems: "center",
-    color: theme.palette.primary.main,
   },
   icon: {
-    marginRight: theme.spacing(1),
+    display: "inline-flex",
+    marginRight: theme.spacing(0.75),
   },
   dolar: {
     ...theme.typography.h4,
@@ -34,14 +33,17 @@ export function InmuebleHeader({ titulo, ubiaprox, precio }) {
           <Typography variant="h4" component="h1" className={classes.title}>
             {RichText.asText(titulo)}
           </Typography>
-          <div className={classes.location}>
-            <Typography variant="body1" color="textSecondary" component="p">
-              <span className={classes.icon}>
-                <FontAwesomeIcon icon={faMapMarkerAlt} />
-              </span>
-              {ubiaprox}
-            </Typography>
-          </div>
+          <Typography
+            className={classes.location}
+            variant="body1"
+            color="textSecondary"
+            component="p"
+          >
+            <span className={classes.icon}>
+              <LocationOn />
+            </span>
+            {ubiaprox}
+          </Typography>
         </Grid>
         <Grid item>
           <Typography variant="h3" component="h4" className={classes.precio}>

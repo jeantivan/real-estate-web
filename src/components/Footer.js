@@ -5,21 +5,19 @@ import {
   Container,
   Typography,
   IconButton,
-} from "@material-ui/core/";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+} from "@material-ui/core";
 import {
-  faHeart,
-  faMapMarkerAlt,
-  faPhoneAlt,
-  faEnvelope,
-  faCopyright,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
+  Copyright,
+  Instagram,
+  Facebook,
+  Favorite,
+  LocationOn,
+  Phone,
+  PhoneAndroid,
+  Mail,
+  YouTube,
+  Twitter,
+} from "@material-ui/icons";
 
 import NextLink from "next/link";
 
@@ -94,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
   },
   rs: {
     marginTop: theme.spacing(-1.5),
+    marginBottom: theme.spacing(2),
   },
   social: {
     color: "#8a99b3",
@@ -104,6 +103,14 @@ const useStyles = makeStyles((theme) => ({
 
     "&:hover": {
       color: "white",
+    },
+  },
+  me: {
+    display: "inline-flex",
+    alignItems: "center",
+    "& > *": {
+      marginRight: theme.spacing(0.25),
+      marginLeft: theme.spacing(0.25),
     },
   },
   heart: {
@@ -190,25 +197,25 @@ export function Footer() {
 
             <div className={classes.text}>
               <span role="img" aria-label="ubicacion" className={classes.icon}>
-                <FontAwesomeIcon icon={faMapMarkerAlt} />
+                <LocationOn fontSize="small" />
               </span>
               Centro Sambil Caracas, Av. Libertador, Caracas 1064.
             </div>
             <div className={classes.text}>
               <span role="img" aria-label="telefono" className={classes.icon}>
-                <FontAwesomeIcon icon={faPhoneAlt} />
+                <PhoneAndroid fontSize="small" />
               </span>
               +58 424 123 45-67
             </div>
             <div className={classes.text}>
               <span role="img" aria-label="telefono" className={classes.icon}>
-                <FontAwesomeIcon icon={faPhoneAlt} />
+                <Phone fontSize="small" />
               </span>
               +58 212 000 00-00
             </div>
             <div className={classes.text}>
               <span role="img" aria-label="email" className={classes.icon}>
-                <FontAwesomeIcon icon={faEnvelope} />
+                <Mail fontSize="small" />
               </span>
               contacto@avilatek.com
             </div>
@@ -228,37 +235,32 @@ export function Footer() {
             <div className={classes.rs}>
               <IconButton
                 className={classes.social}
-                href="#"
                 edge="start"
                 disableRipple
                 aria-label="Cuenta de instagram"
               >
-                <FontAwesomeIcon icon={faInstagram} />
+                <Instagram />
               </IconButton>
               <IconButton
                 className={classes.social}
-                href="#"
                 disableRipple
                 aria-label="Cuenta de facebook"
               >
-                <FontAwesomeIcon icon={faFacebook} />
+                <Facebook />
               </IconButton>
               <IconButton
                 className={classes.social}
-                href="#"
                 disableRipple
                 aria-label="Cuenta de twitter"
               >
-                <FontAwesomeIcon icon={faTwitter} />
+                <Twitter />
               </IconButton>
               <IconButton
                 className={classes.social}
-                href="#"
-                edge="end"
                 disableRipple
                 aria-label="Canal de youtube"
               >
-                <FontAwesomeIcon icon={faYoutube} />
+                <YouTube />
               </IconButton>
             </div>
             <Typography variant="h6" gutterBottom>
@@ -276,17 +278,17 @@ export function Footer() {
           <div className={classes.subFooter}>
             <div className={classes.copyright}>
               <span role="img" aria-label="ubicacion" className={classes.icon}>
-                <FontAwesomeIcon icon={faCopyright} />
+                <Copyright fontSize="small" />
               </span>
               {new Date().getFullYear()} Avilatek | Todos los derechos
               reservados
             </div>
             <div className={classes.me}>
-              Creado con{" "}
-              <span>
-                <FontAwesomeIcon icon={faHeart} className={classes.heart} />
-              </span>{" "}
-              por{" "}
+              <span>Creado con</span>
+              <span className={classes.heart}>
+                <Favorite fontSize="small" />
+              </span>
+              <span>por</span>
               <Link
                 target="_blank"
                 href="https://github.com/jptivan53"
