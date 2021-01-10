@@ -1,23 +1,19 @@
-import { useState } from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
-  Toolbar,
-  IconButton,
-  Drawer,
   Divider,
+  Drawer,
   Hidden,
-} from "@material-ui/core/";
-
+  IconButton,
+  Toolbar,
+} from "@material-ui/core";
+import { fade, makeStyles } from "@material-ui/core/styles";
+import { Menu } from "@material-ui/icons";
 import { useRouter } from "next/router";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-
-import { Logo } from "./Logo";
-import { RRSS } from "./RRSS";
-import { NavLinks } from "./NavLinks";
+import { useState } from "react";
 import { DrawerLinks } from "./DrawerLinks";
+import { Logo } from "./Logo";
+import { NavLinks } from "./NavLinks";
+import { RRSS } from "./RRSS";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -155,7 +151,7 @@ export function Navbar() {
               aria-label="menu"
               onClick={toggleDrawer}
             >
-              <FontAwesomeIcon icon={faBars} />
+              <Menu />
             </IconButton>
           </Hidden>
 
@@ -177,7 +173,7 @@ export function Navbar() {
                 aria-label="menu"
                 onClick={toggleDrawer}
               >
-                <FontAwesomeIcon icon={faBars} />
+                <Menu />
               </IconButton>
               <Logo type="navbar" />
             </Toolbar>

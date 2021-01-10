@@ -7,11 +7,6 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline, IconButton } from "@material-ui/core/";
 import theme from "@/theme";
 
-// FontAwesome config
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS
-config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
-
 // Nprogress config
 import NProgress from "nprogress";
 NProgress.configure({ showSpinner: false });
@@ -21,8 +16,7 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 // Notistack
 import { SnackbarProvider } from "notistack";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Close } from "@material-ui/icons";
 
 // Layout
 import { Navbar, Footer } from "@/components";
@@ -65,7 +59,7 @@ export default function MyApp(props) {
               aria-label="Cerrar"
               onClick={onClickDismiss(key)}
             >
-              <FontAwesomeIcon icon={faTimes} />
+              <Close />
             </IconButton>
           )}
         >

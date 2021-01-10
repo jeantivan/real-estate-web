@@ -1,23 +1,15 @@
 import {
-  IconButton,
   Button,
   Dialog,
   DialogContent,
   DialogContentText,
-  Typography,
   Divider,
+  IconButton,
+  Typography,
 } from "@material-ui/core";
-
 import { makeStyles } from "@material-ui/core/styles";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTimes,
-  faPhone,
-  faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
-
-import { Formik, Form } from "formik";
+import { Close, Mail, Phone } from "@material-ui/icons";
+import { Form, Formik } from "formik";
 import { object, string } from "yup";
 import { Input } from "../Input";
 
@@ -112,7 +104,7 @@ export function Contact({ open, handleClose, agent }) {
             aria-label="Cerrar información"
             onClick={() => handleClose(null)}
           >
-            <FontAwesomeIcon icon={faTimes} />
+            <Close />
           </IconButton>
         </div>
         <Divider />
@@ -132,13 +124,13 @@ export function Contact({ open, handleClose, agent }) {
             <div className={classes.contact}>
               <Typography variant="caption" component="div">
                 <span role="img" aria-label="Phone" className={classes.icon}>
-                  <FontAwesomeIcon icon={faPhone} />
+                  <Phone />
                 </span>{" "}
                 {phonenumber}
               </Typography>{" "}
               <Typography variant="caption" component="div">
                 <span role="img" aria-label="Mail" className={classes.icon}>
-                  <FontAwesomeIcon icon={faEnvelope} />
+                  <Mail />
                 </span>{" "}
                 {email}
               </Typography>
