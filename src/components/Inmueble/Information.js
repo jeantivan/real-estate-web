@@ -2,14 +2,14 @@ import { useState } from "react";
 import { makeStyles, fade } from "@material-ui/core";
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faExpandArrowsAlt,
-  faCouch,
-  faBath,
-  faCar,
-  faRulerCombined,
-} from "@fortawesome/free-solid-svg-icons";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faExpandArrowsAlt,
+//   faCouch,
+//   faBath,
+//   faCar,
+//   faRulerCombined,
+// } from "@fortawesome/free-solid-svg-icons";
 
 import { useSnackbar } from "notistack";
 
@@ -139,10 +139,10 @@ export function InmuebleInformation({
         >
           <Grid item xs={6} className={classes.item}>
             <span>
-              <FontAwesomeIcon
+              {/* <FontAwesomeIcon
                 icon={faRulerCombined}
                 className={classes.itemIcon}
-              />
+              /> */}
             </span>
             <div>
               <span className={classes.itemCaption}>AREA</span>
@@ -156,7 +156,7 @@ export function InmuebleInformation({
           </Grid>
           <Grid item xs={6} className={classes.item}>
             <span>
-              <FontAwesomeIcon icon={faCouch} className={classes.itemIcon} />
+              {/* <FontAwesomeIcon icon={faCouch} className={classes.itemIcon} /> */}
             </span>
 
             <div>
@@ -166,7 +166,7 @@ export function InmuebleInformation({
           </Grid>
           <Grid item xs={6} className={classes.item}>
             <span>
-              <FontAwesomeIcon icon={faBath} className={classes.itemIcon} />
+              {/* <FontAwesomeIcon icon={faBath} className={classes.itemIcon} /> */}
             </span>
             <div>
               <span className={classes.itemCaption}>BAÑOS</span>
@@ -175,7 +175,7 @@ export function InmuebleInformation({
           </Grid>
           <Grid item xs={6} className={classes.item}>
             <span>
-              <FontAwesomeIcon icon={faCar} className={classes.itemIcon} />
+              {/* <FontAwesomeIcon icon={faCar} className={classes.itemIcon} /> */}
             </span>
 
             <div>
