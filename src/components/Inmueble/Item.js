@@ -1,17 +1,7 @@
-import NextLink from "next/link";
+import { Avatar, Card, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Typography,
-  Card,
-  CardContent,
-  CardActions,
-  Avatar,
-} from "@material-ui/core";
-import { LocationOn } from "@material-ui/icons";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import NextLink from "next/link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
