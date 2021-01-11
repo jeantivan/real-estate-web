@@ -34,30 +34,10 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: "100%",
     },
   },
-  dots: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    position: "absolute",
-    left: 0,
-    bottom: 10,
-  },
   slide: {
     position: "relative",
     overflow: "hidden",
     width: "100%",
-    display: "flex",
-    justifyContent: "center",
-  },
-  img: {
-    width: "100%",
-    height: "auto",
-    overflow: "hidden",
-    display: "block",
-    color: "white",
-    alignItems: "center",
-    justifyContent: "center",
-    objectFit: "cover",
   },
 }));
 
@@ -79,7 +59,7 @@ export function Carousel({
         enableMouseEvents
       >
         {imagenes.map(({ imagen }) => (
-          <Image alt={imagen.alt} src={imagen.url} layout="fill" />
+          <Image key={imagen.alt} alt={imagen.alt} src={imagen.url} layout="fill" />
         ))}
       </SwipeableViews>
       <Controls
