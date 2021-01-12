@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Container,
   Divider,
   Drawer,
   Hidden,
@@ -17,13 +18,7 @@ import { RRSS } from "./RRSS";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    width: "100%",
-    borderBottom: `1px solid ${fade(theme.palette.primary.light, 0.2)}`,
-
-    [theme.breakpoints.up("xl")]: {
-      maxWidth: 1280,
-      margin: "0 auto",
-    },
+    display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
   },
@@ -32,6 +27,22 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       display: "none",
     },
+  },
+  containerIconLogo: {
+    display: "flex",
+    flex: 1,
+    [theme.breakpoints.up("md")]: {
+      flexGrow:0,
+    },
+  },
+  centerLogo: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    [theme.breakpoints.up("md")]: {
+      marginLeft: 0,
+    },
+    marginLeft: theme.spacing(-3)
   },
   drawerContainer: {
     display: "flex",
@@ -45,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
   },
   social: {
     margin: "auto auto 0 auto",
-
     [theme.breakpoints.up("md")]: {
       margin: 0,
       padding: 0,
@@ -54,17 +64,16 @@ const useStyles = makeStyles((theme) => ({
   navContainer: {
     display: "flex",
     flexDirection: "column",
+    alignSelf: "stretch",
+    flexShrink: 0,
     [theme.breakpoints.up("md")]: {
       flexDirection: "row",
     },
-    "& a:not(:last-child)": {
-      margin: theme.spacing(0, 2),
+    "& > a": {
+      marginRight: theme.spacing(2),
+      marginLeft: theme.spacing(2)
     },
-    "& a:last-child": {
-      marginLeft: theme.spacing(2),
-    },
-    alignSelf: "stretch",
-    flexShrink: 0,
+    
   },
   link: {
     textDecoration: "none",
@@ -92,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
   },
   activeLink: {
     color: theme.palette.primary.main,
-
     "&:after": {
       width: "100%",
       bottom: 0,
@@ -141,12 +149,11 @@ export function Navbar() {
       position="static"
       className={classes.appBar}
     >
-      <Toolbar className={classes.toolbar}>
-        <div style={{ display: "inherit" }}>
+      <Toolbar component={Container} maxWidth="lg" className={classes.toolbar}>
+        <div className={classes.containerIconLogo}>
           <Hidden mdUp>
             <IconButton
               edge="start"
-              className={classes.menuButton}
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer}
@@ -154,8 +161,7 @@ export function Navbar() {
               <Menu />
             </IconButton>
           </Hidden>
-
-          <Logo type="navbar" />
+          <Logo type="navbar" className={classes.centerLogo} />
         </div>
         <Hidden mdUp>
           <Drawer
