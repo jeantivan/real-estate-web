@@ -1,17 +1,9 @@
 import { useState, useEffect } from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Hidden } from "@material-ui/core";
 import { Carousel } from "./Carousel";
 import { Thumbnail } from "./Thumbnail";
 
-const useStyles = makeStyles((theme) => ({
-  radius: {
-    borderRadius: theme.spacing(1),
-  },
-}));
-
 export function Gallery({ imagenes }) {
-  const classes = useStyles();
   const [index, setIndex] = useState(0);
 
   const handleChange = (index) => setIndex(index);
@@ -36,17 +28,19 @@ export function Gallery({ imagenes }) {
           {...{ imagenes, index, handleChange, handleNext, handlePrev }}
         />
       </Grid>
-      {imagenes.map(({ imagen }, i) => (
-        <Grid
-          item
-          xs={2}
-          key={imagen.alt}
-          onClick={() => handleChange(i)}
-          onFocus={() => handleChange(i)}
-        >
-          <Thumbnail imagen={imagen} active={index === i} />
-        </Grid>
-      ))}
+      <Hidden xsDown>
+        {imagenes.map(({ imagen }, i) => (
+          <Grid
+            item
+            xs={2}
+            key={imagen.alt}
+            onClick={() => handleChange(i)}
+            onFocus={() => handleChange(i)}
+          >
+            <Thumbnail imagen={imagen} active={index === i} />
+          </Grid>
+        ))}
+      </Hidden>
     </Grid>
   );
 }
