@@ -27,8 +27,13 @@ const useStyles = makeStyles((theme) => ({
 export function InmuebleHeader({ titulo, ubiaprox, precio }) {
   const classes = useStyles();
   return (
-    <Box component="header" id="header-del-inmueble" mb={3}>
-      <Grid container alignItems="center">
+    <Grid item xs={12} md={10}>
+      <Grid
+        container
+        alignItems="center"
+        component="header"
+        id="header-del-inmueble"
+      >
         <Grid item style={{ flex: 1 }}>
           <Typography variant="h4" component="h1" className={classes.title}>
             {RichText.asText(titulo)}
@@ -52,6 +57,6 @@ export function InmuebleHeader({ titulo, ubiaprox, precio }) {
           </Typography>
         </Grid>
       </Grid>
-    </Box>
+    </Grid>
   );
 }

@@ -1,9 +1,12 @@
 import { Gallery } from "@/components/Gallery";
-import { Box } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+
 export function InmuebleGallery({ imagenes }) {
   return (
-    <Box component="section" id="galeria-del-inmueble" mb={3}>
-      <Gallery imagenes={imagenes} />
-    </Box>
+    <Grid item xs={12} md={10}>
+      <section id="galeria-del-inmueble">
+        <Gallery imagenes={imagenes} />
+      </section>
+    </Grid>
   );
 }
