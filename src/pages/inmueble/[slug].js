@@ -1,6 +1,8 @@
 import { Layout } from "@/components";
 import { InmuebleGallery } from "@/layouts/inmueble-gallery";
 import { InmuebleHeader } from "@/layouts/inmueble-header";
+import { InmuebleOverview } from "@/layouts/inmueble-overview";
+import { InmuebleContact } from "@layouts/inmueble-contact";
 import {
   getAllInmueblesSlug,
   getInmueble,
@@ -49,11 +51,16 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
   const classes = useStyles();
 
   const inmuebleInfo = {
+    id: inmueble.id,
     precio: inmueble.precio,
     area: inmueble.area,
     habitaciones: inmueble.habitaciones,
     baños: inmueble.banos,
     estacionamientos: inmueble.estacionamientos,
+    descripcion: inmueble.descripcion,
+    // Prop momentanea, hay que añadirla en Prismic
+    tipo: "Apartamento",
+    antiguedad: "5 años",
   };
 
   // inmueblesSimilares = inmueblesSimilares.map(({ data, uid }) => {
@@ -74,61 +81,17 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
       titulo={RichText.asText(inmueble.titulo)}
       descripcion={inmueble.descCorta}
     >
-      <Container fixed maxWidth="lg">
+      <Container maxWidth="lg">
         <Box py={4}>
-          <Grid container justify="center">
-            <Grid item xs={12} md={10}>
-              <Box component="article">
-                <InmuebleHeader
-                  titulo={inmueble.titulo}
-                  ubiaprox={inmueble.ubiaprox}
-                  precio={inmueble.precio}
-                />
-                <InmuebleGallery imagenes={inmueble.imagenes} />
-                {/* <Grid item xs={12} lg={4} component="section">
-            <InmuebleInformation {...inmuebleInfo} agent={inmueble.agent} />
-          </Grid> */}
-                <Grid
-                  item
-                  xs={12}
-                  lg={8}
-                  component="section"
-                  id="descripcion-de-la-propiedad"
-                >
-                  <Typography
-                    variant="h6"
-                    component="h3"
-                    className={classes.description}
-                    gutterBottom
-                  >
-                    Descripción.
-                  </Typography>
-                  <div className={classes.html}>
-                    <RichText render={inmueble.descripcion} />
-                  </div>
-                </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  lg={4}
-                  component="section"
-                  id="descripcion-de-la-propiedad"
-                >
-                  <Paper elevation={0} variant="outlined">
-                    <Box p={2}>
-                      <Typography
-                        variant="h6"
-                        component="h3"
-                        className={classes.description}
-                        gutterBottom
-                      >
-                        Caracteristicas.
-                      </Typography>
-                    </Box>
-                  </Paper>
-                </Grid>
-              </Box>
-            </Grid>
+          <Grid container spacing={3} justify="center" component="article">
+            <InmuebleHeader
+              titulo={inmueble.titulo}
+              ubiaprox={inmueble.ubiaprox}
+              precio={inmueble.precio}
+            />
+            <InmuebleGallery imagenes={inmueble.imagenes} />
+            <InmuebleOverview {...inmuebleInfo} />
+            <InmuebleContact agent={inmueble.agent} />
           </Grid>
 
           {/* <div className={classes.masInmuebles}>
