@@ -91,7 +91,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
             />
             <InmuebleGallery imagenes={inmueble.imagenes} />
             <InmuebleOverview {...inmuebleInfo} />
-            <InmuebleContact inmuebleId={id} agent={inmueble.agent} />
+            <InmuebleContact inmuebleId={inmueble.id} agent={inmueble.agent} />
           </Grid>
 
           {/* <div className={classes.masInmuebles}>
