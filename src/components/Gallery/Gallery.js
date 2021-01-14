@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Grid, Hidden } from "@material-ui/core";
 import { Carousel } from "./Carousel";
 import { Thumbnail } from "./Thumbnail";
@@ -16,10 +16,6 @@ export function Gallery({ imagenes }) {
     let prevIndex = index === 0 ? imagenes.length - 1 : index - 1;
     handleChange(prevIndex);
   };
-
-  useEffect(() => {
-    console.log(index);
-  }, [index]);
 
   return (
     <Grid container spacing={2}>
