@@ -2,13 +2,13 @@ import { Layout } from "@/components";
 import { InmuebleGallery } from "@/layouts/inmueble-gallery";
 import { InmuebleHeader } from "@/layouts/inmueble-header";
 import { InmuebleOverview } from "@/layouts/inmueble-overview";
-import { InmuebleContact } from "@layouts/inmueble-contact";
 import {
   getAllInmueblesSlug,
   getInmueble,
   getInmueblesSimilares,
 } from "@/lib/api";
-import { Box, Container, Grid, Paper, Typography } from "@material-ui/core";
+import { InmuebleContact } from "@layouts/inmueble-contact";
+import { Box, Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { RichText } from "prismic-reactjs";
 
@@ -91,7 +91,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
             />
             <InmuebleGallery imagenes={inmueble.imagenes} />
             <InmuebleOverview {...inmuebleInfo} />
-            <InmuebleContact agent={inmueble.agent} />
+            <InmuebleContact inmuebleId={id} agent={inmueble.agent} />
           </Grid>
 
           {/* <div className={classes.masInmuebles}>
