@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 
 export function InmuebleSimilares({ inmueblesSimilares }) {
   const classes = useStyles();
-  console.log(inmueblesSimilares);
 
   const results = inmueblesSimilares.map(({ data, uid }, index) => {
     let props = {
@@ -38,8 +37,8 @@ export function InmuebleSimilares({ inmueblesSimilares }) {
         {<InmuebleItem {...props} />}
       </Grid>
     ) : (
-      <Hidden mdUp>
-        <Grid key={uid} item xs={12} sm={6} md={4}>
+      <Hidden mdUp key={uid}>
+        <Grid item xs={12} sm={6} md={4}>
           {<InmuebleItem {...props} />}
         </Grid>
       </Hidden>
