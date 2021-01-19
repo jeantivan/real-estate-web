@@ -112,16 +112,6 @@ export function InmuebleItem({
               {area} m<sup>2</sup> | {habitaciones} habitaciones
             </Typography>
           </CardContent>
-          <div className={classes.footer}>
-            <Avatar
-              className={classes.avatar}
-              alt={agent.name}
-              src={agent.picture.avatar.url}
-            />
-            <Typography variant="body2" color="textSecondary">
-              {agent.name}
-            </Typography>
-          </div>
         </Card>
       </a>
     </NextLink>
