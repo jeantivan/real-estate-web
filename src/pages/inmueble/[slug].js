@@ -1,13 +1,14 @@
 import { Layout } from "@/components";
+import { InmuebleContact } from "@/layouts/inmueble-contact";
 import { InmuebleGallery } from "@/layouts/inmueble-gallery";
 import { InmuebleHeader } from "@/layouts/inmueble-header";
 import { InmuebleOverview } from "@/layouts/inmueble-overview";
+import { InmuebleSimilares } from "@/layouts/inmueble-similares";
 import {
   getAllInmueblesSlug,
   getInmueble,
   getInmueblesSimilares,
 } from "@/lib/api";
-import { InmuebleContact } from "@layouts/inmueble-contact";
 import { Box, Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { RichText } from "prismic-reactjs";
@@ -63,19 +64,6 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
     antiguedad: "5 años",
   };
 
-  // inmueblesSimilares = inmueblesSimilares.map(({ data, uid }) => {
-  //   return {
-  //     slug: uid,
-  //     area: data.area,
-  //     titulo: data.titulo[0],
-  //     mainImg: data.mainimg,
-  //     precio: data.precio,
-  //     estado: data.estado,
-  //     ubiAprox: data.ubiaprox,
-  //     habitaciones: data.habitaciones,
-  //   };
-  // });
-
   return (
     <Layout
       titulo={RichText.asText(inmueble.titulo)}
@@ -92,22 +80,8 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
             <InmuebleGallery imagenes={inmueble.imagenes} />
             <InmuebleOverview {...inmuebleInfo} />
             <InmuebleContact inmuebleId={inmueble.id} agent={inmueble.agent} />
+            <InmuebleSimilares inmueblesSimilares={inmueblesSimilares} />
           </Grid>
-
-          {/* <div className={classes.masInmuebles}>
-            <Grid container justify="space-between" spacing={3}>
-              <Grid item>
-                <Typography variant="h6">Más Inmuebles.</Typography>
-              </Grid>
-              <Grid item>
-                <NextLink href="/inmuebles" passHref>
-                  <Link color="primary" underline="hover">
-                    Ver todos
-                  </Link>
-                </NextLink>
-              </Grid>
-            </Grid>
-          </div> */}
         </Box>
       </Container>
     </Layout>
