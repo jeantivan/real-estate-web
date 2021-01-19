@@ -72,7 +72,7 @@ export async function getInmueble(slug) {
 
 // Obtiene los inmuebles con contenido similar a otro inmueble
 export async function getInmueblesSimilares(id) {
-  const { results } = await Client.query(similar(id, 10), { pageSize: 3 });
+  const { results } = await Client.query(similar(id, 10), { pageSize: 4 });
   return results;
 }
 
