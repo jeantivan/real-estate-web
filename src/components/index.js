@@ -10,3 +10,4 @@ export { Filters } from "./Filters";
 export { Service } from "./Service";
 export { Testimonials } from "./Testimonials";
 export { InmuebleItem, InmuebleInformation } from "./Inmueble";
+export { FAQ } from "./FAQ";
