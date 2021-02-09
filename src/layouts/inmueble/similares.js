@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function InmuebleSimilares({ inmueblesSimilares }) {
+export function SimilaresSection({ inmueblesSimilares }) {
   const classes = useStyles();
 
   const results = inmueblesSimilares.map(({ data, uid }, index) => {

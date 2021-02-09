@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function InmuebleHeader({ titulo, ubiaprox, precio }) {
+export function HeaderSection({ titulo, ubiaprox, precio }) {
   const classes = useStyles();
   return (
     <Grid item xs={12} md={10}>

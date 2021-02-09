@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function InmuebleContact({ inmuebleId, agent }) {
+export function ContactSection({ inmuebleId, agent }) {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function InmuebleOverview({
+export function OverviewSection({
   id,
   tipo,
   area,
