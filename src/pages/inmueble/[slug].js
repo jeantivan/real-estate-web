@@ -1,9 +1,9 @@
 import { Layout } from "@/components";
-import { InmuebleContact } from "@/layouts/inmueble-contact";
-import { InmuebleGallery } from "@/layouts/inmueble-gallery";
-import { InmuebleHeader } from "@/layouts/inmueble-header";
-import { InmuebleOverview } from "@/layouts/inmueble-overview";
-import { InmuebleSimilares } from "@/layouts/inmueble-similares";
+import { ContactSection } from "@/layouts/inmueble/contact";
+import { GallerySection } from "@/layouts/inmueble/gallery";
+import { HeaderSection } from "@/layouts/inmueble/header";
+import { OverviewSection } from "@/layouts/inmueble/overview";
+import { SimilaresSection } from "@/layouts/inmueble/similares";
 import {
   getAllInmueblesSlug,
   getInmueble,
@@ -72,15 +72,15 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
       <Container maxWidth="lg">
         <Box py={4}>
           <Grid container spacing={3} justify="center" component="article">
-            <InmuebleHeader
+            <HeaderSection
               titulo={inmueble.titulo}
               ubiaprox={inmueble.ubiaprox}
               precio={inmueble.precio}
             />
-            <InmuebleGallery imagenes={inmueble.imagenes} />
-            <InmuebleOverview {...inmuebleInfo} />
-            <InmuebleContact inmuebleId={inmueble.id} agent={inmueble.agent} />
-            <InmuebleSimilares inmueblesSimilares={inmueblesSimilares} />
+            <GallerySection imagenes={inmueble.imagenes} />
+            <OverviewSection {...inmuebleInfo} />
+            <ContactSection inmuebleId={inmueble.id} agent={inmueble.agent} />
+            <SimilaresSection inmueblesSimilares={inmueblesSimilares} />
           </Grid>
         </Box>
       </Container>
