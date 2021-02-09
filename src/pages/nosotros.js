@@ -5,6 +5,8 @@ import { Button, Container, Grid, Typography } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import NextLink from "next/link";
 
+import { NosotrosFAQS } from "@/layouts/nosotros/faqs";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: "10vmax",
@@ -68,14 +70,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   testimonialsSection: {
-    position: "relative",
-    top: -20,
-    [theme.breakpoints.up("sm")]: {
-      top: -80,
-    },
-    [theme.breakpoints.up("md")]: {
-      top: -120,
-    },
+    // position: "relative",
+    // top: -20,
+    // [theme.breakpoints.up("sm")]: {
+    //   top: -80,
+    // },
+    // [theme.breakpoints.up("md")]: {
+    //   top: -120,
+    // },
+    maginBottom: theme.spacing(8),
   },
 }));
 
@@ -215,6 +218,7 @@ export default function Servicios({ results: agents }) {
         </Container>
         <Testimonials />
       </section>
+      <NosotrosFAQS />
     </Layout>
   );
 }
