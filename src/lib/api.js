@@ -1,4 +1,4 @@
-import { PrismicClient } from "@/prismic-config";
+import { PrismicClient } from "@/utils/prismic-config";
 import Prismic from "prismic-javascript";
 
 const Client = PrismicClient();

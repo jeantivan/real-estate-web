@@ -5,7 +5,7 @@ import Router from "next/router";
 // Material-UI config
 import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline, IconButton } from "@material-ui/core/";
-import theme from "@/theme";
+import theme from "@/utils/theme";
 
 // Nprogress config
 import NProgress from "nprogress";
