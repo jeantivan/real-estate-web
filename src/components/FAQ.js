@@ -6,9 +6,9 @@ import {
 } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 
-export function FAQ({ answer, question, id }) {
+export function FAQ({ answer, question, id, ...props }) {
   return (
-    <Accordion>
+    <Accordion {...props}>
       <AccordionSummary expandIcon={<ExpandMore />} aria-controls={id} id={id}>
         <Typography variant="h6">{question}</Typography>
       </AccordionSummary>
