@@ -5,7 +5,8 @@ import { Button, Container, Grid, Typography } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import NextLink from "next/link";
 
-import { NosotrosFAQS } from "@/layouts/nosotros/faqs";
+import { FAQSSection } from "@/layouts/nosotros/faqs";
+import { TestimonialsSection } from "@/layouts/nosotros/testimonials";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -84,9 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Servicios({ results: agents }) {
   const classes = useStyles();
-  const [index, setIndex] = React.useState(0);
 
-  const handleChange = (index) => setIndex(index);
   return (
     <Layout
       titulo="Servicios"
@@ -206,7 +205,7 @@ export default function Servicios({ results: agents }) {
           ></path>
         </svg>
       </div>
-      <section id="testimonials" className={classes.testimonialsSection}>
+      {/* <section id="testimonials" className={classes.testimonialsSection}>
         <Container className={classes.container}>
           <Typography
             component="h2"
@@ -217,8 +216,10 @@ export default function Servicios({ results: agents }) {
           </Typography>
         </Container>
         <Testimonials />
-      </section>
-      <NosotrosFAQS />
+      </section> */}
+      <TestimonialsSection />
+
+      <FAQSSection />
     </Layout>
   );
 }
