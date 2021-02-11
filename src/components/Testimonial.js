@@ -6,19 +6,19 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 1280,
     width: "100%",
     margin: "0 auto",
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(3),
     [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(5, 2),
+      padding: theme.spacing(5),
     },
     [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(7, 2),
+      padding: theme.spacing(7),
     },
   },
   client: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: theme.spacing(2, 0),
+    marginTop: theme.spacing(3),
   },
   clientPicture: {
     width: 56,
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
   },
   clientType: {
-    ...theme.typography.body2,
+    ...theme.typography.subtitle2,
     textTransform: "uppercase",
     lineHeight: 1,
   },
@@ -50,7 +50,7 @@ export function Testimonial({ client, type, picture, text }) {
       <div className={classes.client}>
         <Avatar className={classes.clientPicture} src={picture} />
         <div className={classes.clientInfo}>
-          <Typography className={classes.clientName} variant="h5">
+          <Typography className={classes.clientName} variant="h6" component="p">
             {client}
           </Typography>
           <Typography
