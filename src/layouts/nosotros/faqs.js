@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function NosotrosFAQS() {
+export function FAQSSection() {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
