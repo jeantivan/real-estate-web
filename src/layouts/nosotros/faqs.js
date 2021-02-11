@@ -8,10 +8,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
     backgroundImage:
-      "linear-gradient(175deg, #fafafa 0%, #fafafa 45%, #0D47A1 45%, #24324A 60%)",
+      "linear-gradient(175deg, #fafafa 0%, #fafafa 45%, #0D47A1 45%, #24324A 75%)",
     backgroundPosition: "bottom",
     backgroundRepeat: "no-repeat",
-    position: "relative",
+    marginTop: theme.spacing(4),
   },
   container: {
     paddingTop: theme.spacing(4),
