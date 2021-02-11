@@ -11,11 +11,10 @@ const useStyles = makeStyles((theme) => ({
       "linear-gradient(175deg, #fafafa 0%, #fafafa 45%, #0D47A1 45%, #24324A 75%)",
     backgroundPosition: "bottom",
     backgroundRepeat: "no-repeat",
-    marginTop: theme.spacing(4),
   },
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(6),
   },
   heading: {
     marginBottom: theme.spacing(3),
