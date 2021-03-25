@@ -55,6 +55,7 @@ export function FAQSSection() {
               const id = `faq-${index + 1}`;
               return (
                 <FAQ
+                  key={id}
                   expanded={expanded === id}
                   onChange={handleChange(id)}
                   id={id}
