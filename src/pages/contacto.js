@@ -6,9 +6,9 @@ import { Facebook, Instagram, Twitter, YouTube } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(4, 2),
-    [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(6, 2),
-    },
+    // [theme.breakpoints.up("sm")]: {
+    //   padding: theme.spacing(4, 2),
+    // },
   },
   bgLight: {
     backgroundColor: "#fafafa",
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     textTransform: "uppercase",
     letterSpacing: 2,
-    marginBottom: theme.spacing(2),
   },
   rsHeading: {
     ...theme.typography.h5,
@@ -99,9 +98,9 @@ export default function Contacto() {
           align="center"
           className={classes.mainHeading}
         >
-          Contacto
+          Encontrarnos es fácil
         </Typography>
-        <Typography
+        {/* <Typography
           component="div"
           align="center"
           className={classes.phoneNumber}
@@ -111,14 +110,14 @@ export default function Contacto() {
         </Typography>
         <Typography component="div" align="center">
           Centro Sambil Caracas, Av. Libertador, Caracas 1064.
-        </Typography>
+        </Typography> */}
       </Container>
 
       <section id="map" className={classes.mapWrapper}>
         <div className={classes.map}>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.140889860604!2d-66.85656248588566!3d10.489557867293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a5855bdf90331%3A0x12e82a3cb3dbb29d!2sCentro%20Sambil%20Caracas!5e0!3m2!1ses!2sve!4v1595628584738!5m2!1ses!2sve"
-            frameborder="0"
+            frameBorder="0"
             allowFullScreen
             aria-hidden="false"
             tabIndex="0"
