@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 export function RRSS(props) {
   const classes = useStyles(props);
   return (
-    <Grid container justify="flex-end">
+    <Grid container justifyContent="flex-end">
       <Grid item>
         <IconButton
           color="primary"

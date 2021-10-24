@@ -98,7 +98,7 @@ export default function Inmuebles({ data }) {
       <Container>
         <Grid
           container
-          justify="space-between"
+          justifyContent="space-between"
           alignItems="flex-end"
           className={classes.title}
         >
@@ -153,7 +153,7 @@ export default function Inmuebles({ data }) {
           )}
         </Grid>
         {results.length >= 1 && (
-          <Grid container justify="center" className={classes.pagination}>
+          <Grid container justifyContent="center" className={classes.pagination}>
             <Pagination
               page={page}
               totPages={total_pages}

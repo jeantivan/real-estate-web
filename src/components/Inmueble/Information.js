@@ -134,7 +134,7 @@ export function InmuebleInformation({
         <Grid
           container
           spacing={2}
-          justify="space-between"
+          justifyContent="space-between"
           alignItems="flex-end"
         >
           <Grid item xs={6} className={classes.item}>

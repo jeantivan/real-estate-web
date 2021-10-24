@@ -138,7 +138,7 @@ export default function Servicios({ results: agents }) {
           >
             Servicios que prestamos
           </Typography>
-          <Grid container spacing={3} justify="center">
+          <Grid container spacing={3} justifyContent="center">
             <Grid item xs={12} md={6} lg={4}>
               <Service
                 icon={<RealEstate />}

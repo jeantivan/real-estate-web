@@ -46,7 +46,7 @@ export function FAQSSection() {
   return (
     <section component="section" id="faqs-section" className={classes.root}>
       <Container className={classes.container}>
-        <Grid container spacing={4} justify="center">
+        <Grid container spacing={4} justifyContent="center">
           <Grid item xs={12} md={10}>
             <Typography variant="h4">Preguntas Frecuentes</Typography>
           </Grid>

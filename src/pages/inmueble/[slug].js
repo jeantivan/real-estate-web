@@ -71,7 +71,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
     >
       <Container maxWidth="lg">
         <Box py={4}>
-          <Grid container spacing={3} justify="center" component="article">
+          <Grid container spacing={3} justifyContent="center" component="article">
             <HeaderSection
               titulo={inmueble.titulo}
               ubiaprox={inmueble.ubiaprox}

@@ -137,7 +137,7 @@ export function Footer() {
   return (
     <footer className={classes.root}>
       <Container className={classes.container}>
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           <Grid
             item
             xs={12}

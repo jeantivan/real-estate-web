@@ -43,7 +43,7 @@ export function OverviewSection({
     <Grid item xs={12} md={7}>
       <Paper elevation={0} className={classes.section}>
         <Box component="section" id="caracteristicas-del-inmueble" mb={3}>
-          <Grid container justify="space-between" alignItems="baseline">
+          <Grid container justifyContent="space-between" alignItems="baseline">
             <Grid item>
               <Typography component="h3" className={classes.sectionTitle}>
                 Caracteristicas.

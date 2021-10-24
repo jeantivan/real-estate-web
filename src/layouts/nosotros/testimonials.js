@@ -64,7 +64,7 @@ export function TestimonialsSection() {
       id="testimonial-section"
       className={classes.root}
     >
-      <Grid container justify="center" spacing={4}>
+      <Grid container justifyContent="center" spacing={4}>
         <Grid item xs={12} md={10}>
           <Typography component="h2" align="center" variant="h4" gutterBottom>
             Clientes felices

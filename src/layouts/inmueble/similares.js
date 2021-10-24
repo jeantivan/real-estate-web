@@ -57,7 +57,7 @@ export function SimilaresSection({ inmueblesSimilares }) {
             </Link>
           </Grid>
         </Grid>
-        <Grid container spacing={2} justify="space-between">
+        <Grid container spacing={2} justifyContent="space-between">
           {results}
         </Grid>
       </section>

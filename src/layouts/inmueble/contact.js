@@ -80,7 +80,7 @@ export function ContactSection({ inmuebleId, agent }) {
             xs={8}
             container
             direction="column"
-            justify="space-between"
+            justifyContent="space-between"
             wrap="nowrap"
           >
             <Grid item>

@@ -130,7 +130,7 @@ export default function Contacto() {
           <Grid
             container
             spacing={2}
-            justify="center"
+            justifyContent="center"
             className={classes.rsContent}
           >
             <Grid item>
