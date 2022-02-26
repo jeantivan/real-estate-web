@@ -11,7 +11,8 @@ import {
 } from "@/lib/api";
 import { Box, Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { RichText } from "prismic-reactjs";
+import { PrismicText } from "@prismicio/react";
+import {asText} from '@prismicio/helpers'
 
 const useStyles = makeStyles((theme) => ({
   gallery: {
@@ -66,7 +67,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
 
   return (
     <Layout
-      titulo={RichText.asText(inmueble.titulo)}
+      titulo={asText(inmueble.titulo)}
       descripcion={inmueble.descCorta}
     >
       <Container maxWidth="lg">
