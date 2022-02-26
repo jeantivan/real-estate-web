@@ -1,5 +1,5 @@
-import { Grid, Button, Typography, Hidden } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Button, Typography, Hidden } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import Link from "next/link";
 
 import { InmuebleItem } from "@/components";

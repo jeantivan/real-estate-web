@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { makeStyles, fade } from "@material-ui/core";
-import { Button, Divider, Grid, Typography } from "@material-ui/core";
+import { alpha } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import { Button, Divider, Grid, Typography } from "@mui/material";
 
 //import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     margin: theme.spacing(2, 0),
-    backgroundColor: fade(theme.palette.primary.light, 0.2),
+    backgroundColor: alpha(theme.palette.primary.light, 0.2),
   },
   location: {
     display: "inline-flex",

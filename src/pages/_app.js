@@ -4,8 +4,8 @@ import Router from "next/router";
 import React from "react"
 
 // Material-UI config
-import { ThemeProvider } from "@material-ui/core/styles";
-import { CssBaseline, IconButton } from "@material-ui/core/";
+import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import { CssBaseline, IconButton } from "@mui/material/";
 import theme from "@/utils/theme";
 
 // Nprogress config
@@ -17,7 +17,7 @@ Router.events.on("routeChangeError", () => NProgress.done());
 
 // Notistack
 import { SnackbarProvider } from "notistack";
-import { Close } from "@material-ui/icons";
+import { Close } from "@mui/icons-material";
 
 // Layout
 import { Navbar, Footer } from "@/components";
@@ -48,28 +48,30 @@ export default function MyApp(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <SnackbarProvider
-          ref={notistackRef}
-          action={(key) => (
-            <IconButton
-              disableRipple
-              size="small"
-              style={{ color: "white" }}
-              aria-label="Cerrar"
-              onClick={onClickDismiss(key)}
-            >
-              <Close />
-            </IconButton>
-          )}
-        >
-          <CssBaseline />
-          <Navbar />
-          <Component {...pageProps} />
-          <Footer />
-        </SnackbarProvider>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <SnackbarProvider
+            ref={notistackRef}
+            action={(key) => (
+              <IconButton
+                disableRipple
+                size="small"
+                style={{ color: "white" }}
+                aria-label="Cerrar"
+                onClick={onClickDismiss(key)}
+              >
+                <Close />
+              </IconButton>
+            )}
+          >
+            <CssBaseline />
+            <Navbar />
+            <Component {...pageProps} />
+            <Footer />
+          </SnackbarProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
 
       {/* Nprogress Styles and Grid Layout */}
       <style jsx global>

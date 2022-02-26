@@ -1,7 +1,7 @@
 import { ContactForm, Layout } from "@/components";
-import { Container, Grid, IconButton, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { Facebook, Instagram, Twitter, YouTube } from "@material-ui/icons";
+import { Container, Grid, IconButton, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import { Facebook, Instagram, Twitter, YouTube } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -138,7 +138,7 @@ export default function Contacto() {
                 className={classes.icon}
                 disableRipple
                 aria-label="Cuenta de instagram"
-              >
+                size="large">
                 <Instagram fontSize="large" />
               </IconButton>
             </Grid>
@@ -147,7 +147,7 @@ export default function Contacto() {
                 className={classes.icon}
                 disableRipple
                 aria-label="Cuenta de facebook"
-              >
+                size="large">
                 <Facebook fontSize="large" />
               </IconButton>
             </Grid>
@@ -156,7 +156,7 @@ export default function Contacto() {
                 className={classes.icon}
                 disableRipple
                 aria-label="Cuenta de twitter"
-              >
+                size="large">
                 <Twitter fontSize="large" />
               </IconButton>
             </Grid>
@@ -165,7 +165,7 @@ export default function Contacto() {
                 className={classes.icon}
                 disableRipple
                 aria-label="Canal de youtube"
-              >
+                size="large">
                 <YouTube fontSize="large" />
               </IconButton>
             </Grid>

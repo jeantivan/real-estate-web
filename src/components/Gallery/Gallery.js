@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grid, Hidden } from "@material-ui/core";
+import { Grid, Hidden } from "@mui/material";
 import { Carousel } from "./Carousel";
 import { Thumbnail } from "./Thumbnail";
 
@@ -24,7 +24,7 @@ export function Gallery({ imagenes }) {
           {...{ imagenes, index, handleChange, handleNext, handlePrev }}
         />
       </Grid>
-      <Hidden xsDown>
+      <Hidden smDown>
         {imagenes.map(({ imagen }, i) => (
           <Grid
             item

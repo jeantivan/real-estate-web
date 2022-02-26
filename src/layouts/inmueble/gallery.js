@@ -1,5 +1,5 @@
 import { Gallery } from "@/components/Gallery";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 
 export function GallerySection({ imagenes }) {
   return (

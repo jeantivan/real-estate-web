@@ -1,11 +1,11 @@
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import {
   Link,
   Grid,
   Container,
   Typography,
   IconButton,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
   Copyright,
   Instagram,
@@ -17,7 +17,7 @@ import {
   Mail,
   YouTube,
   Twitter,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
 import NextLink from "next/link";
 
@@ -238,28 +238,28 @@ export function Footer() {
                 edge="start"
                 disableRipple
                 aria-label="Cuenta de instagram"
-              >
+                size="large">
                 <Instagram />
               </IconButton>
               <IconButton
                 className={classes.social}
                 disableRipple
                 aria-label="Cuenta de facebook"
-              >
+                size="large">
                 <Facebook />
               </IconButton>
               <IconButton
                 className={classes.social}
                 disableRipple
                 aria-label="Cuenta de twitter"
-              >
+                size="large">
                 <Twitter />
               </IconButton>
               <IconButton
                 className={classes.social}
                 disableRipple
                 aria-label="Canal de youtube"
-              >
+                size="large">
                 <YouTube />
               </IconButton>
             </div>

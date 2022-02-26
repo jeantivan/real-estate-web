@@ -1,7 +1,7 @@
 import { Testimonial } from "./Testimonial";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from "clsx";
 import { testimonials } from "@/utils/testimonials";
 

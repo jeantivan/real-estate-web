@@ -1,5 +1,5 @@
 import { Layout } from "@/components";
-import { Container, Typography } from "@material-ui/core/";
+import { Container, Typography } from "@mui/material/";
 
 export default function Home() {
   return (

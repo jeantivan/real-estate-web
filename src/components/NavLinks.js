@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import Link from "@material-ui/core/Link";
+import Link from "@mui/material/Link";
 import clsx from "clsx";
 
 const NavLink = ({ children, href, className }) => {

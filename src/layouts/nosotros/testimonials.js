@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Container, Typography } from "@material-ui/core";
+import makeStyles from '@mui/styles/makeStyles';
+import { Grid, Container, Typography } from "@mui/material";
 
 import { Testimonials, Testimonial } from "@/components/";
 import { testimonials } from "@/utils/testimonials";

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { List, ListItem, ListItemText, Link } from "@material-ui/core";
+import { List, ListItem, ListItemText, Link } from "@mui/material";
 
 const DrawerLink = ({
   children,

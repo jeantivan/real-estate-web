@@ -6,9 +6,9 @@ import {
   Divider,
   IconButton,
   Typography,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { Close, Mail, Phone } from "@material-ui/icons";
+} from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import { Close, Mail, Phone } from "@mui/icons-material";
 import { Form, Formik } from "formik";
 import { object, string } from "yup";
 import { Input } from "../Input";
@@ -103,7 +103,7 @@ export function Contact({ open, handleClose, agent }) {
           <IconButton
             aria-label="Cerrar información"
             onClick={() => handleClose(null)}
-          >
+            size="large">
             <Close />
           </IconButton>
         </div>

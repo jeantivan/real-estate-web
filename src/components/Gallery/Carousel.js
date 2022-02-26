@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import SwipeableViews from "react-swipeable-views";
 
 import Image from "next/image";

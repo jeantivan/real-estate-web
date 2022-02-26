@@ -1,6 +1,6 @@
-import Fab from "@material-ui/core/Fab";
-import { makeStyles } from "@material-ui/core/styles";
-import { ChevronRight, ChevronLeft } from "@material-ui/icons";
+import Fab from "@mui/material/Fab";
+import makeStyles from '@mui/styles/makeStyles';
+import { ChevronRight, ChevronLeft } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   btn: {

@@ -1,6 +1,6 @@
-import { Button, Paper, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { Mail, PhoneAndroid } from "@material-ui/icons";
+import { Button, Paper, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import { Mail, PhoneAndroid } from "@mui/icons-material";
 import Image from "next/image";
 import NextLink from "next/link";
 

@@ -1,6 +1,6 @@
-import { Box, Grid, Typography } from "@material-ui/core";
-import { LocationOn } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core/styles";
+import { Box, Grid, Typography } from "@mui/material";
+import { LocationOn } from "@mui/icons-material";
+import makeStyles from '@mui/styles/makeStyles';
 import { PrismicRichText } from "@prismicio/react";
 import {asText} from '@prismicio/helpers'
 

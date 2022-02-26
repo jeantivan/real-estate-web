@@ -6,9 +6,10 @@ import {
   Hidden,
   IconButton,
   Toolbar,
-} from "@material-ui/core";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import { Menu } from "@material-ui/icons";
+} from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import { Menu } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { DrawerLinks } from "./DrawerLinks";
@@ -157,7 +158,7 @@ export function Navbar() {
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer}
-            >
+              size="large">
               <Menu />
             </IconButton>
           </Hidden>
@@ -178,7 +179,7 @@ export function Navbar() {
                 color="inherit"
                 aria-label="menu"
                 onClick={toggleDrawer}
-              >
+                size="large">
                 <Menu />
               </IconButton>
               <Logo type="navbar" />
@@ -199,7 +200,7 @@ export function Navbar() {
             </div>
           </Drawer>
         </Hidden>
-        <Hidden smDown>
+        <Hidden mdDown>
           <NavLinks
             classes={{
               link: classes.link,

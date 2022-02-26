@@ -1,7 +1,7 @@
 import { FAQ } from "@/components/";
 import { faqs } from "@/utils/faqs";
-import { Container, Grid, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Container, Grid, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({

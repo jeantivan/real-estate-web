@@ -1,14 +1,14 @@
-import { createTheme, responsiveFontSizes } from "@material-ui/core/styles";
-import blue from "@material-ui/core/colors/blue";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import {blue} from "@mui/material/colors";
 const theme = createTheme({
   palette: {
     primary: blue,
     secondary: {
       main: "#FA4400",
     },
-/*     background: {
-      default: "#fff",
-    }, */
+  background: {
+      default: "#fafafa",
+  },
   },
   typography: {
     fontFamily: [

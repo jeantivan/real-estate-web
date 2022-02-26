@@ -1,7 +1,7 @@
-import { IconButton, TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { IconButton, TextField } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { useSnackbar } from "notistack";
-import { ChevronRight } from "@material-ui/icons";
+import { ChevronRight } from "@mui/icons-material";
 import React from "react"
 
 const useStyles = makeStyles((theme) => ({
@@ -84,7 +84,7 @@ export function Newsletter() {
         type="submit"
         className={classes.button}
         aria-label="subscribirse"
-      >
+        size="large">
         <ChevronRight fontSize="large" />
       </IconButton>
     </form>

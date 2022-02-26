@@ -1,7 +1,7 @@
 import { Input } from "@/components/Input";
-import { Typography, Grid, Paper, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { WhatsApp } from "@material-ui/icons";
+import { Typography, Grid, Paper, Button } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import { WhatsApp } from "@mui/icons-material";
 //import { Image } from "next/image";
 import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";

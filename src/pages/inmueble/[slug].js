@@ -9,8 +9,8 @@ import {
   getInmueble,
   getInmueblesSimilares,
 } from "@/lib/api";
-import { Box, Container, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Box, Container, Grid } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { PrismicText } from "@prismicio/react";
 import {asText} from '@prismicio/helpers'
 

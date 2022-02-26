@@ -1,6 +1,6 @@
-import { IconButton, Grid } from "@material-ui/core/";
-import { makeStyles } from "@material-ui/core/styles";
-import { Instagram, WhatsApp } from "@material-ui/icons";
+import { IconButton, Grid } from "@mui/material/";
+import makeStyles from '@mui/styles/makeStyles';
+import { Instagram, WhatsApp } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -30,7 +30,7 @@ export function RRSS(props) {
           className={classes.icon}
           disableRipple
           aria-label="Cuenta de instagram"
-        >
+          size="large">
           <Instagram />
         </IconButton>
       </Grid>
@@ -40,7 +40,7 @@ export function RRSS(props) {
           className={classes.icon}
           disableRipple
           aria-label="Contacto por Whatsapp"
-        >
+          size="large">
           <WhatsApp />
         </IconButton>
       </Grid>

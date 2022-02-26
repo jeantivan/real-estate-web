@@ -1,5 +1,5 @@
 import theme from "@/utils/theme";
-import { ServerStyleSheets } from "@material-ui/core/styles";
+import ServerStyleSheets from '@mui/styles/ServerStyleSheets';
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import React from "react";
 export default class MyDocument extends Document {

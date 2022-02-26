@@ -1,4 +1,4 @@
-import Pagination from "@material-ui/lab/Pagination";
+import Pagination from '@mui/material/Pagination';
 
 export function MyPagination({ page, handleChange, totPages }) {
   return (

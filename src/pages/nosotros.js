@@ -1,8 +1,8 @@
 import { Agent, Layout, Service, Testimonials } from "@/components";
 import { FindHouse, Goals, Market, RealEstate, Rent } from "@/icons";
 import { getAllAgents } from "@/lib/api";
-import { Button, Container, Grid, Typography } from "@material-ui/core/";
-import { makeStyles } from "@material-ui/core/styles";
+import { Button, Container, Grid, Typography } from "@mui/material/";
+import makeStyles from '@mui/styles/makeStyles';
 import NextLink from "next/link";
 
 import { FAQSSection } from "@/layouts/nosotros/faqs";

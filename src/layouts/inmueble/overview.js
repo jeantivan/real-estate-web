@@ -1,5 +1,5 @@
-import { Paper, Divider, Typography, Grid, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Paper, Divider, Typography, Grid, Box } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { PrismicRichText } from "@prismicio/react";
 
 const useStyles = makeStyles((theme) => ({

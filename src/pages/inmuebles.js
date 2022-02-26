@@ -1,6 +1,6 @@
 import { InmuebleItem, Layout, Pagination } from "@/components";
 import { getAllInmuebles } from "@/lib/api";
-import { makeStyles } from "@material-ui/core";
+import makeStyles from '@mui/styles/makeStyles';
 import {
   Button,
   Collapse,
@@ -9,8 +9,8 @@ import {
   Grid,
   Link,
   Typography,
-} from "@material-ui/core";
-import { Sort } from "@material-ui/icons";
+} from "@mui/material";
+import { Sort } from "@mui/icons-material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
