@@ -1,7 +1,8 @@
 import { Box, Grid, Typography } from "@material-ui/core";
 import { LocationOn } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import { RichText } from "prismic-reactjs";
+import { PrismicRichText } from "@prismicio/react";
+import {asText} from '@prismicio/helpers'
 
 const useStyles = makeStyles((theme) => ({
   precio: {
@@ -36,7 +37,7 @@ export function HeaderSection({ titulo, ubiaprox, precio }) {
       >
         <Grid item style={{ flex: 1 }}>
           <Typography variant="h4" component="h1" className={classes.title}>
-            {RichText.asText(titulo)}
+            {asText(titulo)}
           </Typography>
           <Typography
             className={classes.location}

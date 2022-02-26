@@ -1,6 +1,6 @@
 import { Paper, Divider, Typography, Grid, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { RichText } from "prismic-reactjs";
+import { PrismicRichText } from "@prismicio/react";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -114,7 +114,7 @@ export function OverviewSection({
             Descripción.
           </Typography>
           <div className={classes.description}>
-            <RichText render={descripcion} />
+            <PrismicRichText field={descripcion} />
           </div>
         </Box>
       </Paper>
