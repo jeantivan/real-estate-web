@@ -13,6 +13,7 @@ import {
 import { Sort } from "@material-ui/icons";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -30,7 +31,7 @@ export default function Inmuebles({ data }) {
   const classes = useStyles();
   const router = useRouter();
 
-  const [showFilters, setShowFilters] = React.useState(false);
+  const [showFilters, setShowFilters] = useState(false);
 
   const handleToggle = () => {
     setShowFilters(!showFilters);

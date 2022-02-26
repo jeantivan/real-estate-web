@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Head from "next/head";
 import Router from "next/router";
+import React from "react"
 
 // Material-UI config
 import { ThemeProvider } from "@material-ui/core/styles";
