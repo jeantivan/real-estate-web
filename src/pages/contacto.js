@@ -1,17 +1,25 @@
 import { ContactForm, Layout } from "@/components";
 import { Container, Grid, IconButton, Typography } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { Facebook, Instagram, Twitter, YouTube } from "@mui/icons-material";
+import { UbicacionSection } from "@/layouts/contacto/ubicacion";
+import { RedesSection } from "@/layouts/contacto/Redes";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: theme.spacing(4, 2),
+    padding: theme.spacing(2),
     // [theme.breakpoints.up("sm")]: {
     //   padding: theme.spacing(4, 2),
     // },
   },
-  bgLight: {
-    backgroundColor: "#fafafa",
+  titleContainer: {
+    paddingTop: theme.spacing(2),
+  },
+  title: {
+    ...theme.typography.body1,
+
+    fontWeight: 800,
+    textTransform: "uppercase",
   },
   bgDark: {
     backgroundColor: "#000",
@@ -23,13 +31,6 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "uppercase",
     letterSpacing: 2,
   },
-  rsHeading: {
-    ...theme.typography.h5,
-    fontWeight: "bold",
-    textAlign: "center",
-    margin: 0,
-    marginBottom: theme.spacing(2),
-  },
   contactHeading: {
     ...theme.typography.h2,
     textAlign: "center",
@@ -39,38 +40,6 @@ const useStyles = makeStyles((theme) => ({
   phoneNumber: {
     ...theme.typography.h3,
     fontWeight: "bold",
-  },
-  mapWrapper: {
-    width: "100%",
-    height: 0,
-    paddingTop: "calc(9 / 21 * 100%)",
-    position: "relative",
-  },
-  map: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: theme.palette.grey[500],
-    "& > iframe": {
-      width: "100%",
-      height: "100%",
-    },
-  },
-  icon: {
-    color: theme.palette.text.secondary,
-    transition: theme.transitions.create(["color", "transform"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-
-    "&:hover": {
-      transform: "scale(1.1)",
-      color: theme.palette.primary.main,
-    },
   },
   info: {
     backgroundColor: "white",
@@ -92,86 +61,13 @@ export default function Contacto() {
       titulo="Contacto"
       descripcion="Praesent euismod massa quis iaculis feugiat. Aliquam in pellentesque purus. Cras sit amet risus ut dui accumsan blandit non pellentesque augue. Mauris nisi quam, venenatis nec rutrum sit amet, accumsan sed dolor. Fusce lobortis, erat quis mollis vulputate, lacus tellus venenatis sem, non tempor nisi quam et nisl. Vivamus sollicitudin, nisi a mollis consequat, sapien sem placerat nibh, at convallis nunc tortor in nisl. Praesent lorem sem, malesuada nec sagittis quis, accumsan vel ante. Curabitur elementum augue id tempor posuere."
     >
-      <Container component="section" className={classes.container}>
-        <Typography
-          component="h1"
-          align="center"
-          className={classes.mainHeading}
-        >
-          Encontrarnos es fácil
+      <Container className={classes.titleContainer}>
+        <Typography component="h1" className={classes.title}>
+          Contacto
         </Typography>
-        {/* <Typography
-          component="div"
-          align="center"
-          className={classes.phoneNumber}
-          gutterBottom
-        >
-          +58 424 123 45-67
-        </Typography>
-        <Typography component="div" align="center">
-          Centro Sambil Caracas, Av. Libertador, Caracas 1064.
-        </Typography> */}
       </Container>
-
-      <section id="map" className={classes.mapWrapper}>
-        <div className={classes.map}>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.140889860604!2d-66.85656248588566!3d10.489557867293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a5855bdf90331%3A0x12e82a3cb3dbb29d!2sCentro%20Sambil%20Caracas!5e0!3m2!1ses!2sve!4v1595628584738!5m2!1ses!2sve"
-            frameBorder="0"
-            allowFullScreen
-            aria-hidden="false"
-            tabIndex="0"
-          ></iframe>
-        </div>
-      </section>
-      <section id="rrss" className={classes.bgLight}>
-        <Container className={classes.container}>
-          <h2 className={classes.rsHeading}>Nuestras redes.</h2>
-          <Grid
-            container
-            spacing={2}
-            justifyContent="center"
-            className={classes.rsContent}
-          >
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de instagram"
-                size="large">
-                <Instagram fontSize="large" />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de facebook"
-                size="large">
-                <Facebook fontSize="large" />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Cuenta de twitter"
-                size="large">
-                <Twitter fontSize="large" />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                className={classes.icon}
-                disableRipple
-                aria-label="Canal de youtube"
-                size="large">
-                <YouTube fontSize="large" />
-              </IconButton>
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
+      <UbicacionSection />
+      <RedesSection />
       <section className={classes.bgDark}>
         <Container className={classes.container}>
           <h2 className={classes.contactHeading}>Contáctanos</h2>
