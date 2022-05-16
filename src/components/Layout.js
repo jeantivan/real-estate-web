@@ -4,7 +4,7 @@ export function Layout({ children, titulo, descripcion }) {
   return (
     <>
       <Head>
-        <title>{titulo} | Avilatek</title>
+        <title>{titulo} | Avilatek Inmobiliaria</title>
         <meta name="description" content={descripcion} />
       </Head>
       <main>{children}</main>
