@@ -1,11 +1,52 @@
 import { Button, Typography, Paper, Grid } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { styled } from '@mui/material/styles';
 import { useSnackbar } from "notistack";
 
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
 
 import { Input } from "./Input";
+
+const PREFIX = 'ContactForm';
+
+const classes = {
+  title: `${PREFIX}-title`,
+  container: `${PREFIX}-container`,
+  textField: `${PREFIX}-textField`
+};
+
+const StyledGrid = styled(Grid)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.title}`]: {
+    ...theme.typography.h6,
+    fontWeight: 500,
+    color: theme.palette.grey[500],
+  },
+
+  [`& .${classes.container}`]: {
+    padding: theme.spacing(2, 3),
+  },
+
+  [`& .${classes.textField}`]: {
+    color: "#fff",
+    "& .MuiFormLabel-root": {
+      color: "rgba(255, 255, 255, 0.7);",
+    },
+    "& .MuiFilledInput-root": {
+      color: "#fff",
+      backgroundColor: "rgba(255, 255, 255, 0.09)",
+      "&:hover": {
+        backgroundColor: "rgba(255, 255, 255, 0.13)",
+      },
+    },
+    "& .MuiFilledInput-underline:before": {
+      borderBottom: "1px solid rgba(255, 255, 255, 0.7);",
+    },
+  }
+}));
 
 const initialValues = {
   nombre: "",
@@ -21,39 +62,12 @@ const validationSchema = object({
     .required("Campo obligatorio"),
 });
 
-const useStyles = makeStyles((theme) => ({
-  title: {
-    ...theme.typography.h6,
-    fontWeight: 500,
-    color: theme.palette.grey[500],
-  },
-  container: {
-    padding: theme.spacing(2, 3),
-  },
-  textField: {
-    color: "#fff",
-    "& .MuiFormLabel-root": {
-      color: "rgba(255, 255, 255, 0.7);",
-    },
-    "& .MuiFilledInput-root": {
-      color: "#fff",
-      backgroundColor: "rgba(255, 255, 255, 0.09)",
-      "&:hover": {
-        backgroundColor: "rgba(255, 255, 255, 0.13)",
-      },
-    },
-    "& .MuiFilledInput-underline:before": {
-      borderBottom: "1px solid rgba(255, 255, 255, 0.7);",
-    },
-  },
-}));
-
 export function ContactForm() {
-  const classes = useStyles();
+
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <Grid container spacing={2} direction="column">
+    <StyledGrid container spacing={2} direction="column">
       <Grid item xs={12}>
         <Typography component="div" className={classes.theme}>
           Dejanos un mensaje.
@@ -132,6 +146,6 @@ export function ContactForm() {
           )}
         </Formik>
       </Grid>
-    </Grid>
+    </StyledGrid>
   );
 }

@@ -1,13 +1,25 @@
 import clsx from "clsx";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import SwipeableViews from "react-swipeable-views";
 
 import Image from "next/image";
 
 import { Controls } from "./Controls";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'Carousel';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  container: `${PREFIX}-container`,
+  slide: `${PREFIX}-slide`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     position: "relative",
     width: "100%",
     height: 0,
@@ -20,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1,
     },
   },
-  container: {
+
+  [`& .${classes.container}`]: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -34,11 +47,12 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: "100%",
     },
   },
-  slide: {
+
+  [`& .${classes.slide}`]: {
     position: "relative",
     overflow: "hidden",
     width: "100%",
-  },
+  }
 }));
 
 export function Carousel({
@@ -48,9 +62,9 @@ export function Carousel({
   handlePrev,
   handleChange,
 }) {
-  const classes = useStyles();
+
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <SwipeableViews
         index={index}
         onChangeIndex={handleChange}
@@ -68,6 +82,6 @@ export function Carousel({
         index={index}
         max={imagenes.length - 1}
       />
-    </div>
+    </Root>
   );
 }

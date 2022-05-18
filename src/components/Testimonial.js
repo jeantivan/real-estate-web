@@ -1,8 +1,22 @@
 import { Paper, Typography, Avatar } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
+const PREFIX = 'Testimonial';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const classes = {
+  root: `${PREFIX}-root`,
+  client: `${PREFIX}-client`,
+  clientPicture: `${PREFIX}-clientPicture`,
+  clientInfo: `${PREFIX}-clientInfo`,
+  clientName: `${PREFIX}-clientName`,
+  clientType: `${PREFIX}-clientType`
+};
+
+const StyledPaper = styled(Paper)((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     maxWidth: 1280,
     width: "100%",
     margin: "0 auto",
@@ -14,36 +28,41 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(7),
     },
   },
-  client: {
+
+  [`& .${classes.client}`]: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     marginTop: theme.spacing(3),
   },
-  clientPicture: {
+
+  [`& .${classes.clientPicture}`]: {
     width: 56,
     height: 56,
     marginRight: theme.spacing(2),
   },
-  clientInfo: {
+
+  [`& .${classes.clientInfo}`]: {
     display: "flex",
     flexDirection: "column",
   },
-  clientName: {
+
+  [`& .${classes.clientName}`]: {
     fontWeight: "bold",
   },
-  clientType: {
+
+  [`& .${classes.clientType}`]: {
     ...theme.typography.subtitle2,
     textTransform: "uppercase",
     lineHeight: 1,
-  },
+  }
 }));
 
 export function Testimonial({ client, type, picture, text }) {
-  const classes = useStyles();
+
 
   return (
-    <Paper elevation={10} className={classes.root}>
+    <StyledPaper elevation={10} className={classes.root}>
       <Typography variant="body1" align="center" paragraph>
         <em>{text}</em>
       </Typography>
@@ -62,6 +81,6 @@ export function Testimonial({ client, type, picture, text }) {
           </Typography>
         </div>
       </div>
-    </Paper>
+    </StyledPaper>
   );
 }

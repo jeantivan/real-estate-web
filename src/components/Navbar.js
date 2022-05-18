@@ -7,7 +7,7 @@ import {
   IconButton,
   Toolbar,
 } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { styled } from '@mui/material/styles';
 import { Menu } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -16,26 +16,50 @@ import { Logo } from "./Logo";
 import { NavLinks } from "./NavLinks";
 import { RRSS } from "./RRSS";
 
-const useStyles = makeStyles((theme) => ({
-  toolbar: {
+const PREFIX = 'Navbar';
+
+const classes = {
+  toolbar: `${PREFIX}-toolbar`,
+  menuButton: `${PREFIX}-menuButton`,
+  containerIconLogo: `${PREFIX}-containerIconLogo`,
+  centerLogo: `${PREFIX}-centerLogo`,
+  drawerContainer: `${PREFIX}-drawerContainer`,
+  list: `${PREFIX}-list`,
+  social: `${PREFIX}-social`,
+  navContainer: `${PREFIX}-navContainer`,
+  link: `${PREFIX}-link`,
+  activeLink: `${PREFIX}-activeLink`,
+  activeDrawerLink: `${PREFIX}-activeDrawerLink`,
+  icon: `${PREFIX}-icon`
+};
+
+const StyledAppBar = styled(AppBar)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.toolbar}`]: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  menuButton: {
+
+  [`& .${classes.menuButton}`]: {
     marginRight: theme.spacing(1),
     [theme.breakpoints.up("md")]: {
       display: "none",
     },
   },
-  containerIconLogo: {
+
+  [`& .${classes.containerIconLogo}`]: {
     display: "flex",
     flex: 1,
     [theme.breakpoints.up("md")]: {
       flexGrow: 0,
     },
   },
-  centerLogo: {
+
+  [`& .${classes.centerLogo}`]: {
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -44,24 +68,28 @@ const useStyles = makeStyles((theme) => ({
     },
     marginLeft: theme.spacing(-3),
   },
-  drawerContainer: {
+
+  [`& .${classes.drawerContainer}`]: {
     display: "flex",
     width: 260,
     paddingTop: theme.spacing(1),
   },
-  list: {
+
+  [`& .${classes.list}`]: {
     width: "100%",
     backgroundColor: theme.palette.background.paper,
     maxWidth: 260,
   },
-  social: {
+
+  [`& .${classes.social}`]: {
     margin: "auto auto 0 auto",
     [theme.breakpoints.up("md")]: {
       margin: 0,
       padding: 0,
     },
   },
-  navContainer: {
+
+  [`& .${classes.navContainer}`]: {
     display: "flex",
     flexDirection: "column",
     alignSelf: "stretch",
@@ -74,7 +102,8 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(2),
     },
   },
-  link: {
+
+  [`& .${classes.link}`]: {
     textDecoration: "none",
     color: "#202020",
     fontWeight: "bold",
@@ -98,7 +127,8 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: theme.spacing(1, 1, 0, 0),
     },
   },
-  activeLink: {
+
+  [`& .${classes.activeLink}`]: {
     color: theme.palette.primary.main,
     "&:after": {
       width: "100%",
@@ -106,7 +136,8 @@ const useStyles = makeStyles((theme) => ({
       height: 4,
     },
   },
-  activeDrawerLink: {
+
+  [`& .${classes.activeDrawerLink}`]: {
     color: theme.palette.primary.main,
     "&:after": {
       top: 0,
@@ -115,7 +146,8 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: theme.spacing(0, 1, 1, 0),
     },
   },
-  icon: {
+
+  [`& .${classes.icon}`]: {
     color: "#202020",
     transition: theme.transitions.create("color", {
       easing: theme.transitions.easing.sharp,
@@ -125,12 +157,12 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: theme.palette.primary.main,
     },
-  },
+  }
 }));
 
 export function Navbar() {
   const router = useRouter();
-  let classes = useStyles();
+
   const [show, setShow] = useState(false);
 
   const toggleDrawer = () => {
@@ -142,7 +174,7 @@ export function Navbar() {
   };
 
   return (
-    <AppBar
+    <StyledAppBar
       color="inherit"
       elevation={0}
       position="static"
@@ -214,6 +246,6 @@ export function Navbar() {
           </div>
         </Hidden>
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 }

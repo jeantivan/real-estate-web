@@ -1,10 +1,28 @@
 import { Avatar, Card, CardContent, Typography } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import Image from "next/image";
 import NextLink from "next/link";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'Item';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  title: `${PREFIX}-title`,
+  location: `${PREFIX}-location`,
+  link: `${PREFIX}-link`,
+  imgContainer: `${PREFIX}-imgContainer`,
+  img: `${PREFIX}-img`,
+  estado: `${PREFIX}-estado`,
+  footer: `${PREFIX}-footer`,
+  avatar: `${PREFIX}-avatar`
+};
+
+const StyledNextLink = styled(NextLink)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     minWidth: "100%",
     boxShadow: theme.shadows[2],
     transition: "box-shadow 0.3s ease",
@@ -13,16 +31,20 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: theme.shadows[6],
     },
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     fontWeight: "bold",
   },
-  location: {
+
+  [`& .${classes.location}`]: {
     fontWeight: "bold",
   },
-  link: {
+
+  [`& .${classes.link}`]: {
     textDecoration: "none",
   },
-  imgContainer: {
+
+  [`& .${classes.imgContainer}`]: {
     backgroundColor: "#e2e2e2",
     paddingTop: "56.25%",
     borderBottomLeftRadius: 0,
@@ -31,14 +53,16 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     height: 0,
   },
-  img: {
+
+  [`& .${classes.img}`]: {
     position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
     height: "100%",
   },
-  estado: {
+
+  [`& .${classes.estado}`]: {
     position: "absolute",
     padding: theme.spacing(0.5, 1),
     fontWeight: 600,
@@ -54,17 +78,19 @@ const useStyles = makeStyles((theme) => ({
         ? theme.palette.primary.A700
         : theme.palette.secondary.main,
   },
-  footer: {
+
+  [`& .${classes.footer}`]: {
     padding: theme.spacing(0, 2, 2, 2),
     display: "flex",
     alignItems: "center",
   },
-  avatar: {
+
+  [`& .${classes.avatar}`]: {
     display: "inline-block",
     marginRight: theme.spacing(1),
     width: theme.spacing(4),
     height: theme.spacing(4),
-  },
+  }
 }));
 
 export function InmuebleItem({
@@ -79,9 +105,9 @@ export function InmuebleItem({
   fecha,
   agent,
 }) {
-  const classes = useStyles({ estado });
+
   return (
-    <NextLink href="/inmueble/[slug]" as={`/inmueble/${slug}`} passHref>
+    <StyledNextLink href="/inmueble/[slug]" as={`/inmueble/${slug}`} passHref>
       <a className={classes.link}>
         <Card className={classes.root} component="article">
           <div className={classes.imgContainer}>
@@ -114,6 +140,6 @@ export function InmuebleItem({
           </CardContent>
         </Card>
       </a>
-    </NextLink>
+    </StyledNextLink>
   );
 }

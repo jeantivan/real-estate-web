@@ -1,21 +1,28 @@
 import { Grid, Button, Typography, Hidden } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import Link from "next/link";
 
 import { InmuebleItem } from "@/components";
 
-const useStyles = makeStyles({
-  grow: {
+const PREFIX = 'similares';
+
+const classes = {
+  grow: `${PREFIX}-grow`,
+  paper: `${PREFIX}-paper`
+};
+
+const StyledGrid = styled(Grid)({
+  [`& .${classes.grow}`]: {
     flex: 1,
   },
-  paper: {
+  [`& .${classes.paper}`]: {
     width: "100%",
     padding: 32,
   },
 });
 
 export function SimilaresSection({ inmueblesSimilares }) {
-  const classes = useStyles();
+
 
   const results = inmueblesSimilares.map(({ data, uid }, index) => {
     let props = {
@@ -33,9 +40,9 @@ export function SimilaresSection({ inmueblesSimilares }) {
     };
 
     return index !== inmueblesSimilares.length - 1 ? (
-      <Grid key={uid} item xs={12} sm={6} md={4}>
+      <StyledGrid key={uid} item xs={12} sm={6} md={4}>
         {<InmuebleItem {...props} />}
-      </Grid>
+      </StyledGrid>
     ) : (
       <Hidden mdUp key={uid}>
         <Grid item xs={12} sm={6} md={4}>

@@ -1,4 +1,5 @@
 import { Layout } from "@/components";
+import { styled } from '@mui/material/styles';
 import { ContactSection } from "@/layouts/inmueble/contact";
 import { GallerySection } from "@/layouts/inmueble/gallery";
 import { HeaderSection } from "@/layouts/inmueble/header";
@@ -10,19 +11,32 @@ import {
   getInmueblesSimilares,
 } from "@/lib/api";
 import { Box, Container, Grid } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
 import { PrismicText } from "@prismicio/react";
 import {asText} from '@prismicio/helpers'
 
-const useStyles = makeStyles((theme) => ({
-  gallery: {
+const PREFIX = '[slug]';
+
+const classes = {
+  gallery: `${PREFIX}-gallery`,
+  description: `${PREFIX}-description`,
+  html: `${PREFIX}-html`,
+  masInmuebles: `${PREFIX}-masInmuebles`
+};
+
+const StyledLayout = styled(Layout)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.gallery}`]: {
     minWidth: "100%",
     borderRadius: theme.spacing(2),
     [theme.breakpoints.up("md")]: {
       minWidth: 0,
     },
   },
-  description: {
+
+  [`& .${classes.description}`]: {
     fontWeight: 700,
     position: "relative",
     display: "inline-block",
@@ -37,20 +51,22 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.light,
     },
   },
-  html: {
+
+  [`& .${classes.html}`]: {
     "& > p": {
       ...theme.typography.body1,
       maxWidth: "100%",
     },
   },
-  masInmuebles: {
+
+  [`& .${classes.masInmuebles}`]: {
     padding: theme.spacing(2, 0),
     width: "100%",
-  },
+  }
 }));
 
 export default function Inmueble({ inmueble, inmueblesSimilares }) {
-  const classes = useStyles();
+
 
   const inmuebleInfo = {
     id: inmueble.id,
@@ -66,7 +82,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
   };
 
   return (
-    <Layout
+    <StyledLayout
       titulo={asText(inmueble.titulo)}
       descripcion={inmueble.descCorta}
     >
@@ -85,7 +101,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
           </Grid>
         </Box>
       </Container>
-    </Layout>
+    </StyledLayout>
   );
 }
 

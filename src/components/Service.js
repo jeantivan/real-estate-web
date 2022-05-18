@@ -1,8 +1,21 @@
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import { Typography } from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'Service';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  icon: `${PREFIX}-icon`,
+  content: `${PREFIX}-content`,
+  heading: `${PREFIX}-heading`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     padding: theme.spacing(4, 2),
     display: "flex",
     flexDirection: "column",
@@ -10,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.A700,
     },
   },
-  icon: {
+
+  [`& .${classes.icon}`]: {
     margin: "0 auto",
     color: "#4c4c4c",
     transition: theme.transitions.create("color", {
@@ -23,10 +37,12 @@ const useStyles = makeStyles((theme) => ({
       height: 48,
     },
   },
-  content: {
+
+  [`& .${classes.content}`]: {
     paddingTop: theme.spacing(2),
   },
-  heading: {
+
+  [`& .${classes.heading}`]: {
     marginBottom: theme.spacing(2),
     position: "relative",
     "&::before": {
@@ -39,13 +55,13 @@ const useStyles = makeStyles((theme) => ({
       left: "50%",
       transform: "translateX(-24px)",
     },
-  },
+  }
 }));
 
 export function Service({ icon, title, text }) {
-  const classes = useStyles();
+
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <div aria-hidden="true" className={classes.icon}>
         {icon}
       </div>
@@ -57,6 +73,6 @@ export function Service({ icon, title, text }) {
           {text}
         </Typography>
       </div>
-    </div>
+    </Root>
   );
 }

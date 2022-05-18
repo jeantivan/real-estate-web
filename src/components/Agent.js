@@ -1,23 +1,37 @@
 import { Button, Paper, Typography } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from "@mui/material/styles";
 import { Mail, PhoneAndroid } from "@mui/icons-material";
 import Image from "next/image";
 import NextLink from "next/link";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = "Agent";
+
+const classes = {
+  root: `${PREFIX}-root`,
+  imgContainer: `${PREFIX}-imgContainer`,
+  picture: `${PREFIX}-picture`,
+  body: `${PREFIX}-body`,
+  contact: `${PREFIX}-contact`,
+  icon: `${PREFIX}-icon`,
+  link: `${PREFIX}-link`,
+};
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  [`&.${classes.root}`]: {
     width: "100%",
     padding: theme.spacing(3, 2),
     display: "flex",
     flexDirection: "column",
   },
-  imgContainer: {
+
+  [`& .${classes.imgContainer}`]: {
     position: "relative",
     width: "100%",
     display: "flex",
     justifyContent: "center",
   },
-  picture: {
+
+  [`& .${classes.picture}`]: {
     margin: "0 auto",
     //marginBottom: theme.spacing(2),
     backgroundColor: theme.palette.primary.dark,
@@ -25,30 +39,36 @@ const useStyles = makeStyles((theme) => ({
     width: 160,
     height: 160,
   },
-  body: {
+
+  [`& .${classes.body}`]: {
     textAlign: "center",
     margin: theme.spacing(2, 0),
   },
-  contact: {
+
+  [`& .${classes.contact}`]: {
     display: "inline-flex",
     alignItems: "center",
   },
-  icon: {
+
+  [`& .${classes.icon}`]: {
     display: "inline-flex",
     marginRight: theme.spacing(0.5),
     color: theme.palette.primary.dark,
   },
-  link: {
+
+  [`& .${classes.link}`]: {
     textAlign: "center",
     marginTop: theme.spacing(2),
   },
 }));
 
 export function Agent({ name, phonenumber, email, picture, id }) {
-  const classes = useStyles();
-
   return (
-    <Paper variant="outlined" className={classes.root} component="article">
+    <StyledPaper
+      variant="outlined"
+      className={classes.root}
+      component="article"
+    >
       <div className={classes.imgContainer}>
         <Image
           width={picture.dimensions.width}
@@ -86,6 +106,6 @@ export function Agent({ name, phonenumber, email, picture, id }) {
           </Button>
         </NextLink>
       </div>
-    </Paper>
+    </StyledPaper>
   );
 }

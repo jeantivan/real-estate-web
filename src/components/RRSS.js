@@ -1,9 +1,19 @@
 import { IconButton, Grid } from "@mui/material/";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import { Instagram, WhatsApp } from "@mui/icons-material";
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
+const PREFIX = 'RRSS';
+
+const classes = {
+  icon: `${PREFIX}-icon`
+};
+
+const StyledGrid = styled(Grid)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.icon}`]: {
     color: (props) => (props.type === "light" ? "#202020" : "white"),
     transition: theme.transitions.create("color", {
       easing: theme.transitions.easing.sharp,
@@ -16,14 +26,14 @@ const useStyles = makeStyles((theme) => ({
           ? theme.palette.primary.main
           : theme.palette.secondary.main,
     },
-  },
+  }
 }));
 
 // Redes Sociales
 export function RRSS(props) {
-  const classes = useStyles(props);
+
   return (
-    <Grid container justifyContent="flex-end">
+    <StyledGrid container justifyContent="flex-end">
       <Grid item>
         <IconButton
           color="primary"
@@ -44,6 +54,6 @@ export function RRSS(props) {
           <WhatsApp />
         </IconButton>
       </Grid>
-    </Grid>
+    </StyledGrid>
   );
 }

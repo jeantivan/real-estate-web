@@ -1,16 +1,31 @@
 import { Testimonial } from "./Testimonial";
+import { styled } from '@mui/material/styles';
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import makeStyles from '@mui/styles/makeStyles';
 import clsx from "clsx";
 import { testimonials } from "@/utils/testimonials";
 
-const useStyles = makeStyles((theme) => ({
-  testimonials: {
+const PREFIX = 'Testimonials';
+
+const classes = {
+  testimonials: `${PREFIX}-testimonials`,
+  testimonialSlide: `${PREFIX}-testimonialSlide`,
+  dots: `${PREFIX}-dots`,
+  dot: `${PREFIX}-dot`,
+  active: `${PREFIX}-active`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.testimonials}`]: {
     marginBottom: theme.spacing(4),
     maxWidth: "100vw",
   },
-  testimonialSlide: {
+
+  [`& .${classes.testimonialSlide}`]: {
     // padding: theme.spacing(3, 2),
     // [theme.breakpoints.up("sm")]: {
     //   padding: theme.spacing(4),
@@ -19,13 +34,15 @@ const useStyles = makeStyles((theme) => ({
     //   padding: theme.spacing(4, 6),
     // },
   },
-  dots: {
+
+  [`& .${classes.dots}`]: {
     padding: theme.spacing(1),
     width: "100%",
     display: "flex",
     justifyContent: "center",
   },
-  dot: {
+
+  [`& .${classes.dot}`]: {
     width: 8,
     height: 8,
     backgroundColor: theme.palette.grey[400],
@@ -37,20 +54,21 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  active: {
+
+  [`& .${classes.active}`]: {
     backgroundColor: theme.palette.primary.dark,
-  },
+  }
 }));
 
 const AutoSwipeableViews = autoPlay(SwipeableViews);
 
 export function Testimonials() {
-  const classes = useStyles();
+
   const [index, setIndex] = React.useState(0);
 
   const handleChange = (index) => setIndex(index);
   return (
-    <div className={classes.testimonials}>
+    <Root className={classes.testimonials}>
       <AutoSwipeableViews
         index={index}
         onChangeIndex={handleChange}
@@ -74,6 +92,6 @@ export function Testimonials() {
           />
         ))}
       </div>
-    </div>
+    </Root>
   );
 }

@@ -1,22 +1,40 @@
 import { Paper, Divider, Typography, Grid, Box } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import { PrismicRichText } from "@prismicio/react";
 
-const useStyles = makeStyles((theme) => ({
-  section: {
+const PREFIX = 'overview';
+
+const classes = {
+  section: `${PREFIX}-section`,
+  sectionTitle: `${PREFIX}-sectionTitle`,
+  divider: `${PREFIX}-divider`,
+  content: `${PREFIX}-content`,
+  description: `${PREFIX}-description`
+};
+
+const StyledGrid = styled(Grid)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.section}`]: {
     padding: theme.spacing(2),
   },
-  sectionTitle: {
+
+  [`& .${classes.sectionTitle}`]: {
     ...theme.typography.h6,
     fontWeight: 700,
   },
-  divider: {
+
+  [`& .${classes.divider}`]: {
     margin: theme.spacing(2, 0),
   },
-  content: {
+
+  [`& .${classes.content}`]: {
     ...theme.typography.h6,
   },
-  description: {
+
+  [`& .${classes.description}`]: {
     "& > p": {
       ...theme.typography.body1,
     },
@@ -24,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: 0,
       marginBottom: theme.spacing(2),
     },
-  },
+  }
 }));
 
 export function OverviewSection({
@@ -37,10 +55,10 @@ export function OverviewSection({
   antiguedad,
   descripcion,
 }) {
-  const classes = useStyles();
+
 
   return (
-    <Grid item xs={12} md={7}>
+    <StyledGrid item xs={12} md={7}>
       <Paper elevation={0} className={classes.section}>
         <Box component="section" id="caracteristicas-del-inmueble" mb={3}>
           <Grid container justifyContent="space-between" alignItems="baseline">
@@ -118,6 +136,6 @@ export function OverviewSection({
           </div>
         </Box>
       </Paper>
-    </Grid>
+    </StyledGrid>
   );
 }

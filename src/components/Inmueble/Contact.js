@@ -7,11 +7,94 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import { Close, Mail, Phone } from "@mui/icons-material";
 import { Form, Formik } from "formik";
 import { object, string } from "yup";
 import { Input } from "../Input";
+
+const PREFIX = 'Contact';
+
+const classes = {
+  container: `${PREFIX}-container`,
+  agent: `${PREFIX}-agent`,
+  agentInfo: `${PREFIX}-agentInfo`,
+  profile: `${PREFIX}-profile`,
+  name: `${PREFIX}-name`,
+  contact: `${PREFIX}-contact`,
+  icon: `${PREFIX}-icon`,
+  caption: `${PREFIX}-caption`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.container}`]: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: theme.spacing(2, 3),
+  },
+
+  [`& .${classes.agent}`]: {
+    width: "100%",
+    minHeight: 100,
+    background: theme.palette.primary[900],
+    padding: theme.spacing(2, 3),
+    color: theme.palette.getContrastText(theme.palette.primary[900]),
+
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
+      alignItems: "center",
+    },
+  },
+
+  [`& .${classes.agentInfo}`]: {
+    marginTop: theme.spacing(2),
+    textAlign: "center",
+
+    [theme.breakpoints.up("sm")]: {
+      marginTop: 0,
+      textAlign: "left",
+    },
+  },
+
+  [`& .${classes.profile}`]: {
+    display: "block",
+    width: 120,
+    height: 120,
+    backgroundColor: "white",
+    margin: "0 auto",
+    border: "2px solid white",
+    borderRadius: "100%",
+    [theme.breakpoints.up("sm")]: {
+      margin: 0,
+      marginRight: theme.spacing(3),
+    },
+  },
+
+  [`& .${classes.name}`]: {
+    fontWeight: 500,
+  },
+
+  [`& .${classes.contact}`]: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+    "&:nth-child(1)": {
+      marginRight: theme.spacing(1),
+    },
+  },
+
+  [`& .${classes.icon}`]: {
+    marginRight: theme.spacing(0.5),
+  },
+
+  [`& .${classes.caption}`]: {
+    textTransform: "uppercase",
+  }
+}));
 
 const initialValues = {
   nombre: "",
@@ -27,71 +110,11 @@ const validationSchema = object({
     .required("Campo obligatorio"),
 });
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: theme.spacing(2, 3),
-  },
-  agent: {
-    width: "100%",
-    minHeight: 100,
-    background: theme.palette.primary[900],
-    padding: theme.spacing(2, 3),
-    color: theme.palette.getContrastText(theme.palette.primary[900]),
-
-    [theme.breakpoints.up("sm")]: {
-      display: "flex",
-      alignItems: "center",
-    },
-  },
-  agentInfo: {
-    marginTop: theme.spacing(2),
-    textAlign: "center",
-
-    [theme.breakpoints.up("sm")]: {
-      marginTop: 0,
-      textAlign: "left",
-    },
-  },
-  profile: {
-    display: "block",
-    width: 120,
-    height: 120,
-    backgroundColor: "white",
-    margin: "0 auto",
-    border: "2px solid white",
-    borderRadius: "100%",
-    [theme.breakpoints.up("sm")]: {
-      margin: 0,
-      marginRight: theme.spacing(3),
-    },
-  },
-  name: {
-    fontWeight: 500,
-  },
-
-  contact: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-    "&:nth-child(1)": {
-      marginRight: theme.spacing(1),
-    },
-  },
-  icon: {
-    marginRight: theme.spacing(0.5),
-  },
-  caption: {
-    textTransform: "uppercase",
-  },
-}));
-
 export function Contact({ open, handleClose, agent }) {
-  const classes = useStyles();
+
   const { name, email, phonenumber, picture } = agent;
   return (
-    <div>
+    <Root>
       <Dialog
         open={open}
         scroll="body"
@@ -198,6 +221,6 @@ export function Contact({ open, handleClose, agent }) {
           )}
         </Formik>
       </Dialog>
-    </div>
+    </Root>
   );
 }

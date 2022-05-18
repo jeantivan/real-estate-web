@@ -1,30 +1,48 @@
 import { FAQ } from "@/components/";
+import { styled } from '@mui/material/styles';
 import { faqs } from "@/utils/faqs";
 import { Container, Grid, Typography } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
 import { useState } from "react";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'faqs';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  container: `${PREFIX}-container`,
+  heading: `${PREFIX}-heading`,
+  faqs: `${PREFIX}-faqs`,
+  wave: `${PREFIX}-wave`
+};
+
+const Root = styled('section')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     backgroundColor: theme.palette.background.default,
     backgroundImage:
       "linear-gradient(175deg, #fafafa 0%, #fafafa 45%, #0D47A1 45%, #24324A 75%)",
     backgroundPosition: "bottom",
     backgroundRepeat: "no-repeat",
   },
-  container: {
+
+  [`& .${classes.container}`]: {
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(6),
   },
-  heading: {
+
+  [`& .${classes.heading}`]: {
     marginBottom: theme.spacing(3),
   },
-  faqs: {
+
+  [`& .${classes.faqs}`]: {
     "&:not(:last-child)": {
       marginBottom: theme.spacing(3),
     },
   },
-  wave: {
+
+  [`& .${classes.wave}`]: {
     position: "absolute",
     bottom: 0,
     left: 0,
@@ -33,18 +51,18 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       display: "block",
     },
-  },
+  }
 }));
 
 export function FAQSSection() {
-  const classes = useStyles();
+
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (_, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-    <section component="section" id="faqs-section" className={classes.root}>
+    <Root component="section" id="faqs-section" className={classes.root}>
       <Container className={classes.container}>
         <Grid container spacing={4} justifyContent="center">
           <Grid item xs={12} md={10}>
@@ -88,6 +106,6 @@ export function FAQSSection() {
           <path d="M0,118.044,1366,32V419.2H0Z" fill="url(#a)" />
         </svg>
       </div> */}
-    </section>
+    </Root>
   );
 }

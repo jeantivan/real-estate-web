@@ -1,47 +1,71 @@
 import { ContactForm, Layout } from "@/components";
+import { styled } from '@mui/material/styles';
 import { Container, Grid, IconButton, Typography } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
 import { Facebook, Instagram, Twitter, YouTube } from "@mui/icons-material";
 import { UbicacionSection } from "@/layouts/contacto/ubicacion";
 import { RedesSection } from "@/layouts/contacto/Redes";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
+const PREFIX = 'contacto';
+
+const classes = {
+  container: `${PREFIX}-container`,
+  titleContainer: `${PREFIX}-titleContainer`,
+  title: `${PREFIX}-title`,
+  bgDark: `${PREFIX}-bgDark`,
+  mainHeading: `${PREFIX}-mainHeading`,
+  contactHeading: `${PREFIX}-contactHeading`,
+  phoneNumber: `${PREFIX}-phoneNumber`,
+  info: `${PREFIX}-info`
+};
+
+const StyledLayout = styled(Layout)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.container}`]: {
     padding: theme.spacing(2),
     // [theme.breakpoints.up("sm")]: {
     //   padding: theme.spacing(4, 2),
     // },
   },
-  titleContainer: {
+
+  [`& .${classes.titleContainer}`]: {
     paddingTop: theme.spacing(2),
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     ...theme.typography.body1,
 
     fontWeight: 800,
     textTransform: "uppercase",
   },
-  bgDark: {
+
+  [`& .${classes.bgDark}`]: {
     backgroundColor: "#000",
     color: "white",
   },
-  mainHeading: {
+
+  [`& .${classes.mainHeading}`]: {
     ...theme.typography.h6,
     fontWeight: 500,
     textTransform: "uppercase",
     letterSpacing: 2,
   },
-  contactHeading: {
+
+  [`& .${classes.contactHeading}`]: {
     ...theme.typography.h2,
     textAlign: "center",
     margin: 0,
     marginBottom: theme.spacing(2),
   },
-  phoneNumber: {
+
+  [`& .${classes.phoneNumber}`]: {
     ...theme.typography.h3,
     fontWeight: "bold",
   },
-  info: {
+
+  [`& .${classes.info}`]: {
     backgroundColor: "white",
     color: "#000",
     height: "100%",
@@ -50,14 +74,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-  },
+  }
 }));
 
 export default function Contacto() {
-  const classes = useStyles();
+
 
   return (
-    <Layout
+    <StyledLayout
       titulo="Contacto"
       descripcion="Praesent euismod massa quis iaculis feugiat. Aliquam in pellentesque purus. Cras sit amet risus ut dui accumsan blandit non pellentesque augue. Mauris nisi quam, venenatis nec rutrum sit amet, accumsan sed dolor. Fusce lobortis, erat quis mollis vulputate, lacus tellus venenatis sem, non tempor nisi quam et nisl. Vivamus sollicitudin, nisi a mollis consequat, sapien sem placerat nibh, at convallis nunc tortor in nisl. Praesent lorem sem, malesuada nec sagittis quis, accumsan vel ante. Curabitur elementum augue id tempor posuere."
     >
@@ -116,6 +140,6 @@ export default function Contacto() {
           </Grid>
         </Container>
       </section>
-    </Layout>
+    </StyledLayout>
   );
 }
