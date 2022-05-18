@@ -1,5 +1,5 @@
 import { Button, Typography, Paper, Grid } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { useSnackbar } from "notistack";
 
 import { Formik, Form } from "formik";
@@ -109,7 +109,7 @@ export function ContactForm() {
                     label="Mensaje"
                     multiline
                     rows={6}
-                    rowsMax={10}
+                    // rowsMax={10}
                     variant="filled"
                     fullWidth
                     className={classes.textField}
