@@ -37,9 +37,15 @@ export default function MyApp(props) {
   };
 
   return (
-    <React.Fragment>
+    <CacheProvider value={emotionCache}>
       <Head>
-        <title>Avilatek</title>
+        <title>Avilatek Inmobiliaria</title>
+        <meta
+          name="description"
+          content={
+            "Maecenas quis imperdiet ligula. Phasellus convallis urna nunc, sit amet posuere ex gravida at. Nam ac interdum odio, a condimentum orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in elit risus. Nulla lacus diam, condimentum cursus semper sit amet, sagittis vitae magna. In a urna a urna interdum dictum. In lectus sem, feugiat et dolor sed, pulvinar egestas nisi. Maecenas sodales ultrices nisl nec condimentum."
+          }
+        />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -47,30 +53,28 @@ export default function MyApp(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
-          <SnackbarProvider
-            ref={notistackRef}
-            action={(key) => (
-              <IconButton
-                disableRipple
-                size="small"
-                style={{ color: "white" }}
-                aria-label="Cerrar"
-                onClick={onClickDismiss(key)}
-              >
-                <Close />
-              </IconButton>
-            )}
-          >
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            <Navbar />
-            <Component {...pageProps} />
-            <Footer />
-          </SnackbarProvider>
-        </ThemeProvider>
-      </CacheProvider>
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider
+          ref={notistackRef}
+          action={(key) => (
+            <IconButton
+              disableRipple
+              size="small"
+              style={{ color: "white" }}
+              aria-label="Cerrar"
+              onClick={onClickDismiss(key)}
+            >
+              <Close />
+            </IconButton>
+          )}
+        >
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <Navbar />
+          <Component {...pageProps} />
+          <Footer />
+        </SnackbarProvider>
+      </ThemeProvider>
 
       {/* Nprogress Styles and Grid Layout */}
       <style jsx global>
@@ -184,11 +188,12 @@ export default function MyApp(props) {
           }
         `}
       </style>
-    </React.Fragment>
+    </CacheProvider>
   );
 }
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired,
+  emotionCache: PropTypes.object,
 };
