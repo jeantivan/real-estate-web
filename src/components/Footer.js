@@ -1,11 +1,5 @@
-import makeStyles from '@mui/styles/makeStyles';
-import {
-  Link,
-  Grid,
-  Container,
-  Typography,
-  IconButton,
-} from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
+import { Link, Grid, Container, Typography, IconButton } from "@mui/material";
 import {
   Copyright,
   Instagram,
@@ -21,8 +15,8 @@ import {
 
 import NextLink from "next/link";
 
-import { Logo } from "./Logo";
 import { Newsletter } from "./Newsletter";
+import { Logo } from "./Logo";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -150,7 +144,7 @@ export function Footer() {
             <Typography variant="h6" className={classes.heading}>
               Nosotros
             </Typography>
-            <Logo type="footer" className={classes.logo} />
+            <Logo inFooter lightColor className={classes.logo} />
             <Typography className={classes.text}>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas
               ipsa ut labore ducimus similique voluptates tempora deleniti
@@ -238,28 +232,32 @@ export function Footer() {
                 edge="start"
                 disableRipple
                 aria-label="Cuenta de instagram"
-                size="large">
+                size="large"
+              >
                 <Instagram />
               </IconButton>
               <IconButton
                 className={classes.social}
                 disableRipple
                 aria-label="Cuenta de facebook"
-                size="large">
+                size="large"
+              >
                 <Facebook />
               </IconButton>
               <IconButton
                 className={classes.social}
                 disableRipple
                 aria-label="Cuenta de twitter"
-                size="large">
+                size="large"
+              >
                 <Twitter />
               </IconButton>
               <IconButton
                 className={classes.social}
                 disableRipple
                 aria-label="Canal de youtube"
-                size="large">
+                size="large"
+              >
                 <YouTube />
               </IconButton>
             </div>

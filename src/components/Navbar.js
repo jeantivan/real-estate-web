@@ -7,8 +7,7 @@ import {
   IconButton,
   Toolbar,
 } from "@mui/material";
-import { alpha } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { Menu } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flex: 1,
     [theme.breakpoints.up("md")]: {
-      flexGrow:0,
+      flexGrow: 0,
     },
   },
   centerLogo: {
@@ -43,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       marginLeft: 0,
     },
-    marginLeft: theme.spacing(-3)
+    marginLeft: theme.spacing(-3),
   },
   drawerContainer: {
     display: "flex",
@@ -72,9 +71,8 @@ const useStyles = makeStyles((theme) => ({
     },
     "& > a": {
       marginRight: theme.spacing(2),
-      marginLeft: theme.spacing(2)
+      marginLeft: theme.spacing(2),
     },
-    
   },
   link: {
     textDecoration: "none",
@@ -158,11 +156,12 @@ export function Navbar() {
               color="inherit"
               aria-label="menu"
               onClick={toggleDrawer}
-              size="large">
+              size="large"
+            >
               <Menu />
             </IconButton>
           </Hidden>
-          <Logo type="navbar" className={classes.centerLogo} />
+          <Logo inNav darkColor className={classes.centerLogo} />
         </div>
         <Hidden mdUp>
           <Drawer
@@ -179,10 +178,11 @@ export function Navbar() {
                 color="inherit"
                 aria-label="menu"
                 onClick={toggleDrawer}
-                size="large">
+                size="large"
+              >
                 <Menu />
               </IconButton>
-              <Logo type="navbar" />
+              <Logo inNav darkColor />
             </Toolbar>
             <Divider />
             <DrawerLinks
