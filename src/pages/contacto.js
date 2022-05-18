@@ -3,7 +3,7 @@ import { Container, Grid, IconButton, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import { Facebook, Instagram, Twitter, YouTube } from "@mui/icons-material";
 import { UbicacionSection } from "@/layouts/contacto/ubicacion";
-import { RedesSection } from "@/layouts/contacto/Redes";
+import { RedesSection } from "@/layouts/contacto/redes";
 
 const useStyles = makeStyles((theme) => ({
   container: {
