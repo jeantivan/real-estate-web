@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import Head from "next/head";
 import Router from "next/router";
-import React from "react"
+import React from "react";
 
 // Material-UI config
-import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, IconButton } from "@mui/material/";
 import theme from "@/utils/theme";
 
@@ -19,19 +19,18 @@ Router.events.on("routeChangeError", () => NProgress.done());
 import { SnackbarProvider } from "notistack";
 import { Close } from "@mui/icons-material";
 
+// Create Emotion Cache
+import { CacheProvider } from "@emotion/react";
+import createEmotionCache from "@/utils/createEmotionCache";
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
+
 // Layout
 import { Navbar, Footer } from "@/components";
 
 export default function MyApp(props) {
-  const { Component, pageProps } = props;
+  const { Component, pageProps, emotionCache = clientSideEmotionCache } = props;
 
-  React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
   const notistackRef = React.createRef();
   const onClickDismiss = (key) => () => {
     notistackRef.current.closeSnackbar(key);
@@ -48,9 +47,8 @@ export default function MyApp(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <StyledEngineProvider injectFirst>
+      <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <SnackbarProvider
             ref={notistackRef}
             action={(key) => (
@@ -65,13 +63,14 @@ export default function MyApp(props) {
               </IconButton>
             )}
           >
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <Navbar />
             <Component {...pageProps} />
             <Footer />
           </SnackbarProvider>
         </ThemeProvider>
-      </StyledEngineProvider>
+      </CacheProvider>
 
       {/* Nprogress Styles and Grid Layout */}
       <style jsx global>

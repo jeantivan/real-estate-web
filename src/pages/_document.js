@@ -1,7 +1,10 @@
 import theme from "@/utils/theme";
-import ServerStyleSheets from '@mui/styles/ServerStyleSheets';
+import ServerStyleSheets from "@mui/styles/ServerStyleSheets";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import React from "react";
+import createEmotionServer from "@emotion/server/create-instance";
+import createEmotionCache from "@/utils/createEmotionCache";
+
 export default class MyDocument extends Document {
   render() {
     return (
@@ -13,6 +16,9 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
+
+          {/* Inject MUI styles first to match with the prepend: true configuration. */}
+          {this.props.emotionStyleTags}
         </Head>
         <body>
           <Main />
@@ -49,22 +55,37 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
+
+  const cache = createEmotionCache();
+  const { extractCriticalToChunks } = createEmotionServer(cache);
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+      enhanceApp: (App) =>
+        function EnhanceApp(props) {
+          return <App emotionCache={cache} {...props} />;
+        },
     });
 
   const initialProps = await Document.getInitialProps(ctx);
+
+  const emotionStyles = extractCriticalToChunks(initialProps.html);
+  const emotionStyleTags = emotionStyles.styles.map((style) => (
+    <style
+      data-emotion={`${style.key} ${style.ids.join(" ")}`}
+      key={style.key}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: style.css }}
+    />
+  ));
 
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [
       ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement(),
+      ...emotionStyleTags,
     ],
   };
 };
