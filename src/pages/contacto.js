@@ -83,7 +83,7 @@ export default function Contacto() {
                   align="center"
                   gutterBottom
                 >
-                  <strong>+58 424 123 45-67</strong>
+                  <strong>+58 424 1234567</strong>
                 </Typography>
                 <Typography
                   variant="body1"
