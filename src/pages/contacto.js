@@ -3,7 +3,7 @@ import { Container, Typography } from "@mui/material";
 import { UbicacionSection } from "@/layouts/contacto/ubicacion";
 import { RedesSection } from "@/layouts/contacto/redes";
 import { FormularioSection } from "@/layouts/contacto/formulario";
-import { NewsletterSection } from "@/layouts/newsletter";
+import { NewsletterSection } from "@/layouts/contacto/newsletter";
 
 export default function Contacto() {
   return (
