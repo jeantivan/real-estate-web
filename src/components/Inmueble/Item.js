@@ -1,9 +1,9 @@
-import { Avatar, Card, CardContent, Typography } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { Avatar, Box, Card, CardContent, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import NextLink from "next/link";
 
-const PREFIX = 'Item';
+const PREFIX = "Item";
 
 const classes = {
   root: `${PREFIX}-root`,
@@ -14,14 +14,10 @@ const classes = {
   img: `${PREFIX}-img`,
   estado: `${PREFIX}-estado`,
   footer: `${PREFIX}-footer`,
-  avatar: `${PREFIX}-avatar`
+  avatar: `${PREFIX}-avatar`,
 };
 
-const StyledNextLink = styled(NextLink)((
-  {
-    theme
-  }
-) => ({
+const Link = styled("a")(({ theme }) => ({
   [`& .${classes.root}`]: {
     minWidth: "100%",
     boxShadow: theme.shadows[2],
@@ -40,7 +36,7 @@ const StyledNextLink = styled(NextLink)((
     fontWeight: "bold",
   },
 
-  [`& .${classes.link}`]: {
+  [`&.${classes.link}`]: {
     textDecoration: "none",
   },
 
@@ -69,14 +65,6 @@ const StyledNextLink = styled(NextLink)((
     borderRadius: 4,
     top: 20,
     right: 20,
-    color: (props) =>
-      props.estado === "Venta"
-        ? theme.palette.getContrastText(theme.palette.primary.A700)
-        : theme.palette.getContrastText(theme.palette.secondary.main),
-    backgroundColor: (props) =>
-      props.estado === "Venta"
-        ? theme.palette.primary.A700
-        : theme.palette.secondary.main,
   },
 
   [`& .${classes.footer}`]: {
@@ -90,7 +78,7 @@ const StyledNextLink = styled(NextLink)((
     marginRight: theme.spacing(1),
     width: theme.spacing(4),
     height: theme.spacing(4),
-  }
+  },
 }));
 
 export function InmuebleItem({
@@ -105,10 +93,9 @@ export function InmuebleItem({
   fecha,
   agent,
 }) {
-
   return (
-    <StyledNextLink href="/inmueble/[slug]" as={`/inmueble/${slug}`} passHref>
-      <a className={classes.link}>
+    <NextLink href="/inmueble/[slug]" as={`/inmueble/${slug}`} passHref>
+      <Link className={classes.link}>
         <Card className={classes.root} component="article">
           <div className={classes.imgContainer}>
             <Image
@@ -117,7 +104,24 @@ export function InmuebleItem({
               className={classes.img}
               layout="fill"
             />
-            <div className={classes.estado}>{estado}</div>
+            <Box
+              className={classes.estado}
+              sx={(theme) => ({
+                color:
+                  estado === "Venta"
+                    ? theme.palette.getContrastText(theme.palette.primary.A700)
+                    : theme.palette.getContrastText(
+                        theme.palette.secondary.main
+                      ),
+
+                bgcolor:
+                  estado === "Venta"
+                    ? theme.palette.primary.A700
+                    : theme.palette.secondary.main,
+              })}
+            >
+              {estado}
+            </Box>
           </div>
           <CardContent>
             <Typography variant="h6" className={classes.title}>
@@ -139,7 +143,7 @@ export function InmuebleItem({
             </Typography>
           </CardContent>
         </Card>
-      </a>
-    </StyledNextLink>
+      </Link>
+    </NextLink>
   );
 }
