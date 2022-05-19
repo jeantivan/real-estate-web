@@ -52,21 +52,16 @@ export function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
 
 // Obtiene los slugs de todos los inmuebles guardados en el repositorio Prismic
 export async function getAllInmueblesSlug() {
-  const response = await Client.getByType("inmueble", {
+  return await Client.getByType("inmueble", {
     orderings: {
       field: "my.inmueble.date",
       direction: "desc",
     },
   });
-
-  const paths = response.results.map(({ uid }) => ({ params: { slug: uid } }));
-
-  return paths;
 }
 
 // Obtiene la data del inmueble dado un slug
 export async function getInmueble(slug) {
-  const startTiming = performance.now();
   const { id, uid, data } = await Client.getByUID("inmueble", slug, {
     fetchLinks: [
       "agent.name",
@@ -75,11 +70,6 @@ export async function getInmueble(slug) {
       "agent.picture",
     ],
   });
-  const endTiming = performance.now();
-
-  const timeToExecute = endTiming - startTiming;
-
-  console.log({ timeToExecute });
 
   return {
     id: id,
@@ -90,10 +80,9 @@ export async function getInmueble(slug) {
 
 // Obtiene los inmuebles con contenido similar a otro inmueble
 export async function getInmueblesSimilares(id) {
-  const { results } = await Client.query(prismic.predicate.similar(id, 10), {
+  return Client.query(prismic.predicate.similar(id, 10), {
     pageSize: 4,
   });
-  return results;
 }
 
 // Obtiene la informacion de todos los agentes

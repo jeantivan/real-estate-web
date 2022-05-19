@@ -1,5 +1,5 @@
 import { Layout } from "@/components";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { ContactSection } from "@/layouts/inmueble/contact";
 import { GallerySection } from "@/layouts/inmueble/gallery";
 import { HeaderSection } from "@/layouts/inmueble/header";
@@ -12,22 +12,18 @@ import {
 } from "@/lib/api";
 import { Box, Container, Grid } from "@mui/material";
 import { PrismicText } from "@prismicio/react";
-import {asText} from '@prismicio/helpers'
+import { asText } from "@prismicio/helpers";
 
-const PREFIX = '[slug]';
+const PREFIX = "[slug]";
 
 const classes = {
   gallery: `${PREFIX}-gallery`,
   description: `${PREFIX}-description`,
   html: `${PREFIX}-html`,
-  masInmuebles: `${PREFIX}-masInmuebles`
+  masInmuebles: `${PREFIX}-masInmuebles`,
 };
 
-const StyledLayout = styled(Layout)((
-  {
-    theme
-  }
-) => ({
+const StyledLayout = styled(Layout)(({ theme }) => ({
   [`& .${classes.gallery}`]: {
     minWidth: "100%",
     borderRadius: theme.spacing(2),
@@ -62,12 +58,10 @@ const StyledLayout = styled(Layout)((
   [`& .${classes.masInmuebles}`]: {
     padding: theme.spacing(2, 0),
     width: "100%",
-  }
+  },
 }));
 
 export default function Inmueble({ inmueble, inmueblesSimilares }) {
-
-
   const inmuebleInfo = {
     id: inmueble.id,
     precio: inmueble.precio,
@@ -88,7 +82,12 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
     >
       <Container maxWidth="lg">
         <Box py={4}>
-          <Grid container spacing={3} justifyContent="center" component="article">
+          <Grid
+            container
+            spacing={3}
+            justifyContent="center"
+            component="article"
+          >
             <HeaderSection
               titulo={inmueble.titulo}
               ubiaprox={inmueble.ubiaprox}
@@ -106,7 +105,8 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
 }
 
 export async function getStaticPaths() {
-  const paths = await getAllInmueblesSlug();
+  const response = await getAllInmueblesSlug();
+  const paths = response.results.map(({ uid }) => ({ params: { slug: uid } }));
   return {
     paths,
     fallback: false,
@@ -116,7 +116,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const inmueble = await getInmueble(params.slug);
 
-  const inmueblesSimilares = await getInmueblesSimilares(inmueble.id);
+  const { result: inmueblesSimilares } = await getInmueblesSimilares(
+    inmueble.id
+  );
 
   return {
     props: {

@@ -177,15 +177,7 @@ export default function Inmuebles({ data }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const startTiming = performance.now();
-
   const data = await getAllInmuebles(query);
-
-  const endTiming = performance.now();
-
-  const timeToExecute = endTiming - startTiming;
-
-  console.log({ timeToExecute });
 
   return {
     props: {
