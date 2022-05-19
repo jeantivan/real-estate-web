@@ -1,5 +1,5 @@
 import { InmuebleItem, Layout, Pagination } from "@/components";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { getAllInmuebles } from "@/lib/api";
 import {
   Button,
@@ -15,34 +15,21 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const PREFIX = 'inmuebles';
+const PREFIX = "inmuebles";
 
 const classes = {
   title: `${PREFIX}-title`,
   grid: `${PREFIX}-grid`,
-  pagination: `${PREFIX}-pagination`
+  pagination: `${PREFIX}-pagination`,
 };
 
-const StyledLayout = styled(Layout)((
-  {
-    theme
-  }
-) => ({
+const StyledLayout = styled(Layout)(({ theme }) => ({
   [`& .${classes.title}`]: {
     margin: theme.spacing(2, 0),
   },
-
-  [`& .${classes.grid}`]: {
-    margin: theme.spacing(2, -2),
-  },
-
-  [`& .${classes.pagination}`]: {
-    margin: theme.spacing(4, 0),
-  }
 }));
 
 export default function Inmuebles({ data }) {
-
   const router = useRouter();
 
   const [showFilters, setShowFilters] = useState(false);
@@ -116,6 +103,8 @@ export default function Inmuebles({ data }) {
           justifyContent="space-between"
           alignItems="flex-end"
           className={classes.title}
+          pt={4}
+          pb={2}
         >
           <Grid item>
             <Typography variant="h2" component="h1">
@@ -140,7 +129,13 @@ export default function Inmuebles({ data }) {
           <Collapse in={showFilters}>{/* <Filters /> */}</Collapse>
         )}
 
-        <Grid container spacing={4} className={classes.grid}>
+        <Grid
+          container
+          py={4}
+          rowSpacing={4}
+          columnSpacing={3}
+          className={classes.grid}
+        >
           {results.length < 1 ? (
             <Grid item xs={12}>
               <Typography
@@ -168,11 +163,7 @@ export default function Inmuebles({ data }) {
           )}
         </Grid>
         {results.length >= 1 && (
-          <Grid
-            container
-            justifyContent="center"
-            className={classes.pagination}
-          >
+          <Grid container justifyContent="center" py={4}>
             <Pagination
               page={page}
               totPages={total_pages}
