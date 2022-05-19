@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Twitter, WhatsApp } from "@mui/icons-material";
+import { styled } from '@mui/material/styles';
 import {
   Container,
   Grid,
@@ -12,30 +13,47 @@ import {
   ListItemText,
 } from "@mui/material";
 import React from "react";
-import makeStyles from "@mui/styles/makeStyles";
+const PREFIX = 'redes';
 
-const useStyles = makeStyles((theme) => ({
-  container: {
+const classes = {
+  container: `${PREFIX}-container`,
+  bgLight: `${PREFIX}-bgLight`,
+  rsHeading: `${PREFIX}-rsHeading`,
+  list: `${PREFIX}-list`,
+  listItem: `${PREFIX}-listItem`,
+  listIcon: `${PREFIX}-listIcon`
+};
+
+const Root = styled('section')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.container}`]: {
     padding: theme.spacing(4, 2),
     // [theme.breakpoints.up("sm")]: {
     //   padding: theme.spacing(4, 2),
     // },
   },
-  bgLight: {
+
+  [`&.${classes.bgLight}`]: {
     backgroundColor: "white",
   },
-  rsHeading: {
+
+  [`& .${classes.rsHeading}`]: {
     ...theme.typography.h5,
     fontWeight: "bold",
     margin: 0,
     marginBottom: theme.spacing(3),
   },
-  list: {
+
+  [`& .${classes.list}`]: {
     listStyle: "none",
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
-  listItem: {
+
+  [`& .${classes.listItem}`]: {
     fontSize: theme.spacing(2.5),
     display: "flex",
     color: theme.palette.text.secondary,
@@ -49,14 +67,16 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
-  listIcon: {
+
+  [`& .${classes.listIcon}`]: {
     minWidth: 56,
-  },
+  }
 }));
+
 export function RedesSection() {
-  const classes = useStyles();
+
   return (
-    <section id="rrss" className={classes.bgLight}>
+    <Root id="rrss" className={classes.bgLight}>
       <Container className={classes.container}>
         <h2 className={classes.rsHeading}>Nuestras redes sociales.</h2>
         <Typography
@@ -108,6 +128,6 @@ export function RedesSection() {
           </ListItem>
         </List>
       </Container>
-    </section>
+    </Root>
   );
 }

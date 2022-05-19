@@ -1,11 +1,63 @@
 import { Input } from "@/components/Input";
+import { styled } from '@mui/material/styles';
 import { Typography, Grid, Paper, Button } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
 import { WhatsApp } from "@mui/icons-material";
 //import { Image } from "next/image";
 import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
+
+const PREFIX = 'contact';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  sectionTitle: `${PREFIX}-sectionTitle`,
+  image: `${PREFIX}-image`,
+  agentInfo: `${PREFIX}-agentInfo`,
+  agentName: `${PREFIX}-agentName`,
+  textLight: `${PREFIX}-textLight`,
+  content: `${PREFIX}-content`
+};
+
+const StyledGrid = styled(Grid)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
+    padding: theme.spacing(2),
+  },
+
+  [`& .${classes.sectionTitle}`]: {
+    ...theme.typography.h6,
+    fontWeight: 700,
+  },
+
+  [`& .${classes.image}`]: {
+    width: "100%",
+    minHeight: 116,
+    backgroundColor: theme.palette.text.secondary,
+    borderRadius: theme.spacing(0.5),
+  },
+
+  [`& .${classes.agentInfo}`]: {
+    marginBottom: theme.spacing(2),
+  },
+
+  [`& .${classes.agentName}`]: {
+    ...theme.typography.h6,
+    fontWeight: 700,
+    lineHeight: 1,
+  },
+
+  [`& .${classes.textLight}`]: {
+    fontWeight: theme.typography.fontWeightLight,
+  },
+
+  [`& .${classes.content}`]: {
+    lineHeight: 1,
+  }
+}));
 
 const initialValues = {
   name: "",
@@ -23,42 +75,12 @@ const validationSchema = object({
     .required("Campo obligatorio"),
 });
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-  sectionTitle: {
-    ...theme.typography.h6,
-    fontWeight: 700,
-  },
-  image: {
-    width: "100%",
-    minHeight: 116,
-    backgroundColor: theme.palette.text.secondary,
-    borderRadius: theme.spacing(0.5),
-  },
-  agentInfo: {
-    marginBottom: theme.spacing(2),
-  },
-  agentName: {
-    ...theme.typography.h6,
-    fontWeight: 700,
-    lineHeight: 1,
-  },
-  textLight: {
-    fontWeight: theme.typography.fontWeightLight,
-  },
-  content: {
-    lineHeight: 1,
-  },
-}));
-
 export function ContactSection({ inmuebleId, agent }) {
-  const classes = useStyles();
+
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <Grid item xs={12} md={3}>
+    <StyledGrid item xs={12} md={3}>
       <Paper
         component="section"
         id="inmueble-contact"
@@ -183,6 +205,6 @@ export function ContactSection({ inmuebleId, agent }) {
           )}
         </Formik>
       </Paper>
-    </Grid>
+    </StyledGrid>
   );
 }

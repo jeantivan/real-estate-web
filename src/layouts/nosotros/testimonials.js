@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import { Grid, Container, Typography } from "@mui/material";
 
 import { Testimonials, Testimonial } from "@/components/";
@@ -9,14 +9,28 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import clsx from "clsx";
 
-const AutoSwipeableViews = autoPlay(SwipeableViews);
+const PREFIX = 'testimonials';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const classes = {
+  root: `${PREFIX}-root`,
+  container: `${PREFIX}-container`,
+  testimonialContainer: `${PREFIX}-testimonialContainer`,
+  dots: `${PREFIX}-dots`,
+  dot: `${PREFIX}-dot`,
+  active: `${PREFIX}-active`
+};
+
+const StyledContainer = styled(Container)((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(6),
   },
-  container: {
+
+  [`& .${classes.container}`]: {
     minHeight: "10vmax",
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
@@ -25,16 +39,19 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(5),
     },
   },
-  testimonialContainer: {
+
+  [`& .${classes.testimonialContainer}`]: {
     marginBottom: theme.spacing(3),
   },
-  dots: {
+
+  [`& .${classes.dots}`]: {
     padding: theme.spacing(1),
     width: "100%",
     display: "flex",
     justifyContent: "center",
   },
-  dot: {
+
+  [`& .${classes.dot}`]: {
     width: 8,
     height: 8,
     backgroundColor: theme.palette.grey[400],
@@ -46,19 +63,22 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  active: {
+
+  [`& .${classes.active}`]: {
     backgroundColor: theme.palette.primary.dark,
-  },
+  }
 }));
 
+const AutoSwipeableViews = autoPlay(SwipeableViews);
+
 export function TestimonialsSection() {
-  const classes = useStyles();
+
   const [index, setIndex] = React.useState(0);
 
   const handleChange = (index) => setIndex(index);
 
   return (
-    <Container
+    <StyledContainer
       component="section"
       maxWidth="lg"
       id="testimonial-section"
@@ -90,6 +110,6 @@ export function TestimonialsSection() {
           </div>
         </Grid>
       </Grid>
-    </Container>
+    </StyledContainer>
   );
 }

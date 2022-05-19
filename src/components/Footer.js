@@ -1,5 +1,12 @@
-import makeStyles from "@mui/styles/makeStyles";
-import { Link, Grid, Container, Typography, IconButton } from "@mui/material";
+import { styled } from "@mui/styles";
+import {
+  Link,
+  Grid,
+  Container,
+  Typography,
+  IconButton,
+  Box,
+} from "@mui/material";
 import {
   Copyright,
   Instagram,
@@ -12,33 +19,68 @@ import {
   YouTube,
   Twitter,
 } from "@mui/icons-material";
+import { keyframes } from "@emotion/react";
 
 import NextLink from "next/link";
 
 import { Newsletter } from "./Newsletter";
 import { Logo } from "./Logo";
+import { display } from "@mui/system";
 
-const useStyles = makeStyles((theme) => ({
+const PREFIX = "Footer";
+
+const classes = {
+  root: `${PREFIX}-root`,
+  bgDark: `${PREFIX}-bgDark`,
+  container: `${PREFIX}-container`,
+  gridItem: `${PREFIX}-gridItem`,
+  subFooter: `${PREFIX}-subFooter`,
+  copyright: `${PREFIX}-copyright`,
+  logo: `${PREFIX}-logo`,
+  heading: `${PREFIX}-heading`,
+  text: `${PREFIX}-text`,
+  link: `${PREFIX}-link`,
+  icon: `${PREFIX}-icon`,
+  rs: `${PREFIX}-rs`,
+  social: `${PREFIX}-social`,
+  me: `${PREFIX}-me`,
+  heart: `${PREFIX}-heart`,
+  heading: `${PREFIX}-heading`,
+};
+
+const pulseAnimation = keyframes`
+  from {
+    transform: scale3d(1, 1, 1);
+  },
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+`;
+
+const sxClasses = {
   root: {
     width: "100%",
-    backgroundColor: "#24324a",
+    bgcolor: "#24324a",
     color: "white",
   },
   bgDark: {
-    backgroundColor: "#1d293e",
+    bgcolor: "#1d293e",
   },
   container: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    pt: 8,
+    pb: 8,
   },
   gridItem: {
-    padding: theme.spacing(2),
+    p: 2,
   },
   subFooter: {
-    padding: theme.spacing(3),
     color: "#8a99b3",
     fontSize: "0.8rem",
     display: "flex",
+    py: 2,
   },
   copyright: {
     flexGrow: 1,
@@ -46,13 +88,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   logo: {
-    marginBottom: theme.spacing(2),
+    mb: 2,
   },
   heading: {
-    marginBottom: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      marginBottom: theme.spacing(4),
-    },
+    mb: { xs: 2, sm: 4 },
   },
   text: {
     color: "#8a99b3",
@@ -60,77 +99,70 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-flex",
     alignItems: "center",
     lineHeight: 1.2,
-    marginBottom: theme.spacing(2),
+    mb: 2,
   },
-  link: {
-    ...theme.typography.body2,
-    color: "#8a99b3",
+  link: [
+    (theme) => ({
+      ...theme.typography.body2,
+      color: "#8a99b3",
+      textDecoration: "none",
 
-    marginBottom: theme.spacing(2),
-    transition: theme.transitions.create(["color", "textDecoration"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      marginBottom: theme.spacing(2),
+      transition: theme.transitions.create(["color", "textDecoration"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
     }),
-
-    "&:hover": {
-      color: "white",
+    {
+      "&:hover": {
+        color: "white",
+      },
     },
-  },
+  ],
   icon: {
     width: 12,
     height: 12,
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: theme.spacing(2),
+    mr: 2,
   },
   rs: {
-    marginTop: theme.spacing(-1.5),
-    marginBottom: theme.spacing(2),
+    mt: -1.5,
+    mb: 2,
   },
-  social: {
-    color: "#8a99b3",
-    transition: theme.transitions.create("color", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+  social: [
+    (theme) => ({
+      color: "#8a99b3",
+      transition: theme.transitions.create("color", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
     }),
-
-    "&:hover": {
-      color: "white",
+    {
+      "&:hover": {
+        color: "white",
+      },
     },
-  },
+  ],
   me: {
     display: "inline-flex",
     alignItems: "center",
     "& > *": {
-      marginRight: theme.spacing(0.25),
-      marginLeft: theme.spacing(0.25),
+      mr: 0.25,
+      ml: 0.25,
     },
   },
   heart: {
     color: "#f44336",
-    animation: "$pulse 1s ease-in-out infinite",
+    animation: `${pulseAnimation} 1s ease-in-out infinite`,
   },
-  "@keyframes pulse": {
-    from: {
-      transform: "scale3d(1, 1, 1)",
-    },
-
-    "50%": {
-      transform: "scale3d(1.05, 1.05, 1.05)",
-    },
-    to: {
-      transform: "scale3d(1, 1, 1)",
-    },
-  },
-}));
+};
 
 export function Footer() {
-  const classes = useStyles();
-
   return (
-    <footer className={classes.root}>
-      <Container className={classes.container}>
+    <Box component="footer" id="footer" sx={sxClasses.root}>
+      <Container sx={sxClasses.container}>
         <Grid container justifyContent="space-between">
           <Grid
             item
@@ -139,13 +171,13 @@ export function Footer() {
             md={3}
             container
             direction="column"
-            className={classes.gridItem}
+            sx={sxClasses.gridItem}
           >
-            <Typography variant="h6" className={classes.heading}>
+            <Typography variant="h6" sx={sxClasses.heading}>
               Nosotros
             </Typography>
-            <Logo inFooter lightColor className={classes.logo} />
-            <Typography className={classes.text}>
+            <Logo inFooter lightColor sx={sxClasses.logo} />
+            <Typography sx={sxClasses.text}>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas
               ipsa ut labore ducimus similique voluptates tempora deleniti
               minima quisquam odit?
@@ -158,22 +190,22 @@ export function Footer() {
             md={2}
             container
             direction="column"
-            className={classes.gridItem}
+            sx={sxClasses.gridItem}
           >
-            <Typography variant="h6" className={classes.heading}>
+            <Typography variant="h6" sx={sxClasses.heading}>
               Navega
             </Typography>
             <NextLink href="/" passHref>
-              <Link className={classes.link}>Inicio</Link>
+              <Link sx={sxClasses.link}>Inicio</Link>
             </NextLink>
             <NextLink href="/inmuebles" passHref>
-              <Link className={classes.link}>Inmuebles</Link>
+              <Link sx={sxClasses.link}>Inmuebles</Link>
             </NextLink>
             <NextLink href="/nosotros" passHref>
-              <Link className={classes.link}>Nosotros</Link>
+              <Link sx={sxClasses.link}>Nosotros</Link>
             </NextLink>
             <NextLink href="/contacto" passHref>
-              <Link className={classes.link}>Contacto</Link>
+              <Link sx={sxClasses.link}>Contacto</Link>
             </NextLink>
           </Grid>
           <Grid
@@ -183,36 +215,56 @@ export function Footer() {
             md={3}
             container
             direction="column"
-            className={classes.gridItem}
+            sx={sxClasses.gridItem}
           >
-            <Typography variant="h6" className={classes.heading}>
+            <Typography variant="h6" sx={sxClasses.heading}>
               Contáctanos
             </Typography>
 
-            <div className={classes.text}>
-              <span role="img" aria-label="ubicacion" className={classes.icon}>
+            <Box sx={sxClasses.text}>
+              <Box
+                component="span"
+                role="img"
+                aria-label="ubicacion"
+                sx={sxClasses.icon}
+              >
                 <LocationOn fontSize="small" />
-              </span>
+              </Box>
               Centro Sambil Caracas, Av. Libertador, Caracas 1064.
-            </div>
-            <div className={classes.text}>
-              <span role="img" aria-label="telefono" className={classes.icon}>
+            </Box>
+            <Box sx={sxClasses.text}>
+              <Box
+                component="span"
+                role="img"
+                aria-label="telefono"
+                sx={sxClasses.icon}
+              >
                 <PhoneAndroid fontSize="small" />
-              </span>
+              </Box>
               +58 424 123 45-67
-            </div>
-            <div className={classes.text}>
-              <span role="img" aria-label="telefono" className={classes.icon}>
+            </Box>
+            <Box sx={sxClasses.text}>
+              <Box
+                component="span"
+                role="img"
+                aria-label="telefono"
+                sx={sxClasses.icon}
+              >
                 <Phone fontSize="small" />
-              </span>
+              </Box>
               +58 212 000 00-00
-            </div>
-            <div className={classes.text}>
-              <span role="img" aria-label="email" className={classes.icon}>
+            </Box>
+            <Box sx={sxClasses.text}>
+              <Box
+                component="span"
+                role="img"
+                aria-label="email"
+                sx={sxClasses.icon}
+              >
                 <Mail fontSize="small" />
-              </span>
+              </Box>
               contacto@avilatek.com
-            </div>
+            </Box>
           </Grid>
           <Grid
             item
@@ -221,14 +273,14 @@ export function Footer() {
             md={3}
             container
             direction="column"
-            className={classes.gridItem}
+            sx={sxClasses.gridItem}
           >
-            <Typography variant="h6" className={classes.heading}>
+            <Typography variant="h6" sx={sxClasses.heading}>
               Siguenos
             </Typography>
-            <div className={classes.rs}>
+            <Box sx={sxClasses.rs}>
               <IconButton
-                className={classes.social}
+                sx={sxClasses.social}
                 edge="start"
                 disableRipple
                 aria-label="Cuenta de instagram"
@@ -237,7 +289,7 @@ export function Footer() {
                 <Instagram />
               </IconButton>
               <IconButton
-                className={classes.social}
+                sx={sxClasses.social}
                 disableRipple
                 aria-label="Cuenta de facebook"
                 size="large"
@@ -245,7 +297,7 @@ export function Footer() {
                 <Facebook />
               </IconButton>
               <IconButton
-                className={classes.social}
+                sx={sxClasses.social}
                 disableRipple
                 aria-label="Cuenta de twitter"
                 size="large"
@@ -253,39 +305,44 @@ export function Footer() {
                 <Twitter />
               </IconButton>
               <IconButton
-                className={classes.social}
+                sx={sxClasses.social}
                 disableRipple
                 aria-label="Canal de youtube"
                 size="large"
               >
                 <YouTube />
               </IconButton>
-            </div>
+            </Box>
             <Typography variant="h6" gutterBottom>
               Promociones
             </Typography>
-            <Typography className={classes.text}>
+            <Typography sx={sxClasses.text}>
               Recibe notificaciones cuando se publique un nuevo inmueble.
             </Typography>
             <Newsletter />
           </Grid>
         </Grid>
       </Container>
-      <div className={classes.bgDark}>
+      <Box sx={sxClasses.bgDark}>
         <Container>
-          <div className={classes.subFooter}>
-            <div className={classes.copyright}>
-              <span role="img" aria-label="ubicacion" className={classes.icon}>
+          <Box sx={sxClasses.subFooter}>
+            <Box sx={sxClasses.copyright}>
+              <Box
+                component="span"
+                role="img"
+                aria-label="ubicacion"
+                sx={sxClasses.icon}
+              >
                 <Copyright fontSize="small" />
-              </span>
+              </Box>
               {new Date().getFullYear()} Avilatek | Todos los derechos
               reservados
-            </div>
-            <div className={classes.me}>
+            </Box>
+            <Box sx={sxClasses.me}>
               <span>Creado con</span>
-              <span className={classes.heart}>
+              <Box component="span" aria-hidden="true" sx={sxClasses.heart}>
                 <Favorite fontSize="small" />
-              </span>
+              </Box>
               <span>por</span>
               <Link
                 target="_blank"
@@ -295,10 +352,10 @@ export function Footer() {
               >
                 JEAN TIVAN.
               </Link>
-            </div>
-          </div>
+            </Box>
+          </Box>
         </Container>
-      </div>
-    </footer>
+      </Box>
+    </Box>
   );
 }

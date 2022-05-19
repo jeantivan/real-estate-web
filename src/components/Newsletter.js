@@ -1,16 +1,29 @@
 import { IconButton, TextField } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import { useSnackbar } from "notistack";
 import { ChevronRight } from "@mui/icons-material";
 import React from "react"
 
-const useStyles = makeStyles((theme) => ({
-  news: {
+const PREFIX = 'Newsletter';
+
+const classes = {
+  news: `${PREFIX}-news`,
+  textField: `${PREFIX}-textField`,
+  button: `${PREFIX}-button`
+};
+
+const Root = styled('form')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.news}`]: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  textField: {
+
+  [`& .${classes.textField}`]: {
     marginRight: theme.spacing(2),
     color: "#fff",
     "& .MuiFormLabel-root": {
@@ -27,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: "1px solid rgba(255, 255, 255, 0.7);",
     },
   },
-  button: {
+
+  [`& .${classes.button}`]: {
     backgroundColor: "rgba(255, 255, 255, 0.09)",
     color: "#8a99b3",
     width: 48,
@@ -41,11 +55,11 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
       backgroundColor: "rgba(255, 255, 255, 0.13)",
     },
-  },
+  }
 }));
 
 export function Newsletter() {
-  const classes = useStyles();
+
   const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = React.useState("");
 
@@ -68,7 +82,7 @@ export function Newsletter() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={classes.news}>
+    <Root onSubmit={handleSubmit} className={classes.news}>
       <TextField
         className={classes.textField}
         name="email-newsletter"
@@ -87,6 +101,6 @@ export function Newsletter() {
         size="large">
         <ChevronRight fontSize="large" />
       </IconButton>
-    </form>
+    </Root>
   );
 }

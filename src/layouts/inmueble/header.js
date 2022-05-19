@@ -1,34 +1,50 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { styled } from '@mui/material/styles';
 import { LocationOn } from "@mui/icons-material";
-import makeStyles from '@mui/styles/makeStyles';
 import { PrismicRichText } from "@prismicio/react";
 import {asText} from '@prismicio/helpers'
 
-const useStyles = makeStyles((theme) => ({
-  precio: {
+const PREFIX = 'header';
+
+const classes = {
+  precio: `${PREFIX}-precio`,
+  location: `${PREFIX}-location`,
+  icon: `${PREFIX}-icon`,
+  dolar: `${PREFIX}-dolar`
+};
+
+const StyledGrid = styled(Grid)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.precio}`]: {
     fontWeight: 700,
     color: theme.palette.primary.dark,
   },
-  location: {
+
+  [`& .${classes.location}`]: {
     display: "inline-flex",
     alignItems: "center",
   },
-  icon: {
+
+  [`& .${classes.icon}`]: {
     display: "inline-flex",
     marginRight: theme.spacing(0.75),
   },
-  dolar: {
+
+  [`& .${classes.dolar}`]: {
     ...theme.typography.h4,
     fontWeight: 700,
     display: "inline-block",
     marginRight: "0.25rem",
-  },
+  }
 }));
 
 export function HeaderSection({ titulo, ubiaprox, precio }) {
-  const classes = useStyles();
+
   return (
-    <Grid item xs={12} md={10}>
+    <StyledGrid item xs={12} md={10}>
       <Grid
         container
         alignItems="center"
@@ -58,6 +74,6 @@ export function HeaderSection({ titulo, ubiaprox, precio }) {
           </Typography>
         </Grid>
       </Grid>
-    </Grid>
+    </StyledGrid>
   );
 }

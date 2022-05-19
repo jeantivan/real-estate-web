@@ -1,40 +1,60 @@
 import NextLink from "next/link";
-import makeStyles from "@mui/styles/makeStyles";
+import { styled } from '@mui/material/styles';
 import { Link } from "@mui/material";
 import clsx from "clsx";
 
-const useStyles = makeStyles((theme) => ({
-  inNav: {
+const PREFIX = 'Logo';
+
+const classes = {
+  inNav: `${PREFIX}-inNav`,
+  inFooter: `${PREFIX}-inFooter`,
+  link: `${PREFIX}-link`,
+  span: `${PREFIX}-span`,
+  lightColor: `${PREFIX}-lightColor`,
+  darkColor: `${PREFIX}-darkColor`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.inNav}`]: {
     alignSelf: "center",
   },
-  inFooter: {
+
+  [`& .${classes.inFooter}`]: {
     alignSelf: "flex-start",
   },
-  link: {
+
+  [`& .${classes.link}`]: {
     display: "block",
     cursor: "pointer",
     width: 163,
     height: 32,
   },
-  span: {
+
+  [`& .${classes.span}`]: {
     "& > svg": {
       display: "block",
       fill: "currentColor",
     },
   },
-  lightColor: {
+
+  [`& .${classes.lightColor}`]: {
     color: "#E9E9E9",
   },
-  darkColor: {
+
+  [`& .${classes.darkColor}`]: {
     color: "#141313",
-  },
+  }
 }));
 
 export function Logo({ className, inNav, inFooter, lightColor, darkColor }) {
-  const classes = useStyles();
+
 
   return (
-    <div
+    <Root
       className={clsx(
         className,
         inNav && classes.inNav,
@@ -56,6 +76,6 @@ export function Logo({ className, inNav, inFooter, lightColor, darkColor }) {
           </span>
         </Link>
       </NextLink>
-    </div>
+    </Root>
   );
 }

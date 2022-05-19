@@ -1,9 +1,9 @@
 import Client from "@/utils/prismic-config";
-import * as prismic  from '@prismicio/client'
+import * as prismic from "@prismicio/client";
 
 // Obtiene la data de todos los inmuebles guardados en el repositorio Prismic
-export async function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
-  
+export function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
+  //const startTiming = performance.now();
   let orderings;
   let filters = [];
 
@@ -27,23 +27,37 @@ export async function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
     }
   }
 
-  const response = await Client.getByType('inmueble',{
+  /*  const response = await Client.getByType("inmueble", {
+    predicates: filters,
+    fetchLinks: ["agent.name", "agent.picture"],
+    orderings: orderings,
+    pageSize: 6,
+    page,
+  }); */
+
+  /* const endTiming = performance.now();
+
+  const timeToExecute = endTiming - startTiming;
+
+  console.log({ timeToExecute }); */
+
+  return Client.getByType("inmueble", {
     predicates: filters,
     fetchLinks: ["agent.name", "agent.picture"],
     orderings: orderings,
     pageSize: 6,
     page,
   });
-
-  return response;
 }
 
 // Obtiene los slugs de todos los inmuebles guardados en el repositorio Prismic
 export async function getAllInmueblesSlug() {
-  const response = await Client.getByType("inmueble",
-    { orderings: {
-      field: "my.inmueble.date", direction: "desc" }}
-  );
+  const response = await Client.getByType("inmueble", {
+    orderings: {
+      field: "my.inmueble.date",
+      direction: "desc",
+    },
+  });
 
   const paths = response.results.map(({ uid }) => ({ params: { slug: uid } }));
 
@@ -52,6 +66,7 @@ export async function getAllInmueblesSlug() {
 
 // Obtiene la data del inmueble dado un slug
 export async function getInmueble(slug) {
+  const startTiming = performance.now();
   const { id, uid, data } = await Client.getByUID("inmueble", slug, {
     fetchLinks: [
       "agent.name",
@@ -60,6 +75,11 @@ export async function getInmueble(slug) {
       "agent.picture",
     ],
   });
+  const endTiming = performance.now();
+
+  const timeToExecute = endTiming - startTiming;
+
+  console.log({ timeToExecute });
 
   return {
     id: id,
@@ -70,7 +90,9 @@ export async function getInmueble(slug) {
 
 // Obtiene los inmuebles con contenido similar a otro inmueble
 export async function getInmueblesSimilares(id) {
-  const { results } = await Client.query(prismic.predicate.similar(id, 10), { pageSize: 4 });
+  const { results } = await Client.query(prismic.predicate.similar(id, 10), {
+    pageSize: 4,
+  });
   return results;
 }
 

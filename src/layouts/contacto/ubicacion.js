@@ -1,23 +1,39 @@
 import React from "react";
-import makeStyles from "@mui/styles/makeStyles";
+import { styled } from '@mui/material/styles';
 import { Container, Typography } from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
+const PREFIX = 'ubicacion';
+
+const classes = {
+  container: `${PREFIX}-container`,
+  mainHeading: `${PREFIX}-mainHeading`,
+  mapWrapper: `${PREFIX}-mapWrapper`,
+  map: `${PREFIX}-map`
+};
+
+const Root = styled('section')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.container}`]: {
     padding: theme.spacing(4, 2),
   },
-  mainHeading: {
+
+  [`& .${classes.mainHeading}`]: {
     ...theme.typography.h6,
     fontWeight: 500,
     textTransform: "uppercase",
   },
-  mapWrapper: {
+
+  [`& .${classes.mapWrapper}`]: {
     width: "100%",
     height: 0,
     paddingTop: "calc(9 / 21 * 100%)",
     position: "relative",
   },
-  map: {
+
+  [`& .${classes.map}`]: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -30,13 +46,13 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       height: "100%",
     },
-  },
+  }
 }));
 
 export function UbicacionSection() {
-  const classes = useStyles();
+
   return (
-    <section id="ubicacion">
+    <Root id="ubicacion">
       <Container className={classes.container}>
         <Typography component="h1" align="center" variant="body1">
           Encontrarnos es fácil, estamos ubicados en el
@@ -56,6 +72,6 @@ export function UbicacionSection() {
           ></iframe>
         </div>
       </div>
-    </section>
+    </Root>
   );
 }

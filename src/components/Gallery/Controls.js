@@ -1,9 +1,22 @@
 import Fab from "@mui/material/Fab";
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import { ChevronRight, ChevronLeft } from "@mui/icons-material";
 
-const useStyles = makeStyles((theme) => ({
-  btn: {
+const PREFIX = 'Controls';
+
+const classes = {
+  btn: `${PREFIX}-btn`,
+  btnLeft: `${PREFIX}-btnLeft`,
+  btnRight: `${PREFIX}-btnRight`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.btn}`]: {
     boxShadow: "none",
     position: "absolute",
     top: "50%",
@@ -16,20 +29,22 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "none",
     },
   },
-  btnLeft: {
+
+  [`& .${classes.btnLeft}`]: {
     left: 10,
     transform: "translateX(calc(-100% - 5px))",
   },
-  btnRight: {
+
+  [`& .${classes.btnRight}`]: {
     right: 10,
     transform: "translateX(calc(100% + 5px))",
-  },
+  }
 }));
 
 export const Controls = ({ handlePrev, handleNext, index, max }) => {
-  const classes = useStyles();
+
   return (
-    <>
+    (<Root>
       {index !== 0 && (
         <Fab
           size="small"
@@ -54,6 +69,6 @@ export const Controls = ({ handlePrev, handleNext, index, max }) => {
           <ChevronRight />
         </Fab>
       )}
-    </>
+    </Root>)
   );
 };

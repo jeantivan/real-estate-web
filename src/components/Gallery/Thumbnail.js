@@ -1,9 +1,21 @@
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import Image from "next/image";
 import clsx from "clsx";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'Thumbnail';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  container: `${PREFIX}-container`,
+  active: `${PREFIX}-active`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     position: "relative",
     width: "100%",
     height: 0,
@@ -12,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.grey[600],
     cursor: "pointer",
   },
-  container: {
+
+  [`& .${classes.container}`]: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -21,17 +34,19 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "100%",
   },
-  active: {
+
+  [`&.${classes.active}`]: {
     outline: `2px solid ${theme.palette.primary.main}`,
-  },
+  }
 }));
+
 export function Thumbnail({ imagen, active }) {
-  const classes = useStyles();
+
   return (
-    <div className={clsx(classes.root, { [classes.active]: active })}>
+    <Root className={clsx(classes.root, { [classes.active]: active })}>
       <div className={classes.container}>
         <Image alt={imagen.alt} src={imagen.url} layout="fill" />
       </div>
-    </div>
+    </Root>
   );
 }

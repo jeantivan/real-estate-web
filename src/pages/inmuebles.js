@@ -1,6 +1,6 @@
 import { InmuebleItem, Layout, Pagination } from "@/components";
+import { styled } from "@mui/material/styles";
 import { getAllInmuebles } from "@/lib/api";
-import makeStyles from '@mui/styles/makeStyles';
 import {
   Button,
   Collapse,
@@ -15,20 +15,21 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const useStyles = makeStyles((theme) => ({
-  title: {
+const PREFIX = "inmuebles";
+
+const classes = {
+  title: `${PREFIX}-title`,
+  grid: `${PREFIX}-grid`,
+  pagination: `${PREFIX}-pagination`,
+};
+
+const StyledLayout = styled(Layout)(({ theme }) => ({
+  [`& .${classes.title}`]: {
     margin: theme.spacing(2, 0),
-  },
-  grid: {
-    margin: theme.spacing(2, -2),
-  },
-  pagination: {
-    margin: theme.spacing(4, 0),
   },
 }));
 
 export default function Inmuebles({ data }) {
-  const classes = useStyles();
   const router = useRouter();
 
   const [showFilters, setShowFilters] = useState(false);
@@ -92,7 +93,7 @@ export default function Inmuebles({ data }) {
   });
 
   return (
-    <Layout
+    <StyledLayout
       titulo="Inmuebles"
       descripcion="Cras rutrum, ligula id varius consequat, nunc leo tincidunt massa, eu ornare neque ipsum vitae dui. Etiam arcu mauris, rhoncus vel nibh id, auctor porttitor leo. Phasellus eu lectus lorem. Curabitur consequat porta lacus interdum placerat. Nullam urna ligula, dignissim non enim eu, fermentum porta nulla. Etiam ut feugiat felis. In a odio ut erat efficitur vehicula. Proin vestibulum neque est, sit amet varius libero finibus et. Nullam magna justo, volutpat eget lacinia vel, fringilla non ligula. Nam sagittis justo ac ornare condimentum. Donec eros eros, bibendum quis velit nec, tincidunt gravida nisi."
     >
@@ -102,6 +103,8 @@ export default function Inmuebles({ data }) {
           justifyContent="space-between"
           alignItems="flex-end"
           className={classes.title}
+          pt={4}
+          pb={2}
         >
           <Grid item>
             <Typography variant="h2" component="h1">
@@ -126,7 +129,13 @@ export default function Inmuebles({ data }) {
           <Collapse in={showFilters}>{/* <Filters /> */}</Collapse>
         )}
 
-        <Grid container spacing={4} className={classes.grid}>
+        <Grid
+          container
+          py={4}
+          rowSpacing={4}
+          columnSpacing={3}
+          className={classes.grid}
+        >
           {results.length < 1 ? (
             <Grid item xs={12}>
               <Typography
@@ -154,7 +163,7 @@ export default function Inmuebles({ data }) {
           )}
         </Grid>
         {results.length >= 1 && (
-          <Grid container justifyContent="center" className={classes.pagination}>
+          <Grid container justifyContent="center" py={4}>
             <Pagination
               page={page}
               totPages={total_pages}
@@ -163,12 +172,20 @@ export default function Inmuebles({ data }) {
           </Grid>
         )}
       </Container>
-    </Layout>
+    </StyledLayout>
   );
 }
 
 export async function getServerSideProps({ query }) {
+  const startTiming = performance.now();
+
   const data = await getAllInmuebles(query);
+
+  const endTiming = performance.now();
+
+  const timeToExecute = endTiming - startTiming;
+
+  console.log({ timeToExecute });
 
   return {
     props: {

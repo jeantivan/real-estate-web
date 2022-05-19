@@ -4,8 +4,7 @@ import Router from "next/router";
 import React from "react";
 
 // Material-UI config
-import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, IconButton } from "@mui/material/";
+import { CssBaseline, ThemeProvider, IconButton } from "@mui/material/";
 import theme from "@/utils/theme";
 
 // Nprogress config

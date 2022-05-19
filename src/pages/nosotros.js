@@ -1,15 +1,36 @@
 import { Agent, Layout, Service, Testimonials } from "@/components";
+import { styled } from '@mui/material/styles';
 import { FindHouse, Goals, Market, RealEstate, Rent } from "@/icons";
 import { getAllAgents } from "@/lib/api";
 import { Button, Container, Grid, Typography } from "@mui/material/";
-import makeStyles from '@mui/styles/makeStyles';
 import NextLink from "next/link";
 
 import { FAQSSection } from "@/layouts/nosotros/faqs";
 import { TestimonialsSection } from "@/layouts/nosotros/testimonials";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
+const PREFIX = 'nosotros';
+
+const classes = {
+  container: `${PREFIX}-container`,
+  bgLight: `${PREFIX}-bgLight`,
+  grid: `${PREFIX}-grid`,
+  mainHeading: `${PREFIX}-mainHeading`,
+  servicesHeading: `${PREFIX}-servicesHeading`,
+  teamHeading: `${PREFIX}-teamHeading`,
+  testimonialsHeading: `${PREFIX}-testimonialsHeading`,
+  strong: `${PREFIX}-strong`,
+  fakeIframe: `${PREFIX}-fakeIframe`,
+  gradient: `${PREFIX}-gradient`,
+  wave: `${PREFIX}-wave`,
+  testimonialsSection: `${PREFIX}-testimonialsSection`
+};
+
+const StyledLayout = styled(Layout)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.container}`]: {
     minHeight: "10vmax",
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
@@ -18,59 +39,70 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(5),
     },
   },
-  bgLight: {
+
+  [`& .${classes.bgLight}`]: {
     backgroundColor: "#fafafa",
   },
-  grid: {
+
+  [`& .${classes.grid}`]: {
     marginLeft: theme.spacing(-2),
     marginRight: theme.spacing(-2),
   },
-  mainHeading: {
+
+  [`& .${classes.mainHeading}`]: {
     ...theme.typography.h6,
     fontWeight: 500,
     textTransform: "uppercase",
     letterSpacing: 2,
     marginBottom: theme.spacing(3),
   },
-  servicesHeading: {
+
+  [`& .${classes.servicesHeading}`]: {
     ...theme.typography.h4,
     fontWeight: "bold",
     margin: 0,
     marginBottom: theme.spacing(3),
   },
-  teamHeading: {
+
+  [`& .${classes.teamHeading}`]: {
     ...theme.typography.h3,
     color: "white",
     fontWeight: "bold",
     margin: 0,
     marginBottom: theme.spacing(3),
   },
-  testimonialsHeading: {
+
+  [`& .${classes.testimonialsHeading}`]: {
     ...theme.typography.h3,
     margin: 0,
     marginBottom: theme.spacing(3),
   },
-  strong: {
+
+  [`& .${classes.strong}`]: {
     ...theme.typography.h2,
     lineHeight: 1,
     fontWeight: "bold",
     color: theme.palette.primary.main,
   },
-  fakeIframe: {
+
+  [`& .${classes.fakeIframe}`]: {
     width: "100%",
     height: 0,
     paddingTop: "calc(9 / 16 * 100%)",
     backgroundColor: "#000",
   },
-  gradient: {
+
+  [`& .${classes.gradient}`]: {
     background: "#1a237e linear-gradient(to bottom, #1a237e, #0d47a1)",
   },
-  wave: {
+
+  [`& .${classes.wave}`]: {
     "& > svg": {
       display: "block",
     },
   },
-  testimonialsSection: {
+
+  [`& .${classes.testimonialsSection}`]: {
     // position: "relative",
     // top: -20,
     // [theme.breakpoints.up("sm")]: {
@@ -80,14 +112,14 @@ const useStyles = makeStyles((theme) => ({
     //   top: -120,
     // },
     maginBottom: theme.spacing(8),
-  },
+  }
 }));
 
 export default function Servicios({ results: agents }) {
-  const classes = useStyles();
+
 
   return (
-    <Layout
+    <StyledLayout
       titulo="Servicios"
       descripcion="Fusce dui nulla, rhoncus nec ullamcorper ac, porttitor vel nunc. Cras risus felis, imperdiet in tristique vel, placerat nec mauris. Curabitur justo elit, pharetra a enim nec, tempus sagittis risus. Vivamus ac magna facilisis, fermentum neque id, posuere mi. Etiam vitae blandit orci. Quisque vitae ante ac ligula posuere imperdiet. Morbi velit sapien, pellentesque eu auctor sed, imperdiet at nibh. Maecenas auctor a libero et euismod. Maecenas pharetra odio ipsum, vitae porttitor urna suscipit nec."
     >
@@ -220,7 +252,7 @@ export default function Servicios({ results: agents }) {
       <TestimonialsSection />
 
       <FAQSSection />
-    </Layout>
+    </StyledLayout>
   );
 }
 

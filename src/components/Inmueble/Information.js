@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { styled } from '@mui/material/styles';
 import { alpha } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
 import { Button, Divider, Grid, Typography } from "@mui/material";
 
 //import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,8 +16,26 @@ import { useSnackbar } from "notistack";
 
 import { Contact } from "./Contact";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'Information';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  title: `${PREFIX}-title`,
+  price: `${PREFIX}-price`,
+  divider: `${PREFIX}-divider`,
+  location: `${PREFIX}-location`,
+  item: `${PREFIX}-item`,
+  itemIcon: `${PREFIX}-itemIcon`,
+  itemCaption: `${PREFIX}-itemCaption`,
+  itemText: `${PREFIX}-itemText`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     height: "100%",
     display: "flex",
     flexDirection: "column",
@@ -25,7 +43,8 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "auto",
     },
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     fontWeight: 600,
     position: "relative",
     display: "inline-block",
@@ -40,39 +59,46 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.light,
     },
   },
-  price: {
+
+  [`& .${classes.price}`]: {
     fontWeight: 700,
     color: theme.palette.primary.dark,
   },
-  divider: {
+
+  [`& .${classes.divider}`]: {
     margin: theme.spacing(2, 0),
     backgroundColor: alpha(theme.palette.primary.light, 0.2),
   },
-  location: {
+
+  [`& .${classes.location}`]: {
     display: "inline-flex",
     alignItems: "center",
     color: theme.palette.primary.main,
   },
-  item: {
+
+  [`& .${classes.item}`]: {
     display: "flex",
     alignItems: "center",
     fontSize: theme.spacing(3),
   },
-  itemIcon: {
+
+  [`& .${classes.itemIcon}`]: {
     flexShrink: 0,
     color: theme.palette.primary.A700,
     fontSize: theme.spacing(3),
     marginRight: theme.spacing(2),
   },
-  itemCaption: {
+
+  [`& .${classes.itemCaption}`]: {
     display: "block",
     fontSize: theme.typography.pxToRem(12),
   },
-  itemText: {
+
+  [`& .${classes.itemText}`]: {
     display: "block",
     fontSize: theme.typography.pxToRem(18),
     fontWeight: 600,
-  },
+  }
 }));
 
 export function InmuebleInformation({
@@ -83,7 +109,7 @@ export function InmuebleInformation({
   estacionamientos,
   agent,
 }) {
-  const classes = useStyles();
+
   const [openDialog, setOpenDialog] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -108,7 +134,7 @@ export function InmuebleInformation({
   };
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <div>
         <Typography
           variant="h6"
@@ -203,6 +229,6 @@ export function InmuebleInformation({
         </Button>
         <Contact agent={agent} open={openDialog} handleClose={handleClose} />
       </div>
-    </div>
+    </Root>
   );
 }
