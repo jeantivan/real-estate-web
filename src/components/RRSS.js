@@ -4,7 +4,15 @@ import { Instagram, WhatsApp } from "@mui/icons-material";
 // Redes Sociales
 export function RRSS() {
   return (
-    <Grid container justifyContent="flex-end">
+    <Grid
+      container
+      sx={{
+        justifyContent: {
+          xs: "center",
+          md: "flex-end",
+        },
+      }}
+    >
       <Grid item>
         <IconButton
           disableRipple
