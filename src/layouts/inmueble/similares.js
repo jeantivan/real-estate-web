@@ -59,7 +59,7 @@ export function SimilaresSection({ inmueblesSimilares }) {
             <Typography variant="h5">Inmueble Similares</Typography>
           </Grid>
           <Grid item>
-            <Link href="/inmuebles" passHref>
+            <Link href="/inmuebles/1" passHref>
               <Button color="primary">Ver todos</Button>
             </Link>
           </Grid>

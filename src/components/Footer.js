@@ -198,7 +198,7 @@ export function Footer() {
             <NextLink href="/" passHref>
               <Link sx={sxClasses.link}>Inicio</Link>
             </NextLink>
-            <NextLink href="/inmuebles" passHref>
+            <NextLink href="/inmuebles/1" passHref>
               <Link sx={sxClasses.link}>Inmuebles</Link>
             </NextLink>
             <NextLink href="/nosotros" passHref>

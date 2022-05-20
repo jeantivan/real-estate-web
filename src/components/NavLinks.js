@@ -18,7 +18,7 @@ const routes = [
   },
   {
     name: "Inmuebles",
-    href: "/inmuebles",
+    href: "/inmuebles/1",
   },
   {
     name: "Nosotros",

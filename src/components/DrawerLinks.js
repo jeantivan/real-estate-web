@@ -45,7 +45,7 @@ export function DrawerLinks({ classes, handleClose, router }) {
         Inicio
       </DrawerLink>
       <DrawerLink
-        href="/inmuebles"
+        href="/inmuebles/1"
         handleClose={handleClose}
         className={link}
         activeClassName={activeLink}
