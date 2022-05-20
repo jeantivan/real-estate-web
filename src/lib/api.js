@@ -52,7 +52,7 @@ export function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
   });
 }
 
-export async function getInmueblesByPage(page) {
+export async function getInmueblesByPage(page = 1) {
   const response = await Client.getByType("inmueble", {
     page,
     pageSize,
