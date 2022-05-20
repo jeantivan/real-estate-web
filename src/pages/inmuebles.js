@@ -1,6 +1,10 @@
 import { InmuebleItem, Layout, Pagination } from "@/components";
 import { styled } from "@mui/material/styles";
-import { getAllInmuebles } from "@/lib/api";
+import {
+  getAllInmuebles,
+  getInmueblesByPage,
+  getAllInmueblesPages,
+} from "@/lib/api";
 import {
   Button,
   Collapse,

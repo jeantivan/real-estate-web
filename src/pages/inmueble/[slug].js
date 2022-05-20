@@ -107,6 +107,9 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
 export async function getStaticPaths() {
   const response = await getAllInmueblesSlug();
   const paths = response.results.map(({ uid }) => ({ params: { slug: uid } }));
+
+  console.log(paths);
+
   return {
     paths,
     fallback: false,

@@ -1,6 +1,8 @@
 import Client from "@/utils/prismic-config";
 import * as prismic from "@prismicio/client";
 
+const pageSize = 6;
+
 // Obtiene la data de todos los inmuebles guardados en el repositorio Prismic
 export function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
   //const startTiming = performance.now();
@@ -45,9 +47,26 @@ export function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
     predicates: filters,
     fetchLinks: ["agent.name", "agent.picture"],
     orderings: orderings,
-    pageSize: 6,
+    pageSize,
     page,
   });
+}
+
+export async function getInmueblesByPage(page) {
+  const response = await Client.getByType("inmueble", {
+    page,
+    pageSize,
+  });
+
+  return response;
+}
+
+export async function getAllInmueblesPages() {
+  const response = Client.getByType("inmueble", {
+    pageSize,
+  });
+
+  return response;
 }
 
 // Obtiene los slugs de todos los inmuebles guardados en el repositorio Prismic
@@ -80,7 +99,7 @@ export async function getInmueble(slug) {
 
 // Obtiene los inmuebles con contenido similar a otro inmueble
 export async function getInmueblesSimilares(id) {
-  return Client.query(prismic.predicate.similar(id, 10), {
+  return await Client.query(prismic.predicate.similar(id, 10), {
     pageSize: 4,
   });
 }
