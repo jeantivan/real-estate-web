@@ -195,7 +195,7 @@ export function Footer() {
             <Typography variant="h6" sx={sxClasses.heading}>
               Navega
             </Typography>
-            <NextLink href="/" passHref>
+            <NextLink href="/home" passHref>
               <Link sx={sxClasses.link}>Inicio</Link>
             </NextLink>
             <NextLink href="/inmuebles/1" passHref>
