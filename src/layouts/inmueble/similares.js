@@ -1,14 +1,14 @@
 import { Grid, Button, Typography, Hidden } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import Link from "next/link";
 
 import { InmuebleItem } from "@/components";
 
-const PREFIX = 'similares';
+const PREFIX = "similares";
 
 const classes = {
   grow: `${PREFIX}-grow`,
-  paper: `${PREFIX}-paper`
+  paper: `${PREFIX}-paper`,
 };
 
 const StyledGrid = styled(Grid)({
@@ -22,8 +22,6 @@ const StyledGrid = styled(Grid)({
 });
 
 export function SimilaresSection({ inmueblesSimilares }) {
-
-
   const results = inmueblesSimilares.map(({ data, uid }, index) => {
     let props = {
       slug: uid,
@@ -52,22 +50,27 @@ export function SimilaresSection({ inmueblesSimilares }) {
     );
   });
   return (
-    <Grid item xs={12} md={10}>
-      <section id="inmueble-similares">
-        <Grid container spacing={2} component="section">
-          <Grid item className={classes.grow}>
-            <Typography variant="h5">Inmueble Similares</Typography>
-          </Grid>
-          <Grid item>
-            <Link href="/inmuebles/1" passHref>
-              <Button color="primary">Ver todos</Button>
-            </Link>
-          </Grid>
+    <Grid
+      item
+      component="section"
+      id="inmueble-similares"
+      xs={12}
+      md={10}
+      pb={4}
+    >
+      <Grid container spacing={2} py={2} justifyContent="space-between">
+        <Grid item className={classes.grow}>
+          <Typography variant="h5">Inmuebles Similares</Typography>
         </Grid>
-        <Grid container spacing={2} justifyContent="space-between">
-          {results}
+        <Grid item>
+          <Link href="/inmuebles/1" passHref>
+            <Button color="primary">Ver todos</Button>
+          </Link>
         </Grid>
-      </section>
+      </Grid>
+      <Grid container spacing={2} justifyContent="space-between">
+        {results}
+      </Grid>
     </Grid>
   );
 }

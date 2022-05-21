@@ -1,13 +1,14 @@
 import { Input } from "@/components/Input";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Typography, Grid, Paper, Button } from "@mui/material";
 import { WhatsApp } from "@mui/icons-material";
-//import { Image } from "next/image";
+import Image from "next/image";
 import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
+import { Box } from "@mui/system";
 
-const PREFIX = 'contact';
+const PREFIX = "contact";
 
 const classes = {
   root: `${PREFIX}-root`,
@@ -16,17 +17,11 @@ const classes = {
   agentInfo: `${PREFIX}-agentInfo`,
   agentName: `${PREFIX}-agentName`,
   textLight: `${PREFIX}-textLight`,
-  content: `${PREFIX}-content`
+  content: `${PREFIX}-content`,
 };
 
-const StyledGrid = styled(Grid)((
-  {
-    theme
-  }
-) => ({
-  [`& .${classes.root}`]: {
-    padding: theme.spacing(2),
-  },
+const StyledGrid = styled(Grid)(({ theme }) => ({
+  [`& .${classes.root}`]: {},
 
   [`& .${classes.sectionTitle}`]: {
     ...theme.typography.h6,
@@ -56,7 +51,7 @@ const StyledGrid = styled(Grid)((
 
   [`& .${classes.content}`]: {
     lineHeight: 1,
-  }
+  },
 }));
 
 const initialValues = {
@@ -76,7 +71,6 @@ const validationSchema = object({
 });
 
 export function ContactSection({ inmuebleId, agent }) {
-
   const { enqueueSnackbar } = useSnackbar();
 
   return (
@@ -87,50 +81,72 @@ export function ContactSection({ inmuebleId, agent }) {
         className={classes.root}
         elevation={0}
       >
-        <Grid container spacing={1} className={classes.agentInfo}>
-          <Grid item xs={4}>
-            {/* <Image
-              src={agent.data.picture.url}
-              alt={agent.data.picture.alt}
-              height={agent.data.picture.dimensions.height}
-              layout="fill"
-            /> */}
-            <div className={classes.image} />
+        <Box
+          sx={{
+            background: "#24324a",
+            borderTopWidth: 1,
+            borderTopStyle: "solid",
+            borderColor: "primary.main",
+            borderTopLeftRadius: "inherit",
+            borderTopRightRadius: "inherit",
+            padding: 2,
+          }}
+        >
+          <Grid container className={classes.agentInfo}>
+            <Grid item container justifyContent="flex-end">
+              <Box
+                sx={{
+                  p: 2,
+                  minHeight: 160,
+                  width: 160,
+                  borderRadius: 1,
+                  position: "relative",
+                }}
+              >
+                <Image
+                  src={agent.picture.url}
+                  alt={agent.picture.alt}
+                  height={agent.picture.dimensions.height}
+                  layout="fill"
+                  style={{ borderRadius: "inherit" }}
+                />
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              container
+              direction="column"
+              justifyContent="space-between"
+              wrap="nowrap"
+            >
+              <Grid item>
+                <Typography component="h3" className={classes.agentName}>
+                  {agent.name}
+                </Typography>
+                <Typography variant="caption" color="textSecondary">
+                  Asesor inmobiliario
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="caption" className={classes.textLight}>
+                  Telefono:
+                </Typography>
+                <Typography variant="body2" className={classes.content}>
+                  {agent.phonenumber}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="caption" className={classes.textLight}>
+                  Email:
+                </Typography>
+                <Typography variant="body2" className={classes.content}>
+                  {agent.email}
+                </Typography>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid
-            item
-            xs={8}
-            container
-            direction="column"
-            justifyContent="space-between"
-            wrap="nowrap"
-          >
-            <Grid item>
-              <Typography component="h3" className={classes.agentName}>
-                {agent.data.name}
-              </Typography>
-              <Typography variant="caption" color="textSecondary">
-                Asesor inmobiliario
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="caption" className={classes.textLight}>
-                Telefono:
-              </Typography>
-              <Typography variant="body2" className={classes.content}>
-                {agent.data.phonenumber}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="caption" className={classes.textLight}>
-                Email:
-              </Typography>
-              <Typography variant="body2" className={classes.content}>
-                {agent.data.email}
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
+        </Box>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
