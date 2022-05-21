@@ -75,30 +75,27 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
     antiguedad: "5 años",
   };
 
+  console.log(inmueble);
   return (
     <StyledLayout
       titulo={asText(inmueble.titulo)}
       descripcion={inmueble.descCorta}
     >
-      <Container maxWidth="lg">
-        <Box py={4}>
-          <Grid
-            container
-            spacing={3}
-            justifyContent="center"
-            component="article"
-          >
-            <HeaderSection
-              titulo={inmueble.titulo}
-              ubiaprox={inmueble.ubiaprox}
-              precio={inmueble.precio}
-            />
-            <GallerySection imagenes={inmueble.imagenes} />
-            <OverviewSection {...inmuebleInfo} />
-            <ContactSection inmuebleId={inmueble.id} agent={inmueble.agent} />
-            <SimilaresSection inmueblesSimilares={inmueblesSimilares} />
-          </Grid>
-        </Box>
+      <Container maxWidth="lg" py={4}>
+        <Grid container spacing={3} justifyContent="center" component="article">
+          <HeaderSection
+            titulo={inmueble.titulo}
+            ubiaprox={inmueble.ubiaprox}
+            precio={inmueble.precio}
+          />
+          <GallerySection imagenes={inmueble.imagenes} />
+          <OverviewSection {...inmuebleInfo} />
+          <ContactSection
+            inmuebleId={inmueble.id}
+            agent={inmueble.agent.data}
+          />
+          <SimilaresSection inmueblesSimilares={inmueblesSimilares} />
+        </Grid>
       </Container>
     </StyledLayout>
   );
