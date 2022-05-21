@@ -1,5 +1,5 @@
 import { Agent, Layout, Service, Testimonials } from "@/components";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { FindHouse, Goals, Market, RealEstate, Rent } from "@/icons";
 import { getAllAgents } from "@/lib/api";
 import { Button, Container, Grid, Typography } from "@mui/material/";
@@ -8,7 +8,7 @@ import NextLink from "next/link";
 import { FAQSSection } from "@/layouts/nosotros/faqs";
 import { TestimonialsSection } from "@/layouts/nosotros/testimonials";
 
-const PREFIX = 'nosotros';
+const PREFIX = "nosotros";
 
 const classes = {
   container: `${PREFIX}-container`,
@@ -22,14 +22,10 @@ const classes = {
   fakeIframe: `${PREFIX}-fakeIframe`,
   gradient: `${PREFIX}-gradient`,
   wave: `${PREFIX}-wave`,
-  testimonialsSection: `${PREFIX}-testimonialsSection`
+  testimonialsSection: `${PREFIX}-testimonialsSection`,
 };
 
-const StyledLayout = styled(Layout)((
-  {
-    theme
-  }
-) => ({
+const StyledLayout = styled(Layout)(({ theme }) => ({
   [`& .${classes.container}`]: {
     minHeight: "10vmax",
     paddingTop: theme.spacing(3),
@@ -112,15 +108,13 @@ const StyledLayout = styled(Layout)((
     //   top: -120,
     // },
     maginBottom: theme.spacing(8),
-  }
+  },
 }));
 
 export default function Servicios({ results: agents }) {
-
-
   return (
     <StyledLayout
-      titulo="Servicios"
+      titulo="Nosotos"
       descripcion="Fusce dui nulla, rhoncus nec ullamcorper ac, porttitor vel nunc. Cras risus felis, imperdiet in tristique vel, placerat nec mauris. Curabitur justo elit, pharetra a enim nec, tempus sagittis risus. Vivamus ac magna facilisis, fermentum neque id, posuere mi. Etiam vitae blandit orci. Quisque vitae ante ac ligula posuere imperdiet. Morbi velit sapien, pellentesque eu auctor sed, imperdiet at nibh. Maecenas auctor a libero et euismod. Maecenas pharetra odio ipsum, vitae porttitor urna suscipit nec."
     >
       <section>
