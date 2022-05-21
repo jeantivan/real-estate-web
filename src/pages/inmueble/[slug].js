@@ -108,8 +108,6 @@ export async function getStaticPaths() {
   const response = await getAllInmueblesSlug();
   const paths = response.results.map(({ uid }) => ({ params: { slug: uid } }));
 
-  console.log(paths);
-
   return {
     paths,
     fallback: false,
@@ -119,7 +117,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const inmueble = await getInmueble(params.slug);
 
-  const { result: inmueblesSimilares } = await getInmueblesSimilares(
+  const { results: inmueblesSimilares } = await getInmueblesSimilares(
     inmueble.id
   );
 
