@@ -55,7 +55,6 @@ const afterSx = (theme) => ({
 });
 
 const NavLink = ({ children, href, sx = [] }) => {
-  console.log(sx);
   return (
     <NextLink href={href} passHref>
       <Link underline="none" sx={[...(Array.isArray(sx) ? sx : [sx])]}>
