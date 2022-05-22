@@ -1,65 +1,9 @@
-import { IconButton, TextField } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { IconButton, TextField, Box } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { ChevronRight } from "@mui/icons-material";
-import React from "react"
+import React from "react";
 
-const PREFIX = 'Newsletter';
-
-const classes = {
-  news: `${PREFIX}-news`,
-  textField: `${PREFIX}-textField`,
-  button: `${PREFIX}-button`
-};
-
-const Root = styled('form')((
-  {
-    theme
-  }
-) => ({
-  [`&.${classes.news}`]: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  [`& .${classes.textField}`]: {
-    marginRight: theme.spacing(2),
-    color: "#fff",
-    "& .MuiFormLabel-root": {
-      color: "rgba(255, 255, 255, 0.7);",
-    },
-    "& .MuiFilledInput-root": {
-      color: "#fff",
-      backgroundColor: "rgba(255, 255, 255, 0.09)",
-      "&:hover": {
-        backgroundColor: "rgba(255, 255, 255, 0.13)",
-      },
-    },
-    "& .MuiFilledInput-underline:before": {
-      borderBottom: "1px solid rgba(255, 255, 255, 0.7);",
-    },
-  },
-
-  [`& .${classes.button}`]: {
-    backgroundColor: "rgba(255, 255, 255, 0.09)",
-    color: "#8a99b3",
-    width: 48,
-    height: 48,
-    borderRadius: "100%",
-    transition: theme.transitions.create(["color", "backgroundColor"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    "&:hover": {
-      color: "white",
-      backgroundColor: "rgba(255, 255, 255, 0.13)",
-    },
-  }
-}));
-
-export function Newsletter() {
-
+export function Newsletter({ isLight }) {
   const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = React.useState("");
 
@@ -82,25 +26,61 @@ export function Newsletter() {
   };
 
   return (
-    <Root onSubmit={handleSubmit} className={classes.news}>
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}
+    >
       <TextField
-        className={classes.textField}
         name="email-newsletter"
-        label="Email"
+        label="Correo Electrónico"
+        type="email"
         variant="filled"
-        size="small"
         value={email}
         onChange={handleChange}
         required
-        type="email"
+        placeholder="Correo Electrónico"
+        size={isLight ? "large" : "small"}
+        sx={(theme) => ({
+          marginRight: theme.spacing(2),
+          color: "#fff",
+          "& .MuiFormLabel-root": {
+            color: "rgba(255, 255, 255, 0.7)",
+          },
+          "& .MuiFilledInput-root": {
+            color: "#fff",
+            backgroundColor: "rgba(255, 255, 255, 0.09)",
+            "&:hover": {
+              backgroundColor: "rgba(255, 255, 255, 0.13)",
+            },
+          },
+          "& .MuiFilledInput-underline:before": {
+            borderBottom: "1px solid rgba(255, 255, 255, 0.7);",
+          },
+        })}
       />
       <IconButton
         type="submit"
-        className={classes.button}
         aria-label="subscribirse"
-        size="large">
+        size="large"
+        sx={(theme) => ({
+          backgroundColor: "rgba(255, 255, 255, 0.09)",
+          color: isLight ? "whitesmoke" : "#8a99b3",
+          width: 48,
+          height: 48,
+          borderRadius: "100%",
+          transition: theme.transitions.create(["color", "backgroundColor"], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+          }),
+          "&:hover": {
+            color: "white",
+            backgroundColor: "rgba(255, 255, 255, 0.13)",
+          },
+        })}
+      >
         <ChevronRight fontSize="large" />
       </IconButton>
-    </Root>
+    </Box>
   );
 }
