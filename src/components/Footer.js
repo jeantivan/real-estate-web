@@ -352,7 +352,7 @@ export function Footer() {
                 <span>por</span>
                 <Link
                   target="_blank"
-                  href="https://github.com/jptivan53"
+                  href="https://github.com/jeantivan"
                   rel="noopener noreferrer"
                   color="primary"
                 >
