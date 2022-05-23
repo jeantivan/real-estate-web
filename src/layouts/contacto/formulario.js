@@ -32,7 +32,7 @@ export function FormularioSection() {
         >
           Contáctanos
         </Typography>
-        <Paper sx={{ p: 4, width: { xs: "100%", md: 3 / 4 } }}>
+        <Paper sx={{ p: { xs: 2, md: 4 }, width: { xs: "100%", md: 3 / 4 } }}>
           <ContactForm />
         </Paper>
       </Container>
