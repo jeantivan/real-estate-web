@@ -9,14 +9,10 @@ export function FormularioSection() {
     <Box
       component="section"
       id="formulario"
-      sx={(theme) => ({
+      sx={{
         py: 4,
         backgroundColor: "#24324A",
-        // backgroundImage:
-        //  "linear-gradient(175deg, #fafafa 0%, #fafafa 45%, #0D47A1 45%, #24324A 75%)",
-        backgroundPosition: "bottom",
-        backgroundRepeat: "no-repeat",
-      })}
+      }}
     >
       <Container className={classes.container}>
         <Typography
@@ -32,7 +28,10 @@ export function FormularioSection() {
         >
           Contáctanos
         </Typography>
-        <Paper sx={{ p: { xs: 2, md: 4 }, width: { xs: "100%", md: 3 / 4 } }}>
+        <Paper
+          elevation={0}
+          sx={{ p: { xs: 2, md: 4 }, width: { xs: "100%", md: 3 / 4 } }}
+        >
           <ContactForm />
         </Paper>
       </Container>
