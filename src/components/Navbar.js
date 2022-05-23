@@ -34,6 +34,11 @@ const classes = {
 };
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  borderWidth: 0,
+  borderColor: "rgba(0,0,0, 0.12)",
+  borderStyle: "solid",
+  borderBottomWidth: 1,
+
   [`& .${classes.toolbar}`]: {
     display: "flex",
     alignItems: "center",
