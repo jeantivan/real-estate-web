@@ -31,7 +31,7 @@ export function Newsletter({ isLight }) {
       onSubmit={handleSubmit}
       sx={{
         display: "flex",
-        justifyContent: { xs: "flex-start", sm: "flex-end" },
+        justifyContent: { xs: "flex-start", md: "flex-end" },
         alignItems: "center",
       }}
     >
