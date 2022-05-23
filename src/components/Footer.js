@@ -99,7 +99,7 @@ const sxClasses = {
     display: "inline-flex",
     alignItems: "center",
     lineHeight: 1.2,
-    mb: 2,
+    my: 2,
   },
   link: [
     (theme) => ({
@@ -149,8 +149,7 @@ const sxClasses = {
     display: "inline-flex",
     alignItems: "center",
     "& > *": {
-      mr: 0.25,
-      ml: 0.25,
+      mx: 0.25,
     },
   },
   heart: {
@@ -325,8 +324,8 @@ export function Footer() {
       </Container>
       <Box sx={sxClasses.bgDark}>
         <Container>
-          <Box sx={sxClasses.subFooter}>
-            <Box sx={sxClasses.copyright}>
+          <Grid container spacing={2} sx={sxClasses.subFooter}>
+            <Grid item sx={sxClasses.copyright}>
               <Box
                 component="span"
                 role="img"
@@ -337,23 +336,31 @@ export function Footer() {
               </Box>
               {new Date().getFullYear()} Avilatek | Todos los derechos
               reservados
-            </Box>
-            <Box sx={sxClasses.me}>
-              <span>Creado con</span>
-              <Box component="span" aria-hidden="true" sx={sxClasses.heart}>
-                <Favorite fontSize="small" />
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={4}
+              container
+              justifyContent={{ xs: "center", md: "flex-end" }}
+            >
+              <Box sx={sxClasses.me}>
+                <span>Creado con</span>
+                <Box component="span" aria-hidden="true" sx={sxClasses.heart}>
+                  <Favorite fontSize="small" />
+                </Box>
+                <span>por</span>
+                <Link
+                  target="_blank"
+                  href="https://github.com/jptivan53"
+                  rel="noopener noreferrer"
+                  color="primary"
+                >
+                  JEAN TIVAN.
+                </Link>
               </Box>
-              <span>por</span>
-              <Link
-                target="_blank"
-                href="https://github.com/jptivan53"
-                rel="noopener noreferrer"
-                color="primary"
-              >
-                JEAN TIVAN.
-              </Link>
-            </Box>
-          </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
     </Box>
