@@ -29,7 +29,11 @@ export function Newsletter({ isLight }) {
     <Box
       component="form"
       onSubmit={handleSubmit}
-      sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}
+      sx={{
+        display: "flex",
+        justifyContent: { xs: "flex-start", sm: "flex-end" },
+        alignItems: "center",
+      }}
     >
       <TextField
         name="email-newsletter"
