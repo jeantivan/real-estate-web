@@ -1,10 +1,8 @@
 import { Facebook, Instagram, Twitter, WhatsApp } from "@mui/icons-material";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Container,
-  Grid,
-  IconButton,
-  Button,
+  Box,
   Typography,
   List,
   ListItem,
@@ -13,7 +11,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import React from "react";
-const PREFIX = 'redes';
+const PREFIX = "redes";
 
 const classes = {
   container: `${PREFIX}-container`,
@@ -21,14 +19,10 @@ const classes = {
   rsHeading: `${PREFIX}-rsHeading`,
   list: `${PREFIX}-list`,
   listItem: `${PREFIX}-listItem`,
-  listIcon: `${PREFIX}-listIcon`
+  listIcon: `${PREFIX}-listIcon`,
 };
 
-const Root = styled('section')((
-  {
-    theme
-  }
-) => ({
+const Root = styled("section")(({ theme }) => ({
   [`& .${classes.container}`]: {
     padding: theme.spacing(4, 2),
     // [theme.breakpoints.up("sm")]: {
@@ -40,12 +34,7 @@ const Root = styled('section')((
     backgroundColor: "white",
   },
 
-  [`& .${classes.rsHeading}`]: {
-    ...theme.typography.h5,
-    fontWeight: "bold",
-    margin: 0,
-    marginBottom: theme.spacing(3),
-  },
+  [`& .${classes.rsHeading}`]: {},
 
   [`& .${classes.list}`]: {
     listStyle: "none",
@@ -70,56 +59,66 @@ const Root = styled('section')((
 
   [`& .${classes.listIcon}`]: {
     minWidth: 56,
-  }
+  },
 }));
 
-export function RedesSection() {
+const listItemStyle = (theme) => ({
+  px: 0,
+  transition: theme.transitions.create(["color"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  "&:hover *": {
+    backgroundColor: "transparent",
+    color: theme.palette.primary.main,
+  },
+});
 
+export function RedesSection() {
   return (
-    <Root id="rrss" className={classes.bgLight}>
-      <Container className={classes.container}>
-        <h2 className={classes.rsHeading}>Nuestras redes sociales.</h2>
+    <Box backgroundColor="white">
+      <Container component="section" id="redes-sociales" sx={{ py: 4 }}>
         <Typography
-          variant="body1
-        "
+          component="h2"
+          sx={(theme) => ({
+            ...theme.typography.h5,
+            fontWeight: "bold",
+            marginBottom: theme.spacing(3),
+          })}
         >
-          Enterate de nuestros nuevos inmbuebles publicados, siguenos
+          Nuestras redes sociales.
         </Typography>
-        <ul className={classes.list}>
-          <li className={classes.listItem}>
-            <div className={classes.listIcon}>
-              <Instagram />
-            </div>
-            <div>@avilatekinmobiliaria</div>
-          </li>
-        </ul>
+        <Typography variant="body1">
+          Síguenos en nuestras redes sociales y enterate de nuestros nuevos
+          inmuebles publicados
+        </Typography>
         <List>
-          <ListItem>
-            <ListItemButton>
+          <ListItem sx={listItemStyle}>
+            <ListItemButton disableRipple>
               <ListItemIcon>
                 <Instagram />
               </ListItemIcon>
               <ListItemText primary="@avilatekinmobiliaria" />
             </ListItemButton>
           </ListItem>
-          <ListItem>
-            <ListItemButton>
+          <ListItem sx={listItemStyle}>
+            <ListItemButton disableRipple>
               <ListItemIcon>
                 <Facebook />
               </ListItemIcon>
               <ListItemText primary="Avilatek Inmobiliaria" />
             </ListItemButton>
           </ListItem>
-          <ListItem>
-            <ListItemButton>
+          <ListItem sx={listItemStyle}>
+            <ListItemButton disableRipple>
               <ListItemIcon>
                 <Twitter />
               </ListItemIcon>
               <ListItemText primary="@avilatekinmobiliaria" />
             </ListItemButton>
           </ListItem>
-          <ListItem>
-            <ListItemButton>
+          <ListItem sx={listItemStyle}>
+            <ListItemButton disableRipple>
               <ListItemIcon>
                 <WhatsApp />
               </ListItemIcon>
@@ -128,6 +127,6 @@ export function RedesSection() {
           </ListItem>
         </List>
       </Container>
-    </Root>
+    </Box>
   );
 }
