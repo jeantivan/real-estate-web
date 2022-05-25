@@ -104,10 +104,11 @@ export function ContactSection({ inmuebleId, agent }) {
               md={10}
             >
               <Box
-                sx={{
+                sx={(theme) => ({
                   width: "100%",
                   borderRadius: 2,
-                }}
+                  background: theme.palette.grey[900],
+                })}
               >
                 <Image
                   src={agent.picture.url}
