@@ -194,7 +194,7 @@ export function ContactSection({ inmuebleId, agent }) {
                     label="Mensaje"
                     multiline
                     rows={6}
-                    rowsMax={10}
+                    maxRows={10}
                     variant="outlined"
                     fullWidth
                   />

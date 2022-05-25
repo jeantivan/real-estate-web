@@ -7,13 +7,13 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Close, Mail, Phone } from "@mui/icons-material";
 import { Form, Formik } from "formik";
 import { object, string } from "yup";
 import { Input } from "../Input";
 
-const PREFIX = 'Contact';
+const PREFIX = "Contact";
 
 const classes = {
   container: `${PREFIX}-container`,
@@ -23,14 +23,10 @@ const classes = {
   name: `${PREFIX}-name`,
   contact: `${PREFIX}-contact`,
   icon: `${PREFIX}-icon`,
-  caption: `${PREFIX}-caption`
+  caption: `${PREFIX}-caption`,
 };
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled("div")(({ theme }) => ({
   [`& .${classes.container}`]: {
     display: "flex",
     alignItems: "center",
@@ -93,7 +89,7 @@ const Root = styled('div')((
 
   [`& .${classes.caption}`]: {
     textTransform: "uppercase",
-  }
+  },
 }));
 
 const initialValues = {
@@ -111,7 +107,6 @@ const validationSchema = object({
 });
 
 export function Contact({ open, handleClose, agent }) {
-
   const { name, email, phonenumber, picture } = agent;
   return (
     <Root>
@@ -126,7 +121,8 @@ export function Contact({ open, handleClose, agent }) {
           <IconButton
             aria-label="Cerrar información"
             onClick={() => handleClose(null)}
-            size="large">
+            size="large"
+          >
             <Close />
           </IconButton>
         </div>
@@ -200,7 +196,7 @@ export function Contact({ open, handleClose, agent }) {
                   label="Mensaje"
                   multiline
                   rows={6}
-                  rowsMax={6}
+                  maxRows={6}
                   margin="normal"
                   variant="outlined"
                   fullWidth
