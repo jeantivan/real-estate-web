@@ -229,7 +229,7 @@ export function Footer() {
               >
                 <LocationOn fontSize="small" />
               </Box>
-              Centro Sambil Caracas, Av. Libertador, Caracas 1064.
+              Centro Perú, Av. Francisco de Miranda, Caracas.
             </Box>
             <Box sx={sxClasses.text}>
               <Box
@@ -251,7 +251,7 @@ export function Footer() {
               >
                 <Phone fontSize="small" />
               </Box>
-              +58 212 000 00-00
+              +58 212 123 45-67
             </Box>
             <Box sx={sxClasses.text}>
               <Box
