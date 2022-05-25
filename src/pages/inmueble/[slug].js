@@ -75,7 +75,6 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
     antiguedad: "5 años",
   };
 
-  console.log(inmueble);
   return (
     <StyledLayout
       titulo={asText(inmueble.titulo)}
