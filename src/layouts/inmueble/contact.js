@@ -55,16 +55,22 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const initialValues = {
-  name: "",
-  phone: "",
+  nombre: "",
+  telefono: "",
   email: "",
-  message:
+  mensaje:
     "Hola, me interesa el inmueble. Me podrías contactar pronto, gracias",
 };
 
 const validationSchema = object({
-  nombre: string().max(255, "Máximo 255 caracteres"),
+  nombre: string()
+    .max(255, "Máximo 255 caracteres")
+    .required("Campo obligatorio"),
   email: string().email("Email invalido.").required("Campo obligatorio"),
+  telefono: string()
+    .min(10, "Formato Incorrecto")
+    .max(15, "Formato Incorrecto")
+    .required("Campo obligatorio"),
   mensaje: string()
     .max(255, "Máximo 255 caracteres")
     .required("Campo obligatorio"),
@@ -72,7 +78,7 @@ const validationSchema = object({
 
 export function ContactSection({ inmuebleId, agent }) {
   const { enqueueSnackbar } = useSnackbar();
-  console.log(agent);
+
   return (
     <StyledGrid item xs={12} md={3}>
       <Paper
@@ -152,7 +158,6 @@ export function ContactSection({ inmuebleId, agent }) {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              console.log(values);
               resetForm();
               setTimeout(() => {
                 enqueueSnackbar(
@@ -169,67 +174,65 @@ export function ContactSection({ inmuebleId, agent }) {
               }, 500);
             }}
           >
-            {({ submitForm, isSubmitting }) => (
-              <Form onSubmit={submitForm}>
-                <Grid container direction="column" spacing={2}>
-                  <Grid item>
-                    <Typography>Contáctanos</Typography>
-                  </Grid>
-                  <Grid item>
-                    <Input
-                      name="name"
-                      label="Nombre"
-                      variant="outlined"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Input
-                      name="email"
-                      label="Email"
-                      type="email"
-                      variant="outlined"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Input
-                      name="phone"
-                      label="Telefono"
-                      variant="outlined"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Input
-                      name="message"
-                      label="Mensaje"
-                      multiline
-                      minRows={4}
-                      maxRows={10}
-                      variant="outlined"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Button
-                      onClick={submitForm}
-                      color="primary"
-                      variant="contained"
-                      disableElevation
-                      fullWidth
-                    >
-                      Contactar
-                    </Button>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Button color="primary" endIcon={<WhatsApp />} fullWidth>
-                      Whatsapp
-                    </Button>
-                  </Grid>
+            <Form>
+              <Grid container direction="column" spacing={2}>
+                <Grid item>
+                  <Typography>Contáctanos</Typography>
                 </Grid>
-              </Form>
-            )}
+                <Grid item>
+                  <Input
+                    name="nombre"
+                    label="Nombre"
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <Input
+                    name="email"
+                    label="Email"
+                    type="email"
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <Input
+                    name="telefono"
+                    label="Telefono"
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <Input
+                    name="mensaje"
+                    label="Mensaje"
+                    multiline
+                    minRows={4}
+                    maxRows={10}
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    disableElevation
+                    fullWidth
+                  >
+                    Contactar
+                  </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button color="primary" endIcon={<WhatsApp />} fullWidth>
+                    Whatsapp
+                  </Button>
+                </Grid>
+              </Grid>
+            </Form>
           </Formik>
         </Box>
       </Paper>
