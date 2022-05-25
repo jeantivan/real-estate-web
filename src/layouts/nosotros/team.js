@@ -11,7 +11,6 @@ import Image from "next/image";
 import { EmailOutlined, WhatsappOutlined } from "@mui/icons-material";
 
 export function TeamSection({ agents }) {
-  console.log({ agents });
   return (
     <Box component="section" id="team" backgroundColor="white">
       <Container sx={{ py: 6 }}>
