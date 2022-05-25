@@ -1,24 +1,21 @@
 import { Paper, Divider, Typography, Grid, Box } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { PrismicRichText } from "@prismicio/react";
 
-const PREFIX = 'overview';
+const PREFIX = "overview";
 
 const classes = {
   section: `${PREFIX}-section`,
   sectionTitle: `${PREFIX}-sectionTitle`,
   divider: `${PREFIX}-divider`,
   content: `${PREFIX}-content`,
-  description: `${PREFIX}-description`
+  description: `${PREFIX}-description`,
 };
 
-const StyledGrid = styled(Grid)((
-  {
-    theme
-  }
-) => ({
+const StyledGrid = styled(Grid)(({ theme }) => ({
   [`& .${classes.section}`]: {
     padding: theme.spacing(2),
+    minHeight: "100%",
   },
 
   [`& .${classes.sectionTitle}`]: {
@@ -42,7 +39,7 @@ const StyledGrid = styled(Grid)((
       marginTop: 0,
       marginBottom: theme.spacing(2),
     },
-  }
+  },
 }));
 
 export function OverviewSection({
@@ -55,8 +52,6 @@ export function OverviewSection({
   antiguedad,
   descripcion,
 }) {
-
-
   return (
     <StyledGrid item xs={12} md={7}>
       <Paper elevation={0} className={classes.section}>
@@ -64,12 +59,12 @@ export function OverviewSection({
           <Grid container justifyContent="space-between" alignItems="baseline">
             <Grid item>
               <Typography component="h3" className={classes.sectionTitle}>
-                Caracteristicas.
+                Características del inmueble.
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant="body2" color="textSecondary">
-                <strong>ID del Inmueble: </strong>
+                <strong>ID: </strong>
                 {id}
               </Typography>
             </Grid>
