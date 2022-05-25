@@ -44,16 +44,13 @@ export function HeaderSection({ titulo, ubiaprox, precio }) {
         container
         alignItems="center"
         id="header-del-inmueble"
-        columnGap={2}
-        rowGap={2}
-        pt={2}
+        columnGap={{ xs: 2, sm: 0 }}
+        rowGap={{ xs: 2, sm: 0 }}
+        pt={4}
       >
-        <Grid item container xs={12} sm={6} sx={{ flex: 1 }}>
+        <Grid item xs={12} sm={6}>
           <Typography variant="h4" component="h1" className={classes.title}>
-            {/* {asText(titulo)} */}
-            Praesent euismod massa quis iaculis feugiat. Aliquam in pellentesque
-            purus. Cras sit amet risus ut dui accumsan blandit non pellentesque
-            augue.
+            {asText(titulo)}
           </Typography>
           <Typography
             className={classes.location}
@@ -67,7 +64,13 @@ export function HeaderSection({ titulo, ubiaprox, precio }) {
             {ubiaprox}
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          container
+          justifyContent={{ xs: "flex-start", sm: "flex-end" }}
+        >
           <Typography variant="h3" component="h4" className={classes.precio}>
             <span className={classes.dolar}>$</span>
             {precio}
