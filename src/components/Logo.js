@@ -1,9 +1,9 @@
 import NextLink from "next/link";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Link } from "@mui/material";
 import clsx from "clsx";
 
-const PREFIX = 'Logo';
+const PREFIX = "Logo";
 
 const classes = {
   inNav: `${PREFIX}-inNav`,
@@ -11,14 +11,10 @@ const classes = {
   link: `${PREFIX}-link`,
   span: `${PREFIX}-span`,
   lightColor: `${PREFIX}-lightColor`,
-  darkColor: `${PREFIX}-darkColor`
+  darkColor: `${PREFIX}-darkColor`,
 };
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled("div")(({ theme }) => ({
   [`& .${classes.inNav}`]: {
     alignSelf: "center",
   },
@@ -47,12 +43,10 @@ const Root = styled('div')((
 
   [`& .${classes.darkColor}`]: {
     color: "#141313",
-  }
+  },
 }));
 
 export function Logo({ className, inNav, inFooter, lightColor, darkColor }) {
-
-
   return (
     <Root
       className={clsx(
@@ -61,7 +55,7 @@ export function Logo({ className, inNav, inFooter, lightColor, darkColor }) {
         inFooter && classes.inFooter
       )}
     >
-      <NextLink href="/" passHref>
+      <NextLink href="/home" passHref>
         <Link
           className={clsx(
             classes.link,
