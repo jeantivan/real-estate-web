@@ -35,10 +35,6 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
     borderRadius: theme.spacing(0.5),
   },
 
-  [`& .${classes.agentInfo}`]: {
-    marginBottom: theme.spacing(2),
-  },
-
   [`& .${classes.agentName}`]: {
     ...theme.typography.h6,
     fontWeight: 700,
@@ -90,7 +86,7 @@ export function ContactSection({ inmuebleId, agent }) {
         <Box
           sx={{
             background: "#37474f",
-            borderTopWidth: 4,
+            borderTopWidth: { xs: 4, sm: 6, md: 4 },
             borderTopStyle: "solid",
             borderColor: "primary.main",
             borderTopLeftRadius: "inherit",
@@ -98,13 +94,19 @@ export function ContactSection({ inmuebleId, agent }) {
             padding: 2,
           }}
         >
-          <Grid container className={classes.agentInfo}>
-            <Grid item container justifyContent="flex-end" xs={10}>
+          <Grid container spacing={2}>
+            <Grid
+              item
+              container
+              justifyContent="flex-end"
+              xs={10}
+              sm={4}
+              md={10}
+            >
               <Box
                 sx={{
                   width: "100%",
                   borderRadius: 2,
-                  mb: 2,
                 }}
               >
                 <Image
@@ -117,12 +119,20 @@ export function ContactSection({ inmuebleId, agent }) {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} container spacing={1}>
+            <Grid
+              item
+              xs={12}
+              sm={8}
+              md={12}
+              container
+              spacing={1}
+              alignContent="flex-end"
+            >
               <Grid item xs={12}>
                 <Typography
                   component="h3"
                   sx={(theme) => ({
-                    ...theme.typography.h6,
+                    ...theme.typography.h5,
                     fontWeight: 700,
                     lineHeight: 1,
                     color: theme.palette.getContrastText("#24324a"),
@@ -134,7 +144,7 @@ export function ContactSection({ inmuebleId, agent }) {
                   Asesor(a) inmobiliario
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm="auto" md={12}>
+              <Grid item xs={12} sm={4} md={12}>
                 <Typography variant="caption" fontWeight="300" color="white">
                   Telefono:
                 </Typography>
