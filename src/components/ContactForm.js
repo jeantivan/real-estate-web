@@ -77,7 +77,10 @@ export function ContactForm() {
             resetForm();
             setTimeout(() => {
               enqueueSnackbar(
-                "Mensaje enviado con éxito. Gracias por contactarnos.",
+                <Typography>
+                  Mensaje enviado con éxito. <br />
+                  Gracias por contactarnos
+                </Typography>,
                 {
                   variant: "success",
                   anchorOrigin: {
