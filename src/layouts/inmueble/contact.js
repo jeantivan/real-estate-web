@@ -115,6 +115,7 @@ export function ContactSection({ inmuebleId, agent }) {
                   layout="responsive"
                   width={agent.picture.dimensions.width}
                   height={agent.picture.dimensions.height}
+                  priority={false}
                   style={{ borderRadius: "4px" }}
                 />
               </Box>

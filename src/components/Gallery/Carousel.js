@@ -1,24 +1,20 @@
 import clsx from "clsx";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import SwipeableViews from "react-swipeable-views";
 
 import Image from "next/image";
 
 import { Controls } from "./Controls";
 
-const PREFIX = 'Carousel';
+const PREFIX = "Carousel";
 
 const classes = {
   root: `${PREFIX}-root`,
   container: `${PREFIX}-container`,
-  slide: `${PREFIX}-slide`
+  slide: `${PREFIX}-slide`,
 };
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
+const Root = styled("div")(({ theme }) => ({
   [`&.${classes.root}`]: {
     position: "relative",
     width: "100%",
@@ -52,7 +48,7 @@ const Root = styled('div')((
     position: "relative",
     overflow: "hidden",
     width: "100%",
-  }
+  },
 }));
 
 export function Carousel({
@@ -62,7 +58,6 @@ export function Carousel({
   handlePrev,
   handleChange,
 }) {
-
   return (
     <Root className={classes.root}>
       <SwipeableViews
@@ -72,8 +67,14 @@ export function Carousel({
         slideClassName={classes.slide}
         enableMouseEvents
       >
-        {imagenes.map(({ imagen }) => (
-          <Image key={imagen.alt} alt={imagen.alt} src={imagen.url} layout="fill" />
+        {imagenes.map(({ imagen }, i) => (
+          <Image
+            key={imagen.alt}
+            alt={imagen.alt}
+            src={imagen.url}
+            layout="fill"
+            priority={i === 0}
+          />
         ))}
       </SwipeableViews>
       <Controls
