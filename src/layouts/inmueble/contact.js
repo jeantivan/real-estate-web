@@ -59,7 +59,7 @@ const initialValues = {
   phone: "",
   email: "",
   message:
-    "Hola, me interesa el inmueble. Me podrias contactar pronto, gracias",
+    "Hola, me interesa el inmueble. Me podrías contactar pronto, gracias",
 };
 
 const validationSchema = object({
@@ -72,7 +72,7 @@ const validationSchema = object({
 
 export function ContactSection({ inmuebleId, agent }) {
   const { enqueueSnackbar } = useSnackbar();
-
+  console.log(agent);
   return (
     <StyledGrid item xs={12} md={3}>
       <Paper
@@ -83,8 +83,8 @@ export function ContactSection({ inmuebleId, agent }) {
       >
         <Box
           sx={{
-            background: "#24324a",
-            borderTopWidth: 1,
+            background: "#37474f",
+            borderTopWidth: 4,
             borderTopStyle: "solid",
             borderColor: "primary.main",
             borderTopLeftRadius: "inherit",
@@ -93,133 +93,145 @@ export function ContactSection({ inmuebleId, agent }) {
           }}
         >
           <Grid container className={classes.agentInfo}>
-            <Grid item container justifyContent="flex-end">
+            <Grid item container justifyContent="flex-end" xs={10}>
               <Box
                 sx={{
-                  p: 2,
-                  minHeight: 160,
-                  width: 160,
-                  borderRadius: 1,
-                  position: "relative",
+                  width: "100%",
+                  borderRadius: 2,
+                  mb: 2,
                 }}
               >
                 <Image
                   src={agent.picture.url}
                   alt={agent.picture.alt}
+                  layout="responsive"
+                  width={agent.picture.dimensions.width}
                   height={agent.picture.dimensions.height}
-                  layout="fill"
-                  style={{ borderRadius: "inherit" }}
+                  style={{ borderRadius: "4px" }}
                 />
               </Box>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              container
-              direction="column"
-              justifyContent="space-between"
-              wrap="nowrap"
-            >
-              <Grid item>
-                <Typography component="h3" className={classes.agentName}>
+            <Grid item xs={12} container spacing={1}>
+              <Grid item xs={12}>
+                <Typography
+                  component="h3"
+                  sx={(theme) => ({
+                    ...theme.typography.h6,
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    color: theme.palette.getContrastText("#24324a"),
+                  })}
+                >
                   {agent.name}
                 </Typography>
-                <Typography variant="caption" color="textSecondary">
-                  Asesor inmobiliario
+                <Typography variant="caption" color="rgba(255,255,255,0.6)">
+                  Asesor(a) inmobiliario
                 </Typography>
               </Grid>
-              <Grid item>
-                <Typography variant="caption" className={classes.textLight}>
+              <Grid item xs={12} sm="auto" md={12}>
+                <Typography variant="caption" fontWeight="300" color="white">
                   Telefono:
                 </Typography>
-                <Typography variant="body2" className={classes.content}>
+                <Typography variant="body2" color="white" fontWeight="500">
                   {agent.phonenumber}
                 </Typography>
               </Grid>
-              <Grid item>
-                <Typography variant="caption" className={classes.textLight}>
+              <Grid item xs={12} sm="auto" md={12}>
+                <Typography variant="caption" fontWeight="300" color="white">
                   Email:
                 </Typography>
-                <Typography variant="body2" className={classes.content}>
+                <Typography variant="body2" color="white" fontWeight="500">
                   {agent.email}
                 </Typography>
               </Grid>
             </Grid>
           </Grid>
         </Box>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            resetForm();
-            setTimeout(() => {
-              console.log({ ...values, inmuebleId });
-              enqueueSnackbar(
-                "Mensaje enviado con éxito. Gracias por contactarnos.",
-                {
-                  variant: "success",
-                  anchorOrigin: {
-                    vertical: "top",
-                    horizontal: "center",
-                  },
-                }
-              );
-              setSubmitting(false);
-            }, 500);
-          }}
-        >
-          {({ submitForm, isSubmitting }) => (
-            <Form onSubmit={submitForm}>
-              <Grid container direction="column" spacing={2}>
-                <Grid item>
-                  <Typography>Contáctanos</Typography>
+        <Box p={2}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              console.log(values);
+              resetForm();
+              setTimeout(() => {
+                enqueueSnackbar(
+                  "Mensaje enviado con éxito. Gracias por contactarnos.",
+                  {
+                    variant: "success",
+                    anchorOrigin: {
+                      vertical: "top",
+                      horizontal: "center",
+                    },
+                  }
+                );
+                setSubmitting(false);
+              }, 500);
+            }}
+          >
+            {({ submitForm, isSubmitting }) => (
+              <Form onSubmit={submitForm}>
+                <Grid container direction="column" spacing={2}>
+                  <Grid item>
+                    <Typography>Contáctanos</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Input
+                      name="name"
+                      label="Nombre"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item>
+                    <Input
+                      name="email"
+                      label="Email"
+                      type="email"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item>
+                    <Input
+                      name="phone"
+                      label="Telefono"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item>
+                    <Input
+                      name="message"
+                      label="Mensaje"
+                      multiline
+                      minRows={4}
+                      maxRows={10}
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button
+                      onClick={submitForm}
+                      color="primary"
+                      variant="contained"
+                      disableElevation
+                      fullWidth
+                    >
+                      Contactar
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button color="primary" endIcon={<WhatsApp />} fullWidth>
+                      Whatsapp
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Input name="name" label="Nombre" variant="outlined" />
-                </Grid>
-                <Grid item>
-                  <Input
-                    name="email"
-                    label="Email"
-                    type="email"
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item>
-                  <Input name="phone" label="Telefono" variant="outlined" />
-                </Grid>
-                <Grid item>
-                  <Input
-                    name="message"
-                    label="Mensaje"
-                    multiline
-                    rows={6}
-                    maxRows={10}
-                    variant="outlined"
-                    fullWidth
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Button
-                    disabled={isSubmitting}
-                    onClick={submitForm}
-                    color="primary"
-                    variant="contained"
-                    disableElevation
-                    fullWidth
-                  >
-                    Contactar
-                  </Button>
-                </Grid>
-                <Grid item xs={12}>
-                  <Button color="primary" endIcon={<WhatsApp />} fullWidth>
-                    Whatsapp
-                  </Button>
-                </Grid>
-              </Grid>
-            </Form>
-          )}
-        </Formik>
+              </Form>
+            )}
+          </Formik>
+        </Box>
       </Paper>
     </StyledGrid>
   );
