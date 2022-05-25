@@ -99,7 +99,7 @@ const sxClasses = {
     display: "inline-flex",
     alignItems: "center",
     lineHeight: 1.2,
-    my: 2,
+    mb: 2,
   },
   link: [
     (theme) => ({
@@ -176,7 +176,16 @@ export function Footer() {
               Nosotros
             </Typography>
             <Logo inFooter lightColor sx={sxClasses.logo} />
-            <Typography sx={sxClasses.text}>
+            <Typography
+              sx={{
+                color: "#8a99b3",
+                fontSize: "0.8rem",
+                display: "inline-flex",
+                alignItems: "center",
+                lineHeight: 1.2,
+                my: 2,
+              }}
+            >
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas
               ipsa ut labore ducimus similique voluptates tempora deleniti
               minima quisquam odit?
