@@ -1,10 +1,13 @@
 import { Layout } from "@/components";
 import { styled } from "@mui/material/styles";
-import { ContactSection } from "@/layouts/inmueble/contact";
-import { GallerySection } from "@/layouts/inmueble/gallery";
-import { HeaderSection } from "@/layouts/inmueble/header";
-import { OverviewSection } from "@/layouts/inmueble/overview";
-import { SimilaresSection } from "@/layouts/inmueble/similares";
+import {
+  ContactSection,
+  GallerySection,
+  HeaderSection,
+  OverviewSection,
+  SimilaresSection,
+} from "@/layouts/inmueble";
+
 import {
   getAllInmueblesSlug,
   getInmueble,

@@ -2,11 +2,13 @@ import { Agent, Layout, Service, Testimonials } from "@/components";
 import { styled } from "@mui/material/styles";
 import { FindHouse, Goals, Market, RealEstate, Rent } from "@/icons";
 import { getAllAgents } from "@/lib/api";
-import { Button, Container, Grid, Typography } from "@mui/material/";
+import { Button, Container, Grid, Typography } from "@mui/material";
 import NextLink from "next/link";
-
-import { FAQSSection } from "@/layouts/nosotros/faqs";
-import { TestimonialsSection } from "@/layouts/nosotros/testimonials";
+import {
+  TeamSection,
+  TestimonialsSection,
+  FAQSSection,
+} from "@/layouts/nosotros";
 
 const PREFIX = "nosotros";
 
@@ -204,7 +206,8 @@ export default function Servicios({ results: agents }) {
           </Grid>
         </Container>
       </section>
-      <section className={classes.gradient}>
+      <TeamSection agents={agents} />
+      {/* <section className={classes.gradient}>
         <Container className={classes.container}>
           <Typography
             component="h2"
@@ -221,8 +224,8 @@ export default function Servicios({ results: agents }) {
             ))}
           </Grid>
         </Container>
-      </section>
-      <div className={classes.wave} aria-hidden="true">
+      </section> */}
+      {/*       <div className={classes.wave} aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#0d47a1"
@@ -230,7 +233,7 @@ export default function Servicios({ results: agents }) {
             d="M0,128L80,128C160,128,320,128,480,112C640,96,800,64,960,69.3C1120,75,1280,117,1360,138.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
           ></path>
         </svg>
-      </div>
+      </div> */}
       {/* <section id="testimonials" className={classes.testimonialsSection}>
         <Container className={classes.container}>
           <Typography

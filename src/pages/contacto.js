@@ -1,11 +1,11 @@
 import { Layout } from "@/components";
-import { Container, Divider, Typography } from "@mui/material";
-import { UbicacionSection } from "@/layouts/contacto/ubicacion";
-import { RedesSection } from "@/layouts/contacto/redes";
-
-import { FormularioSection } from "@/layouts/contacto/formulario";
-import { NewsletterSection } from "@/layouts/contacto/newsletter";
-import { Box } from "@mui/system";
+import { Container, Divider, Typography, Box } from "@mui/material";
+import {
+  FormularioSection,
+  NewsletterSection,
+  RedesSection,
+  UbicacionSection,
+} from "@/layouts/contacto";
 
 export default function Contacto() {
   return (
