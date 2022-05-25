@@ -7,7 +7,7 @@ const MapWrapper = ({ children }) => {
       sx={{
         width: "100%",
         height: 0,
-        paddingTop: "calc(9 / 21 * 100%)",
+        paddingTop: { xs: "calc(3/4 * 100%)", sm: "calc(9 / 21 * 100%)" },
         position: "relative",
       }}
     >
