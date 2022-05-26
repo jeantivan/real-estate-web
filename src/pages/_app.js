@@ -3,16 +3,16 @@ import Head from "next/head";
 import Router from "next/router";
 import React from "react";
 
-// Material-UI config
-import { CssBaseline, ThemeProvider, IconButton } from "@mui/material/";
-import theme from "@/utils/theme";
-
 // Nprogress config
 import NProgress from "nprogress";
 NProgress.configure({ showSpinner: false });
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
+
+// Material-UI config
+import { CssBaseline, ThemeProvider, IconButton } from "@mui/material/";
+import theme from "@/utils/theme";
 
 // Notistack
 import { SnackbarProvider } from "notistack";
@@ -24,12 +24,8 @@ import createEmotionCache from "@/utils/createEmotionCache";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-// Layout
-import { Navbar, Footer } from "@/components";
-
 export default function MyApp(props) {
   const { Component, pageProps, emotionCache = clientSideEmotionCache } = props;
-
   const notistackRef = React.createRef();
   const onClickDismiss = (key) => () => {
     notistackRef.current.closeSnackbar(key);
@@ -51,7 +47,6 @@ export default function MyApp(props) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <ThemeProvider theme={theme}>
         <SnackbarProvider
           ref={notistackRef}
@@ -67,11 +62,8 @@ export default function MyApp(props) {
             </IconButton>
           )}
         >
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <Navbar />
           <Component {...pageProps} />
-          <Footer />
         </SnackbarProvider>
       </ThemeProvider>
 
