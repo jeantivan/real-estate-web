@@ -1,6 +1,24 @@
-import clsx from "clsx";
 import { List, ListItem, ListItemText, Link } from "@mui/material";
 import { useRouter } from "next/router";
+
+const routes = [
+  {
+    name: "Inicio",
+    href: "/home",
+  },
+  {
+    name: "Inmuebles",
+    href: "/inmuebles/1",
+  },
+  {
+    name: "Nosotros",
+    href: "/nosotros",
+  },
+  {
+    name: "Contacto",
+    href: "/contacto",
+  },
+];
 
 const baseSx = (theme) => ({
   textDecoration: "none",
@@ -25,6 +43,7 @@ const baseSx = (theme) => ({
     borderRadius: theme.spacing(1, 1, 0, 0),
   },
 });
+
 const afterSx = (theme) => ({
   color: theme.palette.primary.main,
   "&:after": {
@@ -35,7 +54,18 @@ const afterSx = (theme) => ({
   },
 });
 
-export function DrawerLinks({ handleClose }) {
+const DrawerLink = ({ children, sx = [], ...rest }) => (
+  <ListItem
+    underline="none"
+    component={Link}
+    sx={[...(Array.isArray(sx) ? sx : [sx])]}
+    {...rest}
+  >
+    <ListItemText disableTypography>{children}</ListItemText>
+  </ListItem>
+);
+
+export function DrawerLinks({ handleClose, currentPage }) {
   const router = useRouter();
 
   const changePageTo = (href) => {
@@ -51,93 +81,19 @@ export function DrawerLinks({ handleClose }) {
         maxWidth: 260,
       })}
     >
-      <ListItem
-        underline="none"
-        component={Link}
-        sx={[baseSx, router.pathname === "/home" && afterSx]}
-        href="/home"
-        onClick={(e) => {
-          e.preventDefault();
-          changePageTo("/home");
-        }}
-      >
-        <ListItemText disableTypography>Inicio</ListItemText>
-      </ListItem>
-
-      <ListItem
-        underline="none"
-        component={Link}
-        sx={[baseSx, router.pathname === "/inmuebles/[page]" && afterSx]}
-        href="/inmuebles/1"
-        onClick={(e) => {
-          e.preventDefault();
-          changePageTo("/inmuebles/1");
-        }}
-      >
-        <ListItemText disableTypography>Inmuebles</ListItemText>
-      </ListItem>
-
-      <ListItem
-        underline="none"
-        component={Link}
-        sx={[baseSx, router.pathname === "/nosotros" && afterSx]}
-        href="/nosotros"
-        onClick={(e) => {
-          e.preventDefault();
-          changePageTo("/nosotros");
-        }}
-      >
-        <ListItemText disableTypography>Nosotros</ListItemText>
-      </ListItem>
-      <ListItem
-        underline="none"
-        component={Link}
-        href="/contacto"
-        sx={[baseSx, router.pathname === "/contacto" && afterSx]}
-        onClick={(e) => {
-          e.preventDefault();
-          changePageTo("/contacto");
-        }}
-      >
-        <ListItemText disableTypography>Contacto</ListItemText>
-      </ListItem>
-
-      {/* <DrawerLink
-        href="/home"
-        handleClose={handleClose}
-        className={link}
-        activeClassName={activeLink}
-        router={router}
-      >
-        Inicio
-      </DrawerLink>
-      <DrawerLink
-        href="/inmuebles/1"
-        handleClose={handleClose}
-        className={link}
-        activeClassName={activeLink}
-        router={router}
-      >
-        Inmuebles
-      </DrawerLink>
-      <DrawerLink
-        href="/nosotros"
-        handleClose={handleClose}
-        className={link}
-        activeClassName={activeLink}
-        router={router}
-      >
-        Nosotros
-      </DrawerLink>
-      <DrawerLink
-        href="/contacto"
-        handleClose={handleClose}
-        className={link}
-        activeClassName={activeLink}
-        router={router}
-      >
-        Contacto
-      </DrawerLink> */}
+      {routes.map(({ name, href }) => (
+        <DrawerLink
+          key={name}
+          sx={[baseSx, currentPage === name && afterSx]}
+          href={href}
+          onClick={(e) => {
+            e.preventDefault();
+            changePageTo(href);
+          }}
+        >
+          {name}
+        </DrawerLink>
+      ))}
     </List>
   );
 }

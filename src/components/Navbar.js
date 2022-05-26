@@ -96,7 +96,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
   },
 }));
 
-export function Navbar() {
+export function Navbar({ currentPage }) {
   const [show, setShow] = useState(false);
 
   const toggleDrawer = () => {
@@ -151,7 +151,7 @@ export function Navbar() {
               <Logo inNav darkColor />
             </Toolbar>
             <Divider />
-            <DrawerLinks handleClose={handleClose} />
+            <DrawerLinks handleClose={handleClose} currentPage={currentPage} />
 
             <Box mt="auto" className={classes.social}>
               <RRSS />
@@ -159,7 +159,7 @@ export function Navbar() {
           </Drawer>
         </Hidden>
         <Hidden mdDown>
-          <NavLinks />
+          <NavLinks currentPage={currentPage} />
           <div>
             <RRSS />
           </div>

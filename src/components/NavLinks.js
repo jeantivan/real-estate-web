@@ -64,7 +64,7 @@ const NavLink = ({ children, href, sx = [] }) => {
   );
 };
 
-export function NavLinks() {
+export function NavLinks({ currentPage }) {
   const router = useRouter();
 
   return (
@@ -85,27 +85,15 @@ export function NavLinks() {
         },
       })}
     >
-      {routes.map(({ name, href }) => {
-        if (
-          router.pathname === "/inmuebles/[page]" &&
-          href === "/inmuebles/1"
-        ) {
-          return (
-            <NavLink key={name} href={href} sx={[baseSx, afterSx]}>
-              {name}
-            </NavLink>
-          );
-        }
-        return (
-          <NavLink
-            key={name}
-            href={href}
-            sx={[baseSx, router.pathname === href && afterSx]}
-          >
-            {name}
-          </NavLink>
-        );
-      })}
+      {routes.map(({ name, href }) => (
+        <NavLink
+          key={name}
+          href={href}
+          sx={[baseSx, currentPage === name && afterSx]}
+        >
+          {name}
+        </NavLink>
+      ))}
     </Box>
   );
 }
