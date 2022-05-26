@@ -88,6 +88,7 @@ export function InmuebleItem({
   ubiAprox,
   habitaciones,
   estado,
+  banos,
   area,
   mainImg,
   fecha,
@@ -139,7 +140,7 @@ export function InmuebleItem({
               ${precio}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              {area} m<sup>2</sup> | {habitaciones} habitaciones
+              {area} m<sup>2</sup> | {habitaciones} Habitaciones | {banos} Baños
             </Typography>
           </CardContent>
         </Card>
