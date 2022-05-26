@@ -8,6 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 import { EmailOutlined, WhatsappOutlined } from "@mui/icons-material";
 
 export function TeamSection({ agents }) {
@@ -34,8 +35,8 @@ export function TeamSection({ agents }) {
 
         <Grid container justifyContent="center">
           <Grid item container xs={12} sm={8} rowSpacing={4} columnSpacing={4}>
-            {agents.map(({ data, id }) => (
-              <Grid item key={id} xs={12} sm={6}>
+            {agents.map(({ data, uid }) => (
+              <Grid item key={uid} xs={12} sm={6}>
                 <Box>
                   <Box backgroundColor="#4a4848" borderRadius={2} width="100%">
                     <Image
@@ -48,7 +49,7 @@ export function TeamSection({ agents }) {
                     />
                   </Box>
                   <Grid container spacing={1} pt={2}>
-                    <Grid item xs sm={12}>
+                    <Grid item xs sm={12} md>
                       <Typography
                         sx={(theme) => ({
                           ...theme.typography.h6,
@@ -70,6 +71,7 @@ export function TeamSection({ agents }) {
                       item
                       xs="auto"
                       sm={6}
+                      md="auto"
                       container
                       justifyContent="center"
                     >
@@ -85,6 +87,7 @@ export function TeamSection({ agents }) {
                       item
                       xs="auto"
                       sm={6}
+                      md="auto"
                       container
                       justifyContent="center"
                     >
@@ -97,9 +100,11 @@ export function TeamSection({ agents }) {
                       </IconButton>
                     </Grid>
                     <Grid item xs={12}>
-                      <Button variant="contained" fullWidth disableElevation>
-                        Inmuebles Publicados
-                      </Button>
+                      <Link href={`/agent/${uid}`} passHref>
+                        <Button variant="contained" fullWidth disableElevation>
+                          Inmuebles Publicados
+                        </Button>
+                      </Link>
                     </Grid>
                   </Grid>
                 </Box>
