@@ -110,3 +110,14 @@ export async function getInmueblesSimilares(id) {
 export async function getAllAgents() {
   return await Client.getByType("agent");
 }
+
+// Obtiene todos los asociados a cada Agente
+export async function getAllInmueblesByAgent(agentUid) {
+  const agent = await Client.getByUID("agent", agentUid);
+
+  const inmuebles = await Client.getByType("inmueble", {
+    predicates: [prismic.predicate.at("my.inmueble.agent", agent.id)],
+  });
+
+  return { agent, inmuebles };
+}
