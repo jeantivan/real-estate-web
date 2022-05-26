@@ -23,6 +23,7 @@ export default function Inmuebles({ pageData }) {
       estado: data.estado,
       ubiAprox: data.ubiaprox,
       habitaciones: data.habitaciones,
+      banos: data.banos,
       estado: data.estado,
       fecha: data.fecha,
       agent: data.agent.data,
