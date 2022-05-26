@@ -93,6 +93,7 @@ export function InmuebleItem({
   mainImg,
   fecha,
   agent,
+  priority,
 }) {
   return (
     <NextLink href="/inmueble/[slug]" as={`/inmueble/${slug}`} passHref>
@@ -104,6 +105,7 @@ export function InmuebleItem({
               alt={mainImg.alt}
               className={classes.img}
               layout="fill"
+              priority={priority}
             />
             <Box
               className={classes.estado}

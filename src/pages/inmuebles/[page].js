@@ -13,7 +13,7 @@ import Link from "next/link";
 export default function Inmuebles({ pageData }) {
   const { page, total_pages, results } = pageData;
 
-  const inmuebleList = results.map(({ data, uid }) => {
+  const inmuebleList = results.map(({ data, uid }, i) => {
     let props = {
       slug: uid,
       area: data.area,
@@ -27,6 +27,7 @@ export default function Inmuebles({ pageData }) {
       estado: data.estado,
       fecha: data.fecha,
       agent: data.agent.data,
+      priority: i <= 2,
     };
 
     return (

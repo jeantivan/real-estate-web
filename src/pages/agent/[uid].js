@@ -13,7 +13,7 @@ import Link from "next/link";
 export default function AgentPage({ agent, inmuebles }) {
   const { results } = inmuebles;
 
-  const inmuebleList = results.map(({ data, uid }) => {
+  const inmuebleList = results.map(({ data, uid }, i) => {
     let props = {
       slug: uid,
       area: data.area,
@@ -27,6 +27,7 @@ export default function AgentPage({ agent, inmuebles }) {
       estado: data.estado,
       fecha: data.fecha,
       agent: data.agent.data,
+      priority: i <= 2,
     };
 
     return (
