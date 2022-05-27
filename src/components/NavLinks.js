@@ -1,6 +1,5 @@
 import NextLink from "next/link";
 import { Link, Box } from "@mui/material";
-import { useRouter } from "next/router";
 
 const routes = [
   {
@@ -65,13 +64,18 @@ const NavLink = ({ children, href, sx = [] }) => {
 };
 
 export function NavLinks({ currentPage }) {
-  const router = useRouter();
+  /* const isMounted = useRef();
+
+  useEffect(() => {
+    isMounted.current = true;
+  }, []); */
 
   return (
     <Box
       component="nav"
       role="navigation"
       sx={(theme) => ({
+        ml: "auto",
         display: "flex",
         flexDirection: "column",
         alignSelf: "stretch",

@@ -3,7 +3,6 @@ import {
   Container,
   Divider,
   Drawer,
-  Hidden,
   IconButton,
   Toolbar,
   Box,
@@ -116,7 +115,11 @@ export function Navbar({ currentPage }) {
     >
       <Toolbar component={Container} maxWidth="lg" className={classes.toolbar}>
         <div className={classes.containerIconLogo}>
-          <Hidden mdUp>
+          <Box
+            sx={{
+              display: { md: "none" },
+            }}
+          >
             <IconButton
               edge="start"
               color="inherit"
@@ -126,44 +129,51 @@ export function Navbar({ currentPage }) {
             >
               <Menu />
             </IconButton>
-          </Hidden>
+          </Box>
           <Logo inNav darkColor className={classes.centerLogo} />
         </div>
-        <Hidden mdUp>
-          <Drawer
-            anchor="left"
-            open={show}
-            onClose={toggleDrawer}
-            className={classes.drawerContainer}
-            component="nav"
-          >
-            <Toolbar>
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="menu"
-                onClick={toggleDrawer}
-                size="large"
-              >
-                <Menu />
-              </IconButton>
+        <Drawer
+          anchor="left"
+          open={show}
+          onClose={toggleDrawer}
+          className={classes.drawerContainer}
+          component="nav"
+        >
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer}
+              size="large"
+            >
+              <Menu />
+            </IconButton>
+            <Box mx="auto">
               <Logo inNav darkColor />
-            </Toolbar>
-            <Divider />
-            <DrawerLinks handleClose={handleClose} currentPage={currentPage} />
-
-            <Box mt="auto" className={classes.social}>
-              <RRSS />
             </Box>
-          </Drawer>
-        </Hidden>
-        <Hidden mdDown>
-          <NavLinks currentPage={currentPage} />
-          <div>
+          </Toolbar>
+          <Divider />
+          <DrawerLinks handleClose={handleClose} currentPage={currentPage} />
+
+          <Box mt="auto" className={classes.social}>
             <RRSS />
-          </div>
-        </Hidden>
+          </Box>
+        </Drawer>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            flex: 1,
+            alignItems: "center",
+            minHeight: "100%",
+          }}
+        >
+          <NavLinks currentPage={currentPage} />
+          <Box ml="auto" mr={-0.75}>
+            <RRSS />
+          </Box>
+        </Box>
       </Toolbar>
     </StyledAppBar>
   );
