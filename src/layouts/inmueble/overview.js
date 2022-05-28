@@ -118,7 +118,7 @@ export function OverviewSection({
             </Grid>
           </Grid>
         </Box>
-        <Box component="section">
+        <Box>
           <Typography
             component="h3"
             gutterBottom
