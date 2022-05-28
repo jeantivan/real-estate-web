@@ -8,7 +8,6 @@ export { Agent } from "./Agent";
 export { Newsletter } from "./Newsletter";
 export { Filters } from "./Filters";
 export { Service } from "./Service";
-export { Testimonials } from "./Testimonials";
 export { Testimonial } from "./Testimonial";
 export { InmuebleItem, InmuebleInformation } from "./Inmueble";
 export { FAQ } from "./FAQ";
