@@ -4,6 +4,25 @@ import marketAnalysisImg from "@/images/services/market-analysis.jpg";
 import goalsImg from "@/images/services/goals.jpg";
 import legalAdviceImg from "@/images/services/legal-advice.jpg";
 
+export const ROUTES = [
+  {
+    name: "Inicio",
+    href: "/home",
+  },
+  {
+    name: "Inmuebles",
+    href: "/inmuebles/1",
+  },
+  {
+    name: "Nosotros",
+    href: "/nosotros",
+  },
+  {
+    name: "Contacto",
+    href: "/contacto",
+  },
+];
+
 export const SERVICES = [
   {
     title: "Comercialización de inmuebles",
