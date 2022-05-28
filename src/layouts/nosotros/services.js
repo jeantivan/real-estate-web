@@ -13,7 +13,7 @@ export function ServicesSection() {
         <Box>
           {SERVICES.map((service, i) => (
             <Service
-              key={service.title.replaceAll(" ", "-")}
+              key={service.title.replace(/(\s)/g, "-")}
               {...service}
               i={i}
             />
