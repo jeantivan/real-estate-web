@@ -22,11 +22,9 @@ import {
 import { keyframes } from "@emotion/react";
 
 import NextLink from "next/link";
-
 import { Newsletter } from "./Newsletter";
 import { Logo } from "./Logo";
-import { display } from "@mui/system";
-
+import { ROUTES } from "@/utils/constants";
 const PREFIX = "Footer";
 
 const classes = {
@@ -203,18 +201,11 @@ export function Footer() {
             <Typography variant="h6" sx={sxClasses.heading}>
               Navega
             </Typography>
-            <NextLink href="/home" passHref>
-              <Link sx={sxClasses.link}>Inicio</Link>
-            </NextLink>
-            <NextLink href="/inmuebles/1" passHref>
-              <Link sx={sxClasses.link}>Inmuebles</Link>
-            </NextLink>
-            <NextLink href="/nosotros" passHref>
-              <Link sx={sxClasses.link}>Nosotros</Link>
-            </NextLink>
-            <NextLink href="/contacto" passHref>
-              <Link sx={sxClasses.link}>Contacto</Link>
-            </NextLink>
+            {ROUTES.map(({ name, href }) => (
+              <NextLink key={name} href={href} passHref>
+                <Link sx={sxClasses.link}>{name}</Link>
+              </NextLink>
+            ))}
           </Grid>
           <Grid
             item

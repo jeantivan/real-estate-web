@@ -1,24 +1,6 @@
 import { List, ListItem, ListItemText, Link } from "@mui/material";
 import { useRouter } from "next/router";
-
-const routes = [
-  {
-    name: "Inicio",
-    href: "/home",
-  },
-  {
-    name: "Inmuebles",
-    href: "/inmuebles/1",
-  },
-  {
-    name: "Nosotros",
-    href: "/nosotros",
-  },
-  {
-    name: "Contacto",
-    href: "/contacto",
-  },
-];
+import { ROUTES } from "@/utils/constants";
 
 const baseSx = (theme) => ({
   textDecoration: "none",
@@ -81,7 +63,7 @@ export function DrawerLinks({ handleClose, currentPage }) {
         maxWidth: 260,
       })}
     >
-      {routes.map(({ name, href }) => (
+      {ROUTES.map(({ name, href }) => (
         <DrawerLink
           key={name}
           sx={[baseSx, currentPage === name && afterSx]}

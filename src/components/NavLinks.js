@@ -1,24 +1,6 @@
 import NextLink from "next/link";
 import { Link, Box } from "@mui/material";
-
-const routes = [
-  {
-    name: "Inicio",
-    href: "/home",
-  },
-  {
-    name: "Inmuebles",
-    href: "/inmuebles/1",
-  },
-  {
-    name: "Nosotros",
-    href: "/nosotros",
-  },
-  {
-    name: "Contacto",
-    href: "/contacto",
-  },
-];
+import { ROUTES } from "@/utils/constants";
 
 const baseSx = (theme) => ({
   textDecoration: "none",
@@ -64,12 +46,6 @@ const NavLink = ({ children, href, sx = [] }) => {
 };
 
 export function NavLinks({ currentPage }) {
-  /* const isMounted = useRef();
-
-  useEffect(() => {
-    isMounted.current = true;
-  }, []); */
-
   return (
     <Box
       component="nav"
@@ -89,7 +65,7 @@ export function NavLinks({ currentPage }) {
         },
       })}
     >
-      {routes.map(({ name, href }) => (
+      {ROUTES.map(({ name, href }) => (
         <NavLink
           key={name}
           href={href}
