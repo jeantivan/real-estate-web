@@ -1,5 +1,5 @@
 export { FAQSSection } from "./faqs";
 export { MisionSection } from "./mision";
-export { ServiciosSection } from "./servicios";
+export { ServicesSection } from "./services";
 export { TeamSection } from "./team";
 export { TestimonialsSection } from "./testimonials";
