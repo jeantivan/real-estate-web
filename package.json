@@ -33,7 +33,6 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@svgr/webpack": "^6.2.1",
     "eslint": "8.15.0",
     "eslint-config-next": "12.1.6"
   }
