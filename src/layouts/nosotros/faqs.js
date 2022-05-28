@@ -1,24 +1,20 @@
 import { FAQ } from "@/components/";
-import { styled } from '@mui/material/styles';
-import { faqs } from "@/utils/faqs";
+import { styled } from "@mui/material/styles";
+import { FAQS } from "@/utils/constants";
 import { Container, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 
-const PREFIX = 'faqs';
+const PREFIX = "faqs";
 
 const classes = {
   root: `${PREFIX}-root`,
   container: `${PREFIX}-container`,
   heading: `${PREFIX}-heading`,
   faqs: `${PREFIX}-faqs`,
-  wave: `${PREFIX}-wave`
+  wave: `${PREFIX}-wave`,
 };
 
-const Root = styled('section')((
-  {
-    theme
-  }
-) => ({
+const Root = styled("section")(({ theme }) => ({
   [`&.${classes.root}`]: {
     backgroundColor: theme.palette.background.default,
     backgroundImage:
@@ -51,11 +47,10 @@ const Root = styled('section')((
       width: "100%",
       display: "block",
     },
-  }
+  },
 }));
 
 export function FAQSSection() {
-
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (_, isExpanded) => {
@@ -69,7 +64,7 @@ export function FAQSSection() {
             <Typography variant="h4">Preguntas Frecuentes</Typography>
           </Grid>
           <Grid item xs={12} md={10}>
-            {faqs.map((faq, index) => {
+            {FAQS.map((faq, index) => {
               const id = `faq-${index + 1}`;
               return (
                 <FAQ

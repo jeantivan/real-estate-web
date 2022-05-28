@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Grid, Container, Typography } from "@mui/material";
 
-import { Testimonials, Testimonial } from "@/components/";
-import { testimonials } from "@/utils/testimonials";
+import { Testimonial } from "@/components/";
+import { TESTIMONIALS } from "@/utils/constants";
 
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import clsx from "clsx";
 
-const PREFIX = 'testimonials';
+const PREFIX = "testimonials";
 
 const classes = {
   root: `${PREFIX}-root`,
@@ -17,14 +17,10 @@ const classes = {
   testimonialContainer: `${PREFIX}-testimonialContainer`,
   dots: `${PREFIX}-dots`,
   dot: `${PREFIX}-dot`,
-  active: `${PREFIX}-active`
+  active: `${PREFIX}-active`,
 };
 
-const StyledContainer = styled(Container)((
-  {
-    theme
-  }
-) => ({
+const StyledContainer = styled(Container)(({ theme }) => ({
   [`&.${classes.root}`]: {
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(6),
@@ -66,13 +62,12 @@ const StyledContainer = styled(Container)((
 
   [`& .${classes.active}`]: {
     backgroundColor: theme.palette.primary.dark,
-  }
+  },
 }));
 
 const AutoSwipeableViews = autoPlay(SwipeableViews);
 
 export function TestimonialsSection() {
-
   const [index, setIndex] = React.useState(0);
 
   const handleChange = (index) => setIndex(index);
@@ -95,10 +90,10 @@ export function TestimonialsSection() {
         </Grid>
         <Grid item xs={12} md={10}>
           <div className={classes.testimonialContainer}>
-            <Testimonial {...testimonials[0]} />
+            <Testimonial {...TESTIMONIALS[0]} />
           </div>
           <div className={classes.dots}>
-            {testimonials.map((_, i) => (
+            {TESTIMONIALS.map((_, i) => (
               <span
                 key={i}
                 className={clsx(classes.dot, {

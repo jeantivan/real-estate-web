@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { Service } from "@/components";
-import { services } from "@/utils/consts";
+import { SERVICES } from "@/utils/constants";
 
 export function ServicesSection() {
   return (
@@ -11,7 +11,7 @@ export function ServicesSection() {
           Servicios que te ofrecemos
         </Typography>
         <Box>
-          {services.map((service, i) => (
+          {SERVICES.map((service, i) => (
             <Service
               key={service.title.replaceAll(" ", "-")}
               {...service}
