@@ -2,6 +2,13 @@ import React from "react";
 import { Box, Container, Typography, Grid, Icon, Button } from "@mui/material";
 import { ArrowDownward } from "@mui/icons-material";
 import Link from "next/link";
+import { keyframes } from "@emotion/react";
+
+const arrowAnimation = keyframes`
+  to{
+    transform: translateY(10px);
+  }
+`;
 
 export function AboutSection() {
   return (
@@ -78,7 +85,11 @@ export function AboutSection() {
                 Saber Más
               </Typography>
             </Grid>
-            <Icon>
+            <Icon
+              sx={{
+                animation: `${arrowAnimation} 0.7s ease-in infinite alternate`,
+              }}
+            >
               <ArrowDownward />
             </Icon>
           </Grid>
