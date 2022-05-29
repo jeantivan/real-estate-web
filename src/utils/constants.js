@@ -102,6 +102,6 @@ export const TESTIMONIALS = [
     client: "Josefina Morales",
     type: "Compradora",
     picture: "/images/female-2.jpg",
-    text: "Duis non orci feugiat, bibendum metus sit amet, dignissim ligula. Donec vel pellentesque quam. Sed vel risus nibh. Cras ipsum tortor, tristique ac magna et, scelerisque aliquet ante. Sed pulvinar diam in enim euismod, vel.",
+    text: "Duis non orci feugiat, bibendum metus sit amet, dignissim ligula. Donec vel pellentesque quam. Sed vel risus nibh. Cras ipsum tortor, tristique ac magna et, scelerisque aliquet ante.",
   },
 ];
