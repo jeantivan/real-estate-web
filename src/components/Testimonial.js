@@ -1,86 +1,58 @@
-import { Paper, Typography, Avatar } from "@mui/material";
-import { styled } from '@mui/material/styles';
-const PREFIX = 'Testimonial';
-
-const classes = {
-  root: `${PREFIX}-root`,
-  client: `${PREFIX}-client`,
-  clientPicture: `${PREFIX}-clientPicture`,
-  clientInfo: `${PREFIX}-clientInfo`,
-  clientName: `${PREFIX}-clientName`,
-  clientType: `${PREFIX}-clientType`
-};
-
-const StyledPaper = styled(Paper)((
-  {
-    theme
-  }
-) => ({
-  [`&.${classes.root}`]: {
-    maxWidth: 1280,
-    width: "100%",
-    margin: "0 auto",
-    padding: theme.spacing(3),
-    [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(5),
-    },
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(7),
-    },
-  },
-
-  [`& .${classes.client}`]: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: theme.spacing(3),
-  },
-
-  [`& .${classes.clientPicture}`]: {
-    width: 56,
-    height: 56,
-    marginRight: theme.spacing(2),
-  },
-
-  [`& .${classes.clientInfo}`]: {
-    display: "flex",
-    flexDirection: "column",
-  },
-
-  [`& .${classes.clientName}`]: {
-    fontWeight: "bold",
-  },
-
-  [`& .${classes.clientType}`]: {
-    ...theme.typography.subtitle2,
-    textTransform: "uppercase",
-    lineHeight: 1,
-  }
-}));
+import { Paper, Typography, Avatar, Icon, Box } from "@mui/material";
 
 export function Testimonial({ client, type, picture, text }) {
-
-
   return (
-    <StyledPaper elevation={10} className={classes.root}>
-      <Typography variant="body1" align="center" paragraph>
-        <em>{text}</em>
-      </Typography>
-      <div className={classes.client}>
-        <Avatar className={classes.clientPicture} src={picture} />
-        <div className={classes.clientInfo}>
-          <Typography className={classes.clientName} variant="h6" component="p">
+    <Paper
+      elevation={2}
+      sx={{
+        p: 4,
+        borderRadius: 4,
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+      }}
+    >
+      <Icon
+        sx={(theme) => ({
+          fontSize: 48,
+          color: theme.palette.primary.main,
+          mb: 4,
+          "& > svg": {
+            fill: "currentColor",
+          },
+        })}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z" />
+        </svg>
+      </Icon>
+      <Typography mb={4}>{text}</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Avatar
+          sx={{ width: 80, height: 80, mr: 2 }}
+          alt={client}
+          src={picture}
+        />
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Typography variant="h6" component="p" fontWeight={500}>
             {client}
           </Typography>
           <Typography
-            color="textSecondary"
-            variant="overline"
-            className={classes.clientType}
+            color="primary"
+            variant="subtitle2"
+            textTransform="uppercase"
+            fontWeight={500}
           >
             {type}
           </Typography>
-        </div>
-      </div>
-    </StyledPaper>
+        </Box>
+      </Box>
+    </Paper>
   );
 }
