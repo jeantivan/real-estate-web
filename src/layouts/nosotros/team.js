@@ -14,7 +14,7 @@ import { EmailOutlined, WhatsappOutlined } from "@mui/icons-material";
 export function TeamSection({ agents }) {
   return (
     <Box component="section" id="team" backgroundColor="white">
-      <Container sx={{ py: 6 }}>
+      <Container sx={{ py: 8 }}>
         <Box mb={3}>
           <Typography
             component="h2"
