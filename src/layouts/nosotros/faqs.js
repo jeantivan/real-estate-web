@@ -27,8 +27,8 @@ export function FAQSSection() {
             <Typography variant="h4">Preguntas Frecuentes</Typography>
           </Grid>
           <Grid item xs={12} md={10}>
-            {FAQS.map((faq, index) => {
-              const id = `faq-${index + 1}`;
+            {FAQS.map((faq) => {
+              const id = `faq-${faq.question.replace(/\s/g, "-")}`;
               return (
                 <FAQ
                   key={id}

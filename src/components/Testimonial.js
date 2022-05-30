@@ -44,6 +44,7 @@ export function Testimonial({ client, type, picture, text }) {
             {client}
           </Typography>
           <Typography
+            component="p"
             color="primary"
             variant="subtitle2"
             textTransform="uppercase"
