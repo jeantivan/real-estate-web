@@ -8,5 +8,5 @@ export { Newsletter } from "./Newsletter";
 export { Filters } from "./Filters";
 export { Service } from "./Service";
 export { Testimonial } from "./Testimonial";
-export { InmuebleItem, InmuebleInformation } from "./Inmueble";
+export { InmuebleItem } from "./InmuebleItem";
 export { FAQ } from "./FAQ";
