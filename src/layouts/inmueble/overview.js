@@ -1,46 +1,6 @@
+import React from "react";
 import { Paper, Divider, Typography, Grid, Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { PrismicRichText } from "@prismicio/react";
-
-const PREFIX = "overview";
-
-const classes = {
-  section: `${PREFIX}-section`,
-  sectionTitle: `${PREFIX}-sectionTitle`,
-  divider: `${PREFIX}-divider`,
-  content: `${PREFIX}-content`,
-  description: `${PREFIX}-description`,
-};
-
-const StyledGrid = styled(Grid)(({ theme }) => ({
-  [`& .${classes.section}`]: {
-    padding: theme.spacing(2),
-    minHeight: "100%",
-  },
-
-  [`& .${classes.sectionTitle}`]: {
-    ...theme.typography.h6,
-    fontWeight: 700,
-  },
-
-  [`& .${classes.divider}`]: {
-    margin: theme.spacing(2, 0),
-  },
-
-  [`& .${classes.content}`]: {
-    ...theme.typography.h6,
-  },
-
-  [`& .${classes.description}`]: {
-    "& > p": {
-      ...theme.typography.body1,
-    },
-    "& > p:not(:last-child)": {
-      marginTop: 0,
-      marginBottom: theme.spacing(2),
-    },
-  },
-}));
 
 export function OverviewSection({
   id,
@@ -53,12 +13,22 @@ export function OverviewSection({
   descripcion,
 }) {
   return (
-    <StyledGrid item xs={12} md={7}>
-      <Paper elevation={0} className={classes.section}>
-        <Box component="section" id="caracteristicas-del-inmueble" mb={3}>
-          <Grid container justifyContent="space-between" alignItems="baseline">
+    <Grid item xs={12} md={7}>
+      <Paper
+        component="section"
+        id="caracteristicas-del-inmueble"
+        elevation={0}
+        sx={{ p: 2, minHeight: "100%" }}
+      >
+        <Box mb={3}>
+          <Grid
+            container
+            mb={3}
+            justifyContent="space-between"
+            alignItems="baseline"
+          >
             <Grid item>
-              <Typography component="h3" className={classes.sectionTitle}>
+              <Typography component="h3" variant="h6" fontWeight={700}>
                 Características del inmueble.
               </Typography>
             </Grid>
@@ -69,19 +39,20 @@ export function OverviewSection({
               </Typography>
             </Grid>
           </Grid>
-          <Divider className={classes.divider} />
           <Grid container spacing={2}>
             <Grid item xs lg={3}>
               <Typography variant="caption" gutterBottom>
                 Tipo
               </Typography>
-              <Typography className={classes.content}>{tipo}</Typography>
+              <Typography component="p" variant="h6">
+                {tipo}
+              </Typography>
             </Grid>
             <Grid item xs={6} sm={4} lg={3}>
               <Typography variant="caption" gutterBottom>
                 Area
               </Typography>
-              <Typography className={classes.content}>
+              <Typography component="p" variant="h6">
                 {area + " "}
                 <span>
                   m<sup>2</sup>
@@ -92,7 +63,7 @@ export function OverviewSection({
               <Typography variant="caption" gutterBottom>
                 Habitaciones
               </Typography>
-              <Typography className={classes.content}>
+              <Typography component="p" variant="h6">
                 {habitaciones}
               </Typography>
             </Grid>
@@ -100,13 +71,15 @@ export function OverviewSection({
               <Typography variant="caption" gutterBottom>
                 Baños
               </Typography>
-              <Typography className={classes.content}>{baños}</Typography>
+              <Typography component="p" variant="h6">
+                {baños}
+              </Typography>
             </Grid>
             <Grid item xs={6} sm={4} lg={3}>
               <Typography variant="caption" gutterBottom>
                 Estacionamientos
               </Typography>
-              <Typography className={classes.content}>
+              <Typography component="p" variant="h6">
                 {estacionamientos}
               </Typography>
             </Grid>
@@ -114,23 +87,32 @@ export function OverviewSection({
               <Typography variant="caption" gutterBottom>
                 Antiguedad
               </Typography>
-              <Typography className={classes.content}>{antiguedad}</Typography>
+              <Typography component="p" variant="h6">
+                {antiguedad}
+              </Typography>
             </Grid>
           </Grid>
         </Box>
-        <Box>
-          <Typography
-            component="h3"
-            gutterBottom
-            className={classes.sectionTitle}
-          >
+        <Divider />
+        <Box pt={3}>
+          <Typography component="h3" variant="h6" fontWeight={700} gutterBottom>
             Descripción.
           </Typography>
-          <div className={classes.description}>
+          <Box
+            sx={(theme) => ({
+              "& > p": {
+                ...theme.typography.body1,
+              },
+              "& > p:not(:last-child)": {
+                marginTop: 0,
+                marginBottom: 2,
+              },
+            })}
+          >
             <PrismicRichText field={descripcion} />
-          </div>
+          </Box>
         </Box>
       </Paper>
-    </StyledGrid>
+    </Grid>
   );
 }

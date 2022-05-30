@@ -1,4 +1,3 @@
-import { styled } from "@mui/styles";
 import {
   Link,
   Grid,
@@ -25,26 +24,6 @@ import NextLink from "next/link";
 import { Newsletter } from "./Newsletter";
 import { Logo } from "./Logo";
 import { ROUTES } from "@/utils/constants";
-const PREFIX = "Footer";
-
-const classes = {
-  root: `${PREFIX}-root`,
-  bgDark: `${PREFIX}-bgDark`,
-  container: `${PREFIX}-container`,
-  gridItem: `${PREFIX}-gridItem`,
-  subFooter: `${PREFIX}-subFooter`,
-  copyright: `${PREFIX}-copyright`,
-  logo: `${PREFIX}-logo`,
-  heading: `${PREFIX}-heading`,
-  text: `${PREFIX}-text`,
-  link: `${PREFIX}-link`,
-  icon: `${PREFIX}-icon`,
-  rs: `${PREFIX}-rs`,
-  social: `${PREFIX}-social`,
-  me: `${PREFIX}-me`,
-  heart: `${PREFIX}-heart`,
-  heading: `${PREFIX}-heading`,
-};
 
 const pulseAnimation = keyframes`
   from {
@@ -173,7 +152,7 @@ export function Footer() {
             <Typography variant="h6" sx={sxClasses.heading}>
               Nosotros
             </Typography>
-            <Logo inFooter lightColor sx={sxClasses.logo} />
+            <Logo sx={sxClasses.logo} />
             <Typography
               sx={{
                 color: "#8a99b3",

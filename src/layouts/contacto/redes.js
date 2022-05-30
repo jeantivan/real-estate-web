@@ -1,5 +1,5 @@
+import React from "react";
 import { Facebook, Instagram, Twitter, WhatsApp } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
 import {
   Container,
   Box,
@@ -10,57 +10,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import React from "react";
-const PREFIX = "redes";
-
-const classes = {
-  container: `${PREFIX}-container`,
-  bgLight: `${PREFIX}-bgLight`,
-  rsHeading: `${PREFIX}-rsHeading`,
-  list: `${PREFIX}-list`,
-  listItem: `${PREFIX}-listItem`,
-  listIcon: `${PREFIX}-listIcon`,
-};
-
-const Root = styled("section")(({ theme }) => ({
-  [`& .${classes.container}`]: {
-    padding: theme.spacing(4, 2),
-    // [theme.breakpoints.up("sm")]: {
-    //   padding: theme.spacing(4, 2),
-    // },
-  },
-
-  [`&.${classes.bgLight}`]: {
-    backgroundColor: "white",
-  },
-
-  [`& .${classes.rsHeading}`]: {},
-
-  [`& .${classes.list}`]: {
-    listStyle: "none",
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-  },
-
-  [`& .${classes.listItem}`]: {
-    fontSize: theme.spacing(2.5),
-    display: "flex",
-    color: theme.palette.text.secondary,
-    transition: theme.transitions.create(["color", "transform"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-
-    "&:hover": {
-      transform: "scale(1.1)",
-      color: theme.palette.primary.main,
-    },
-  },
-
-  [`& .${classes.listIcon}`]: {
-    minWidth: 56,
-  },
-}));
 
 const listItemStyle = (theme) => ({
   px: 0,
@@ -76,8 +25,8 @@ const listItemStyle = (theme) => ({
 
 export function RedesSection() {
   return (
-    <Box backgroundColor="white">
-      <Container component="section" id="redes-sociales" sx={{ py: 4 }}>
+    <Box backgroundColor="white" component="section" id="redes-sociales">
+      <Container sx={{ py: 4 }}>
         <Typography
           component="h2"
           sx={(theme) => ({

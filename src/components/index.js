@@ -4,7 +4,6 @@ export { Footer } from "./Footer";
 export { Gallery } from "./Gallery";
 export { ContactForm } from "./ContactForm";
 export { MyPagination as Pagination } from "./Pagination";
-export { Agent } from "./Agent";
 export { Newsletter } from "./Newsletter";
 export { Filters } from "./Filters";
 export { Service } from "./Service";

@@ -1,11 +1,11 @@
+import { useState } from "react";
 import { IconButton, TextField, Box } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { ChevronRight } from "@mui/icons-material";
-import React from "react";
 
 export function Newsletter({ isLight }) {
   const { enqueueSnackbar } = useSnackbar();
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = useState("");
 
   const handleChange = (e) => {
     setEmail(e.target.value);

@@ -1,25 +1,8 @@
+import React from "react";
 import { Grid, Button, Typography, Hidden } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import Link from "next/link";
 
 import { InmuebleItem } from "@/components";
-
-const PREFIX = "similares";
-
-const classes = {
-  grow: `${PREFIX}-grow`,
-  paper: `${PREFIX}-paper`,
-};
-
-const StyledGrid = styled(Grid)({
-  [`& .${classes.grow}`]: {
-    flex: 1,
-  },
-  [`& .${classes.paper}`]: {
-    width: "100%",
-    padding: 32,
-  },
-});
 
 export function SimilaresSection({ inmueblesSimilares }) {
   const results = inmueblesSimilares.map(({ data, uid }, index) => {
@@ -38,9 +21,9 @@ export function SimilaresSection({ inmueblesSimilares }) {
     };
 
     return index !== inmueblesSimilares.length - 1 ? (
-      <StyledGrid key={uid} item xs={12} sm={6} md={4}>
+      <Grid key={uid} item xs={12} sm={6} md={4}>
         {<InmuebleItem {...props} />}
-      </StyledGrid>
+      </Grid>
     ) : (
       <Hidden mdUp key={uid}>
         <Grid item xs={12} sm={6} md={4}>
@@ -59,7 +42,7 @@ export function SimilaresSection({ inmueblesSimilares }) {
       pb={4}
     >
       <Grid container spacing={2} py={2} justifyContent="space-between">
-        <Grid item className={classes.grow}>
+        <Grid item flex={1}>
           <Typography variant="h5">Inmuebles Similares</Typography>
         </Grid>
         <Grid item>

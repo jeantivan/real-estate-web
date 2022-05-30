@@ -1,55 +1,7 @@
-import clsx from "clsx";
-import { styled } from "@mui/material/styles";
 import SwipeableViews from "react-swipeable-views";
-
+import { Box } from "@mui/material";
 import Image from "next/image";
-
 import { Controls } from "./Controls";
-
-const PREFIX = "Carousel";
-
-const classes = {
-  root: `${PREFIX}-root`,
-  container: `${PREFIX}-container`,
-  slide: `${PREFIX}-slide`,
-};
-
-const Root = styled("div")(({ theme }) => ({
-  [`&.${classes.root}`]: {
-    position: "relative",
-    width: "100%",
-    height: 0,
-    overflow: "hidden",
-    paddingTop: "56.25%",
-    background: theme.palette.grey[600],
-    borderRadius: "inherit",
-    "&:hover button": {
-      transform: "translateX(0)",
-      opacity: 1,
-    },
-  },
-
-  [`& .${classes.container}`]: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: "100%",
-    width: "100%",
-    display: "flex",
-    "& .react-swipeable-view-container": {
-      width: "100%",
-      maxHeight: "100%",
-    },
-  },
-
-  [`& .${classes.slide}`]: {
-    position: "relative",
-    overflow: "hidden",
-    width: "100%",
-  },
-}));
 
 export function Carousel({
   imagenes,
@@ -59,13 +11,38 @@ export function Carousel({
   handleChange,
 }) {
   return (
-    <Root className={classes.root}>
-      <SwipeableViews
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        aspectRatio: "16 / 9",
+        backgroundColor: "#757575",
+        overflow: "hidden",
+        "&:hover button": {
+          transform: "translate(0, -50%)",
+          opacity: 1,
+        },
+      }}
+    >
+      <Box
+        component={SwipeableViews}
         index={index}
         onChangeIndex={handleChange}
-        className={classes.container}
-        slideClassName={classes.slide}
         enableMouseEvents
+        slideStyle={{
+          position: "relative",
+          overflow: "hidden",
+          width: "100%",
+        }}
+        sx={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          "& .react-swipeable-view-container": {
+            width: "100%",
+            maxHeight: "100%",
+          },
+        }}
       >
         {imagenes.map(({ imagen }, i) => (
           <Image
@@ -76,13 +53,13 @@ export function Carousel({
             priority={i === 0}
           />
         ))}
-      </SwipeableViews>
+      </Box>
       <Controls
         handleNext={handleNext}
         handlePrev={handlePrev}
         index={index}
         max={imagenes.length - 1}
       />
-    </Root>
+    </Box>
   );
 }

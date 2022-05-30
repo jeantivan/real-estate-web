@@ -1,5 +1,4 @@
 import { Layout } from "@/components";
-import { styled } from "@mui/material/styles";
 import {
   ContactSection,
   GallerySection,
@@ -13,56 +12,8 @@ import {
   getInmueble,
   getInmueblesSimilares,
 } from "@/lib/api";
-import { Box, Container, Grid } from "@mui/material";
-import { PrismicText } from "@prismicio/react";
+import { Container, Grid } from "@mui/material";
 import { asText } from "@prismicio/helpers";
-
-const PREFIX = "[slug]";
-
-const classes = {
-  gallery: `${PREFIX}-gallery`,
-  description: `${PREFIX}-description`,
-  html: `${PREFIX}-html`,
-  masInmuebles: `${PREFIX}-masInmuebles`,
-};
-
-const StyledLayout = styled(Layout)(({ theme }) => ({
-  [`& .${classes.gallery}`]: {
-    minWidth: "100%",
-    borderRadius: theme.spacing(2),
-    [theme.breakpoints.up("md")]: {
-      minWidth: 0,
-    },
-  },
-
-  [`& .${classes.description}`]: {
-    fontWeight: 700,
-    position: "relative",
-    display: "inline-block",
-
-    "&:after": {
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      content: "''",
-      width: "45%",
-      height: 2,
-      backgroundColor: theme.palette.primary.light,
-    },
-  },
-
-  [`& .${classes.html}`]: {
-    "& > p": {
-      ...theme.typography.body1,
-      maxWidth: "100%",
-    },
-  },
-
-  [`& .${classes.masInmuebles}`]: {
-    padding: theme.spacing(2, 0),
-    width: "100%",
-  },
-}));
 
 export default function Inmueble({ inmueble, inmueblesSimilares }) {
   const inmuebleInfo = {
@@ -79,10 +30,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
   };
 
   return (
-    <StyledLayout
-      titulo={asText(inmueble.titulo)}
-      descripcion={inmueble.descCorta}
-    >
+    <Layout titulo={asText(inmueble.titulo)} descripcion={inmueble.descCorta}>
       <Container maxWidth="lg" py={4}>
         <Grid container spacing={3} justifyContent="center" component="article">
           <HeaderSection
@@ -99,7 +47,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
           <SimilaresSection inmueblesSimilares={inmueblesSimilares} />
         </Grid>
       </Container>
-    </StyledLayout>
+    </Layout>
   );
 }
 

@@ -1,54 +1,11 @@
+import React from "react";
 import { Input } from "@/components/Input";
-import { styled } from "@mui/material/styles";
-import { Typography, Grid, Paper, Button } from "@mui/material";
+import { Typography, Grid, Paper, Button, Box } from "@mui/material";
 import { WhatsApp } from "@mui/icons-material";
 import Image from "next/image";
 import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
-import { Box } from "@mui/system";
-
-const PREFIX = "contact";
-
-const classes = {
-  root: `${PREFIX}-root`,
-  sectionTitle: `${PREFIX}-sectionTitle`,
-  image: `${PREFIX}-image`,
-  agentInfo: `${PREFIX}-agentInfo`,
-  agentName: `${PREFIX}-agentName`,
-  textLight: `${PREFIX}-textLight`,
-  content: `${PREFIX}-content`,
-};
-
-const StyledGrid = styled(Grid)(({ theme }) => ({
-  [`& .${classes.root}`]: {},
-
-  [`& .${classes.sectionTitle}`]: {
-    ...theme.typography.h6,
-    fontWeight: 700,
-  },
-
-  [`& .${classes.image}`]: {
-    width: "100%",
-    minHeight: 116,
-    backgroundColor: theme.palette.text.secondary,
-    borderRadius: theme.spacing(0.5),
-  },
-
-  [`& .${classes.agentName}`]: {
-    ...theme.typography.h6,
-    fontWeight: 700,
-    lineHeight: 1,
-  },
-
-  [`& .${classes.textLight}`]: {
-    fontWeight: theme.typography.fontWeightLight,
-  },
-
-  [`& .${classes.content}`]: {
-    lineHeight: 1,
-  },
-}));
 
 const initialValues = {
   nombre: "",
@@ -76,13 +33,8 @@ export function ContactSection({ inmuebleId, agent }) {
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <StyledGrid item xs={12} md={3}>
-      <Paper
-        component="section"
-        id="inmueble-contact"
-        className={classes.root}
-        elevation={0}
-      >
+    <Grid item xs={12} md={3}>
+      <Paper component="section" id="inmueble-contact" elevation={0}>
         <Box
           sx={{
             background: "#37474f",
@@ -251,6 +203,6 @@ export function ContactSection({ inmuebleId, agent }) {
           </Formik>
         </Box>
       </Paper>
-    </StyledGrid>
+    </Grid>
   );
 }

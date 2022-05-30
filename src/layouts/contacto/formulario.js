@@ -2,8 +2,6 @@ import { Grid, Typography, Container, Box, Paper } from "@mui/material";
 import React from "react";
 import { ContactForm } from "@/components/";
 
-const classes = {};
-
 export function FormularioSection() {
   return (
     <Box
@@ -14,7 +12,7 @@ export function FormularioSection() {
         backgroundColor: "#24324A",
       }}
     >
-      <Container className={classes.container}>
+      <Container>
         <Typography
           component="h2"
           variant="h5"

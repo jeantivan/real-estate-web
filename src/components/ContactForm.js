@@ -1,48 +1,8 @@
-import { Button, Typography, Paper, Grid } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Button, Typography, Grid } from "@mui/material";
 import { useSnackbar } from "notistack";
-
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
-
 import { Input } from "./Input";
-
-const PREFIX = "ContactForm";
-
-const classes = {
-  title: `${PREFIX}-title`,
-  container: `${PREFIX}-container`,
-  textField: `${PREFIX}-textField`,
-};
-
-const StyledGrid = styled(Grid)(({ theme }) => ({
-  [`& .${classes.title}`]: {
-    ...theme.typography.h6,
-    fontWeight: 500,
-    color: theme.palette.grey[500],
-  },
-
-  [`& .${classes.container}`]: {
-    padding: theme.spacing(2, 3),
-  },
-
-  [`& .${classes.textField}`]: {
-    color: "#fff",
-    "& .MuiFormLabel-root": {
-      color: "rgba(255, 255, 255, 0.7);",
-    },
-    "& .MuiFilledInput-root": {
-      color: "#fff",
-      backgroundColor: "rgba(255, 255, 255, 0.09)",
-      "&:hover": {
-        backgroundColor: "rgba(255, 255, 255, 0.13)",
-      },
-    },
-    "& .MuiFilledInput-underline:before": {
-      borderBottom: "1px solid rgba(255, 255, 255, 0.7);",
-    },
-  },
-}));
 
 const initialValues = {
   nombre: "",
@@ -62,9 +22,9 @@ export function ContactForm() {
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <StyledGrid container spacing={2} direction="column">
+    <Grid container spacing={2} direction="column">
       <Grid item xs={12}>
-        <Typography component="div" className={classes.theme}>
+        <Typography component="div">
           Puedes contactar directamente con nosotros a traves del siguiente
           formulario.
         </Typography>
@@ -103,7 +63,6 @@ export function ContactForm() {
                     type="text"
                     variant="filled"
                     fullWidth
-                    // className={classes.textField}
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -113,7 +72,6 @@ export function ContactForm() {
                     type="email"
                     variant="filled"
                     fullWidth
-                    // className={classes.textField}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -125,7 +83,6 @@ export function ContactForm() {
                     // rowsMax={10}
                     variant="filled"
                     fullWidth
-                    // className={classes.textField}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -145,6 +102,6 @@ export function ContactForm() {
           )}
         </Formik>
       </Grid>
-    </StyledGrid>
+    </Grid>
   );
 }
