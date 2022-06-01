@@ -7,7 +7,7 @@ export function OverviewSection({
   tipo,
   area,
   habitaciones,
-  baños,
+  banos,
   estacionamientos,
   antiguedad,
   descripcion,
@@ -72,7 +72,7 @@ export function OverviewSection({
                 Baños
               </Typography>
               <Typography component="p" variant="h6">
-                {baños}
+                {banos}
               </Typography>
             </Grid>
             <Grid item xs={6} sm={4} lg={3}>

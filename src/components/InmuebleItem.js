@@ -6,12 +6,12 @@ export function InmuebleItem({
   slug,
   titulo,
   precio,
-  ubiAprox,
+  ubiaprox,
   habitaciones,
   estado,
   banos,
   area,
-  mainImg,
+  mainimg,
   fecha,
   agent,
   priority,
@@ -42,8 +42,8 @@ export function InmuebleItem({
             }}
           >
             <Image
-              src={mainImg.url}
-              alt={mainImg.alt}
+              src={mainimg.url}
+              alt={mainimg.alt}
               layout="fill"
               priority={priority}
             />
@@ -81,7 +81,7 @@ export function InmuebleItem({
               color="textSecondary"
               gutterBottom
             >
-              {ubiAprox}
+              {ubiaprox}
             </Typography>
             <Typography variant="h5" gutterBottom>
               ${precio}
