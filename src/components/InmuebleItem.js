@@ -12,8 +12,6 @@ export function InmuebleItem({
   banos,
   area,
   mainimg,
-  fecha,
-  agent,
   priority,
 }) {
   return (
