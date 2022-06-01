@@ -16,17 +16,8 @@ export default function AgentPage({ agent, inmuebles }) {
   const inmuebleList = results.map(({ data, uid }, i) => {
     let props = {
       slug: uid,
-      area: data.area,
+      ...data,
       titulo: data.titulo[0],
-      mainImg: data.mainimg,
-      precio: data.precio,
-      estado: data.estado,
-      ubiAprox: data.ubiaprox,
-      habitaciones: data.habitaciones,
-      banos: data.banos,
-      estado: data.estado,
-      fecha: data.fecha,
-      agent: data.agent.data,
       priority: i <= 2,
     };
 

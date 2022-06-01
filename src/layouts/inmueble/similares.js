@@ -8,16 +8,8 @@ export function SimilaresSection({ inmueblesSimilares }) {
   const results = inmueblesSimilares.map(({ data, uid }, index) => {
     let props = {
       slug: uid,
-      area: data.area,
+      ...data,
       titulo: data.titulo[0],
-      mainImg: data.mainimg,
-      precio: data.precio,
-      estado: data.estado,
-      ubiAprox: data.ubiaprox,
-      habitaciones: data.habitaciones,
-      estado: data.estado,
-      fecha: data.fecha,
-      agent: data.agent.data,
     };
 
     return index !== inmueblesSimilares.length - 1 ? (

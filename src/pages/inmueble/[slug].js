@@ -16,34 +16,24 @@ import { Container, Grid } from "@mui/material";
 import { asText } from "@prismicio/helpers";
 
 export default function Inmueble({ inmueble, inmueblesSimilares }) {
+  const { id, titulo, desccorta, ubiaprox, precio, imagenes, agent, ...rest } =
+    inmueble;
+
   const inmuebleInfo = {
-    id: inmueble.id,
-    precio: inmueble.precio,
-    area: inmueble.area,
-    habitaciones: inmueble.habitaciones,
-    baños: inmueble.banos,
-    estacionamientos: inmueble.estacionamientos,
-    descripcion: inmueble.descripcion,
-    // Prop momentanea, hay que añadirla en Prismic
+    ...rest,
+    id,
     tipo: "Apartamento",
     antiguedad: "5 años",
   };
 
   return (
-    <Layout titulo={asText(inmueble.titulo)} descripcion={inmueble.descCorta}>
+    <Layout titulo={asText(titulo)} descripcion={desccorta}>
       <Container maxWidth="lg" py={4}>
         <Grid container spacing={3} justifyContent="center" component="article">
-          <HeaderSection
-            titulo={inmueble.titulo}
-            ubiaprox={inmueble.ubiaprox}
-            precio={inmueble.precio}
-          />
-          <GallerySection imagenes={inmueble.imagenes} />
+          <HeaderSection titulo={titulo} ubiaprox={ubiaprox} precio={precio} />
+          <GallerySection imagenes={imagenes} />
           <OverviewSection {...inmuebleInfo} />
-          <ContactSection
-            inmuebleId={inmueble.id}
-            agent={inmueble.agent.data}
-          />
+          <ContactSection inmuebleId={id} agent={agent.data} />
           <SimilaresSection inmueblesSimilares={inmueblesSimilares} />
         </Grid>
       </Container>
