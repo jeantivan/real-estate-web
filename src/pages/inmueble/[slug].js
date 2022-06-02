@@ -16,21 +16,26 @@ import { Container, Grid } from "@mui/material";
 import { asText } from "@prismicio/helpers";
 
 export default function Inmueble({ inmueble, inmueblesSimilares }) {
-  const { id, titulo, desccorta, ubiaprox, precio, imagenes, agent, ...rest } =
+  const { id, titulo, desccorta, ubiaprox, imagenes, agent, ...rest } =
     inmueble;
 
   const inmuebleInfo = {
     ...rest,
     id,
-    tipo: "Apartamento",
-    antiguedad: "5 años",
   };
+
+  console.log(inmuebleInfo);
 
   return (
     <Layout titulo={asText(titulo)} descripcion={desccorta}>
-      <Container maxWidth="lg" py={4}>
-        <Grid container spacing={3} justifyContent="center" component="article">
-          <HeaderSection titulo={titulo} ubiaprox={ubiaprox} precio={precio} />
+      <Container maxWidth="md" py={4}>
+        <Grid
+          container
+          rowSpacing={2}
+          columnSpacing={3}
+          justifyContent="center"
+        >
+          <HeaderSection titulo={titulo} ubiaprox={ubiaprox} />
           <GallerySection imagenes={imagenes} />
           <OverviewSection {...inmuebleInfo} />
           <ContactSection inmuebleId={id} agent={agent.data} />
@@ -54,14 +59,12 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const inmueble = await getInmueble(params.slug);
 
-  const { results: inmueblesSimilares } = await getInmueblesSimilares(
-    inmueble.id
-  );
+  const { results } = await getInmueblesSimilares(inmueble.id);
 
   return {
     props: {
       inmueble,
-      inmueblesSimilares,
+      inmueblesSimilares: results || [],
     },
   };
 }
