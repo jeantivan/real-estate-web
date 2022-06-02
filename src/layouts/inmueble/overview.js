@@ -13,7 +13,7 @@ export function OverviewSection({
   descripcion,
 }) {
   return (
-    <Grid item xs={12} md={7}>
+    <Grid item xs={12} md={8}>
       <Paper
         component="section"
         id="caracteristicas-del-inmueble"

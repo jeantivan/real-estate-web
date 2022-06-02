@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 
 export function GallerySection({ imagenes }) {
   return (
-    <Grid item xs={12} md={10}>
+    <Grid item xs={12}>
       <section id="galeria-del-inmueble">
         <Gallery imagenes={imagenes} />
       </section>

@@ -29,11 +29,11 @@ const validationSchema = object({
     .required("Campo obligatorio"),
 });
 
-export function ContactSection({ inmuebleId, agent }) {
+export function ContactSection({ agent }) {
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <Grid item xs={12} md={3}>
+    <Grid item xs={12} md={4}>
       <Paper component="section" id="inmueble-contact" elevation={0}>
         <Box
           sx={{

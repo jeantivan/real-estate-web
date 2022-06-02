@@ -25,14 +25,7 @@ export function SimilaresSection({ inmueblesSimilares }) {
     );
   });
   return (
-    <Grid
-      item
-      component="section"
-      id="inmueble-similares"
-      xs={12}
-      md={10}
-      pb={4}
-    >
+    <Grid item component="section" id="inmueble-similares" xs={12} pb={4}>
       <Grid container spacing={2} py={2} justifyContent="space-between">
         <Grid item flex={1}>
           <Typography variant="h5">Inmuebles Similares</Typography>
