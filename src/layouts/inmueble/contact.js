@@ -33,8 +33,8 @@ export function ContactSection({ agent }) {
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <Grid item xs={12} md={4}>
-      <Paper component="section" id="inmueble-contact" elevation={0}>
+    <Grid item xs={12} md={4} component="section" id="inmueble-contact">
+      <Paper elevation={0}>
         <Box
           sx={{
             background: "#37474f",
