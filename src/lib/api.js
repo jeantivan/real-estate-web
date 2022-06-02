@@ -1,52 +1,11 @@
 import Client from "@/utils/prismic-config";
 import * as prismic from "@prismicio/client";
 
-const pageSize = 6;
+const pageSize = 9;
 
 // Obtiene la data de todos los inmuebles guardados en el repositorio Prismic
-export function getAllInmuebles({ page = 1, agent, orderBy, estado }) {
-  //const startTiming = performance.now();
-  let orderings;
-  let filters = [];
-
-  if (agent) {
-    filters.push(prismic.predicate.at("my.inmueble.agent", agent));
-  }
-
-  if (estado) filters.push(prismic.predicate.at("my.inmueble.estado", estado));
-
-  if (orderBy) {
-    switch (orderBy) {
-      case "pmax":
-        orderings = "[my.inmueble.precio desc]";
-        break;
-      case "pmin":
-        orderings = "[my.inmueble.precio]";
-        break;
-      default:
-        orderings = "[document.date desc]";
-        break;
-    }
-  }
-
-  /*  const response = await Client.getByType("inmueble", {
-    predicates: filters,
-    fetchLinks: ["agent.name", "agent.picture"],
-    orderings: orderings,
-    pageSize: 6,
-    page,
-  }); */
-
-  /* const endTiming = performance.now();
-
-  const timeToExecute = endTiming - startTiming;
-
-  console.log({ timeToExecute }); */
-
+export function getAllInmuebles({ page = 1 }) {
   return Client.getByType("inmueble", {
-    predicates: filters,
-    fetchLinks: ["agent.name", "agent.picture"],
-    orderings: orderings,
     pageSize,
     page,
   });
