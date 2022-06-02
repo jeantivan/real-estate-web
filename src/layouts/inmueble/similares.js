@@ -26,19 +26,27 @@ export function SimilaresSection({ inmueblesSimilares }) {
   });
   return (
     <Grid item component="section" id="inmueble-similares" xs={12} pb={4}>
-      <Grid container spacing={2} py={2} justifyContent="space-between">
-        <Grid item flex={1}>
-          <Typography variant="h5">Inmuebles Similares</Typography>
-        </Grid>
-        <Grid item>
-          <Link href="/inmuebles/1" passHref>
-            <Button color="primary">Ver todos</Button>
-          </Link>
-        </Grid>
-      </Grid>
-      <Grid container spacing={2} justifyContent="space-between">
-        {results}
-      </Grid>
+      {inmueblesSimilares.length < 1 ? (
+        <Link href="/inmuebles/1" passHref>
+          <Button color="primary">Ver todos los inmuebles publicados</Button>
+        </Link>
+      ) : (
+        <>
+          <Grid container spacing={2} py={2} justifyContent="space-between">
+            <Grid item flex={1}>
+              <Typography variant="h5">Inmuebles Similares</Typography>
+            </Grid>
+            <Grid item>
+              <Link href="/inmuebles/1" passHref>
+                <Button color="primary">Ver todos</Button>
+              </Link>
+            </Grid>
+          </Grid>
+          <Grid container spacing={2} justifyContent="space-between">
+            {results}
+          </Grid>
+        </>
+      )}
     </Grid>
   );
 }
