@@ -16,7 +16,13 @@ export function InmuebleItem({
 }) {
   return (
     <NextLink href="/inmueble/[slug]" as={`/inmueble/${slug}`} passHref>
-      <Link underline="none">
+      <Link
+        underline="none"
+        sx={{
+          display: "flex",
+          height: "100%",
+        }}
+      >
         <Card
           sx={(theme) => ({
             minWidth: "100%",
@@ -29,62 +35,80 @@ export function InmuebleItem({
           })}
           component="article"
         >
-          <Box
-            sx={{
-              backgroundColor: "#e2e2e2",
-              borderBottomLeftRadius: 0,
-              borderBottomRightRadius: 0,
-              position: "relative",
-              overflow: "hidden",
-              aspectRatio: "16 / 9",
-            }}
-          >
-            <Image
-              src={mainimg.url}
-              alt={mainimg.alt}
-              layout="fill"
-              priority={priority}
-            />
+          <div>
             <Box
-              sx={(theme) => ({
-                position: "absolute",
-                padding: theme.spacing(0.5, 1),
-                fontWeight: 600,
-                borderRadius: 1,
-                top: 20,
-                right: 20,
-                color:
-                  estado === "Venta"
-                    ? theme.palette.getContrastText(theme.palette.primary.A700)
-                    : theme.palette.getContrastText(
-                        theme.palette.secondary.main
-                      ),
-
-                bgcolor:
-                  estado === "Venta"
-                    ? theme.palette.primary.A700
-                    : theme.palette.secondary.main,
-              })}
+              sx={{
+                backgroundColor: "#e2e2e2",
+                borderBottomLeftRadius: 0,
+                borderBottomRightRadius: 0,
+                position: "relative",
+                overflow: "hidden",
+                aspectRatio: "16 / 9",
+              }}
             >
-              {estado}
+              <Image
+                src={mainimg.url}
+                alt={mainimg.alt}
+                layout="fill"
+                priority={priority}
+              />
+              <Box
+                sx={(theme) => ({
+                  position: "absolute",
+                  padding: theme.spacing(0.5, 1),
+                  fontWeight: 600,
+                  borderRadius: 1,
+                  top: 20,
+                  right: 20,
+                  color:
+                    estado === "Venta"
+                      ? theme.palette.success.contrastText
+                      : theme.palette.secondary.contrastText,
+
+                  bgcolor:
+                    estado === "Venta"
+                      ? theme.palette.success.main
+                      : theme.palette.secondary.main,
+                })}
+              >
+                {estado}
+              </Box>
             </Box>
-          </Box>
+          </div>
+
           <CardContent>
-            <Typography variant="h6" fontWeight={700}>
+            <Typography
+              variant="h6"
+              component="h2"
+              sx={{
+                overflow: "hidden",
+                lineHeight: 1.1,
+                mb: 1,
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              }}
+            >
               {titulo.text}
             </Typography>
             <Typography
               variant="body2"
-              fontWeight={700}
-              color="textSecondary"
+              color="text.secondary"
+              fontWeight={500}
               gutterBottom
             >
               {ubiaprox}
             </Typography>
-            <Typography variant="h5" gutterBottom>
+            <Typography
+              variant="h5"
+              component="h3"
+              fontWeight={700}
+              color="primary.dark"
+              gutterBottom
+            >
               ${precio}
             </Typography>
-            <Typography variant="body2" gutterBottom>
+            <Typography variant="body2" color="text.secondary" gutterBottom>
               {area} m<sup>2</sup> | {habitaciones} Habitaciones | {banos} Baños
             </Typography>
           </CardContent>
