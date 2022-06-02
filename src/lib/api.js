@@ -58,10 +58,10 @@ export async function getInmueble(slug) {
 
 // Obtiene los inmuebles con contenido similar a otro inmueble
 export async function getInmueblesSimilares(id) {
-  const response = await Client.query(prismic.predicate.similar(id, 10), {
+  const response = await Client.getByType("inmueble", {
+    predicates: [prismic.predicate.similar(id, 10)],
     pageSize: 4,
   });
-
   return response;
 }
 
