@@ -24,8 +24,6 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
     id,
   };
 
-  console.log(inmuebleInfo);
-
   return (
     <Layout titulo={asText(titulo)} descripcion={desccorta}>
       <Container maxWidth="md" py={4}>
