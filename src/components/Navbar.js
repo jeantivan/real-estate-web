@@ -26,103 +26,118 @@ export function Navbar({ currentPage }) {
   };
 
   return (
-    <AppBar
-      color="inherit"
-      elevation={0}
-      position="static"
-      sx={{
-        borderWidth: 0,
-        borderColor: "rgba(0,0,0, 0.12)",
-        borderStyle: "solid",
-        borderBottomWidth: 1,
-      }}
-    >
-      <Toolbar
-        component={Container}
-        maxWidth="lg"
+    <>
+      <AppBar
+        color="inherit"
+        elevation={0}
+        position="fixed"
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          borderWidth: 0,
+          borderColor: "rgba(0,0,0, 0.12)",
+          borderStyle: "solid",
+          borderBottomWidth: 1,
+          backgroundColor: "rgba(255,255, 255, 0.8)",
+          backdropFilter: "saturate(180%) blur(20px)",
         }}
       >
-        <Box
+        <Toolbar
+          component={Container}
+          maxWidth="lg"
           sx={{
             display: "flex",
-            flex: 1,
             alignItems: "center",
-            flexGrow: { md: 0 },
+            justifyContent: "space-between",
           }}
         >
           <Box
             sx={{
-              display: { md: "none" },
-            }}
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawer}
-              size="large"
-            >
-              <Menu />
-            </IconButton>
-          </Box>
-          <Box
-            sx={{
-              width: "100%",
               display: "flex",
-              justifyContent: "center",
-              ml: { xs: -3, md: 0 },
+              flex: 1,
+              alignItems: "center",
+              flexGrow: { md: 0 },
             }}
           >
-            <Logo inNav />
-          </Box>
-        </Box>
-        <Drawer
-          anchor="left"
-          open={show}
-          onClose={toggleDrawer}
-          component="nav"
-          sx={{ display: "flex", width: 260, pt: 1 }}
-        >
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawer}
-              size="large"
-              mr={1}
+            <Box
+              sx={{
+                display: { md: "none" },
+              }}
             >
-              <Menu />
-            </IconButton>
-            <Box mx="auto">
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer}
+                size="large"
+              >
+                <Menu />
+              </IconButton>
+            </Box>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                ml: { xs: -3, md: 0 },
+                /* "& .nav-logo": {
+                  color: scrollYProgress.get() === 0 ? "white" : "black",
+                }, */
+              }}
+            >
               <Logo inNav />
             </Box>
-          </Toolbar>
-          <Divider />
-          <DrawerLinks handleClose={handleClose} currentPage={currentPage} />
+          </Box>
+          <Drawer
+            anchor="left"
+            open={show}
+            onClose={toggleDrawer}
+            component="nav"
+            sx={{ display: "flex", width: 260, pt: 1 }}
+          >
+            <Toolbar>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer}
+                size="large"
+                mr={1}
+              >
+                <Menu />
+              </IconButton>
+              <Box mx="auto">
+                <Logo inNav />
+              </Box>
+            </Toolbar>
+            <Divider />
+            <DrawerLinks handleClose={handleClose} currentPage={currentPage} />
 
-          <Box mt="auto">
-            <RRSS />
+            <Box
+              mt="auto"
+              sx={{
+                ".& > *": {
+                  color: "white",
+                },
+              }}
+            >
+              <RRSS />
+            </Box>
+          </Drawer>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              flex: 1,
+              alignSelf: "stretch",
+              minHeight: "100%",
+            }}
+          >
+            <NavLinks currentPage={currentPage} />
+            <Box ml="auto" mr={-0.75} alignSelf="center">
+              <RRSS />
+            </Box>
           </Box>
-        </Drawer>
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            flex: 1,
-            alignItems: "center",
-            minHeight: "100%",
-          }}
-        >
-          <NavLinks currentPage={currentPage} />
-          <Box ml="auto" mr={-0.75}>
-            <RRSS />
-          </Box>
-        </Box>
-      </Toolbar>
-    </AppBar>
+        </Toolbar>
+      </AppBar>
+      {/* {(currentPage !== "Inicio" || !currentPage !== "Nosotros") && <Toolbar />} */}
+    </>
   );
 }

@@ -19,7 +19,7 @@ export function RRSS() {
           aria-label="Cuenta de instagram"
           size="large"
           sx={{
-            color: "#202020",
+            color: "inherit",
           }}
         >
           <Instagram />
@@ -31,7 +31,7 @@ export function RRSS() {
           aria-label="Contacto por Whatsapp"
           size="large"
           sx={{
-            color: "#202020",
+            color: "inherit",
           }}
         >
           <WhatsApp />
