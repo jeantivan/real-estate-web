@@ -26,7 +26,7 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
 
   return (
     <Layout titulo={asText(titulo)} descripcion={desccorta}>
-      <Container maxWidth="md" py={4}>
+      <Container maxWidth="md" sx={{ pt: { xs: "56px", sm: "64px" } }}>
         <Grid
           container
           rowSpacing={2}

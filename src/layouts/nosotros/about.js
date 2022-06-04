@@ -16,11 +16,11 @@ export function AboutSection() {
       component="section"
       id="mision"
       sx={{
-        py: { xs: 4, md: 8 },
+        pt: { xs: "56px", sm: "64px" },
         backgroundColor: "rgba(227, 242, 253, 0.4)",
       }}
     >
-      <Container>
+      <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Grid container>
           <Grid xs={12} item mb={8}>
             <Box
