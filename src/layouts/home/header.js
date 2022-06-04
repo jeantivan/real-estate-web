@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Box, Typography, Fab, Grid } from "@mui/material";
+import { Container, Box, Typography, Button, Grid } from "@mui/material";
 import Link from "next/link";
 
 export function HeaderSection() {
@@ -48,18 +48,14 @@ export function HeaderSection() {
             </Grid>
             <Grid item xs={12}>
               <Link href="/inmuebles/1" passHref>
-                <Fab
+                <Button
                   size="large"
                   color="primary"
-                  variant="extended"
-                  sx={{
-                    py: 2,
-                    fontSize: "1rem",
-                    boxShadow: "none",
-                  }}
+                  variant="contained"
+                  disableElevation
                 >
                   Encuentra tu inmueble
-                </Fab>
+                </Button>
               </Link>
             </Grid>
           </Grid>
