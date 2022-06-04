@@ -24,6 +24,7 @@
     "@prismicio/helpers": "^2.3.0",
     "@prismicio/react": "^2.3.0",
     "formik": "^2.2.9",
+    "framer-motion": "^6.3.10",
     "next": "^12.1.6",
     "notistack": "^2.0.5",
     "nprogress": "^0.2.0",
