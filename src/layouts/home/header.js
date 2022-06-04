@@ -6,14 +6,17 @@ export function HeaderSection() {
   return (
     <Box
       sx={{
-        backgroundImage:
-          "linear-gradient(to right, rgba(0,0,0, 0.6), rgba(0,0,0, 0.6)), url(/images/header-medium.jpg)",
+        backgroundColor: "#eee",
+        backgroundImage: {
+          xs: "linear-gradient(to right, rgba(0,0,0, 0.6), rgba(0,0,0, 0.6)), url(/images/header-medium-mobile.webp)",
+          sm: "linear-gradient(to right, rgba(0,0,0, 0.6), rgba(0,0,0, 0.6)), url(/images/header-medium.webp)",
+        },
         backgroundPosition: "center right",
       }}
     >
-      <Container sx={{ pt: "56px" }}>
-        <Box py={12}>
-          <Grid container>
+      <Container sx={{ pt: { xs: "56px", sm: "64px" } }}>
+        <Box py={{ xs: 6, sm: 8, md: 10 }}>
+          <Grid container px={2}>
             <Grid item xs={10} sm={6}>
               <Typography variant="h1" component="h1" mb={3} color="#fafafa">
                 <Box
