@@ -15,8 +15,12 @@ export function Logo({ inNav }) {
             cursor: "pointer",
             width: 163,
             height: 32,
-            color: inNav ? "#141313" : "#E9E9E9",
+            color: inNav ? "inherit" : "#E9E9E9",
+            "&.nav-logo": {
+              transition: "color 1s ease-in",
+            },
           }}
+          className="nav-logo"
         >
           <Box
             component="span"
