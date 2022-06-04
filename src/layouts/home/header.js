@@ -81,6 +81,7 @@ export function HeaderSection() {
         }}
       >
         <Image
+          priority
           src={headerImage}
           alt="Background Image"
           layout="fill"
