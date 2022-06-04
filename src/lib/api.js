@@ -1,18 +1,26 @@
 import Client from "@/utils/prismic-config";
-import * as prismic from "@prismicio/client";
+import { predicate } from "@prismicio/client";
 
 const pageSize = 9;
 
-// Obtiene la data de todos los inmuebles guardados en el repositorio Prismic
-export function getAllInmuebles({ page = 1 }) {
-  return Client.getByType("inmueble", {
-    pageSize,
-    page,
+// Obtiene los últimos Inmuebles Publicados
+export async function getLatestInmuebles() {
+  const response = await Client.getByType("inmueble", {
+    orderings: {
+      field: "document.last_publication_date",
+      direction: "desc",
+    },
+    pageSize: 4,
   });
+  return response;
 }
 
 export async function getInmueblesByPage(page = 1) {
   const response = await Client.getByType("inmueble", {
+    orderings: {
+      field: "document.last_publication_date",
+      direction: "desc",
+    },
     page,
     pageSize,
   });
@@ -59,7 +67,7 @@ export async function getInmueble(slug) {
 // Obtiene los inmuebles con contenido similar a otro inmueble
 export async function getInmueblesSimilares(id) {
   const response = await Client.getByType("inmueble", {
-    predicates: [prismic.predicate.similar(id, 10)],
+    predicates: [predicate.similar(id, 10)],
     pageSize: 4,
   });
   return response;
@@ -75,7 +83,7 @@ export async function getAllInmueblesByAgent(agentUid) {
   const agent = await Client.getByUID("agent", agentUid);
 
   const inmuebles = await Client.getByType("inmueble", {
-    predicates: [prismic.predicate.at("my.inmueble.agent", agent.id)],
+    predicates: [predicate.at("my.inmueble.agent", agent.id)],
   });
 
   return { agent, inmuebles };
