@@ -6,7 +6,6 @@ import {
   IconButton,
   Toolbar,
   Box,
-  useScrollTrigger,
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 import { useState } from "react";
@@ -14,6 +13,7 @@ import { DrawerLinks } from "./DrawerLinks";
 import { Logo } from "./Logo";
 import { NavLinks } from "./NavLinks";
 import { RRSS } from "./RRSS";
+import { useScroll } from "@use-gesture/react";
 
 const appbarBaseSx = {
   borderWidth: 0,
@@ -24,7 +24,14 @@ const appbarBaseSx = {
 
 export function Navbar({ currentPage }) {
   const [show, setShow] = useState(false);
-  const scrollTrigger = useScrollTrigger({ threshold: 1 });
+  const [trigger, setTrigger] = useState(false);
+
+  useScroll(
+    ({ xy: [_, y] }) => {
+      setTrigger(y > 0);
+    },
+    { target: typeof window !== "undefined" ? window : null }
+  );
 
   const isInicioPage = currentPage === "Inicio";
 
@@ -44,15 +51,15 @@ export function Navbar({ currentPage }) {
       sx={[
         appbarBaseSx,
         {
-          backdropFilter: scrollTrigger && "saturate(180%) blur(20px)",
+          backdropFilter: trigger && "saturate(180%) blur(20px)",
           borderColor: !isInicioPage
             ? "rgba(0,0,0, 0.12)"
-            : scrollTrigger
+            : trigger
             ? "rgba(0,0,0, 0.12)"
             : "rgba(0,0,0,0)",
           backgroundColor: !isInicioPage
             ? "rgba(255,255, 255, 0.9)"
-            : !scrollTrigger
+            : !trigger
             ? "transparent"
             : "rgba(255,255, 255, 0.9)",
         },
@@ -79,11 +86,7 @@ export function Navbar({ currentPage }) {
             size="large"
             sx={{
               transition: "all 0.1s ease",
-              color: !isInicioPage
-                ? "black"
-                : !scrollTrigger
-                ? "white"
-                : "black",
+              color: !isInicioPage ? "black" : !trigger ? "white" : "black",
             }}
           >
             <Menu />
@@ -107,11 +110,7 @@ export function Navbar({ currentPage }) {
               ml: { xs: -1.75, sm: 0 },
               "& .nav-logo": {
                 transition: "all 0.1s ease",
-                color: !isInicioPage
-                  ? "black"
-                  : !scrollTrigger
-                  ? "white"
-                  : "black",
+                color: !isInicioPage ? "black" : !trigger ? "white" : "black",
               },
             }}
           >
@@ -126,11 +125,7 @@ export function Navbar({ currentPage }) {
             minHeight: "100%",
             "& .nav-link": {
               transition: "all 0.1s ease",
-              color: !isInicioPage
-                ? "black"
-                : !scrollTrigger
-                ? "white"
-                : "black",
+              color: !isInicioPage ? "black" : !trigger ? "white" : "black",
               "&:hover": {
                 color: theme.palette.primary.main,
               },
@@ -147,11 +142,7 @@ export function Navbar({ currentPage }) {
             alignSelf: "center",
             "& .redes-icon": {
               transition: "all 0.1s ease",
-              color: !isInicioPage
-                ? "black"
-                : !scrollTrigger
-                ? "white"
-                : "black",
+              color: !isInicioPage ? "black" : !trigger ? "white" : "black",
               "&:hover": {
                 color: theme.palette.primary.main,
               },
@@ -189,6 +180,7 @@ export function Navbar({ currentPage }) {
           </Box>
         </Drawer>
       </Toolbar>
+      {/* <animated.div {...bind()} /> */}
     </AppBar>
   );
 }
