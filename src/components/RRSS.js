@@ -18,8 +18,10 @@ export function RRSS() {
           disableRipple
           aria-label="Cuenta de instagram"
           size="large"
+          className="redes-icon"
           sx={{
-            color: "inherit",
+            pl: { sm: 0, md: 1.5 },
+            mr: { sm: -1.5, md: 0 },
           }}
         >
           <Instagram />
@@ -27,12 +29,10 @@ export function RRSS() {
       </Grid>
       <Grid item>
         <IconButton
+          className="redes-icon"
           disableRipple
-          aria-label="Contacto por Whatsapp"
+          aria-label="Contacto por WhatsApp"
           size="large"
-          sx={{
-            color: "inherit",
-          }}
         >
           <WhatsApp />
         </IconButton>

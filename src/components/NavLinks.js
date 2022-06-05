@@ -8,14 +8,11 @@ const baseSx = (theme) => ({
   fontWeight: "bold",
   display: "inline-flex",
   alignItems: "center",
+  position: "relative",
   transition: theme.transitions.create("color", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  position: "relative",
-  "&:hover": {
-    color: theme.palette.primary.main,
-  },
   "&:after": {
     position: "absolute",
     content: "''",
@@ -26,19 +23,22 @@ const baseSx = (theme) => ({
   },
 });
 
-const afterSx = (theme) => ({
-  color: theme.palette.primary.main,
+const afterSx = {
   "&:after": {
     width: "100%",
     bottom: 0,
     height: 4,
   },
-});
+};
 
-const NavLink = ({ children, href, sx = [] }) => {
+const NavLink = ({ children, href, sx = [], ...rest }) => {
   return (
     <NextLink href={href} passHref>
-      <Link underline="none" sx={[...(Array.isArray(sx) ? sx : [sx])]}>
+      <Link
+        underline="none"
+        sx={[...(Array.isArray(sx) ? sx : [sx])]}
+        {...rest}
+      >
         {children}
       </Link>
     </NextLink>
@@ -51,7 +51,7 @@ export function NavLinks({ currentPage }) {
       component="nav"
       role="navigation"
       sx={(theme) => ({
-        ml: "auto",
+        mx: "auto",
         display: "flex",
         flexDirection: "column",
         alignSelf: "stretch",
@@ -70,6 +70,7 @@ export function NavLinks({ currentPage }) {
           key={name}
           href={href}
           sx={[baseSx, currentPage === name && afterSx]}
+          className={`${currentPage === name && "active-link"} nav-link`}
         >
           {name}
         </NavLink>
