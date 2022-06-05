@@ -24,6 +24,7 @@
     "@prismicio/client": "^6.4.3",
     "@prismicio/helpers": "^2.3.0",
     "@prismicio/react": "^2.3.0",
+    "@use-gesture/react": "^10.2.15",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.10",
     "next": "^12.1.6",
