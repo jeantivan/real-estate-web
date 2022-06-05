@@ -114,7 +114,6 @@ export function Navbar({ currentPage }) {
                   : "black",
               },
             }}
-            ref={ref}
           >
             <Logo inNav />
           </Box>
