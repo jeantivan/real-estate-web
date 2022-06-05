@@ -16,9 +16,6 @@ export function Logo({ inNav }) {
             width: 163,
             height: 32,
             color: inNav ? "inherit" : "#E9E9E9",
-            "&.nav-logo": {
-              transition: "color 1s ease-in",
-            },
           }}
           className="nav-logo"
         >
