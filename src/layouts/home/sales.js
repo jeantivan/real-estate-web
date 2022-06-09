@@ -1,72 +1,52 @@
-import { Container, Box, Grid, Typography } from "@mui/material";
+import {
+  Container,
+  Box,
+  useMediaQuery,
+  Typography,
+  Stack,
+  Divider,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 export function SalesSection() {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box bgcolor="primary.dark">
       <Container sx={{ py: 3 }}>
-        <Grid container color="white" justifyContent="center">
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            md={3}
-            container
-            justifyContent="center"
-            alignItems="flex-end"
-          >
-            <Box px={3} pt={7}>
-              <Typography variant="h3" fontWeight={700}>
-                100+
-              </Typography>
-              <Typography>
-                De inmuebles vendidos a través de la compañía
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            md={3}
-            container
-            justifyContent="center"
-            alignItems="flex-end"
-            sx={(theme) => ({
-              borderWidth: 0,
-              borderColor: theme.palette.primary.light,
-              borderStyle: "solid",
-              borderLeftWidth: { xs: 0, sm: 1 },
-              borderRightWidth: { xs: 0, sm: 1 },
-              borderTopWidth: { xs: 1, sm: 0 },
-              borderBottomWidth: { xs: 1, sm: 0 },
-            })}
-          >
-            <Box px={3} pt={7}>
-              <Typography variant="h3" fontWeight={700}>
-                50+
-              </Typography>
-              <Typography>
-                De inmuebles publicados en nuestra plataforma
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            md={3}
-            container
-            justifyContent="center"
-            alignItems="flex-end"
-          >
-            <Box px={3} pt={7}>
-              <Typography variant="h3" fontWeight={700}>
-                500+
-              </Typography>
-              <Typography>Familias felices en con su nuevo hogar</Typography>
-            </Box>
-          </Grid>
-        </Grid>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          divider={
+            <Divider
+              orientation={matches ? "horizontal" : "vertical"}
+              flexItem
+              sx={{ bgcolor: "primary.light" }}
+            />
+          }
+          color="white"
+        >
+          <Box pl={2} pr={2} pt={7} pb={3}>
+            <Typography variant="h3" fontWeight={700} mb={3}>
+              100+
+            </Typography>
+            <Typography>
+              De inmuebles vendidos a través de la compañía
+            </Typography>
+          </Box>
+          <Box pl={2} pr={2} pt={7} pb={3}>
+            <Typography variant="h3" fontWeight={700} mb={3}>
+              50+
+            </Typography>
+            <Typography>De inmuebles publicados en la plataforma</Typography>
+          </Box>
+
+          <Box pl={2} pr={2} pt={7} pb={{ xs: 7, sm: 3 }}>
+            <Typography variant="h3" fontWeight={700} mb={3}>
+              500+
+            </Typography>
+            <Typography>Familias felices en su nuevo hogar</Typography>
+          </Box>
+        </Stack>
       </Container>
     </Box>
   );
