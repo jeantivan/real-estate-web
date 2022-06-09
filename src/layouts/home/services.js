@@ -11,10 +11,11 @@ export function ServicesSection() {
           <Grid
             item
             xs={12}
-            md={7}
-            pr={4}
+            sm={7}
+            pr={{ md: 4 }}
             display="grid"
             flexDirection="column"
+            mb={{ xs: 4 }}
           >
             <Typography variant="h4" component="h2" fontWeight={700} mb={3}>
               Amet laborum Lorem do aliqua ea officia dolore excepteur
@@ -25,7 +26,7 @@ export function ServicesSection() {
               component="p"
               fontWeight={300}
               lineHeight={2}
-              pr={3}
+              pr={{ md: 3 }}
             >
               Esse ut laboris voluptate nisi anim veniam eiusmod adipisicing
               ullamco excepteur enim non. Laboris sint do culpa minim culpa non
@@ -35,7 +36,10 @@ export function ServicesSection() {
             </Typography>
             <Link href="/nosotros" passHref>
               <Button
-                sx={{ mt: "auto", width: "30%" }}
+                sx={{
+                  mt: { xs: 3, md: "auto" },
+                  width: { xs: "auto", sm: "30%" },
+                }}
                 color="inherit"
                 endIcon={<ArrowForwardIcon />}
               >
