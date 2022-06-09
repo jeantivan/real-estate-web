@@ -8,7 +8,8 @@ export function SalesSection() {
           <Grid
             item
             xs={12}
-            sm={3}
+            sm={4}
+            md={3}
             container
             justifyContent="center"
             alignItems="flex-end"
@@ -25,7 +26,8 @@ export function SalesSection() {
           <Grid
             item
             xs={12}
-            sm={3}
+            sm={4}
+            md={3}
             container
             justifyContent="center"
             alignItems="flex-end"
@@ -33,8 +35,10 @@ export function SalesSection() {
               borderWidth: 0,
               borderColor: theme.palette.primary.light,
               borderStyle: "solid",
-              borderLeftWidth: 1,
-              borderRightWidth: 1,
+              borderLeftWidth: { xs: 0, sm: 1 },
+              borderRightWidth: { xs: 0, sm: 1 },
+              borderTopWidth: { xs: 1, sm: 0 },
+              borderBottomWidth: { xs: 1, sm: 0 },
             })}
           >
             <Box px={3} pt={7}>
@@ -49,7 +53,8 @@ export function SalesSection() {
           <Grid
             item
             xs={12}
-            sm={3}
+            sm={4}
+            md={3}
             container
             justifyContent="center"
             alignItems="flex-end"
