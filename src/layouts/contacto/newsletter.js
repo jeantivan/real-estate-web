@@ -11,7 +11,7 @@ export function NewsletterSection() {
     >
       <Container>
         <Grid container alignItems="flex-end" spacing={2}>
-          <Grid item md={8} sx={{ marginBottom: { xs: 3, sm: 0 } }}>
+          <Grid item xs={12} sm={8} sx={{ marginBottom: { xs: 3, sm: 0 } }}>
             <Typography
               sx={(theme) => ({
                 ...theme.typography.h5,
@@ -31,7 +31,7 @@ export function NewsletterSection() {
               suscribete a nuestro newsletter
             </Typography>
           </Grid>
-          <Grid item md={4} container alignItems="flex-start">
+          <Grid item xs="auto" sm={4} container alignItems="flex-start">
             <Newsletter isLight />
           </Grid>
         </Grid>
