@@ -13,7 +13,7 @@ export function ServicesSection() {
             xs={12}
             sm={7}
             pr={{ md: 4 }}
-            display="grid"
+            display="flex"
             flexDirection="column"
             mb={{ xs: 4 }}
           >
