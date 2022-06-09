@@ -5,8 +5,13 @@ import {
   ServicesSection,
   SalesSection,
 } from "@/layouts/home";
-
 import { getLatestInmuebles } from "@/lib/api";
+
+import dynamic from "next/dynamic";
+
+const NewsletterSection = dynamic(() =>
+  import("../layouts/contacto/newsletter").then((mod) => mod.NewsletterSection)
+);
 
 export default function Home({ latestInmuebles }) {
   return (
@@ -19,6 +24,7 @@ export default function Home({ latestInmuebles }) {
       <LatestInmuebles latestInmuebles={latestInmuebles} />
       <ServicesSection />
       <SalesSection />
+      <NewsletterSection />
     </Layout>
   );
 }
