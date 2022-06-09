@@ -1,6 +1,11 @@
 import { Layout } from "@/components";
-import { HeaderSection } from "@/layouts/home";
-import { LatestInmuebles } from "@/layouts/home/latest";
+import {
+  HeaderSection,
+  LatestInmuebles,
+  ServicesSection,
+  SalesSection,
+} from "@/layouts/home";
+
 import { getLatestInmuebles } from "@/lib/api";
 
 export default function Home({ latestInmuebles }) {
@@ -12,6 +17,8 @@ export default function Home({ latestInmuebles }) {
     >
       <HeaderSection />
       <LatestInmuebles latestInmuebles={latestInmuebles} />
+      <ServicesSection />
+      <SalesSection />
     </Layout>
   );
 }
