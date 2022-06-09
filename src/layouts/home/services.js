@@ -3,15 +3,86 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Image from "next/image";
 import Link from "next/link";
 
+const HOME_SERVICES = [
+  {
+    title: "Comercialización de inmuebles",
+    description:
+      "Do ullamco ullamco pariatur sit nisi. Reprehenderit mollit do laborum ullamco voluptate pariatur excepteur elit.",
+    icon: "/images/services/real-estate-icon.png",
+  },
+  {
+    title: "Encontramos tu inmueble ideal",
+    description:
+      "Do ullamco ullamco pariatur sit nisi. Reprehenderit mollit do laborum ullamco voluptate pariatur excepteur elit.",
+    icon: "/images/services/find-house-icon.png",
+  },
+  {
+    title: "Asesoría legal y personalizada",
+    description:
+      "Do ullamco ullamco pariatur sit nisi. Reprehenderit mollit do laborum ullamco voluptate pariatur excepteur elit.",
+    icon: "/images/services/legal-advice-icon.png",
+  },
+];
+
+const Service = ({ title, description, icon }) => {
+  return (
+    <Grid item xs={12} sm={4} md={12}>
+      <Paper
+        elevation={6}
+        sx={{ mb: { xs: 2, sm: 0, md: 5 }, width: "100%", p: 3 }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs="auto" display="flex" alignItems="center">
+            <Box
+              width={80}
+              height={80}
+              borderRadius={2}
+              bgcolor="primary.dark"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              p={1}
+            >
+              <Image width={64} height={64} src={icon} alt={title} />
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="body1"
+              color="primary.dark"
+              fontWeight={700}
+              mb={1.5}
+            >
+              {title}
+            </Typography>
+            <Typography
+              color="text.secondary"
+              variant="body2"
+              sx={{
+                overflow: "hidden",
+                display: "-webkit-box",
+                WebkitLineClamp: { sm: "3" },
+                WebkitBoxOrient: "vertical",
+              }}
+            >
+              {description}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Grid>
+  );
+};
+
 export function ServicesSection() {
   return (
     <Box bgcolor="#e3f2fd">
-      <Container sx={{ py: 12 }}>
+      <Container sx={{ py: { xs: 6, sm: 8, md: 12 } }}>
         <Grid container>
           <Grid
             item
             xs={12}
-            sm={7}
+            md={7}
             pr={{ md: 4 }}
             display="flex"
             flexDirection="column"
@@ -34,11 +105,18 @@ export function ServicesSection() {
               reprehenderit excepteur. Deserunt elit ex dolore laborum commodo
               consequat.
             </Typography>
+          </Grid>
+          <Grid item xs={12} sm={12} md={5} container spacing={2}>
+            {HOME_SERVICES.map((service) => (
+              <Service {...service} key={service.title} />
+            ))}
+          </Grid>
+          <Grid item xs={12}>
             <Link href="/nosotros" passHref>
               <Button
                 sx={{
                   mt: { xs: 3, md: "auto" },
-                  width: { xs: "auto", sm: "30%" },
+                  width: "auto",
                 }}
                 color="inherit"
                 endIcon={<ArrowForwardIcon />}
@@ -46,119 +124,6 @@ export function ServicesSection() {
                 Saber más
               </Button>
             </Link>
-          </Grid>
-          <Grid item xs>
-            <Paper elevation={6} sx={{ mb: 5, width: "100%", p: 3 }}>
-              <Grid container spacing={2}>
-                <Grid item xs="auto" display="flex" alignItems="center">
-                  <Box
-                    width={80}
-                    height={80}
-                    borderRadius={2}
-                    bgcolor="primary.dark"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    p={1}
-                  >
-                    <Image
-                      width={64}
-                      height={64}
-                      src="/images/services/real-estate-icon.png"
-                      alt="Comercializacion de inmuebles"
-                    />
-                  </Box>
-                </Grid>
-                <Grid item flex={1}>
-                  <Typography
-                    variant="body1"
-                    color="primary.dark"
-                    fontWeight={700}
-                    mb={1.5}
-                  >
-                    Comercializacion de inmuebles
-                  </Typography>
-                  <Typography color="text.secondary" variant="body2">
-                    Do ullamco ullamco pariatur sit nisi. Reprehenderit mollit
-                    do laborum ullamco voluptate pariatur excepteur elit.
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-            <Paper elevation={6} sx={{ mb: 5, width: "100%", p: 3 }}>
-              <Grid container spacing={2}>
-                <Grid item xs="auto" display="flex" alignItems="center">
-                  <Box
-                    width={80}
-                    height={80}
-                    borderRadius={2}
-                    bgcolor="primary.dark"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    p={1}
-                  >
-                    <Image
-                      width={64}
-                      height={64}
-                      src="/images/services/find-house-icon.png"
-                      alt="Encontramos tu inmueble ideal"
-                    />
-                  </Box>
-                </Grid>
-                <Grid item flex={1}>
-                  <Typography
-                    variant="body1"
-                    color="primary.dark"
-                    fontWeight={700}
-                    mb={1.5}
-                  >
-                    Encontramos tu inmueble ideal
-                  </Typography>
-                  <Typography color="text.secondary" variant="body2">
-                    Do ullamco ullamco pariatur sit nisi. Reprehenderit mollit
-                    do laborum ullamco voluptate pariatur excepteur elit.
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-            <Paper elevation={6} sx={{ width: "100%", p: 3 }}>
-              <Grid container spacing={2}>
-                <Grid item xs="auto" display="flex" alignItems="center">
-                  <Box
-                    width={80}
-                    height={80}
-                    borderRadius={2}
-                    bgcolor="primary.dark"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    p={1}
-                  >
-                    <Image
-                      width={64}
-                      height={64}
-                      src="/images/services/legal-advice-icon.png"
-                      alt="Asesoría legal"
-                    />
-                  </Box>
-                </Grid>
-                <Grid item flex={1}>
-                  <Typography
-                    variant="body1"
-                    color="primary.dark"
-                    fontWeight={700}
-                    mb={1.5}
-                  >
-                    Asesoría Legal
-                  </Typography>
-                  <Typography color="text.secondary" variant="body2">
-                    Do ullamco ullamco pariatur sit nisi. Reprehenderit mollit
-                    do laborum ullamco voluptate pariatur excepteur elit.
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Paper>
           </Grid>
         </Grid>
       </Container>
