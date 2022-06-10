@@ -4,6 +4,7 @@ import {
   LatestInmuebles,
   ServicesSection,
   SalesSection,
+  ContactSection,
 } from "@/layouts/home";
 import { getLatestInmuebles } from "@/lib/api";
 
@@ -25,6 +26,7 @@ export default function Home({ latestInmuebles }) {
       <ServicesSection />
       <SalesSection />
       <NewsletterSection />
+      <ContactSection />
     </Layout>
   );
 }
