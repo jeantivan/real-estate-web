@@ -10,3 +10,4 @@ export { Service } from "./Service";
 export { Testimonial } from "./Testimonial";
 export { InmuebleItem } from "./InmuebleItem";
 export { FAQ } from "./FAQ";
+export { Map } from "./Map";
