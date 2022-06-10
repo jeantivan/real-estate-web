@@ -1,13 +1,15 @@
 import { Box } from "@mui/material";
 
-export function Map({ rounded }) {
+export function Map({ rounded, aspectRatio }) {
   return (
     <Box
       sx={{
         borderRadius: rounded ? 3 : undefined,
         width: "100%",
         height: 0,
-        paddingTop: { xs: "calc(3/4 * 100%)", sm: "calc(9 / 21 * 100%)" },
+        paddingTop: aspectRatio
+          ? aspectRatio
+          : { xs: "calc(3/4 * 100%)", sm: "calc(9 / 21 * 100%)" },
         position: "relative",
         overflow: "hidden",
       }}
