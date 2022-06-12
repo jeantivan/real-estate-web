@@ -4,16 +4,18 @@ import {
   Container,
   Typography,
   Grid,
-  Pagination,
-  PaginationItem,
   Divider,
+  Box,
+  Button,
 } from "@mui/material";
+import { WhatsApp, EmailOutlined } from "@mui/icons-material";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AgentPage({ agent, inmuebles }) {
-  const { results } = inmuebles;
+  const { name, picture, phonenumber, email, about } = agent;
 
-  const inmuebleList = results.map(({ data, uid }, i) => {
+  const inmuebleList = inmuebles.results.map(({ data, uid }, i) => {
     let props = {
       slug: uid,
       ...data,
@@ -29,28 +31,71 @@ export default function AgentPage({ agent, inmuebles }) {
   });
 
   return (
-    <Layout
-      titulo="Inmuebles"
-      descripcion="Cras rutrum, ligula id varius consequat, nunc leo tincidunt massa, eu ornare neque ipsum vitae dui. Etiam arcu mauris, rhoncus vel nibh id, auctor porttitor leo. Phasellus eu lectus lorem. Curabitur consequat porta lacus interdum placerat. Nullam urna ligula, dignissim non enim eu, fermentum porta nulla. Etiam ut feugiat felis. In a odio ut erat efficitur vehicula. Proin vestibulum neque est, sit amet varius libero finibus et. Nullam magna justo, volutpat eget lacinia vel, fringilla non ligula. Nam sagittis justo ac ornare condimentum. Donec eros eros, bibendum quis velit nec, tincidunt gravida nisi."
-    >
+    <Layout titulo={`Asesor: ${name}`} descripcion={about}>
       <Container sx={{ pt: { xs: "56px", sm: "64px" } }}>
         <Grid
           container
           justifyContent="space-between"
-          alignItems="flex-end"
+          alignItems="stretch"
+          spacing={2}
           pt={4}
           pb={2}
         >
-          <Grid item>
-            <Typography variant="h2" component="h1">
-              Inmuebles
+          <Grid item md={2}>
+            <Box
+              sx={{
+                width: "100%",
+                position: "relative",
+                borderRadius: 2,
+                overflow: "hidden",
+                bgcolor: "text.secondary",
+              }}
+            >
+              <Image
+                width={picture.dimensions.width}
+                height={picture.dimensions.height}
+                layout="responsive"
+                src={picture.url}
+                alt={picture.alt}
+                style={{ overflow: "hidden" }}
+              />
+            </Box>
+          </Grid>
+          <Grid item md={10} container flexDirection="column">
+            <Typography variant="h5" component="h1" mb={2} fontWeight={700}>
+              Asesor(a): {name}
             </Typography>
+            <Typography>{about}</Typography>
+            <Grid container spacing={2} mt="auto">
+              <Grid item xs={12} sm="auto">
+                <Button
+                  color="success"
+                  variant="outlined"
+                  startIcon={<WhatsApp />}
+                  href="#"
+                  title="Número Telefónico"
+                >
+                  {phonenumber}
+                </Button>
+              </Grid>
+              <Grid item xs={12} sm="auto">
+                <Button
+                  color="info"
+                  variant="outlined"
+                  startIcon={<EmailOutlined />}
+                  href="#"
+                  title="Correo Electrónico"
+                >
+                  {email}
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
         <Divider />
 
-        <Grid container py={4} rowSpacing={4} columnSpacing={3}>
-          {results.length < 1 ? (
+        <Grid container py={2} rowSpacing={4} columnSpacing={3}>
+          {inmuebles.results.length < 1 ? (
             <Grid item xs={12}>
               <Typography
                 variant="h5"
@@ -73,7 +118,22 @@ export default function AgentPage({ agent, inmuebles }) {
               </Link>
             </Grid>
           ) : (
-            inmuebleList
+            <>
+              <Grid item xs={12}>
+                <Typography variant="body1" component="h2">
+                  Mostrando {inmuebles.results.length} inmuebles publicados por:{" "}
+                  <strong>{name}</strong>
+                </Typography>
+              </Grid>
+              {inmuebleList}
+              <Grid item xs="auto">
+                <Link href="/inmuebles/1" passHref>
+                  <Button color="primary" variant="text">
+                    Ver todos los inmuebles
+                  </Button>
+                </Link>
+              </Grid>
+            </>
           )}
         </Grid>
       </Container>
