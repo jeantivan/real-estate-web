@@ -1,4 +1,5 @@
 import { Layout, InmuebleItem } from "@/components";
+import { TotalInmuebles } from "@/components/TotalInmuebles";
 import { getAllInmueblesPages, getInmueblesByPage } from "@/lib/api";
 import {
   Container,
@@ -11,7 +12,7 @@ import {
 import Link from "next/link";
 
 export default function Inmuebles({ pageData }) {
-  const { page, total_pages, results, total_results_size } = pageData;
+  const { page, total_pages, results } = pageData;
 
   const inmuebleList = results.map(({ data, uid }, i) => {
     let props = {
@@ -31,7 +32,7 @@ export default function Inmuebles({ pageData }) {
   return (
     <Layout
       currentPage={"Inmuebles"}
-      titulo="Inmuebles"
+      titulo={`Inmuebles página: ${page}`}
       descripcion="Cras rutrum, ligula id varius consequat, nunc leo tincidunt massa, eu ornare neque ipsum vitae dui. Etiam arcu mauris, rhoncus vel nibh id, auctor porttitor leo. Phasellus eu lectus lorem. Curabitur consequat porta lacus interdum placerat. Nullam urna ligula, dignissim non enim eu, fermentum porta nulla. Etiam ut feugiat felis. In a odio ut erat efficitur vehicula. Proin vestibulum neque est, sit amet varius libero finibus et. Nullam magna justo, volutpat eget lacinia vel, fringilla non ligula. Nam sagittis justo ac ornare condimentum. Donec eros eros, bibendum quis velit nec, tincidunt gravida nisi."
     >
       <Container sx={{ pt: { xs: "56px", sm: "64px" } }}>
@@ -76,10 +77,7 @@ export default function Inmuebles({ pageData }) {
           ) : (
             <>
               <Grid item xs={12}>
-                <Typography variant="body2" color="text.secondary">
-                  Mostrando {results.length} de {total_results_size} inmuebles
-                  disponibles
-                </Typography>
+                <TotalInmuebles {...pageData} />
               </Grid>
               {inmuebleList}
             </>
