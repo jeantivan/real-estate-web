@@ -12,7 +12,7 @@ import {
   getInmueble,
   getInmueblesSimilares,
 } from "@/lib/api";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Box } from "@mui/material";
 import { asText } from "@prismicio/helpers";
 
 export default function Inmueble({ inmueble, inmueblesSimilares }) {
@@ -26,20 +26,22 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
 
   return (
     <Layout titulo={asText(titulo)} descripcion={desccorta}>
-      <Container maxWidth="md" sx={{ pt: { xs: "56px", sm: "64px" } }}>
-        <Grid
-          container
-          rowSpacing={2}
-          columnSpacing={3}
-          justifyContent="center"
-        >
-          <HeaderSection titulo={titulo} ubiaprox={ubiaprox} />
-          <GallerySection imagenes={imagenes} />
-          <OverviewSection {...inmuebleInfo} />
-          <ContactSection inmuebleId={id} agent={agent.data} />
-          <SimilaresSection inmueblesSimilares={inmueblesSimilares} />
-        </Grid>
-      </Container>
+      <Box bgcolor="#f5f5f5">
+        <Container maxWidth="md" sx={{ pt: { xs: "56px", sm: "64px" } }}>
+          <Grid
+            container
+            rowSpacing={2}
+            columnSpacing={3}
+            justifyContent="center"
+          >
+            <HeaderSection titulo={titulo} ubiaprox={ubiaprox} />
+            <GallerySection imagenes={imagenes} />
+            <OverviewSection {...inmuebleInfo} />
+            <ContactSection inmuebleId={id} agent={agent.data} />
+            <SimilaresSection inmueblesSimilares={inmueblesSimilares} />
+          </Grid>
+        </Container>
+      </Box>
     </Layout>
   );
 }
