@@ -27,16 +27,14 @@ export default function Inmueble({ inmueble, inmueblesSimilares }) {
   return (
     <Layout titulo={asText(titulo)} descripcion={desccorta}>
       <Box bgcolor="#f5f5f5">
-        <Container maxWidth="md" sx={{ pt: { xs: "56px", sm: "64px" } }}>
-          <Grid
-            container
-            rowSpacing={2}
-            columnSpacing={3}
-            justifyContent="center"
-          >
+        <Container sx={{ pt: { xs: "56px", sm: "64px" } }}>
+          <Grid container rowSpacing={2} columnSpacing={3}>
             <HeaderSection titulo={titulo} ubiaprox={ubiaprox} />
-            <GallerySection imagenes={imagenes} />
-            <OverviewSection {...inmuebleInfo} />
+            <Grid item xs={12} md={9} container rowSpacing={2}>
+              <GallerySection imagenes={imagenes} />
+              <OverviewSection {...inmuebleInfo} />
+            </Grid>
+
             <ContactSection inmuebleId={id} agent={agent.data} />
             <SimilaresSection inmueblesSimilares={inmueblesSimilares} />
           </Grid>

@@ -24,13 +24,7 @@ export function OverviewSection({
   precio,
 }) {
   return (
-    <Grid
-      item
-      xs={12}
-      md={8}
-      component="section"
-      id="caracteristicas-del-inmueble"
-    >
+    <Grid item component="section" id="caracteristicas-del-inmueble">
       <Paper elevation={0} sx={{ p: 2, minHeight: "100%" }}>
         <Box mb={3}>
           <Typography component="h3" variant="h6" fontWeight={700} mb={1}>

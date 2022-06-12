@@ -33,7 +33,7 @@ export function ContactSection({ agent }) {
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <Grid item xs={12} md={4} component="section" id="inmueble-contact">
+    <Grid item xs={12} md={3} component="section" id="inmueble-contact">
       <Paper
         elevation={0}
         sx={(theme) => ({
