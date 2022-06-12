@@ -44,13 +44,13 @@ export default function Inmuebles({ pageData }) {
         >
           <Grid item>
             <Typography variant="h2" component="h1">
-              Inmuebles
+              Inmuebles publicados.
             </Typography>
           </Grid>
         </Grid>
         <Divider />
 
-        <Grid container py={4} rowSpacing={4} columnSpacing={3}>
+        <Grid container pt={4} rowSpacing={4} columnSpacing={3}>
           {results.length < 1 ? (
             <Grid item xs={12}>
               <Typography
@@ -74,7 +74,14 @@ export default function Inmuebles({ pageData }) {
               </Link>
             </Grid>
           ) : (
-            inmuebleList
+            <>
+              <Grid item xs={12}>
+                <Typography variant="body1">
+                  Mostrando {results.length} inmuebles disponibles
+                </Typography>
+              </Grid>
+              {inmuebleList}
+            </>
           )}
         </Grid>
         <Grid container justifyContent="center" py={4}>
