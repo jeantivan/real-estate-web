@@ -34,7 +34,13 @@ export function ContactSection({ agent }) {
 
   return (
     <Grid item xs={12} md={4} component="section" id="inmueble-contact">
-      <Paper elevation={0}>
+      <Paper
+        elevation={0}
+        sx={(theme) => ({
+          position: "sticky",
+          top: `calc(56px + ${theme.spacing(3)})`,
+        })}
+      >
         <Box
           sx={{
             background: "#37474f",
@@ -166,7 +172,7 @@ export function ContactSection({ agent }) {
                 <Grid item>
                   <Input
                     name="telefono"
-                    label="Telefono"
+                    label="Teléfono"
                     variant="outlined"
                     fullWidth
                   />
