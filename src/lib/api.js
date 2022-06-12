@@ -80,11 +80,11 @@ export async function getAllAgents() {
 
 // Obtiene todos los asociados a cada Agente
 export async function getAllInmueblesByAgent(agentUid) {
-  const agent = await Client.getByUID("agent", agentUid);
+  const agentData = await Client.getByUID("agent", agentUid);
 
   const inmuebles = await Client.getByType("inmueble", {
-    predicates: [predicate.at("my.inmueble.agent", agent.id)],
+    predicates: [predicate.at("my.inmueble.agent", agentData.id)],
   });
 
-  return { agent, inmuebles };
+  return { agent: agentData.data, inmuebles };
 }
