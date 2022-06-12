@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 
 export default function Inmuebles({ pageData }) {
-  const { page, total_pages, results } = pageData;
+  const { page, total_pages, results, total_results_size } = pageData;
 
   const inmuebleList = results.map(({ data, uid }, i) => {
     let props = {
@@ -43,14 +43,14 @@ export default function Inmuebles({ pageData }) {
           pb={2}
         >
           <Grid item>
-            <Typography variant="h2" component="h1">
-              Inmuebles publicados.
+            <Typography variant="h4" component="h1">
+              Inmuebles publicados en <strong>Avilatek Inmobiliaria</strong>.
             </Typography>
           </Grid>
         </Grid>
         <Divider />
 
-        <Grid container pt={4} rowSpacing={4} columnSpacing={3}>
+        <Grid container pt={2} rowSpacing={4} columnSpacing={3}>
           {results.length < 1 ? (
             <Grid item xs={12}>
               <Typography
@@ -76,8 +76,9 @@ export default function Inmuebles({ pageData }) {
           ) : (
             <>
               <Grid item xs={12}>
-                <Typography variant="body1">
-                  Mostrando {results.length} inmuebles disponibles
+                <Typography variant="body2" color="text.secondary">
+                  Mostrando {results.length} de {total_results_size} inmuebles
+                  disponibles
                 </Typography>
               </Grid>
               {inmuebleList}
