@@ -31,6 +31,8 @@ export default function MyApp(props) {
     notistackRef.current.closeSnackbar(key);
   };
 
+  const router = Router.useRouter();
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -63,7 +65,7 @@ export default function MyApp(props) {
           )}
         >
           <CssBaseline />
-          <Component {...pageProps} />
+          <Component {...pageProps} key={router.asPath} />
         </SnackbarProvider>
       </ThemeProvider>
 
