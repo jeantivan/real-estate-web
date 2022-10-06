@@ -5,6 +5,7 @@ import {
   NewsletterSection,
   RedesSection,
 } from "@/layouts/contacto";
+import dynamic from "next/dynamic";
 
 const UbicacionSection = dynamic(() =>
   import("../layouts/contacto/ubicacion").then((mod) => mod.UbicacionSection)
