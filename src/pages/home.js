@@ -4,7 +4,6 @@ import {
   LatestInmuebles,
   ServicesSection,
   SalesSection,
-  ContactSection,
 } from "@/layouts/home";
 import { getLatestInmuebles } from "@/lib/api";
 
@@ -12,6 +11,10 @@ import dynamic from "next/dynamic";
 
 const NewsletterSection = dynamic(() =>
   import("../layouts/contacto/newsletter").then((mod) => mod.NewsletterSection)
+);
+
+const ContactSection = dynamic(() =>
+  import("../layouts/home/contact").then((mod) => mod.ContactSection)
 );
 
 export default function Home({ latestInmuebles }) {

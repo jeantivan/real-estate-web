@@ -4,8 +4,11 @@ import {
   FormularioSection,
   NewsletterSection,
   RedesSection,
-  UbicacionSection,
 } from "@/layouts/contacto";
+
+const UbicacionSection = dynamic(() =>
+  import("../layouts/contacto/ubicacion").then((mod) => mod.UbicacionSection)
+);
 
 export default function Contacto() {
   return (
