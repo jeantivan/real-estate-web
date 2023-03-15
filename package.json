@@ -2,7 +2,8 @@
   "name": "real-estate-web",
   "version": "0.1.0",
   "private": true,
-  "author": "Jean Tivan",
+  "author": "Jean Tivan <jptivan53@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
